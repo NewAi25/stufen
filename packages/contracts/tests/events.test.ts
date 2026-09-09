@@ -64,7 +64,7 @@ describe('EventMap matches docs/04', () => {
   });
 
   it('EventBus interface has emit, on and onAny', () => {
-    // A structural stand in; the real bus is P0-11.
+    // A structural stand in; the real bus is src/bus.ts, covered by bus.test.ts.
     const bus: EventBus = {
       emit: async () => {},
       on: () => () => {},

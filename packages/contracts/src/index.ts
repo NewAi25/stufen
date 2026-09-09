@@ -4,3 +4,5 @@
 // is listed in docs/04-module-contracts.md. Nothing else in src/ is public.
 export * from './types';
 export * from './events';
+export { createEventBus } from './bus';
+export type { EventBusOptions, EventBusErrorHandler, InProcessEventBus } from './bus';

@@ -1,7 +1,7 @@
 {
   "name": "@stufen/contracts",
   "kind": "contracts",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [],
@@ -10,6 +10,7 @@
     "const arrays (CEFR_LEVELS, SKILLS, EXERCISE_TYPES, ERROR_TYPES, LANGUAGE_CODES, FEATURE_KEYS, LIMIT_KEYS)",
     "events (EventMap, EventName)",
     "EventBus interface",
+    "createEventBus",
     "LanguagePack interface",
     "ExerciseTypeDefinition interface",
     "SpeechProvider interface",

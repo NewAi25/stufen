@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-09-09
+
+### Added
+- `src/bus.ts`: `createEventBus(options?)`, the in process implementation of `EventBus`. `emit` snapshots the subscribers, runs every matching `on` handler and every `onAny` handler concurrently with `Promise.allSettled`, and awaits them all. A failing handler does not stop the others; each failure goes to `options.onError(name, error, handlerLabel)`, default `console.error`. `emit` never rethrows. `on` and `onAny` return an idempotent unsubscribe. Extra for tests and debugging: `listenerCount(name?)`. Exported types: `EventBusOptions`, `EventBusErrorHandler`, `InProcessEventBus`.
+- `tests/bus.test.ts`: two subscribers on one event both run, `onAny` sees every emit, unsubscribe stops delivery and is safe to call twice, a throwing handler does not block the others, emit with no listeners resolves, a handler added during an emit does not receive it, `listenerCount` tracks subscriptions.
+
 ## [0.1.0] - 2026-09-09
 
 ### Added

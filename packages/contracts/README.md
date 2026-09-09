@@ -9,7 +9,7 @@ Kind: `contracts`. May import: nothing.
 
 ## Public API
 
-Everything is exported from `src/index.ts`. There are two source files.
+Everything is exported from `src/index.ts`. There are three source files.
 
 `src/types.ts`
 
@@ -25,7 +25,22 @@ Everything is exported from `src/index.ts`. There are two source files.
 
 - `EventMap`: the fourteen event names and their payloads.
 - `EventName`: `keyof EventMap`.
-- `EventBus`: `emit`, `on`, `onAny`. Interface only. The in process implementation arrives with P0-11.
+- `EventBus`: `emit`, `on`, `onAny`. The interface every box codes against.
+
+`src/bus.ts`
+
+- `createEventBus(options?)`: the in process implementation of `EventBus`. No queue. `emit` awaits every matching `on` handler and every `onAny` handler, run concurrently. A handler subscribed during an emit does not receive that emit. `on` and `onAny` return an unsubscribe function that is safe to call more than once.
+- `InProcessEventBus`: the return type. It is `EventBus` plus `listenerCount(name?)`, which returns the live subscriptions for one event, or for every event plus `onAny` when the name is omitted. Meant for tests and debugging, not for box logic.
+- `EventBusOptions` and `EventBusErrorHandler`: see the note on errors below.
+
+```ts
+const bus = createEventBus();
+const off = bus.on('user.signed_up', async ({ userId }) => console.log(userId));
+await bus.emit('user.signed_up', { userId: 'u1' });
+off();
+```
+
+Errors: a handler that throws or rejects does not stop the other handlers, and `emit` never rethrows. Each failure is passed to `options.onError(name, error, handlerLabel)` once. The default writes the event name and the error to `console.error`. Pass your own `onError` to route failures to a logger.
 
 Field names follow `docs/03-data-schema.md` in camelCase. Pack input shapes keep the snake_case of the JSON files they are read from. Shapes that `docs/04` does not spell out carry the comment "shape may grow".
 

@@ -1,5 +1,5 @@
 // Event names and payloads. Readable copy: docs/04-module-contracts.md.
-// This file declares the bus. The in process implementation is P0-11.
+// This file declares the bus. The in process implementation is in ./bus.
 import type { CefrLevel, ExerciseTypeId, LanguageCode, ReviewRating } from './types';
 
 export interface EventMap {
