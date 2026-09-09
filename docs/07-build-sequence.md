@@ -259,3 +259,4 @@ Every merged commit gets one row. Newest at the bottom. See `docs/08-versioning-
 | 2026-09-09 | 2890187 | prd | `docs(prd): add relocating professional persona and scenario track` |
 | 2026-09-09 | 13cd598 | de | `content(de): verify exam formats against provider documents` |
 | 2026-09-09 | 2c7f55f | curriculum | `docs(curriculum): align level rule with real life CEFR evidence` |
+| 2026-09-09 | ce767a9 | repo | `chore(repo): remove provider lock in per ADR-008` |
