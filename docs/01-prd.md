@@ -10,10 +10,13 @@ Stufen takes a person who knows no German at all to C1 or C2, with a checkable r
 
 Popular apps get people to A2 and stall. Textbooks and courses get people to B2 with a teacher. Almost nothing carries a self learner to C1 or C2, and nothing shows the learner, in CEFR terms, exactly what they have proven they can do. Learners who need German for work or a residence permit need the exam level, not a streak.
 
+The common apps are built around short daily sessions of isolated words and sentences. A person can finish the whole course and still not hold a conversation at A2. The time goes into repetition of the same small set of words, not into producing language. Stufen is built the other way round: every lesson ends in production, the tutor speaks and corrects at the learner's level, and the target is the level a workplace or a visa office actually demands.
+
 ## Who it is for
 
 | Persona | Need | What success looks like |
 |---------|------|-------------------------|
+| Relocating professional (primary) | Moving to Germany for a job or already there, needs to work, rent, deal with offices and doctors in German, target B2 to C1 within a year | Holds a job interview, a team meeting and an email thread with HR in German with confidence; passes a B2 or C1 exam simulation; every workplace scenario in the library is completed at least once |
 | Complete beginner | Wants to start today with zero words, in English UI | Speaks and writes simple sentences within two weeks, reaches A1 in the app within 8 to 12 weeks of daily use |
 | Restarter | Did school German, forgot most, wants B1 or B2 for a move | Placement test lands them at the right level in 15 minutes, no repeated beginner content |
 | Exam candidate | Needs Goethe or telc B2, C1 or C2 | Exam simulation with the real format and honest scores before booking |
@@ -48,6 +51,8 @@ Popular apps get people to A2 and stall. Textbooks and courses get people to B2 
 
 **Level map.** The A1 to C2 ladder. Each level lists its can do statements. Each statement shows evidence: how many correct attempts, in which exercise types, and the best production score. Mastery is computed from rules that are written down, not from a feeling.
 
+**Workplace and life track.** From B1 upward, tutor roleplay and writing tasks draw from a scenario library aimed at people who live and work in the country: job interview, first day at work, team meeting, asking for clarification, email to HR, sick note and doctor visit, registering at the Bürgeramt, rental contract and landlord, bank appointment, salary talk, small talk in the kitchen, presenting your work. Each scenario is content in the language pack, tagged with the can do descriptors it evidences, so it counts toward mastery like any lesson. C1 and C2 add register work: the same message written formally, neutrally and casually.
+
 **Assessment.** Placement test at start. Checkpoint test at the end of each level. Exam simulation at B1 and above matching Goethe and telc formats.
 
 ## Pedagogical spine
@@ -73,7 +78,7 @@ The interface language starts in English at A1 with German everywhere the learne
 
 ## Moat
 
-Most language apps are gamified vocabulary. Stufen's difference is structural and checkable: a CEFR descriptor spine with evidence per descriptor, AI graded production at every level, exam format simulation, and a content pack format that makes new languages data rather than rewrites. The moat is the spine plus the grading, not any single lesson.
+Most language apps are gamified vocabulary. Stufen's difference is structural and checkable and aimed at a real outcome, working and living in the country: a CEFR descriptor spine with evidence per descriptor, AI graded production at every level, exam format simulation, and a content pack format that makes new languages data rather than rewrites. The moat is the spine plus the grading, not any single lesson.
 
 ## Risks
 
