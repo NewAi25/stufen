@@ -9,31 +9,25 @@ Kind: `contracts`. May import: nothing.
 
 ## Public API
 
-```ts
-type LanguageCode = 'de' | 'nl' | 'fr';
-type CefrLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
-type Skill = 'reading' | 'listening' | 'spoken_production' | 'spoken_interaction'
-           | 'writing' | 'mediation' | 'grammar' | 'vocabulary';
-type ExerciseTypeId = 'multiple_choice' | 'cloze' | 'match_pairs' | 'order_words'
-           | 'translate' | 'dictation' | 'read_answer' | 'listen_answer'
-           | 'write_free' | 'speak_prompt' | 'flashcard';
+Everything is exported from `src/index.ts`. There are two source files.
 
-interface GradeResult {
-  correct: boolean;          // pass or fail for evidence purposes
-  score: number;             // 0 to 1
-  feedback: Feedback;        // shown to the learner
-  errorTypes?: ErrorType[];  // article, case, gender, word_order, spelling, tense, register, vocabulary, other
-}
+`src/types.ts`
 
-interface EventBus {
-  emit<K extends keyof EventMap>(name: K, payload: EventMap[K]): Promise<void>;
-  on<K extends keyof EventMap>(name: K, handler: (p: EventMap[K]) => Promise<void>): () => void;
-  onAny(handler: (name: string, payload: unknown) => Promise<void>): () => void;
-}
+- Unions: `LanguageCode`, `CefrLevel`, `Skill`, `ExerciseTypeId`, `ErrorType`, `FeatureKey`, `LimitKey`, `ReviewRating`.
+- Runtime arrays for the unions so code can iterate them: `LANGUAGE_CODES`, `CEFR_LEVELS`, `SKILLS`, `EXERCISE_TYPES`, `ERROR_TYPES`, `FEATURE_KEYS`, `LIMIT_KEYS`.
+- Grading: `GradeResult`, `Feedback`, `Correction`, `GradeContext`, `AiGrader`.
+- Interfaces boxes implement: `LanguagePack`, `LanguageRules`, `ExerciseTypeDefinition`, `SpeechProvider`, `PaymentProvider`.
+- Domain shapes returned by box APIs: `Profile`, `ProfileEditable`, `LearnerLanguage`, `Cando`, `Unit`, `LessonSummary`, `Lesson`, `Exercise`, `Item`, `LessonSession`, `SessionResult`, `StandaloneAttempt`, `ReviewCard`, `CandoMastery`, `LevelEstimate`, `Streak`, `LevelMap`, `Assessment`, `AssessmentResult`, `Question`, `Conversation`, `TutorChunk`, `WritingGrade`, `Recording`, `WordDiff`, `FeedbackItem`, `Entitlement`, `ExamFormat`, `ExamFormatId`.
+- Pack input shapes read from `content/<lang>/`: `PackManifest`, `CandoInput`, `ItemInput`, `UnitInput`, `ValidationReport`, `InstallReport`.
+- `JSONSchema`, a loose object alias for exercise payload schemas.
 
-// EventMap, LanguagePack, ExerciseTypeDefinition, SpeechProvider and
-// PaymentProvider are listed in full in docs/04-module-contracts.md.
-```
+`src/events.ts`
+
+- `EventMap`: the fourteen event names and their payloads.
+- `EventName`: `keyof EventMap`.
+- `EventBus`: `emit`, `on`, `onAny`. Interface only. The in process implementation arrives with P0-11.
+
+Field names follow `docs/03-data-schema.md` in camelCase. Pack input shapes keep the snake_case of the JSON files they are read from. Shapes that `docs/04` does not spell out carry the comment "shape may grow".
 
 Source of truth: `docs/04-module-contracts.md`. If a signature is not there, it is not public.
 
