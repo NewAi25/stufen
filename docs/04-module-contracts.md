@@ -154,7 +154,14 @@ and for skills writing, spoken_production, spoken_interaction:
     best_production_score >= 3 (of 5)
 ```
 
-Level estimate by mastery ratio: a level counts as reached when 80 percent of its can dos are mastered and the checkpoint assessment for that level is completed with score at least 0.7.
+Level L is reached when all four conditions hold:
+
+1. At least 80 percent of L's descriptors are mastered under the evidence rule.
+2. Every production descriptor of L (`SPI`, `SPP`, `WRI`) is mastered, which needs a graded sample at or above 3 of 5 (4 of 5 at C1 and C2).
+3. The checkpoint for L is completed: each exercise section at or above 60 percent, mirroring the Goethe module pass mark, plus one unscripted spoken roleplay and one written task drawn from L's scenario library, each graded at or above 3 of 5 (4 of 5 at C1 and C2) with a rubric estimated level of at least L.
+4. Receptive and scaffolding evidence alone (`REA`, `LIS`, `GRA`, `VOC`) never raises a level. Until production evidence exists the level map shows "working towards L".
+
+The level card shows the official CEFR global scale paragraph for L next to the evidence, states what L is good for in Germany with sources, and says that the estimate is not a certificate. Details and sources: `docs/14-levels-in-real-life.md`.
 
 ## core-assessment
 
@@ -165,6 +172,8 @@ startExamSim(userId, language, level, format: ExamFormatId): Promise<Assessment>
 answer(assessmentId, questionId, response): Promise<{ next: Question | null }>
 finish(assessmentId): Promise<AssessmentResult>          // emits assessment.completed, calls progress.recordEstimate
 ```
+
+Checkpoints contain exercise sections shaped like the certifying exam plus two scenario tasks (one spoken roleplay, one written) from the level's scenario library; `finish` fails the checkpoint if either scenario task is below threshold regardless of the exercise sections.
 
 Placement is adaptive: starts at A2, steps up on two consecutive correct blocks, steps down on two consecutive failed blocks, stops after 4 blocks or when bounded.
 

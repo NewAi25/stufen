@@ -6,7 +6,7 @@ Sources. Descriptors: Council of Europe, CEFR Companion Volume (2020). German le
 
 ## Level targets
 
-| Level | Learner can (summary) | Active vocabulary target | Guided hours (Goethe guidance, approximate) | Stufen path length |
+| Level | Learner can (summary) | Active vocabulary target | Teaching units of 45 min to reach the level (Goethe) | Stufen path length (planning target) |
 |-------|-----------------------|--------------------------|---------------------------------------------|--------------------|
 | A1 | Introduce self, ask and answer simple personal questions, understand slow clear speech on familiar matters | 600 to 700 | 80 to 200 | 8 units, about 60 lessons |
 | A2 | Handle routine exchanges, describe background, immediate environment and needs | 1300 | 200 to 350 | 8 units, about 70 lessons |
@@ -15,7 +15,9 @@ Sources. Descriptors: Council of Europe, CEFR Companion Volume (2020). German le
 | C1 | Understand demanding long texts and implicit meaning, express fluently and spontaneously, use language flexibly for academic and professional purposes | 6000 to 8000 | 800 to 1000 | 10 units, about 100 lessons |
 | C2 | Understand virtually everything, summarise from different sources, express with precision and nuance in complex situations | 10000 plus | 1000 plus | 8 units, about 80 lessons plus register and style work |
 
-Guided hours check (September 2026). The column matches the Goethe Institut wording per level: A1 80 to 200, A2 200 to 350, B1 350 to 650, B2 600 to 800, C1 800 to 1000, C2 at least 1000 teaching units of 45 minutes, depending on prior knowledge. No correction was needed. Sources: A1 and A2 from the A2 Modellsatz (https://www.goethe.de/pro/relaunch/prf/materialien/A2/A2_Modellsatz_Erwachsene.pdf), B1 from https://www.goethe.de/ins/de/de/prf/prf/gzb1/inf.html, B2 from https://www.goethe.de/ins/be/de/spr/prf/gzb2/wi9.html, C1 from https://www.goethe.de/pro/relaunch/prf/de/Handbuch_Pruefungsziele_Testbeschreibung_C1.pdf, C2 from https://www.goethe.de/ins/de/de/prf/prf/gzc2/inf.html.
+The app shows learners expected clock hours per level, taken from these unit ranges (one unit is 45 minutes), not lesson counts. Path lengths are planning targets and are re checked against checkpoint results once A1 testers finish; see rule 8 in `docs/14-levels-in-real-life.md`.
+
+Units check (September 2026). The column matches the Goethe Institut wording per level: A1 80 to 200, A2 200 to 350, B1 350 to 650, B2 600 to 800, C1 800 to 1000, C2 at least 1000 teaching units of 45 minutes, depending on prior knowledge. No correction was needed. Sources: A1 and A2 from the A2 Modellsatz (https://www.goethe.de/pro/relaunch/prf/materialien/A2/A2_Modellsatz_Erwachsene.pdf), B1 from https://www.goethe.de/ins/de/de/prf/prf/gzb1/inf.html, B2 from https://www.goethe.de/ins/be/de/spr/prf/gzb2/wi9.html, C1 from https://www.goethe.de/pro/relaunch/prf/de/Handbuch_Pruefungsziele_Testbeschreibung_C1.pdf, C2 from https://www.goethe.de/ins/de/de/prf/prf/gzc2/inf.html.
 
 ## Skills and descriptor codes
 
@@ -36,7 +38,16 @@ Descriptor counts per level in the German pack, planned:
 
 Default rule, from `docs/04-module-contracts.md`: six or more attempts, correct in at least two exercise types, at least 80 percent accuracy over the last ten attempts, and for production skills a best AI graded sample scoring 3 or more out of 5. A descriptor may override this in its `mastery_rule` field, for example C2 writing descriptors require 4 of 5.
 
-Level reached when 80 percent of the level's descriptors are mastered and the checkpoint scores at least 70 percent. This is the app's estimate. It is not a certificate.
+Level L is reached when all four conditions hold:
+
+1. At least 80 percent of L's descriptors are mastered under the evidence rule.
+2. Every production descriptor of L (`SPI`, `SPP`, `WRI`) is mastered, which needs a graded sample at or above 3 of 5 (4 of 5 at C1 and C2).
+3. The checkpoint for L is completed: each exercise section at or above 60 percent, mirroring the Goethe module pass mark, plus one unscripted spoken roleplay and one written task drawn from L's scenario library, each graded at or above 3 of 5 (4 of 5 at C1 and C2) with a rubric estimated level of at least L.
+4. Receptive and scaffolding evidence alone (`REA`, `LIS`, `GRA`, `VOC`) never raises a level. Until production evidence exists the level map shows "working towards L".
+
+The level card shows the official CEFR global scale paragraph for L next to the evidence, states what L is good for in Germany with sources, and says that the estimate is not a certificate. Details and sources: `docs/14-levels-in-real-life.md`.
+
+This is the app's estimate. It is not a certificate.
 
 ## German grammar sequence
 
@@ -162,7 +173,7 @@ Figures below were checked in September 2026 against the provider documents name
 | B1 | Goethe Zertifikat B1 | telc Deutsch B1 | DTZ (B1 result) | same, plus Sprachbausteine for telc, modular scoring for Goethe |
 | B2 | Goethe Zertifikat B2 | telc Deutsch B2 | TestDaF TDN 3 and 4 | same |
 | C1 | Goethe Zertifikat C1 | telc Deutsch C1 Hochschule | TestDaF TDN 5 | same, plus Sprachbausteine for telc |
-| C2 | Goethe Zertifikat C2 GDS | none | none | four modules |
+| C2 | Goethe Zertifikat C2 GDS | telc Deutsch C2 | none | four modules |
 
 ### Goethe Zertifikat A1 Start Deutsch 1
 

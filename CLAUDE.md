@@ -13,7 +13,7 @@ Read this file first in every session. Then read `docs/07-build-sequence.md` to 
 5. **Conventional commits with the box as scope.** `feat(core-srs): add FSRS scheduler`. `fix(lang-de): correct dative plural rule`. `docs(build-seq): mark core-progress done`. Every commit message says which box and what changed. No commit touches more than one box unless it is a release commit.
 6. **Content is data, not code.** Lessons, vocabulary, grammar rules and can do statements live in `content/<lang>/` as JSON that validates against `content/schema/`. Adding a language means adding a content pack and a thin `lang-<code>` box, never editing a core box. If a core box needs a change to support a new language, that is a core change and gets its own commit first.
 7. **No payments code until the entitlements phase.** `core-entitlements` exists from day one and answers "may this user do X". In beta the answer is always yes for `free_beta`. Stripe or any provider is an adapter added later behind the same interface.
-8. **Never make welfare style pedagogical judgements up.** Level targets, can do statements and grammar sequences come from published sources: the CEFR Companion Volume, Goethe Institut level descriptions, Profile deutsch. Cite the source in the content pack. If a source is missing, mark the item `source: "unverified"` so it can be reviewed.
+8. **Never make welfare style pedagogical judgements up.** Level targets, can do statements and grammar sequences come from published sources: the CEFR Companion Volume, Goethe Institut level descriptions, Profile deutsch, and `docs/14-levels-in-real-life.md` for what a level must mean in daily life. A level is never granted on exercise accuracy alone. Cite the source in the content pack. If a source is missing, mark the item `source: "unverified"` so it can be reviewed.
 9. **Small, checkable, testable.** Each box ships with a test that a non expert can run with one command and read the result of. Prefer a table of pass or fail over prose.
 10. **Documentation is part of the change.** If behaviour changes, the box README changes. If an architecture decision changes, write a new ADR in `docs/adr/`, never edit an accepted one.
 
@@ -43,6 +43,7 @@ Read this file first in every session. Then read `docs/07-build-sequence.md` to 
 | Tests and quality gates | `docs/11-testing-and-quality.md` |
 | Entitlements and future payments | `docs/12-entitlements-and-payments.md` |
 | Roadmap | `docs/13-roadmap.md` |
+| What each level means in real life, sourced | `docs/14-levels-in-real-life.md` |
 | Decisions | `docs/adr/` |
 
 ## How work is delegated
