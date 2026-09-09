@@ -220,4 +220,4 @@ Every merged commit gets one row. Newest at the bottom. See `docs/08-versioning-
 
 | Date | Commit | Box | Message |
 |------|--------|-----|---------|
-| 2026-09-09 | pending | repo | `chore(repo): planning package v0.0.1` |
+| 2026-09-09 | 6b49a37 | repo | `chore(repo): planning package v0.0.1` |
