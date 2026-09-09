@@ -4,9 +4,13 @@
     "name": "Goethe-Zertifikat A1: Start Deutsch 1",
     "level": "A1",
     "provider": "Goethe-Institut",
+    "edition": "2025-09-01",
+    "total_minutes": 80,
     "max_points": 100,
     "pass_mark": 0.6,
-    "scoring_en": "The three written sections give 45 raw points and the speaking section gives 15. Both are scaled so that the written part counts 75 and speaking counts 25 of 100. A total of 60 passes. Scaling factors and the exact pass rule are marked unverified until checked against the current Durchführungsbestimmungen.",
+    "modular": false,
+    "cost_eur": "Not published centrally. Each Goethe-Institut or licensed exam centre sets its own fee.",
+    "scoring_en": "Hören, Lesen and Schreiben give 15 raw points each (45). Sprechen gives 15 raw points. The written raw total is multiplied by 1.66 to give 75 and the speaking raw total by 1.66 to give 25. The exam is passed with at least 60 of 100 points (60 percent) when all four parts were taken. With fewer than 35 written points the exam can no longer be passed. Not modular.",
     "sections": [
       {
         "id": "hoeren",
@@ -22,8 +26,9 @@
           "Public announcements, true or false",
           "Telephone messages and recorded information, choose the correct option"
         ],
-        "source": "goethe-a1-pruefung",
-        "note": "Item split across the three tasks to be confirmed."
+        "source": "goethe-dfb-a1",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_A1_Start_Deutsch_1.pdf",
+        "note": "Duration given as circa 20 minutes. 1 point per item, 15 points maximum."
       },
       {
         "id": "lesen",
@@ -39,7 +44,8 @@
           "Small ads or notices, choose the one that fits the situation",
           "Signs and notices, true or false"
         ],
-        "source": "goethe-a1-pruefung"
+        "source": "goethe-dfb-a1",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_A1_Start_Deutsch_1.pdf"
       },
       {
         "id": "schreiben",
@@ -47,15 +53,15 @@
         "name_en": "Writing",
         "skill": "writing",
         "task_count": 2,
-        "item_count": 6,
+        "item_count": 2,
         "minutes": 20,
         "points": 15,
         "task_types_en": [
-          "Fill in five fields of a form for another person",
-          "Write a short personal message or email covering three given points"
+          "Fill in five fields of a form for another person, 5 points",
+          "Write a short personal message or email covering three given points, 10 points, rated by two graders and averaged"
         ],
-        "source": "goethe-a1-pruefung",
-        "note": "Task 1 counts 5 points, task 2 counts 10 points. Item count treats the letter as one item."
+        "source": "goethe-dfb-a1",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_A1_Start_Deutsch_1.pdf"
       },
       {
         "id": "sprechen",
@@ -64,18 +70,583 @@
         "skill": "spoken_interaction",
         "task_count": 3,
         "minutes": 15,
+        "preparation_minutes": 0,
         "points": 15,
         "task_types_en": [
-          "Introduce yourself using given keywords",
-          "Ask for and give information on a topic using word cards",
-          "Make and respond to requests using picture cards"
+          "Introduce yourself using given keywords, 3 points",
+          "Ask for and give information on a topic using word cards, 6 points",
+          "Make and respond to requests using picture cards, 6 points"
         ],
-        "source": "unverified",
-        "note": "Group exam, duration depends on group size. Minutes and points need checking."
+        "source": "goethe-dfb-a1",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_A1_Start_Deutsch_1.pdf",
+        "note": "Group exam with up to four candidates, 15 minutes, each part about 5 minutes, no preparation time."
       }
     ],
-    "source": "goethe-a1-pruefung",
-    "source_note": "Structure from the public exam description. Numbers not yet checked against the current edition are flagged in section notes.",
+    "source": "goethe-dfb-a1",
+    "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_A1_Start_Deutsch_1.pdf",
+    "source_note": "Durchführungsbestimmungen, Stand 1 September 2025, sections 1.4, 3, 4, 5 and 6.",
+    "reviewed": false
+  },
+  {
+    "id": "goethe-a2",
+    "name": "Goethe-Zertifikat A2",
+    "level": "A2",
+    "provider": "Goethe-Institut",
+    "edition": "2025-09-01",
+    "total_minutes": 105,
+    "max_points": 100,
+    "pass_mark": 0.6,
+    "modular": false,
+    "cost_eur": "Not published centrally. Each Goethe-Institut or licensed exam centre sets its own fee.",
+    "scoring_en": "Lesen, Hören and Schreiben have 20 raw points each, multiplied by 1.25 to give 25 points each (75 written). Sprechen gives 25 points. The exam is passed with at least 60 of 100 points (60 percent), of which at least 45 in the written part and at least 15 in speaking. Not modular.",
+    "sections": [
+      {
+        "id": "lesen",
+        "name": "Lesen",
+        "name_en": "Reading",
+        "skill": "reading",
+        "task_count": 4,
+        "item_count": 20,
+        "minutes": 30,
+        "points": 25,
+        "source": "goethe-dfb-a2",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_A2.pdf"
+      },
+      {
+        "id": "hoeren",
+        "name": "Hören",
+        "name_en": "Listening",
+        "skill": "listening",
+        "task_count": 4,
+        "item_count": 20,
+        "minutes": 30,
+        "points": 25,
+        "source": "goethe-dfb-a2",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_A2.pdf",
+        "note": "Duration given as circa 30 minutes."
+      },
+      {
+        "id": "schreiben",
+        "name": "Schreiben",
+        "name_en": "Writing",
+        "skill": "writing",
+        "task_count": 2,
+        "item_count": 2,
+        "minutes": 30,
+        "points": 25,
+        "source": "goethe-dfb-a2",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_A2.pdf",
+        "note": "20 raw points rated by two graders, third rating when the average falls under 12 raw points and the graders disagree on passing."
+      },
+      {
+        "id": "sprechen",
+        "name": "Sprechen",
+        "name_en": "Speaking",
+        "skill": "spoken_interaction",
+        "task_count": 3,
+        "minutes": 15,
+        "preparation_minutes": 0,
+        "points": 25,
+        "task_types_en": [
+          "Ask and answer four questions from keyword cards, about 3 minutes",
+          "Talk about yourself from keyword cards, about 3 minutes per candidate",
+          "Plan something together from task cards, about 5 minutes"
+        ],
+        "source": "goethe-dfb-a2",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_A2.pdf",
+        "note": "Pair exam 15 minutes, single exam 10 minutes, no preparation time. Introductory exchange is not scored."
+      }
+    ],
+    "source": "goethe-dfb-a2",
+    "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_A2.pdf",
+    "source_note": "Durchführungsbestimmungen for Goethe-Zertifikat A2 and A2 Fit in Deutsch, Stand 1 September 2025, sections 1.4, 3, 4, 5 and 6.",
+    "reviewed": false
+  },
+  {
+    "id": "goethe-b1",
+    "name": "Goethe-Zertifikat B1",
+    "level": "B1",
+    "provider": "Goethe-Institut",
+    "edition": "2025-09-01",
+    "total_minutes": 180,
+    "max_points": 100,
+    "pass_mark": 0.6,
+    "modular": true,
+    "cost_eur": "Not published centrally. Each Goethe-Institut or licensed exam centre sets its own fee, per module or for all four.",
+    "scoring_en": "Modular. Each module scores 100 points and is passed on its own with at least 60 points (60 percent). Modules can be taken and repeated separately. Lesen and Hören have 30 items each, raw points multiplied by 3.33 and rounded. Schreiben and Sprechen are rated by two graders and averaged.",
+    "sections": [
+      {
+        "id": "lesen",
+        "name": "Lesen",
+        "name_en": "Reading",
+        "skill": "reading",
+        "task_count": 5,
+        "item_count": 30,
+        "minutes": 65,
+        "points": 100,
+        "source": "goethe-dfb-b1",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_B1.pdf"
+      },
+      {
+        "id": "hoeren",
+        "name": "Hören",
+        "name_en": "Listening",
+        "skill": "listening",
+        "task_count": 4,
+        "item_count": 30,
+        "minutes": 40,
+        "points": 100,
+        "source": "goethe-dfb-b1",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_B1.pdf",
+        "note": "Duration given as circa 40 minutes."
+      },
+      {
+        "id": "schreiben",
+        "name": "Schreiben",
+        "name_en": "Writing",
+        "skill": "writing",
+        "task_count": 3,
+        "item_count": 3,
+        "minutes": 60,
+        "points": 100,
+        "source": "goethe-dfb-b1",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_B1.pdf"
+      },
+      {
+        "id": "sprechen",
+        "name": "Sprechen",
+        "name_en": "Speaking",
+        "skill": "spoken_interaction",
+        "task_count": 3,
+        "minutes": 15,
+        "preparation_minutes": 15,
+        "points": 100,
+        "task_types_en": [
+          "Plan something together, about 2 to 3 minutes",
+          "Give a presentation on a chosen topic, about 3 to 4 minutes per candidate",
+          "Respond to the partner's presentation, about 1 to 2 minutes per candidate"
+        ],
+        "source": "goethe-dfb-b1",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_B1.pdf",
+        "note": "Pair exam circa 15 minutes, single exam circa 10 minutes, 15 minutes preparation."
+      }
+    ],
+    "source": "goethe-dfb-b1",
+    "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_B1.pdf",
+    "source_note": "Durchführungsbestimmungen, Stand 1 September 2025, sections 1.3, 3, 4, 5 and 6.",
+    "reviewed": false
+  },
+  {
+    "id": "goethe-b2",
+    "name": "Goethe-Zertifikat B2",
+    "level": "B2",
+    "provider": "Goethe-Institut",
+    "edition": "2025-09-01",
+    "total_minutes": 195,
+    "max_points": 100,
+    "pass_mark": 0.6,
+    "modular": true,
+    "cost_eur": "Not published centrally. Each Goethe-Institut or licensed exam centre sets its own fee, per module or for all four.",
+    "scoring_en": "Modular. Each module scores 100 points and is passed on its own with at least 60 points (60 percent). Lesen and Hören have 30 items each, raw points multiplied by 3.33 and rounded. Schreiben and Sprechen are rated by two graders and averaged.",
+    "sections": [
+      {
+        "id": "lesen",
+        "name": "Lesen",
+        "name_en": "Reading",
+        "skill": "reading",
+        "task_count": 5,
+        "item_count": 30,
+        "minutes": 65,
+        "points": 100,
+        "source": "goethe-dfb-b2",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_B2.pdf"
+      },
+      {
+        "id": "hoeren",
+        "name": "Hören",
+        "name_en": "Listening",
+        "skill": "listening",
+        "task_count": 4,
+        "item_count": 30,
+        "minutes": 40,
+        "points": 100,
+        "source": "goethe-dfb-b2",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_B2.pdf",
+        "note": "Duration given as circa 40 minutes."
+      },
+      {
+        "id": "schreiben",
+        "name": "Schreiben",
+        "name_en": "Writing",
+        "skill": "writing",
+        "task_count": 2,
+        "item_count": 2,
+        "minutes": 75,
+        "points": 100,
+        "source": "goethe-dfb-b2",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_B2.pdf"
+      },
+      {
+        "id": "sprechen",
+        "name": "Sprechen",
+        "name_en": "Speaking",
+        "skill": "spoken_interaction",
+        "task_count": 2,
+        "minutes": 15,
+        "preparation_minutes": 15,
+        "points": 100,
+        "task_types_en": [
+          "Short presentation on a chosen topic, about 4 minutes per candidate",
+          "Discussion with the partner"
+        ],
+        "source": "goethe-dfb-b2",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_B2.pdf",
+        "note": "Pair exam circa 15 minutes, single exam circa 10 minutes, 15 minutes preparation."
+      }
+    ],
+    "source": "goethe-dfb-b2",
+    "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_B2.pdf",
+    "source_note": "Durchführungsbestimmungen, Stand 1 September 2025, sections 1.3, 3, 4, 5 and 6.",
+    "reviewed": false
+  },
+  {
+    "id": "goethe-c1",
+    "name": "Goethe-Zertifikat C1",
+    "level": "C1",
+    "provider": "Goethe-Institut",
+    "edition": "2025-09-01",
+    "total_minutes": 200,
+    "max_points": 100,
+    "pass_mark": 0.6,
+    "modular": true,
+    "cost_eur": "Not published centrally. Each Goethe-Institut or licensed exam centre sets its own fee, per module or for all four.",
+    "scoring_en": "Modular format in force since 2024. Each module scores 100 points and is passed on its own with at least 60 points (60 percent). Lesen and Hören have 30 items each, raw points multiplied by 3.33 and rounded. Schreiben and Sprechen are rated by two graders and averaged.",
+    "sections": [
+      {
+        "id": "lesen",
+        "name": "Lesen",
+        "name_en": "Reading",
+        "skill": "reading",
+        "task_count": 4,
+        "item_count": 30,
+        "minutes": 65,
+        "points": 100,
+        "source": "goethe-dfb-c1",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_C1.pdf"
+      },
+      {
+        "id": "hoeren",
+        "name": "Hören",
+        "name_en": "Listening",
+        "skill": "listening",
+        "task_count": 4,
+        "item_count": 30,
+        "minutes": 40,
+        "points": 100,
+        "source": "goethe-dfb-c1",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_C1.pdf",
+        "note": "Duration given as circa 40 minutes."
+      },
+      {
+        "id": "schreiben",
+        "name": "Schreiben",
+        "name_en": "Writing",
+        "skill": "writing",
+        "task_count": 2,
+        "item_count": 2,
+        "minutes": 75,
+        "points": 100,
+        "source": "goethe-dfb-c1",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_C1.pdf"
+      },
+      {
+        "id": "sprechen",
+        "name": "Sprechen",
+        "name_en": "Speaking",
+        "skill": "spoken_interaction",
+        "task_count": 2,
+        "minutes": 20,
+        "preparation_minutes": 20,
+        "points": 100,
+        "task_types_en": [
+          "Presentation on a chosen topic with follow up questions, about 7 minutes per candidate",
+          "Discussion with the partner, about 5 minutes"
+        ],
+        "source": "goethe-dfb-c1",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_C1.pdf",
+        "note": "Pair exam circa 20 minutes, single exam circa 15 minutes, 20 minutes preparation for both."
+      }
+    ],
+    "source": "goethe-dfb-c1",
+    "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_C1.pdf",
+    "source_note": "Durchführungsbestimmungen, Stand 1 September 2025, sections 1.3, 3, 4, 5 and 6.",
+    "reviewed": false
+  },
+  {
+    "id": "goethe-c2",
+    "name": "Goethe-Zertifikat C2: Großes Deutsches Sprachdiplom",
+    "level": "C2",
+    "provider": "Goethe-Institut",
+    "edition": "2025-09-01",
+    "total_minutes": 210,
+    "max_points": 100,
+    "pass_mark": 0.6,
+    "modular": true,
+    "cost_eur": "Not published centrally. Each Goethe-Institut or licensed exam centre sets its own fee, per module or for all four.",
+    "scoring_en": "Modular. Each module scores 100 points and is passed on its own with at least 60 points (60 percent). Lesen and Hören give 1 point per answer. Schreiben: task 1 has 10 answers at 2, 1 or 0 points (20), task 2 is rated on five criteria at 4 to 0 points (20) and multiplied by four (80). Sprechen: points of both parts are added and multiplied by 2.5, two examiners averaged.",
+    "sections": [
+      {
+        "id": "lesen",
+        "name": "Lesen",
+        "name_en": "Reading",
+        "skill": "reading",
+        "task_count": 4,
+        "minutes": 80,
+        "points": 100,
+        "source": "goethe-dfb-c2",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_C2_neu.pdf",
+        "note": "Item count is not stated in the Durchführungsbestimmungen; 1 point per answer, 100 maximum."
+      },
+      {
+        "id": "hoeren",
+        "name": "Hören",
+        "name_en": "Listening",
+        "skill": "listening",
+        "task_count": 3,
+        "minutes": 35,
+        "points": 100,
+        "source": "goethe-dfb-c2",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_C2_neu.pdf",
+        "note": "Duration given as circa 35 minutes. Item count is not stated in the Durchführungsbestimmungen; 1 point per answer, 100 maximum."
+      },
+      {
+        "id": "schreiben",
+        "name": "Schreiben",
+        "name_en": "Writing",
+        "skill": "writing",
+        "task_count": 2,
+        "minutes": 80,
+        "points": 100,
+        "task_types_en": [
+          "Rewrite ten sentences or passages, 2 points each, 20 points",
+          "Essay on a chosen topic, five criteria, 80 points"
+        ],
+        "source": "goethe-dfb-c2",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_C2_neu.pdf"
+      },
+      {
+        "id": "sprechen",
+        "name": "Sprechen",
+        "name_en": "Speaking",
+        "skill": "spoken_production",
+        "task_count": 2,
+        "minutes": 15,
+        "preparation_minutes": 15,
+        "points": 100,
+        "task_types_en": [
+          "Production: presentation, about 5 minutes, then questions for about 2 to 3 minutes",
+          "Interaction: discussion with the examiner, about 5 minutes"
+        ],
+        "source": "goethe-dfb-c2",
+        "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_C2_neu.pdf",
+        "note": "Single exam, circa 15 minutes, 15 minutes preparation. Introductory exchange is not scored."
+      }
+    ],
+    "source": "goethe-dfb-c2",
+    "source_url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_C2_neu.pdf",
+    "source_note": "Durchführungsbestimmungen, Stand 1 September 2025, sections 1.4, 3, 4, 5 and 6.",
+    "reviewed": false
+  },
+  {
+    "id": "telc-b1",
+    "name": "telc Deutsch B1 (Zertifikat Deutsch)",
+    "level": "B1",
+    "provider": "telc gGmbH",
+    "total_minutes": 165,
+    "max_points": 300,
+    "pass_mark": 0.6,
+    "modular": false,
+    "cost_eur": "Not published centrally. Each telc exam centre sets its own fee.",
+    "scoring_en": "300 points: written part 225 (Leseverstehen 75, Sprachbausteine 30, Hörverstehen 75, Schriftlicher Ausdruck 45), oral part 75. Passed with at least 180 points (60 percent) and at least 60 percent in each part, that is 135 of 225 written and 45 of 75 oral. Not modular, but a failed written or oral part can be repeated on its own within the calendar year of the exam or the following one.",
+    "sections": [
+      {
+        "id": "leseverstehen",
+        "name": "Leseverstehen",
+        "name_en": "Reading",
+        "skill": "reading",
+        "task_count": 3,
+        "item_count": 20,
+        "minutes": 90,
+        "time_block": "written-1",
+        "points": 75,
+        "task_types_en": [
+          "Global understanding, 5 matching items",
+          "Detailed understanding, 5 multiple choice items",
+          "Selective understanding, 10 matching items"
+        ],
+        "source": "telc-b1-uebungstest",
+        "source_url": "https://shop.telc.net/media/catalog/product/file/telc_deutsch_b1_zd_uebungstest_1.pdf",
+        "note": "The 90 minutes are one block shared with Sprachbausteine."
+      },
+      {
+        "id": "sprachbausteine",
+        "name": "Sprachbausteine",
+        "name_en": "Language elements",
+        "skill": "grammar",
+        "task_count": 2,
+        "item_count": 20,
+        "minutes": 90,
+        "time_block": "written-1",
+        "points": 30,
+        "task_types_en": [
+          "Grammar, 10 multiple choice gaps",
+          "Vocabulary, 10 matching gaps"
+        ],
+        "source": "telc-b1-uebungstest",
+        "source_url": "https://shop.telc.net/media/catalog/product/file/telc_deutsch_b1_zd_uebungstest_1.pdf",
+        "note": "Same 90 minute block as Leseverstehen, count it once."
+      },
+      {
+        "id": "hoerverstehen",
+        "name": "Hörverstehen",
+        "name_en": "Listening",
+        "skill": "listening",
+        "task_count": 3,
+        "item_count": 20,
+        "minutes": 30,
+        "points": 75,
+        "task_types_en": [
+          "Global understanding, 5 true or false items",
+          "Detailed understanding, 10 true or false items",
+          "Selective understanding, 5 true or false items"
+        ],
+        "source": "telc-b1-uebungstest",
+        "source_url": "https://shop.telc.net/media/catalog/product/file/telc_deutsch_b1_zd_uebungstest_1.pdf",
+        "note": "Duration given as circa 30 minutes."
+      },
+      {
+        "id": "schriftlicher-ausdruck",
+        "name": "Schriftlicher Ausdruck",
+        "name_en": "Writing",
+        "skill": "writing",
+        "task_count": 1,
+        "item_count": 1,
+        "minutes": 30,
+        "points": 45,
+        "task_types_en": [
+          "Informal or semi formal email answering four given points"
+        ],
+        "source": "telc-b1-uebungstest",
+        "source_url": "https://shop.telc.net/media/catalog/product/file/telc_deutsch_b1_zd_uebungstest_1.pdf"
+      },
+      {
+        "id": "muendlicher-ausdruck",
+        "name": "Mündlicher Ausdruck",
+        "name_en": "Speaking",
+        "skill": "spoken_interaction",
+        "task_count": 3,
+        "minutes": 15,
+        "preparation_minutes": 20,
+        "points": 75,
+        "task_types_en": [
+          "Getting to know each other, 15 points",
+          "Talking about a topic, 30 points",
+          "Planning something together, 30 points"
+        ],
+        "source": "telc-b1-uebungstest",
+        "source_url": "https://shop.telc.net/media/catalog/product/file/telc_deutsch_b1_zd_uebungstest_1.pdf",
+        "note": "Pair exam, circa 15 minutes, 20 minutes preparation."
+      }
+    ],
+    "source": "telc-b1-uebungstest",
+    "source_url": "https://www.telc.net/en/language-examinations/certificate-exams/german/certificate-german-telc-german-b1/",
+    "source_note": "Übungstest 1, Testformat table page 5 and Punkte und Gewichtung page 39, confirmed against the telc product page.",
+    "reviewed": false
+  },
+  {
+    "id": "dtz",
+    "name": "Deutsch-Test für Zuwanderer A2 bis B1",
+    "level": "B1",
+    "provider": "BAMF, developed by g.a.s.t. and Goethe-Institut",
+    "total_minutes": 115,
+    "max_points": 45,
+    "pass_mark": 0.7333,
+    "modular": false,
+    "cost_eur": "Free for funded integration course participants (BAMF pays the fee). External candidates pay a centre fee that BAMF does not publish.",
+    "scoring_en": "No points total. Hören and Lesen are pooled into 45 items: 20 of 45 correct gives A2, 33 of 45 (pass_mark here) gives B1. Schreiben and Sprechen are each rated A2 or B1 by two raters against criteria. Overall result B1 when Sprechen is B1 and at least one of Hören plus Lesen or Schreiben is B1; otherwise A2 when reached; below A2 only a results notice. Not modular, one sitting.",
+    "sections": [
+      {
+        "id": "hoeren",
+        "name": "Hören",
+        "name_en": "Listening",
+        "skill": "listening",
+        "task_count": 4,
+        "item_count": 20,
+        "minutes": 25,
+        "points": 20,
+        "task_types_en": [
+          "Telephone and public announcements, 4 items",
+          "Radio information, 5 items",
+          "Conversations, 8 items",
+          "Opinion statements, 3 items"
+        ],
+        "source": "bamf-dtz-handbuch",
+        "source_url": "https://www.bamf.de/SharedDocs/Anlagen/DE/Integration/Integrationskurse/Kurstraeger/Modellsaetze/dtz-handbuch_pdf.pdf?__blob=publicationFile&v=8"
+      },
+      {
+        "id": "lesen",
+        "name": "Lesen",
+        "name_en": "Reading",
+        "skill": "reading",
+        "task_count": 5,
+        "item_count": 25,
+        "minutes": 45,
+        "points": 25,
+        "task_types_en": [
+          "Catalogues, registers, directories, 5 items",
+          "Advertisements, 5 items",
+          "Press and formal notices, 6 items",
+          "Information brochures, 3 items",
+          "Formal letter, 6 items"
+        ],
+        "source": "bamf-dtz-handbuch",
+        "source_url": "https://www.bamf.de/SharedDocs/Anlagen/DE/Integration/Integrationskurse/Kurstraeger/Modellsaetze/dtz-handbuch_pdf.pdf?__blob=publicationFile&v=8"
+      },
+      {
+        "id": "schreiben",
+        "name": "Schreiben",
+        "name_en": "Writing",
+        "skill": "writing",
+        "task_count": 1,
+        "item_count": 1,
+        "minutes": 30,
+        "task_types_en": [
+          "Short letter or message in formal register"
+        ],
+        "source": "bamf-dtz-handbuch",
+        "source_url": "https://www.bamf.de/SharedDocs/Anlagen/DE/Integration/Integrationskurse/Kurstraeger/Modellsaetze/dtz-handbuch_pdf.pdf?__blob=publicationFile&v=8",
+        "note": "Rated A2 or B1 by criteria, no point score."
+      },
+      {
+        "id": "sprechen",
+        "name": "Sprechen",
+        "name_en": "Speaking",
+        "skill": "spoken_interaction",
+        "task_count": 3,
+        "minutes": 15,
+        "task_types_en": [
+          "1a introduce yourself, 1b answer follow up questions",
+          "2a give information from a picture or topic, 2b compare, narrate, report",
+          "3 negotiate something together"
+        ],
+        "source": "bamf-dtz-handbuch",
+        "source_url": "https://www.bamf.de/DE/Themen/Integration/ZugewanderteTeilnehmende/Integrationskurse/Abschlusspruefung/abschlusspruefung-node.html",
+        "note": "Pair exam, circa 10 minutes per candidate in the handbook, about 15 minutes for the pair on the BAMF page. Rated A2 or B1 by criteria, no point score."
+      }
+    ],
+    "source": "bamf-dtz-handbuch",
+    "source_url": "https://www.bamf.de/SharedDocs/Anlagen/DE/Integration/Integrationskurse/Kurstraeger/Modellsaetze/dtz-handbuch_pdf.pdf?__blob=publicationFile&v=8",
+    "source_note": "Prüfungshandbuch chapter 1 Kurzbeschreibung der Prüfung, table Prüfungsteile und Dauer and the Ergebnisse paragraph. Level is set to B1 because that is the certificate's top result; the same sitting also yields A2.",
     "reviewed": false
   }
 ]

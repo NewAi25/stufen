@@ -46,9 +46,79 @@
       "publisher": "Goethe-Institut, Munich",
       "url": "https://www.goethe.de/de/spr/kup/prf/prf/gzsd1.html",
       "note": "Exam structure: sections, task counts, timing and scoring. Numbers marked unverified in exam-formats.json still need checking against the current edition."
+    },
+    {
+      "id": "goethe-dfb-a1",
+      "title": "Goethe-Zertifikat A1: Start Deutsch 1, Durchführungsbestimmungen",
+      "author": "Goethe-Institut",
+      "publisher": "Goethe-Institut, Munich",
+      "year": 2025,
+      "url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_A1_Start_Deutsch_1.pdf",
+      "note": "Stand 1 September 2025. Sections, tasks, minutes, points and pass rule for exam-formats.json."
+    },
+    {
+      "id": "goethe-dfb-a2",
+      "title": "Goethe-Zertifikat A2 und A2 Fit in Deutsch, Durchführungsbestimmungen",
+      "author": "Goethe-Institut",
+      "publisher": "Goethe-Institut, Munich",
+      "year": 2025,
+      "url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_A2.pdf",
+      "note": "Stand 1 September 2025. Sections, tasks, minutes, points and pass rule for exam-formats.json."
+    },
+    {
+      "id": "goethe-dfb-b1",
+      "title": "Goethe-Zertifikat B1, Durchführungsbestimmungen",
+      "author": "Goethe-Institut",
+      "publisher": "Goethe-Institut, Munich",
+      "year": 2025,
+      "url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_B1.pdf",
+      "note": "Stand 1 September 2025. Modules, tasks, minutes, points and pass rule for exam-formats.json."
+    },
+    {
+      "id": "goethe-dfb-b2",
+      "title": "Goethe-Zertifikat B2, Durchführungsbestimmungen",
+      "author": "Goethe-Institut",
+      "publisher": "Goethe-Institut, Munich",
+      "year": 2025,
+      "url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_B2.pdf",
+      "note": "Stand 1 September 2025. Modules, tasks, minutes, points and pass rule for exam-formats.json."
+    },
+    {
+      "id": "goethe-dfb-c1",
+      "title": "Goethe-Zertifikat C1, Durchführungsbestimmungen",
+      "author": "Goethe-Institut",
+      "publisher": "Goethe-Institut, Munich",
+      "year": 2025,
+      "url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_C1.pdf",
+      "note": "Stand 1 September 2025, modular C1 format. Modules, tasks, minutes, points and pass rule for exam-formats.json."
+    },
+    {
+      "id": "goethe-dfb-c2",
+      "title": "Goethe-Zertifikat C2: Großes Deutsches Sprachdiplom, Durchführungsbestimmungen",
+      "author": "Goethe-Institut",
+      "publisher": "Goethe-Institut, Munich",
+      "year": 2025,
+      "url": "https://www.goethe.de/pro/relaunch/prf/de/Durchfuehrungsbestimmungen_C2_neu.pdf",
+      "note": "Stand 1 September 2025. Modules, tasks, minutes, points and pass rule for exam-formats.json. Item counts for Lesen and Hören are not stated there."
+    },
+    {
+      "id": "telc-b1-uebungstest",
+      "title": "telc Deutsch B1 / Zertifikat Deutsch, Übungstest 1",
+      "author": "telc gGmbH",
+      "publisher": "telc gGmbH, Frankfurt am Main",
+      "url": "https://shop.telc.net/media/catalog/product/file/telc_deutsch_b1_zd_uebungstest_1.pdf",
+      "note": "Testformat table page 5 and Punkte und Gewichtung page 39. Confirmed against https://www.telc.net/en/language-examinations/certificate-exams/german/certificate-german-telc-german-b1/"
+    },
+    {
+      "id": "bamf-dtz-handbuch",
+      "title": "Deutsch-Test für Zuwanderer A2 bis B1, Prüfungsziele, Testbeschreibung",
+      "author": "Bundesamt für Migration und Flüchtlinge, g.a.s.t., Goethe-Institut",
+      "publisher": "BAMF, Nuremberg",
+      "url": "https://www.bamf.de/SharedDocs/Anlagen/DE/Integration/Integrationskurse/Kurstraeger/Modellsaetze/dtz-handbuch_pdf.pdf?__blob=publicationFile&v=8",
+      "note": "Chapter 1 Kurzbeschreibung der Prüfung: Prüfungsteile und Dauer table and Ergebnisse rule. Speaking length also from https://www.bamf.de/DE/Themen/Integration/ZugewanderteTeilnehmende/Integrationskurse/Abschlusspruefung/abschlusspruefung-node.html"
     }
   ],
-  "checksum": "sha256:ddf917945dd5840147c72a09f9ff856bfe1e3e2b6a7f7db11a915c71384dd69c",
+  "checksum": "sha256:e2e5614f4df8ffe531cf3a76515a969c2312ffb4ed5a36f3a1aa2ecaf03d123a",
   "strictUnitEnding": false,
   "reviewed": false,
   "updated": "2026-09-09"

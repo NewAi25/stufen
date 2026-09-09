@@ -11,9 +11,12 @@
     "name": { "type": "string", "minLength": 1, "description": "Official exam name." },
     "level": { "$ref": "#/$defs/level" },
     "provider": { "type": "string", "minLength": 1 },
-    "total_minutes": { "type": "integer", "minimum": 1, "description": "Whole exam including speaking, when the provider states it." },
+    "edition": { "type": "string", "description": "Edition or Stand date of the provider document the figures were taken from, for example 2025-09-01." },
+    "total_minutes": { "type": "integer", "minimum": 1, "description": "Whole exam including speaking, when the provider states it. Excludes preparation time and breaks." },
     "max_points": { "type": "number", "minimum": 1 },
-    "pass_mark": { "type": "number", "minimum": 0, "maximum": 1, "description": "Fraction of max_points needed to pass." },
+    "pass_mark": { "type": "number", "minimum": 0, "maximum": 1, "description": "Fraction of max_points needed to pass. For modular exams this is the fraction per module." },
+    "modular": { "type": "boolean", "description": "True when each section is passed, certified and repeatable on its own." },
+    "cost_eur": { "type": "string", "description": "Published fee in euro as printed by the provider, or a short note when the provider does not publish one." },
     "scoring_en": { "type": "string", "description": "Scoring rule in plain words. Modular exams say so here." },
     "sections": {
       "type": "array",
@@ -21,6 +24,7 @@
       "items": { "$ref": "#/$defs/section" }
     },
     "source": { "type": "string", "pattern": "^([a-z0-9][a-z0-9-]*|unverified)$" },
+    "source_url": { "type": "string", "pattern": "^https?://", "description": "Exact URL of the provider document the format level figures come from." },
     "source_note": { "type": "string" },
     "reviewed": { "type": "boolean" }
   },
@@ -40,10 +44,13 @@
         "skill": { "$ref": "#/$defs/skill" },
         "task_count": { "type": "integer", "minimum": 1, "description": "Number of tasks (Teile)." },
         "item_count": { "type": "integer", "minimum": 1, "description": "Number of scored items across the tasks, when known." },
-        "minutes": { "type": "integer", "minimum": 1 },
+        "minutes": { "type": "integer", "minimum": 1, "description": "Time limit. When time_block is set, this is the length of the shared block and must be counted once per block." },
+        "time_block": { "type": "string", "description": "Sections with the same time_block share one clock, for example telc Leseverstehen and Sprachbausteine." },
+        "preparation_minutes": { "type": "integer", "minimum": 0, "description": "Preparation time before the section starts, when the provider grants one." },
         "points": { "type": "number", "minimum": 0 },
         "task_types_en": { "type": "array", "items": { "type": "string" }, "description": "Short description of each task in order." },
         "source": { "type": "string", "pattern": "^([a-z0-9][a-z0-9-]*|unverified)$" },
+        "source_url": { "type": "string", "pattern": "^https?://", "description": "Exact URL of the provider document these section figures come from." },
         "note": { "type": "string" }
       }
     }
