@@ -1,0 +1,197 @@
+[
+  {
+    "key": "de:cando:A1.LIS.01",
+    "code": "A1.LIS.01",
+    "level": "A1",
+    "skill": "listening",
+    "text_en": "Can follow speech that is very slow and carefully articulated, with long pauses to take in the meaning.",
+    "source": "cefr-cv-2020",
+    "source_note": "Overall oral comprehension, A1.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.LIS.02",
+    "code": "A1.LIS.02",
+    "level": "A1",
+    "skill": "listening",
+    "text_en": "Can pick out concrete information such as names, places and times in a short, slow, clearly spoken exchange on a familiar everyday topic.",
+    "source": "cefr-cv-2020",
+    "source_note": "Understanding conversation between other people, A1, and Overall oral comprehension, A1.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.LIS.03",
+    "code": "A1.LIS.03",
+    "level": "A1",
+    "skill": "listening",
+    "text_en": "Can understand numbers, prices and times given slowly and clearly.",
+    "source": "cefr-cv-2020",
+    "source_note": "Listening to announcements and instructions, A1.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.REA.01",
+    "code": "A1.REA.01",
+    "level": "A1",
+    "skill": "reading",
+    "text_en": "Can understand very short, simple texts one phrase at a time, picking up familiar names, words and basic phrases and rereading as needed.",
+    "source": "cefr-cv-2020",
+    "source_note": "Overall reading comprehension, A1.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.REA.02",
+    "code": "A1.REA.02",
+    "level": "A1",
+    "skill": "reading",
+    "text_en": "Can understand short, simple messages on postcards and in simple personal emails.",
+    "source": "cefr-cv-2020",
+    "source_note": "Reading correspondence, A1.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.REA.03",
+    "code": "A1.REA.03",
+    "level": "A1",
+    "skill": "reading",
+    "text_en": "Can recognise familiar names, words and very basic phrases on simple notices in the most common everyday situations.",
+    "source": "cefr-cv-2020",
+    "source_note": "Reading for orientation, A1.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.SPP.01",
+    "code": "A1.SPP.01",
+    "level": "A1",
+    "skill": "spoken_production",
+    "text_en": "Can produce simple, mainly isolated phrases about people and places.",
+    "source": "cefr-cv-2020",
+    "source_note": "Overall oral production, A1.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.SPP.02",
+    "code": "A1.SPP.02",
+    "level": "A1",
+    "skill": "spoken_production",
+    "text_en": "Can describe themselves, what they do and where they live.",
+    "source": "cefr-cv-2020",
+    "source_note": "Sustained monologue: describing experience, A1.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.SPI.01",
+    "code": "A1.SPI.01",
+    "level": "A1",
+    "skill": "spoken_interaction",
+    "text_en": "Can ask and answer simple questions and respond to simple statements on very familiar topics or in areas of immediate need.",
+    "source": "cefr-cv-2020",
+    "source_note": "Overall oral interaction, A1.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.SPI.02",
+    "code": "A1.SPI.02",
+    "level": "A1",
+    "skill": "spoken_interaction",
+    "text_en": "Can introduce themselves and use basic greeting and leave taking expressions.",
+    "source": "cefr-cv-2020",
+    "source_note": "Conversation, A1.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.SPI.03",
+    "code": "A1.SPI.03",
+    "level": "A1",
+    "skill": "spoken_interaction",
+    "text_en": "Can ask and answer questions about themselves and other people: where they live, people they know, things they have.",
+    "source": "cefr-cv-2020",
+    "source_note": "Information exchange, A1.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.WRI.01",
+    "code": "A1.WRI.01",
+    "level": "A1",
+    "skill": "writing",
+    "text_en": "Can write simple isolated phrases and sentences about themselves.",
+    "source": "cefr-cv-2020",
+    "source_note": "Overall written production, A1.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.WRI.02",
+    "code": "A1.WRI.02",
+    "level": "A1",
+    "skill": "writing",
+    "text_en": "Can fill in a simple form with personal details: name, nationality, address, age, date of birth.",
+    "source": "cefr-cv-2020",
+    "source_note": "Notes, messages and forms, A1.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.GRA.01",
+    "code": "A1.GRA.01",
+    "level": "A1",
+    "skill": "grammar",
+    "text_en": "Uses the personal pronouns with sein and haben in the present tense.",
+    "source": "profile-deutsch",
+    "source_note": "A1 grammar inventory. Row A1.1 of the German grammar sequence in docs/05.",
+    "sequence_ref": "A1.1",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.GRA.02",
+    "code": "A1.GRA.02",
+    "level": "A1",
+    "skill": "grammar",
+    "text_en": "Uses the present tense endings of regular verbs such as wohnen, kommen and heissen with the correct pronoun.",
+    "source": "profile-deutsch",
+    "source_note": "A1 grammar inventory. Row A1.2 of the German grammar sequence in docs/05.",
+    "sequence_ref": "A1.2",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.GRA.03",
+    "code": "A1.GRA.03",
+    "level": "A1",
+    "skill": "grammar",
+    "text_en": "Forms statements, yes or no questions and W questions with the verb in the correct position.",
+    "source": "profile-deutsch",
+    "source_note": "A1 grammar inventory. Row A1.3 of the German grammar sequence in docs/05.",
+    "sequence_ref": "A1.3",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.GRA.04",
+    "code": "A1.GRA.04",
+    "level": "A1",
+    "skill": "grammar",
+    "text_en": "Uses the definite article der, die, das with the gender of common nouns in the nominative.",
+    "source": "profile-deutsch",
+    "source_note": "A1 grammar inventory. Row A1.4 of the German grammar sequence in docs/05.",
+    "sequence_ref": "A1.4",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.VOC.01",
+    "code": "A1.VOC.01",
+    "level": "A1",
+    "skill": "vocabulary",
+    "text_en": "Uses greetings and farewells and the words needed to give and ask for a name, a country and a city.",
+    "source": "goethe-a1-wortliste",
+    "source_note": "Thematic list: Persönliche Angaben, Begrüßung und Abschied.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.VOC.02",
+    "code": "A1.VOC.02",
+    "level": "A1",
+    "skill": "vocabulary",
+    "text_en": "Understands and says the cardinal numbers one to ten and uses them for telephone numbers and house numbers.",
+    "source": "goethe-a1-wortliste",
+    "source_note": "Thematic list: Zahlen. Row A1.12 of the sequence in docs/05 covers numbers, dates and the clock.",
+    "sequence_ref": "A1.12",
+    "reviewed": false
+  }
+]

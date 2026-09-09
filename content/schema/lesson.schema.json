@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stufen.app/schema/lesson.json",
+  "title": "Lesson",
+  "description": "content/<lang>/units/<level>/<nn>-<slug>/lesson-<nn>.json. A lesson is an ordered list of exercises that targets one or more can do descriptors.",
+  "type": "object",
+  "required": ["key", "unit_key", "ordinal", "slug", "title", "title_en", "kind", "estimated_minutes", "cando_ids", "exercises"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "key": {
+      "type": "string",
+      "pattern": "^[a-z]{2}:lesson:(a1|a2|b1|b2|c1|c2)-[0-9]{2}-[0-9]{2}$",
+      "description": "<lang>:lesson:<level>-<unit nn>-<lesson nn>."
+    },
+    "unit_key": { "type": "string", "pattern": "^[a-z]{2}:unit:(a1|a2|b1|b2|c1|c2)-[0-9]{2}-[a-z0-9][a-z0-9-]*$" },
+    "ordinal": { "type": "integer", "minimum": 1, "description": "Must equal <nn> in the file name." },
+    "slug": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "title": { "type": "string", "minLength": 1 },
+    "title_en": { "type": "string", "minLength": 1 },
+    "description": { "type": "string" },
+    "kind": { "enum": ["core", "review", "production", "checkpoint"] },
+    "estimated_minutes": { "type": "integer", "minimum": 1 },
+    "cando_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "pattern": "^[a-z]{2}:cando:" },
+      "description": "Descriptor keys this lesson targets. At least one. Every key must exist in candos/."
+    },
+    "introduces_item_ids": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z]{2}:(vocab|grammar|chunk|phrase):" },
+      "description": "Items first met in this lesson. core-lesson-engine pushes them to the review queue on completion."
+    },
+    "exercises": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "https://stufen.app/schema/exercise.json" }
+    },
+    "source": { "type": "string", "pattern": "^([a-z0-9][a-z0-9-]*|unverified)$" },
+    "reviewed": { "type": "boolean" }
+  }
+}

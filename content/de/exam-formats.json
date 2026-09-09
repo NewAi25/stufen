@@ -1,0 +1,81 @@
+[
+  {
+    "id": "goethe-a1",
+    "name": "Goethe-Zertifikat A1: Start Deutsch 1",
+    "level": "A1",
+    "provider": "Goethe-Institut",
+    "max_points": 100,
+    "pass_mark": 0.6,
+    "scoring_en": "The three written sections give 45 raw points and the speaking section gives 15. Both are scaled so that the written part counts 75 and speaking counts 25 of 100. A total of 60 passes. Scaling factors and the exact pass rule are marked unverified until checked against the current Durchführungsbestimmungen.",
+    "sections": [
+      {
+        "id": "hoeren",
+        "name": "Hören",
+        "name_en": "Listening",
+        "skill": "listening",
+        "task_count": 3,
+        "item_count": 15,
+        "minutes": 20,
+        "points": 15,
+        "task_types_en": [
+          "Short everyday dialogues, choose the correct picture or statement",
+          "Public announcements, true or false",
+          "Telephone messages and recorded information, choose the correct option"
+        ],
+        "source": "goethe-a1-pruefung",
+        "note": "Item split across the three tasks to be confirmed."
+      },
+      {
+        "id": "lesen",
+        "name": "Lesen",
+        "name_en": "Reading",
+        "skill": "reading",
+        "task_count": 3,
+        "item_count": 15,
+        "minutes": 25,
+        "points": 15,
+        "task_types_en": [
+          "Two short texts such as emails, true or false",
+          "Small ads or notices, choose the one that fits the situation",
+          "Signs and notices, true or false"
+        ],
+        "source": "goethe-a1-pruefung"
+      },
+      {
+        "id": "schreiben",
+        "name": "Schreiben",
+        "name_en": "Writing",
+        "skill": "writing",
+        "task_count": 2,
+        "item_count": 6,
+        "minutes": 20,
+        "points": 15,
+        "task_types_en": [
+          "Fill in five fields of a form for another person",
+          "Write a short personal message or email covering three given points"
+        ],
+        "source": "goethe-a1-pruefung",
+        "note": "Task 1 counts 5 points, task 2 counts 10 points. Item count treats the letter as one item."
+      },
+      {
+        "id": "sprechen",
+        "name": "Sprechen",
+        "name_en": "Speaking",
+        "skill": "spoken_interaction",
+        "task_count": 3,
+        "minutes": 15,
+        "points": 15,
+        "task_types_en": [
+          "Introduce yourself using given keywords",
+          "Ask for and give information on a topic using word cards",
+          "Make and respond to requests using picture cards"
+        ],
+        "source": "unverified",
+        "note": "Group exam, duration depends on group size. Minutes and points need checking."
+      }
+    ],
+    "source": "goethe-a1-pruefung",
+    "source_note": "Structure from the public exam description. Numbers not yet checked against the current edition are flagged in section notes.",
+    "reviewed": false
+  }
+]

@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stufen.app/schema/pack.json",
+  "title": "Stufen content pack manifest",
+  "description": "content/<lang>/pack.json. One per language pack. Declares code, version, sources and checksum.",
+  "type": "object",
+  "required": ["code", "version", "name", "name_native", "levels", "sources", "checksum"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "code": {
+      "type": "string",
+      "pattern": "^[a-z]{2}$",
+      "description": "Two letter language code. Must match the directory name and the prefix of every key in the pack."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Semantic version of the pack. See docs/09-content-pack-spec.md, Versioning."
+    },
+    "name": { "type": "string", "minLength": 1, "description": "Language name in English." },
+    "name_native": { "type": "string", "minLength": 1, "description": "Language name in the language itself." },
+    "description": { "type": "string" },
+    "locale": {
+      "type": "string",
+      "pattern": "^[a-z]{2}(-[A-Z]{2})?$",
+      "description": "BCP 47 locale used for speech, for example de-DE."
+    },
+    "levels": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/level" },
+      "description": "Levels this pack version ships content for."
+    },
+    "tts": {
+      "type": "object",
+      "required": ["locale", "voiceHint"],
+      "additionalProperties": false,
+      "properties": {
+        "locale": { "type": "string" },
+        "voiceHint": { "type": "string" }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/source" },
+      "description": "Every published source the pack cites. Items, descriptors and exercises reference these by id."
+    },
+    "checksum": {
+      "type": "string",
+      "pattern": "^(sha256:[0-9a-f]{64}|pending)$",
+      "description": "sha256 over every content file except pack.json. Written by scripts/validate-content.mjs --write-checksum. 'pending' is allowed while editing."
+    },
+    "strictUnitEnding": {
+      "type": "boolean",
+      "description": "Default true. When false the validator does not require each unit to end with a production lesson and a review lesson. Only for skeleton packs."
+    },
+    "reviewed": { "type": "boolean" },
+    "updated": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+      "description": "Date of the last content change, ISO date."
+    }
+  },
+  "$defs": {
+    "level": { "enum": ["A1", "A2", "B1", "B2", "C1", "C2"] },
+    "source": {
+      "type": "object",
+      "required": ["id", "title", "publisher"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$",
+          "description": "Short stable id used in every source field, for example cefr-cv-2020."
+        },
+        "title": { "type": "string", "minLength": 1 },
+        "author": { "type": "string" },
+        "publisher": { "type": "string", "minLength": 1 },
+        "year": { "type": "integer", "minimum": 1900 },
+        "url": { "type": "string" },
+        "note": { "type": "string", "description": "Edition, page range, or what is still to be verified." }
+      }
+    }
+  }
+}

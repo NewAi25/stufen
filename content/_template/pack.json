@@ -1,0 +1,25 @@
+{
+  "$schema": "https://stufen.app/schema/pack.json",
+  "code": "xx",
+  "version": "0.0.1",
+  "name": "Template",
+  "name_native": "Template",
+  "description": "Empty pack. Copy content/_template to content/<code> and replace every value.",
+  "locale": "xx",
+  "levels": ["A1"],
+  "tts": { "locale": "xx", "voiceHint": "neutral" },
+  "sources": [
+    {
+      "id": "cefr-cv-2020",
+      "title": "Common European Framework of Reference for Languages: Learning, teaching, assessment. Companion Volume",
+      "author": "Council of Europe",
+      "publisher": "Council of Europe Publishing, Strasbourg",
+      "year": 2020,
+      "url": "https://www.coe.int/en/web/common-european-framework-reference-languages",
+      "note": "Keep this source. Add the language specific word list, grammar inventory and exam description as further entries."
+    }
+  ],
+  "checksum": "pending",
+  "strictUnitEnding": true,
+  "reviewed": false
+}

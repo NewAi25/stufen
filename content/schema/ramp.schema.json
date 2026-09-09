@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stufen.app/schema/ramp.json",
+  "title": "Immersion ramp",
+  "description": "content/<lang>/ramp.json. Which language the app uses for instructions, feedback and the tutor at each level. Values: en, mixed, target.",
+  "type": "object",
+  "required": ["A1", "A2", "B1", "B2", "C1", "C2"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "A1": { "$ref": "#/$defs/levelRamp" },
+    "A2": { "$ref": "#/$defs/levelRamp" },
+    "B1": { "$ref": "#/$defs/levelRamp" },
+    "B2": { "$ref": "#/$defs/levelRamp" },
+    "C1": { "$ref": "#/$defs/levelRamp" },
+    "C2": { "$ref": "#/$defs/levelRamp" },
+    "source": { "type": "string", "pattern": "^([a-z0-9][a-z0-9-]*|unverified)$" },
+    "note": { "type": "string" }
+  },
+  "$defs": {
+    "mode": { "enum": ["en", "mixed", "target"] },
+    "levelRamp": {
+      "type": "object",
+      "required": ["instructions", "feedback", "tutor"],
+      "additionalProperties": false,
+      "properties": {
+        "instructions": { "$ref": "#/$defs/mode", "description": "Exercise instructions and UI hints." },
+        "feedback": { "$ref": "#/$defs/mode", "description": "Correction and explanation text." },
+        "tutor": { "$ref": "#/$defs/mode", "description": "Language the AI tutor speaks by default." },
+        "hover_gloss": { "type": "boolean", "description": "Show English on hover when instructions are in the target language." },
+        "explain_on_request": { "type": "boolean", "description": "Learner may ask the tutor for an English explanation." }
+      }
+    }
+  }
+}

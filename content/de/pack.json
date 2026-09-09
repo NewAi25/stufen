@@ -1,0 +1,55 @@
+{
+  "$schema": "https://stufen.app/schema/pack.json",
+  "code": "de",
+  "version": "0.1.0",
+  "name": "German",
+  "name_native": "Deutsch",
+  "description": "German content pack. Skeleton: A1 descriptors, the first unit with two lessons, Goethe A1 exam format.",
+  "locale": "de-DE",
+  "levels": [
+    "A1"
+  ],
+  "tts": {
+    "locale": "de-DE",
+    "voiceHint": "female, neutral, slow at A1"
+  },
+  "sources": [
+    {
+      "id": "cefr-cv-2020",
+      "title": "Common European Framework of Reference for Languages: Learning, teaching, assessment. Companion Volume",
+      "author": "Council of Europe",
+      "publisher": "Council of Europe Publishing, Strasbourg",
+      "year": 2020,
+      "url": "https://www.coe.int/en/web/common-european-framework-reference-languages",
+      "note": "Descriptor scales for reading, listening, spoken production, spoken interaction, writing and mediation. Descriptor texts in this pack are close paraphrases."
+    },
+    {
+      "id": "goethe-a1-wortliste",
+      "title": "Goethe-Zertifikat A1: Start Deutsch 1, Wortliste",
+      "author": "Goethe-Institut",
+      "publisher": "Goethe-Institut, Munich",
+      "url": "https://www.goethe.de/pro/relaunch/prf/de/A1_SD1_Wortliste_02.pdf",
+      "note": "Alphabetical and thematic A1 word list. Edition year to be confirmed on review."
+    },
+    {
+      "id": "profile-deutsch",
+      "title": "Profile deutsch. Gemeinsamer europäischer Referenzrahmen. Lernzielbestimmungen, Kannbeschreibungen, kommunikative Mittel, Niveau A1 bis C2",
+      "author": "Glaboniat, M., Müller, M., Rusch, P., Schmitz, H., Wertenschlag, L.",
+      "publisher": "Langenscheidt, Berlin and Munich",
+      "year": 2005,
+      "note": "Used for the grammar and vocabulary scaffolding descriptors and the German grammar sequence in docs/05-curriculum-spine.md."
+    },
+    {
+      "id": "goethe-a1-pruefung",
+      "title": "Goethe-Zertifikat A1: Start Deutsch 1, Prüfungsziele, Testbeschreibung und Durchführungsbestimmungen",
+      "author": "Goethe-Institut",
+      "publisher": "Goethe-Institut, Munich",
+      "url": "https://www.goethe.de/de/spr/kup/prf/prf/gzsd1.html",
+      "note": "Exam structure: sections, task counts, timing and scoring. Numbers marked unverified in exam-formats.json still need checking against the current edition."
+    }
+  ],
+  "checksum": "sha256:ddf917945dd5840147c72a09f9ff856bfe1e3e2b6a7f7db11a915c71384dd69c",
+  "strictUnitEnding": false,
+  "reviewed": false,
+  "updated": "2026-09-09"
+}

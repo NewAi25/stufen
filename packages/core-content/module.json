@@ -1,0 +1,19 @@
+{
+  "name": "@stufen/core-content",
+  "kind": "core",
+  "version": "0.0.0",
+  "status": "planned",
+  "owner": "Manisha Sarkar",
+  "depends_on": [
+    "contracts"
+  ],
+  "peers": [
+    "lang-de"
+  ],
+  "provides": [
+    "registerPack",
+    "validatePack",
+    "installPack",
+    "activePackVersion"
+  ]
+}

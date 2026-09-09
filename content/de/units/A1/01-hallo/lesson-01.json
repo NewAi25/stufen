@@ -1,0 +1,289 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-01-01",
+  "unit_key": "de:unit:a1-01-hallo",
+  "ordinal": 1,
+  "slug": "hallo-ich-heisse",
+  "title": "Hallo, ich heiße ...",
+  "title_en": "Hello, my name is ...",
+  "description": "Greetings for the time of day, saying your name, saying which country you come from, the verb sein.",
+  "kind": "core",
+  "estimated_minutes": 15,
+  "cando_ids": [
+    "de:cando:A1.SPI.01",
+    "de:cando:A1.SPI.02",
+    "de:cando:A1.SPP.02",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.REA.01",
+    "de:cando:A1.WRI.01",
+    "de:cando:A1.GRA.01",
+    "de:cando:A1.GRA.02",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.VOC.01"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:hallo",
+    "de:vocab:guten-morgen",
+    "de:vocab:guten-tag",
+    "de:vocab:guten-abend",
+    "de:vocab:gute-nacht",
+    "de:vocab:tschuess",
+    "de:vocab:auf-wiedersehen",
+    "de:vocab:ja",
+    "de:vocab:nein",
+    "de:vocab:danke",
+    "de:vocab:bitte",
+    "de:vocab:ich",
+    "de:vocab:du",
+    "de:vocab:sie-formal",
+    "de:vocab:sein",
+    "de:vocab:heissen",
+    "de:vocab:kommen",
+    "de:vocab:aus",
+    "de:vocab:wie",
+    "de:vocab:woher",
+    "de:vocab:name",
+    "de:vocab:land",
+    "de:vocab:frau",
+    "de:vocab:herr",
+    "de:vocab:deutschland",
+    "de:vocab:gut",
+    "de:chunk:ich-heisse",
+    "de:chunk:ich-komme-aus",
+    "de:phrase:wie-heissen-sie",
+    "de:phrase:wie-gehts",
+    "de:phrase:danke-gut",
+    "de:phrase:freut-mich",
+    "de:grammar:sein-praesens"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-01-01-01",
+      "ordinal": 1,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02"],
+      "item_ids": ["de:vocab:heissen", "de:vocab:kommen", "de:chunk:ich-komme-aus"],
+      "instruction_en": "Listen to Anna introduce herself. Then answer the two questions.",
+      "payload": {
+        "transcript": "Hallo! Ich heiße Anna. Ich komme aus Österreich.",
+        "questions": [
+          {
+            "question": "Woher kommt Anna?",
+            "options": ["aus Deutschland", "aus Österreich", "aus der Schweiz"],
+            "answer_index": 1
+          },
+          {
+            "question": "Wie heißt sie?",
+            "options": ["Anna", "Anne", "Hanna"],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-01-02",
+      "ordinal": 2,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.01"],
+      "item_ids": ["de:vocab:guten-morgen", "de:vocab:guten-tag", "de:vocab:guten-abend", "de:vocab:gute-nacht"],
+      "instruction_en": "Choose the right greeting.",
+      "payload": {
+        "question": "It is 7 pm and you arrive at a friend's house. What do you say?",
+        "options": ["Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht"],
+        "answer_index": 2,
+        "explanation_en": "Guten Abend is the evening greeting. Gute Nacht is only said when someone goes to bed."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-01-03",
+      "ordinal": 3,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.01"],
+      "item_ids": ["de:vocab:hallo", "de:vocab:tschuess", "de:vocab:auf-wiedersehen", "de:vocab:danke", "de:vocab:bitte"],
+      "instruction_en": "Match the German word with its English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "Hallo", "right": "hello" },
+          { "left": "Tschüss", "right": "bye" },
+          { "left": "Auf Wiedersehen", "right": "goodbye" },
+          { "left": "Danke", "right": "thank you" },
+          { "left": "Bitte", "right": "please" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-01-04",
+      "ordinal": 4,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.01"],
+      "item_ids": ["de:vocab:sein", "de:grammar:sein-praesens"],
+      "instruction_en": "Fill in the correct form of sein.",
+      "payload": {
+        "text": "Ich ___ Anna. Du ___ Tom. Das ___ Frau Müller.",
+        "blanks": [
+          { "answer": "bin", "hint": "sein, ich" },
+          { "answer": "bist", "hint": "sein, du" },
+          { "answer": "ist", "hint": "sein, das" }
+        ],
+        "explanation_en": "ich bin, du bist, er sie es ist."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-01-05",
+      "ordinal": 5,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.02"],
+      "item_ids": ["de:vocab:heissen", "de:vocab:kommen"],
+      "instruction_en": "Fill in the verb with the ending for ich.",
+      "payload": {
+        "text": "Ich ___ Tom und ich ___ aus England.",
+        "blanks": [
+          { "answer": "heiße", "accept": ["heisse"], "hint": "heißen" },
+          { "answer": "komme", "hint": "kommen" }
+        ],
+        "explanation_en": "With ich the verb ends in e: ich heiße, ich komme."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-01-06",
+      "ordinal": 6,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03"],
+      "item_ids": ["de:vocab:heissen", "de:chunk:ich-heisse"],
+      "instruction_en": "Put the words in the right order.",
+      "payload": {
+        "words": ["heiße", "Maria.", "Ich"],
+        "answer": "Ich heiße Maria."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-01-07",
+      "ordinal": 7,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03", "de:cando:A1.SPI.02"],
+      "item_ids": ["de:phrase:wie-heissen-sie", "de:vocab:wie", "de:vocab:sie-formal"],
+      "instruction_en": "Put the words in the right order to ask someone's name politely.",
+      "payload": {
+        "words": ["Sie?", "heißen", "Wie"],
+        "answer": "Wie heißen Sie?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-01-08",
+      "ordinal": 8,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.01", "de:cando:A1.WRI.01"],
+      "item_ids": ["de:vocab:guten-tag", "de:vocab:heissen", "de:chunk:ich-heisse"],
+      "instruction_en": "Listen and type what you hear.",
+      "payload": {
+        "text": "Guten Tag, ich heiße Peter.",
+        "accept": ["Guten Tag, ich heisse Peter."]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-01-09",
+      "ordinal": 9,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.01"],
+      "item_ids": ["de:vocab:frau", "de:vocab:herr", "de:vocab:kommen", "de:vocab:deutschland"],
+      "instruction_en": "Read the short text and answer the questions.",
+      "payload": {
+        "text": "Guten Tag! Ich heiße Lena Fischer. Ich komme aus Deutschland. Das ist Herr Braun. Herr Braun kommt aus Österreich.",
+        "questions": [
+          {
+            "question": "Woher kommt Lena?",
+            "options": ["aus Österreich", "aus Deutschland", "aus England"],
+            "answer_index": 1
+          },
+          {
+            "question": "Herr Braun kommt aus ...",
+            "options": ["Deutschland", "Österreich", "England"],
+            "answer_index": 1
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-01-10",
+      "ordinal": 10,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.02", "de:cando:A1.SPI.01"],
+      "item_ids": ["de:phrase:wie-gehts", "de:phrase:danke-gut", "de:vocab:gut"],
+      "instruction_en": "Choose the natural reply.",
+      "payload": {
+        "question": "A friend says: Hallo, wie geht's? What do you answer?",
+        "options": ["Danke, gut.", "Ich heiße Anna.", "Auf Wiedersehen."],
+        "answer_index": 0,
+        "explanation_en": "Wie geht's? asks how you are. Danke, gut. means fine, thanks."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-01-11",
+      "ordinal": 11,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": ["de:cando:A1.SPP.02", "de:cando:A1.SPI.02"],
+      "item_ids": ["de:vocab:hallo", "de:chunk:ich-heisse", "de:chunk:ich-komme-aus"],
+      "instruction_en": "Record yourself.",
+      "payload": {
+        "prompt_en": "Introduce yourself in German. Say hello, say your name and say which country you come from.",
+        "mode": "free",
+        "sample_answer": "Hallo! Ich heiße Anna. Ich komme aus Indien.",
+        "rubric_focus": ["greeting", "ich heiße", "ich komme aus"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-01-12",
+      "ordinal": 12,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01"],
+      "item_ids": ["de:chunk:ich-heisse", "de:chunk:ich-komme-aus", "de:vocab:guten-tag"],
+      "instruction_en": "Write in German.",
+      "payload": {
+        "prompt_en": "Write two or three short sentences. Greet the reader, give your name and say which country you come from.",
+        "min_words": 6,
+        "max_words": 30,
+        "sample_answer": "Guten Tag! Ich heiße Manisha. Ich komme aus Indien.",
+        "rubric_focus": ["greeting", "verb ending with ich", "capital letters on nouns"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

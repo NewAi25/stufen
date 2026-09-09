@@ -1,0 +1,17 @@
+{
+  "name": "stufen",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.12.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @stufen/web dev",
+    "test": "pnpm -r --if-present test",
+    "check:boundaries": "node scripts/check-boundaries.mjs",
+    "check:content": "node scripts/validate-content.mjs",
+    "check": "pnpm check:boundaries && pnpm check:content"
+  }
+}

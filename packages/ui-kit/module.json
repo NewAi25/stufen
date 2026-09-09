@@ -1,0 +1,27 @@
+{
+  "name": "@stufen/ui-kit",
+  "kind": "surface",
+  "version": "0.0.0",
+  "status": "planned",
+  "owner": "Manisha Sarkar",
+  "depends_on": [
+    "contracts"
+  ],
+  "provides": [
+    "tokens",
+    "Button",
+    "Card",
+    "Progress",
+    "LevelBadge",
+    "Choice",
+    "TextInput",
+    "AudioButton",
+    "RecordButton",
+    "CorrectionInline",
+    "RubricBars",
+    "LevelMap",
+    "FeedbackFab",
+    "Toast",
+    "Sheet"
+  ]
+}

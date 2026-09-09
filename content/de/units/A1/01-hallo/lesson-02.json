@@ -1,0 +1,287 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-01-02",
+  "unit_key": "de:unit:a1-01-hallo",
+  "ordinal": 2,
+  "slug": "zahlen-und-wohnen",
+  "title": "Zahlen und wo ich wohne",
+  "title_en": "Numbers and where I live",
+  "description": "Numbers one to ten, saying where you live, the question Wo wohnst du?, the definite article with Stadt, Land and Straße.",
+  "kind": "core",
+  "estimated_minutes": 15,
+  "cando_ids": [
+    "de:cando:A1.VOC.02",
+    "de:cando:A1.VOC.01",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.LIS.03",
+    "de:cando:A1.SPI.03",
+    "de:cando:A1.SPP.02",
+    "de:cando:A1.REA.01",
+    "de:cando:A1.WRI.01",
+    "de:cando:A1.GRA.02",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.GRA.04"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:eins",
+    "de:vocab:zwei",
+    "de:vocab:drei",
+    "de:vocab:vier",
+    "de:vocab:fuenf",
+    "de:vocab:sechs",
+    "de:vocab:sieben",
+    "de:vocab:acht",
+    "de:vocab:neun",
+    "de:vocab:zehn",
+    "de:vocab:wohnen",
+    "de:vocab:in",
+    "de:vocab:wo",
+    "de:vocab:stadt",
+    "de:vocab:strasse",
+    "de:vocab:telefonnummer",
+    "de:vocab:und",
+    "de:vocab:auch",
+    "de:chunk:ich-wohne-in",
+    "de:grammar:praesens-regelmaessig"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-01-02-01",
+      "ordinal": 1,
+      "type": "flashcard",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.01", "de:cando:A1.GRA.04"],
+      "item_ids": ["de:vocab:stadt"],
+      "instruction_en": "Read the card, say the word, then turn it over.",
+      "payload": {
+        "front": "die Stadt",
+        "back": "the city, the town",
+        "hint": "Plural: die Städte"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-02-02",
+      "ordinal": 2,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.02"],
+      "item_ids": ["de:vocab:eins", "de:vocab:drei", "de:vocab:fuenf", "de:vocab:sieben", "de:vocab:zehn"],
+      "instruction_en": "Match the number word with the digit.",
+      "payload": {
+        "pairs": [
+          { "left": "eins", "right": "1" },
+          { "left": "drei", "right": "3" },
+          { "left": "fünf", "right": "5" },
+          { "left": "sieben", "right": "7" },
+          { "left": "zehn", "right": "10" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-02-03",
+      "ordinal": 3,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.02"],
+      "item_ids": ["de:vocab:sechs", "de:vocab:sieben", "de:vocab:zwei", "de:vocab:vier", "de:vocab:acht"],
+      "instruction_en": "Choose the right number.",
+      "payload": {
+        "question": "Which number comes after sechs?",
+        "options": ["vier", "sieben", "acht", "zwei"],
+        "answer_index": 1
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-02-04",
+      "ordinal": 4,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.03", "de:cando:A1.VOC.02"],
+      "item_ids": ["de:vocab:telefonnummer", "de:vocab:drei", "de:vocab:vier", "de:vocab:acht", "de:vocab:zwei", "de:vocab:sieben", "de:vocab:eins"],
+      "instruction_en": "Listen to the telephone number and pick the one you hear.",
+      "payload": {
+        "transcript": "Die Telefonnummer ist drei, vier, acht, zwei, sieben, eins.",
+        "questions": [
+          {
+            "question": "Wie ist die Telefonnummer?",
+            "options": ["348271", "384271", "348217"],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-02-05",
+      "ordinal": 5,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.02"],
+      "item_ids": ["de:vocab:wohnen", "de:grammar:praesens-regelmaessig"],
+      "instruction_en": "Fill in the correct form of wohnen.",
+      "payload": {
+        "text": "Ich ___ in Berlin. Wo ___ du?",
+        "blanks": [
+          { "answer": "wohne", "hint": "wohnen, ich" },
+          { "answer": "wohnst", "hint": "wohnen, du" }
+        ],
+        "explanation_en": "ich wohne, du wohnst. The stem is wohn, the endings are e and st."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-02-06",
+      "ordinal": 6,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.04"],
+      "item_ids": ["de:vocab:stadt", "de:vocab:land", "de:vocab:strasse"],
+      "instruction_en": "Fill in der, die or das.",
+      "payload": {
+        "text": "___ Stadt heißt Hamburg. ___ Land heißt Deutschland. ___ Straße heißt Bergstraße.",
+        "blanks": [
+          { "answer": "Die", "accept": ["die"], "hint": "Stadt is feminine" },
+          { "answer": "Das", "accept": ["das"], "hint": "Land is neuter" },
+          { "answer": "Die", "accept": ["die"], "hint": "Straße is feminine" }
+        ],
+        "explanation_en": "die Stadt, das Land, die Straße. Learn every noun with its article."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-02-07",
+      "ordinal": 7,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03", "de:cando:A1.SPI.03"],
+      "item_ids": ["de:vocab:wo", "de:vocab:wohnen"],
+      "instruction_en": "Put the words in the right order to ask where someone lives.",
+      "payload": {
+        "words": ["wohnst", "du?", "Wo"],
+        "answer": "Wo wohnst du?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-02-08",
+      "ordinal": 8,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.GRA.02"],
+      "item_ids": ["de:vocab:wohnen", "de:vocab:in", "de:chunk:ich-wohne-in"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "I live in Munich.",
+        "direction": "to_target",
+        "reference": ["Ich wohne in München."],
+        "notes_en": "Munich is München in German."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-02-09",
+      "ordinal": 9,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.01"],
+      "item_ids": ["de:vocab:wohnen", "de:vocab:strasse", "de:vocab:und", "de:vocab:sieben"],
+      "instruction_en": "Read the text and answer the questions.",
+      "payload": {
+        "text": "Hallo! Ich heiße Max. Ich komme aus Österreich und ich wohne in Berlin, Bergstraße sieben.",
+        "questions": [
+          {
+            "question": "Wo wohnt Max?",
+            "options": ["in Wien", "in Berlin", "in Österreich"],
+            "answer_index": 1
+          },
+          {
+            "question": "Woher kommt Max?",
+            "options": ["aus Deutschland", "aus Österreich", "aus der Schweiz"],
+            "answer_index": 1
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-02-10",
+      "ordinal": 10,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.03"],
+      "item_ids": ["de:vocab:wo", "de:vocab:woher", "de:vocab:wie", "de:vocab:wohnen"],
+      "instruction_en": "Choose the right question.",
+      "payload": {
+        "question": "Which question asks where someone lives?",
+        "options": ["Wie heißt du?", "Woher kommst du?", "Wo wohnst du?"],
+        "answer_index": 2,
+        "explanation_en": "wo means where, woher means where from, wie asks how or what."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-02-11",
+      "ordinal": 11,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.01", "de:cando:A1.WRI.01"],
+      "item_ids": ["de:vocab:wohnen", "de:vocab:in", "de:vocab:auch"],
+      "instruction_en": "Listen and type what you hear.",
+      "payload": {
+        "text": "Ich wohne auch in Hamburg."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-02-12",
+      "ordinal": 12,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": ["de:cando:A1.SPP.02", "de:cando:A1.VOC.02"],
+      "item_ids": ["de:chunk:ich-wohne-in", "de:vocab:eins", "de:vocab:zehn"],
+      "instruction_en": "Record yourself.",
+      "payload": {
+        "prompt_en": "Say your name and the city you live in. Then count from one to ten in German.",
+        "mode": "free",
+        "sample_answer": "Ich heiße Anna und ich wohne in Kolkata. Eins, zwei, drei, vier, fünf, sechs, sieben, acht, neun, zehn.",
+        "rubric_focus": ["ich wohne in", "numbers in order", "pronunciation of ü in fünf"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-02-13",
+      "ordinal": 13,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.SPP.02"],
+      "item_ids": ["de:chunk:ich-heisse", "de:chunk:ich-komme-aus", "de:chunk:ich-wohne-in"],
+      "instruction_en": "Write in German.",
+      "payload": {
+        "prompt_en": "Write three sentences: your name, the country you come from, and the city you live in.",
+        "min_words": 8,
+        "max_words": 40,
+        "sample_answer": "Ich heiße Manisha. Ich komme aus Indien. Ich wohne in Kolkata.",
+        "rubric_focus": ["verb endings with ich", "aus for country, in for city", "full stops between sentences"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

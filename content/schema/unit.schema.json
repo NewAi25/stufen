@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stufen.app/schema/unit.json",
+  "title": "Unit",
+  "description": "content/<lang>/units/<level>/<nn>-<slug>/unit.json. A themed group of 6 to 10 lessons that ends with a production lesson and a review lesson.",
+  "type": "object",
+  "required": ["key", "level", "ordinal", "slug", "title", "title_en", "theme", "lessons"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "key": {
+      "type": "string",
+      "pattern": "^[a-z]{2}:unit:(a1|a2|b1|b2|c1|c2)-[0-9]{2}-[a-z0-9][a-z0-9-]*$",
+      "description": "<lang>:unit:<level>-<nn>-<slug>. Must equal the directory name after the level."
+    },
+    "level": { "$ref": "#/$defs/level" },
+    "ordinal": { "type": "integer", "minimum": 1, "description": "Position within the level. Must equal <nn> in the directory name." },
+    "slug": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "title": { "type": "string", "minLength": 1, "description": "Title in the target language." },
+    "title_en": { "type": "string", "minLength": 1 },
+    "description": { "type": "string" },
+    "theme": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Goethe topic area, for example personal identification, home, daily life, free time, travel."
+    },
+    "lessons": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "pattern": "^lesson-[0-9]{2}\\.json$" },
+      "description": "Lesson files in order. Every lesson-NN.json in the directory must be listed."
+    },
+    "source": { "type": "string", "pattern": "^([a-z0-9][a-z0-9-]*|unverified)$" },
+    "reviewed": { "type": "boolean" }
+  },
+  "$defs": {
+    "level": { "enum": ["A1", "A2", "B1", "B2", "C1", "C2"] }
+  }
+}

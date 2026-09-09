@@ -1,0 +1,16 @@
+{
+  "name": "@stufen/core-srs",
+  "kind": "core",
+  "version": "0.0.0",
+  "status": "planned",
+  "owner": "Manisha Sarkar",
+  "depends_on": [
+    "contracts"
+  ],
+  "provides": [
+    "dueQueue",
+    "review",
+    "introduceItems",
+    "stats"
+  ]
+}

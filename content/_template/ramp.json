@@ -1,0 +1,11 @@
+{
+  "$schema": "https://stufen.app/schema/ramp.json",
+  "A1": { "instructions": "en", "feedback": "en", "tutor": "target", "hover_gloss": false, "explain_on_request": true },
+  "A2": { "instructions": "en", "feedback": "mixed", "tutor": "target", "hover_gloss": true, "explain_on_request": true },
+  "B1": { "instructions": "target", "feedback": "target", "tutor": "target", "hover_gloss": true, "explain_on_request": false },
+  "B2": { "instructions": "target", "feedback": "target", "tutor": "target", "hover_gloss": false, "explain_on_request": false },
+  "C1": { "instructions": "target", "feedback": "target", "tutor": "target", "hover_gloss": false, "explain_on_request": false },
+  "C2": { "instructions": "target", "feedback": "target", "tutor": "target", "hover_gloss": false, "explain_on_request": false },
+  "source": "unverified",
+  "note": "Defaults copied from docs/05-curriculum-spine.md. Adjust per language."
+}

@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stufen.app/schema/exercise.json",
+  "title": "Exercise",
+  "description": "One element of a lesson's exercises array. The payload shape is selected by type.",
+  "type": "object",
+  "required": ["key", "ordinal", "type", "skill", "cando_ids", "item_ids", "payload"],
+  "additionalProperties": false,
+  "properties": {
+    "key": {
+      "type": "string",
+      "pattern": "^[a-z]{2}:exercise:(a1|a2|b1|b2|c1|c2)-[0-9]{2}-[0-9]{2}-[0-9]{2}$",
+      "description": "<lang>:exercise:<level>-<unit nn>-<lesson nn>-<exercise nn>."
+    },
+    "ordinal": { "type": "integer", "minimum": 1 },
+    "type": { "$ref": "#/$defs/exerciseType" },
+    "skill": { "$ref": "#/$defs/skill" },
+    "cando_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "pattern": "^[a-z]{2}:cando:" },
+      "description": "Descriptor keys this exercise gives evidence for. Attempts on it update mastery for these."
+    },
+    "item_ids": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z]{2}:(vocab|grammar|chunk|phrase):" },
+      "description": "Item keys this exercise practises. May be empty. Attempts update SRS cards for these."
+    },
+    "instruction_en": { "type": "string", "description": "What the learner should do, in English. Shown at A1 and A2." },
+    "instruction_native": { "type": "string", "description": "The same in the target language. Shown from B1 up." },
+    "payload": { "type": "object" },
+    "source": { "type": "string", "pattern": "^([a-z0-9][a-z0-9-]*|unverified)$" },
+    "reviewed": { "type": "boolean" }
+  },
+  "oneOf": [
+    { "properties": { "type": { "const": "multiple_choice" }, "payload": { "$ref": "#/$defs/multipleChoice" } } },
+    { "properties": { "type": { "const": "cloze" }, "payload": { "$ref": "#/$defs/cloze" } } },
+    { "properties": { "type": { "const": "match_pairs" }, "payload": { "$ref": "#/$defs/matchPairs" } } },
+    { "properties": { "type": { "const": "order_words" }, "payload": { "$ref": "#/$defs/orderWords" } } },
+    { "properties": { "type": { "const": "translate" }, "payload": { "$ref": "#/$defs/translate" } } },
+    { "properties": { "type": { "const": "dictation" }, "payload": { "$ref": "#/$defs/dictation" } } },
+    { "properties": { "type": { "const": "read_answer" }, "payload": { "$ref": "#/$defs/readAnswer" } } },
+    { "properties": { "type": { "const": "listen_answer" }, "payload": { "$ref": "#/$defs/listenAnswer" } } },
+    { "properties": { "type": { "const": "write_free" }, "payload": { "$ref": "#/$defs/writeFree" } } },
+    { "properties": { "type": { "const": "speak_prompt" }, "payload": { "$ref": "#/$defs/speakPrompt" } } },
+    { "properties": { "type": { "const": "flashcard" }, "payload": { "$ref": "#/$defs/flashcard" } } }
+  ],
+  "$defs": {
+    "exerciseType": {
+      "enum": ["multiple_choice", "cloze", "match_pairs", "order_words", "translate", "dictation", "read_answer", "listen_answer", "write_free", "speak_prompt", "flashcard"]
+    },
+    "skill": {
+      "enum": ["reading", "listening", "spoken_production", "spoken_interaction", "writing", "mediation", "grammar", "vocabulary"]
+    },
+    "question": {
+      "type": "object",
+      "required": ["question", "options", "answer_index"],
+      "additionalProperties": false,
+      "properties": {
+        "question": { "type": "string", "minLength": 1 },
+        "options": { "type": "array", "minItems": 2, "items": { "type": "string", "minLength": 1 } },
+        "answer_index": { "type": "integer", "minimum": 0 },
+        "explanation_en": { "type": "string" }
+      }
+    },
+    "multipleChoice": {
+      "type": "object",
+      "required": ["question", "options", "answer_index"],
+      "additionalProperties": false,
+      "properties": {
+        "question": { "type": "string", "minLength": 1 },
+        "options": { "type": "array", "minItems": 2, "items": { "type": "string", "minLength": 1 } },
+        "answer_index": { "type": "integer", "minimum": 0, "description": "Zero based index into options." },
+        "explanation_en": { "type": "string" },
+        "audio": { "type": "string", "description": "Optional audio path if the question is spoken." }
+      }
+    },
+    "cloze": {
+      "type": "object",
+      "required": ["text", "blanks"],
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Text with one ___ (three underscores) per blank. The number of ___ must equal blanks.length."
+        },
+        "blanks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["answer"],
+            "additionalProperties": false,
+            "properties": {
+              "answer": { "type": "string", "minLength": 1 },
+              "accept": { "type": "array", "items": { "type": "string" }, "description": "Other accepted spellings or forms." },
+              "hint": { "type": "string", "description": "Shown under the blank, for example the infinitive." }
+            }
+          }
+        },
+        "explanation_en": { "type": "string" }
+      }
+    },
+    "matchPairs": {
+      "type": "object",
+      "required": ["pairs"],
+      "additionalProperties": false,
+      "properties": {
+        "pairs": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": ["left", "right"],
+            "additionalProperties": false,
+            "properties": {
+              "left": { "type": "string", "minLength": 1 },
+              "right": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    "orderWords": {
+      "type": "object",
+      "required": ["words", "answer"],
+      "additionalProperties": false,
+      "properties": {
+        "words": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "type": "string", "minLength": 1 },
+          "description": "Tokens in shuffled order. Punctuation stays attached to its token."
+        },
+        "answer": { "type": "string", "minLength": 1, "description": "The tokens joined by single spaces in the correct order." },
+        "accept": { "type": "array", "items": { "type": "string" }, "description": "Other correct orders." }
+      }
+    },
+    "translate": {
+      "type": "object",
+      "required": ["source_text", "direction", "reference"],
+      "additionalProperties": false,
+      "properties": {
+        "source_text": { "type": "string", "minLength": 1 },
+        "direction": { "enum": ["to_target", "to_en"], "description": "to_target: English into the target language. to_en: the reverse." },
+        "reference": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 }, "description": "Accepted reference translations. The AI grader also accepts equivalents." },
+        "notes_en": { "type": "string" }
+      }
+    },
+    "dictation": {
+      "type": "object",
+      "required": ["text"],
+      "additionalProperties": false,
+      "properties": {
+        "text": { "type": "string", "minLength": 1, "description": "What is spoken and what the learner must type." },
+        "audio": { "type": "string" },
+        "accept": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "readAnswer": {
+      "type": "object",
+      "required": ["text", "questions"],
+      "additionalProperties": false,
+      "properties": {
+        "text": { "type": "string", "minLength": 1 },
+        "title": { "type": "string" },
+        "questions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/question" } }
+      }
+    },
+    "listenAnswer": {
+      "type": "object",
+      "required": ["transcript", "questions"],
+      "additionalProperties": false,
+      "properties": {
+        "transcript": { "type": "string", "minLength": 1, "description": "Spoken by TTS when audio is absent. Never shown before the answer." },
+        "audio": { "type": "string" },
+        "questions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/question" } }
+      }
+    },
+    "writeFree": {
+      "type": "object",
+      "required": ["prompt_en", "min_words"],
+      "additionalProperties": false,
+      "properties": {
+        "prompt_en": { "type": "string", "minLength": 1 },
+        "prompt_native": { "type": "string" },
+        "min_words": { "type": "integer", "minimum": 1 },
+        "max_words": { "type": "integer", "minimum": 1 },
+        "sample_answer": { "type": "string", "description": "A model answer at level. Used by the grader as an anchor, never shown before submission." },
+        "rubric_focus": { "type": "array", "items": { "type": "string" }, "description": "What the AI rubric should weight, for example verb endings, greetings." }
+      }
+    },
+    "speakPrompt": {
+      "type": "object",
+      "required": ["prompt_en", "mode"],
+      "additionalProperties": false,
+      "properties": {
+        "prompt_en": { "type": "string", "minLength": 1 },
+        "prompt_native": { "type": "string" },
+        "mode": { "enum": ["read_aloud", "free"], "description": "read_aloud compares the transcript to target_text. free is graded by the AI tutor." },
+        "target_text": { "type": "string", "description": "Required when mode is read_aloud." },
+        "sample_answer": { "type": "string" },
+        "rubric_focus": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "flashcard": {
+      "type": "object",
+      "required": ["front", "back"],
+      "additionalProperties": false,
+      "properties": {
+        "front": { "type": "string", "minLength": 1 },
+        "back": { "type": "string", "minLength": 1 },
+        "hint": { "type": "string" },
+        "audio": { "type": "string" }
+      }
+    }
+  }
+}

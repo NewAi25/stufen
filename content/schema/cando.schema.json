@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stufen.app/schema/cando.json",
+  "title": "Can do descriptor",
+  "description": "One element of content/<lang>/candos/<level>.json. The file is a JSON array of these objects. Every descriptor in candos/<level>.json must have that level.",
+  "type": "object",
+  "required": ["key", "code", "level", "skill", "text_en", "source"],
+  "additionalProperties": false,
+  "properties": {
+    "key": {
+      "type": "string",
+      "pattern": "^[a-z]{2}:cando:(A1|A2|B1|B2|C1|C2)\\.(REA|LIS|SPP|SPI|WRI|MED|GRA|VOC)\\.[0-9]{2}$",
+      "description": "Stable key, <lang>:cando:<code>. core-content maps it to a uuid on install."
+    },
+    "code": {
+      "type": "string",
+      "pattern": "^(A1|A2|B1|B2|C1|C2)\\.(REA|LIS|SPP|SPI|WRI|MED|GRA|VOC)\\.[0-9]{2}$",
+      "description": "LEVEL.SKILL.NN as defined in docs/05-curriculum-spine.md. Shared across languages so progress views line up."
+    },
+    "level": { "$ref": "#/$defs/level" },
+    "skill": { "$ref": "#/$defs/skill" },
+    "text_en": { "type": "string", "minLength": 1, "description": "The descriptor in English. For CEFR skills a close paraphrase of the Companion Volume wording." },
+    "text_native": { "type": "string", "description": "The descriptor in the target language. Optional, shown from B1 up." },
+    "source": {
+      "type": "string",
+      "pattern": "^([a-z0-9][a-z0-9-]*|unverified)$",
+      "description": "A source id from pack.json sources, or the literal string unverified."
+    },
+    "source_note": { "type": "string", "description": "Scale name, page or sequence number inside the source." },
+    "sequence_ref": {
+      "type": "string",
+      "description": "For GRA and VOC descriptors: the row in the language grammar sequence in docs/05, for example A1.3."
+    },
+    "mastery_rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Overrides for the default mastery rule in docs/04-module-contracts.md. Omit to use the default.",
+      "properties": {
+        "evidence_count": { "type": "integer", "minimum": 1 },
+        "distinct_exercise_types": { "type": "integer", "minimum": 1 },
+        "recent_accuracy": { "type": "number", "minimum": 0, "maximum": 1 },
+        "best_production_score": { "type": "number", "minimum": 0, "maximum": 5 }
+      }
+    },
+    "reviewed": { "type": "boolean", "description": "True once a human has checked this descriptor against its source." },
+    "note": { "type": "string" }
+  },
+  "$defs": {
+    "level": { "enum": ["A1", "A2", "B1", "B2", "C1", "C2"] },
+    "skill": {
+      "enum": ["reading", "listening", "spoken_production", "spoken_interaction", "writing", "mediation", "grammar", "vocabulary"]
+    }
+  }
+}

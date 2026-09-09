@@ -1,0 +1,17 @@
+{
+  "name": "@stufen/core-ai-tutor",
+  "kind": "core",
+  "version": "0.0.0",
+  "status": "planned",
+  "owner": "Manisha Sarkar",
+  "depends_on": [
+    "contracts"
+  ],
+  "provides": [
+    "startConversation",
+    "sendTurn",
+    "gradeWriting",
+    "explain",
+    "aiGrade"
+  ]
+}

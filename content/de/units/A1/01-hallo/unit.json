@@ -1,0 +1,14 @@
+{
+  "$schema": "https://stufen.app/schema/unit.json",
+  "key": "de:unit:a1-01-hallo",
+  "level": "A1",
+  "ordinal": 1,
+  "slug": "hallo",
+  "title": "Hallo, ich bin ...",
+  "title_en": "Hello, I am ...",
+  "description": "Greet people, say your name, say where you come from and where you live, count to ten.",
+  "theme": "personal identification",
+  "lessons": ["lesson-01.json", "lesson-02.json"],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false
+}

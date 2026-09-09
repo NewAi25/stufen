@@ -1,0 +1,18 @@
+{
+  "name": "@stufen/lang-de",
+  "kind": "lang",
+  "version": "0.0.0",
+  "status": "planned",
+  "owner": "Manisha Sarkar",
+  "depends_on": [
+    "contracts"
+  ],
+  "provides": [
+    "pack",
+    "articles",
+    "nounGender",
+    "conjugate",
+    "normalize",
+    "classifyError"
+  ]
+}

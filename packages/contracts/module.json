@@ -1,0 +1,21 @@
+{
+  "name": "@stufen/contracts",
+  "kind": "contracts",
+  "version": "0.0.0",
+  "status": "planned",
+  "owner": "Manisha Sarkar",
+  "depends_on": [],
+  "provides": [
+    "LanguageCode",
+    "CefrLevel",
+    "Skill",
+    "ExerciseTypeId",
+    "GradeResult",
+    "EventMap",
+    "EventBus",
+    "LanguagePack",
+    "ExerciseTypeDefinition",
+    "SpeechProvider",
+    "PaymentProvider"
+  ]
+}
