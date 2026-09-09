@@ -1,0 +1,18 @@
+{
+  "name": "@stufen/db",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "vitest run",
+    "migrate": "node src/migrate-cli.mjs"
+  },
+  "dependencies": {
+    "kysely": "^0.29.5",
+    "pg": "^8.23.0"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.23.1"
+  }
+}

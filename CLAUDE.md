@@ -7,8 +7,8 @@ Read this file first in every session. Then read `docs/07-build-sequence.md` to 
 ## Non negotiable rules
 
 1. **One box per change.** Every feature, fix or refactor touches exactly one package under `packages/` or `content/`, plus its tests and its `CHANGELOG.md`. If a change genuinely needs two boxes, do two commits, one per box, and say why in the second commit body.
-2. **Boxes talk only through `packages/contracts`.** A box imports types, events and interfaces from `contracts`. A box never imports another box's internals. `core-*` boxes never import `lang-*` boxes. `lang-*` boxes contain data and language rules only, no UI. `apps/web` is the only place that wires boxes together. Run `node scripts/check-boundaries.mjs` before every commit. If it fails, the change is wrong, not the script.
-3. **Every box has the same shape.** `module.json` (name, version, status, owner, depends_on, provides), `README.md` (purpose, public API, how to change it, how to test it), `src/index.ts` (the only public surface), `tests/`, `CHANGELOG.md`.
+2. **Boxes talk only through `packages/contracts`.** A box imports types, events and interfaces from `contracts`. `core-*` boxes may also import `db`. A box never imports another box's internals. `core-*` boxes never import `lang-*` boxes. `lang-*` boxes contain data and language rules only, no UI. `apps/web` is the only place that wires boxes together. Run `node scripts/check-boundaries.mjs` before every commit. If it fails, the change is wrong, not the script.
+3. **Every box has the same shape.** `module.json` (name, version, status, owner, depends_on, provides), `README.md` (purpose, public API, how to change it, how to test it), `src/index.ts` (the only public surface), `tests/`, `CHANGELOG.md`. Every box that persists data defines a small storage port (the reads and writes it needs), ships an in memory adapter used in unit tests, and a Postgres adapter using `db`. Unit tests never touch a network or an account.
 4. **Update the build sequence table.** When a box changes status or version, edit the row in `docs/07-build-sequence.md` in the same commit. That table is the single source of truth for progress. Do not keep status anywhere else.
 5. **Conventional commits with the box as scope.** `feat(core-srs): add FSRS scheduler`. `fix(lang-de): correct dative plural rule`. `docs(build-seq): mark core-progress done`. Every commit message says which box and what changed. No commit touches more than one box unless it is a release commit.
 6. **Content is data, not code.** Lessons, vocabulary, grammar rules and can do statements live in `content/<lang>/` as JSON that validates against `content/schema/`. Adding a language means adding a content pack and a thin `lang-<code>` box, never editing a core box. If a core box needs a change to support a new language, that is a core change and gets its own commit first.
@@ -24,7 +24,7 @@ Read this file first in every session. Then read `docs/07-build-sequence.md` to 
 - Before writing code, state which box you are in and what its public interface will be after the change.
 - When unsure whether something is a core concern or a language concern, ask: "would Dutch need this exact code?" If yes, it is core. If no, it belongs in `lang-de`.
 - Keep the Claude API behind `core-ai-tutor`. Default model `claude-opus-5`, adaptive thinking, streaming. Cheaper models are a config value, not a code change.
-- Supabase is the backend. Every table has row level security. Migrations are numbered and never edited after they are applied.
+- Postgres is the only database assumption, reached through `db`. No provider specific code anywhere; see ADR-008. Migrations are numbered SQL in `packages/db/migrations/` and never edited after they are applied.
 
 ## Where things live
 
@@ -32,7 +32,7 @@ Read this file first in every session. Then read `docs/07-build-sequence.md` to 
 |------|-------|
 | Product requirements | `docs/01-prd.md` |
 | Architecture and box map | `docs/02-architecture.md` |
-| Database schema | `docs/03-data-schema.md` and `supabase/migrations/` |
+| Database schema | `docs/03-data-schema.md` and `packages/db/migrations/` |
 | Box interfaces and events | `docs/04-module-contracts.md` |
 | CEFR spine and German sequence | `docs/05-curriculum-spine.md` |
 | Screens and design system | `docs/06-ui-ux.md` |

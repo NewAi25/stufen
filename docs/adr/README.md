@@ -40,6 +40,7 @@ Each alternative and the reason it lost.
 | [ADR-005](ADR-005-fsrs-for-spaced-repetition.md) | FSRS for spaced repetition | Accepted | 2026-09-09 |
 | [ADR-006](ADR-006-claude-for-tutor-and-grading.md) | Claude for tutor and grading | Accepted | 2026-09-09 |
 | [ADR-007](ADR-007-entitlements-first-payments-later.md) | Entitlements first, payments later | Accepted | 2026-09-09 |
+| [ADR-008](ADR-008-provider-independence.md) | Provider independence | Accepted | 2026-09-09 |
 
 ## Adding an ADR
 

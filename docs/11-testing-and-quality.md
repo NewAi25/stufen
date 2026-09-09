@@ -14,13 +14,13 @@ From cheapest and most frequent at the bottom to most expensive and rarest at th
 | Contract tests | every public function in `docs/04` exists on the box's `src/index.ts` with the documented shape, and nothing else is exported | Vitest | `pnpm --filter <box> test` (file `tests/contract.test.ts`) | every commit |
 | Boundary check | no import crosses a line in the dependency rules of `docs/02` | `scripts/check-boundaries.mjs` | `node scripts/check-boundaries.mjs` | every commit |
 | Content validation | every content pack file validates against `content/schema/`, every referenced id exists, every descriptor has a source | `scripts/validate-content.mjs` | `node scripts/validate-content.mjs de` | every commit touching `content/` or `lang-*`, every push |
-| Database tests | migrations apply cleanly, row level security holds, a user cannot read another user's rows | Vitest against local Supabase | `pnpm test:db` | every push |
+| Integration tests | migrations apply cleanly, Postgres adapters behave like the in memory ones, row level security holds, a user cannot read another user's rows | Vitest against Docker Postgres | `pnpm test:db` | every push |
 | End to end | five learner flows in a real browser against a local app and database | Playwright | `pnpm test:e2e` | every push, before release |
 | AI evals | correction accuracy and writing grade agreement, hand checked | `packages/core-ai-tutor/evals/run.ts` | `pnpm --filter core-ai-tutor eval:corrections`, `eval:writing` | before any prompt or model change, before release |
 
 ### Box unit tests
 
-Each box has a `tests/` folder. Tests import from `../src/index.ts` for public behaviour and from `../src/<file>` only for pure helpers. Supabase is replaced by an in memory fake that implements the handful of query methods a box uses. The fake lives in `packages/contracts/testing/` so every box uses the same one. No box test opens a network connection. A test that needs the Claude API uses the recorded fixture described under test data.
+Each box has a `tests/` folder. Tests import from `../src/index.ts` for public behaviour and from `../src/<file>` only for pure helpers. Unit tests use in memory adapters. Every box that persists data defines a storage port and ships an in memory adapter for it, and unit tests wire that adapter in. The same goes for `AuthPort`, `StoragePort` and `MailPort`: tests use the in memory, filesystem and console adapters. No box test opens a network connection or needs an account. A test that needs the Claude API uses the recorded fixture described under test data.
 
 Every box README lists the command and what a passing run looks like.
 
@@ -53,25 +53,26 @@ This is the test that catches "I added a function and forgot the contract" and "
 
 The output is a table of stage, count checked, count failed, and the first three failures.
 
-### Database tests
+### Integration tests
 
-Run against a local Supabase started with `supabase start`. `pnpm test:db` resets the database, applies every migration in order, seeds two test learners, and runs the suite. The suite has three groups:
+Run against Postgres in Docker, started with `docker compose up -d db`. `pnpm test:db` drops and recreates the test database, applies every migration in order with the migration runner, seeds two test learners, and runs the suite. It needs `DATABASE_URL` pointing at the Docker instance and refuses to run against anything else. The suite has four groups:
 
 | Group | Example test |
 |-------|--------------|
-| Migrations | every file in `supabase/migrations/` applies on an empty database without error; applying twice fails on the second run as expected |
-| RLS isolation | learner A inserts an `attempts` row; a client signed in as learner B selects from `attempts` and gets zero rows; the same for `review_cards`, `tutor_messages`, `writing_submissions`, `cando_mastery`, `entitlements` |
-| RLS content | an anonymous client cannot read `exercises`; a signed in learner can read `exercises` but an insert fails; the service role can insert |
+| Migrations | every file in `packages/db/migrations/` applies on an empty database without error; running `pnpm db:migrate` a second time applies nothing |
+| Adapters | each box's Postgres adapter passes the same test file as its in memory adapter, so both behave alike |
+| RLS isolation | a connection sets `app.user_id` to learner A and inserts an `attempts` row; a connection with `app.user_id` set to learner B selects from `attempts` and gets zero rows; the same for `review_cards`, `tutor_messages`, `writing_submissions`, `cando_mastery`, `entitlements` |
+| RLS content | a connection with `app.user_id` unset and no learner context cannot be reached from a route; a connection with a learner id can read `exercises` but an insert fails; the pack installer, with `app.user_id` unset, can insert |
 
-The RLS isolation test is the one the owner should care about most. It is the proof that one tester cannot see another tester's data.
+The RLS isolation test is the one the owner should care about most. It is the proof that one tester cannot see another tester's data, even if a box forgets its own check.
 
 ### End to end
 
-Playwright runs against `pnpm dev` with the local Supabase. Five flows, each a single spec file under `apps/web/e2e/`:
+Playwright runs against `pnpm dev` with the Docker Postgres and the console mail adapter, which writes each magic link to a local file the test reads. Five flows, each a single spec file under `apps/web/e2e/`:
 
 | Flow | Spec | Passes when |
 |------|------|-------------|
-| Sign up and onboarding | `01-onboarding.spec.ts` | a new email signs in with the magic link (intercepted from the local inbox), picks German, completes the placement, lands on the home screen with a level shown |
+| Sign up and onboarding | `01-onboarding.spec.ts` | a new email signs in with the magic link (read from the console mail adapter's output file), picks German, completes the placement, lands on the home screen with a level shown |
 | Complete a lesson | `02-lesson.spec.ts` | the seeded learner opens the next lesson, answers every exercise, sees a score, and the level map shows evidence counts went up |
 | Do reviews | `03-review.spec.ts` | the seeded learner with due cards opens `/review`, rates each card, and the due count reaches zero |
 | Tutor turn with correction | `04-tutor.spec.ts` | the learner sends a message with a known error, sees streamed text, then sees one inline correction with the right category. The Claude API is replaced by the recorded fixture server |
@@ -88,7 +89,7 @@ Described in `docs/10-ai-tutor.md`. They cost money, run against the live API, a
 | Gate | When | What runs | Must pass |
 |------|------|-----------|-----------|
 | Local pre commit | every commit, via a git hook installed by `pnpm install` | `pnpm lint`, `pnpm typecheck`, `node scripts/check-boundaries.mjs`, unit and contract tests of the boxes changed in the commit, `validate-content` if `content/` changed | yes; the hook blocks the commit |
-| CI on push | every push to any branch | everything in pre commit for all boxes, plus database tests, plus end to end with fixtures | yes; a red check blocks merge to `main` |
+| CI on push | every push to any branch | everything in pre commit for all boxes, plus integration tests, plus end to end with fixtures | yes; a red check blocks merge to `main` |
 | Release | before a version tag on `main` | everything above, plus AI evals with the result file committed, plus the manual QA script below run by one person who is not the author | yes; the tag is not created otherwise |
 
 ### GitHub Actions outline
@@ -133,27 +134,45 @@ jobs:
   db:
     runs-on: ubuntu-latest
     needs: static
+    services:
+      postgres:
+        image: postgres:16
+        env: { POSTGRES_USER: stufen, POSTGRES_PASSWORD: stufen, POSTGRES_DB: stufen_test }
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U stufen" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgres://stufen:stufen@localhost:5432/stufen_test
     steps:
       - uses: actions/checkout@v4
-      - uses: supabase/setup-cli@v1
-      - run: supabase start
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22, cache: pnpm }
       - run: pnpm install --frozen-lockfile
+      - run: pnpm db:migrate
       - run: pnpm test:db
 
   e2e:
     runs-on: ubuntu-latest
     needs: [unit, db]
+    services:
+      postgres:
+        image: postgres:16
+        env: { POSTGRES_USER: stufen, POSTGRES_PASSWORD: stufen, POSTGRES_DB: stufen_test }
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U stufen" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgres://stufen:stufen@localhost:5432/stufen_test
+      BETTER_AUTH_SECRET: ci-only-not-a-secret
+      BETTER_AUTH_URL: http://localhost:3000
+      STORAGE_DRIVER: fs
+      MAIL_DRIVER: console
     steps:
       - uses: actions/checkout@v4
-      - uses: supabase/setup-cli@v1
-      - run: supabase start
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22, cache: pnpm }
       - run: pnpm install --frozen-lockfile
+      - run: pnpm db:migrate
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:e2e
         env:
@@ -164,7 +183,7 @@ jobs:
         with: { name: playwright-traces, path: apps/web/test-results }
 ```
 
-No job has the real `ANTHROPIC_API_KEY`. CI cannot spend money by accident.
+No job has the real `ANTHROPIC_API_KEY`, and no job has a hosted database, storage or mail credential. CI cannot spend money by accident and cannot touch any account.
 
 ## Definition of done for a box
 
@@ -230,14 +249,14 @@ Each box keeps its fixtures in `tests/fixtures/` as JSON. Fixtures are small, na
 
 ### Seeded test learner
 
-`supabase/seed/test-learners.sql` creates two learners for database and end to end tests:
+`packages/db/seed/test-learners.sql` creates two learners for integration and end to end tests:
 
 | Learner | Email | State |
 |---------|-------|-------|
 | `anna` | `anna@test.stufen.local` | A1, unit 1 lesson 2 next, 8 review cards due, one open tutor conversation, `free_beta` |
 | `ben` | `ben@test.stufen.local` | B1, no due cards, one graded writing submission, `free_beta` |
 
-Both use a fixed uuid so tests can reference them. The seed never runs in production; the script refuses to run unless the database URL is local.
+Both use a fixed uuid so tests can reference them. The seed never runs in production; the script refuses to run unless `DATABASE_URL` points at localhost.
 
 ### Deterministic AI grading in tests
 

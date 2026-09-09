@@ -1,0 +1,15 @@
+{
+  "name": "@stufen/db",
+  "kind": "infra",
+  "version": "0.1.0",
+  "status": "in_progress",
+  "owner": "Manisha Sarkar",
+  "depends_on": [
+    "contracts"
+  ],
+  "provides": [
+    "createDb",
+    "migrate",
+    "withUser"
+  ]
+}

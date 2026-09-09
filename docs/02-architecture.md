@@ -6,23 +6,27 @@ Stufen is a modular monolith. One deployable web app, one database, many boxes. 
 
 This is what makes a change small. Fixing a bug in review scheduling touches `core-srs` and nothing else. Adding a new exercise type touches `core-exercise-types` and nothing else. Adding Dutch adds `content/nl` and `lang-nl` and nothing else.
 
-## Three kinds of box
+## Four kinds of box
 
 | Kind | Prefix | Knows about | Never knows about |
 |------|--------|-------------|-------------------|
-| Core | `core-` | contracts, Supabase, its own tables | any language, any UI |
+| Infra | `db` | contracts, Postgres | any box, any language, any UI |
+| Core | `core-` | contracts, `db`, its own tables | any language, any UI |
 | Language | `lang-` | contracts, its content pack | UI, other languages, core internals |
 | Surface | `apps/web`, `ui-kit` | contracts, every box's public API | box internals, database tables |
 
 ## Dependency rules
 
 ```
-apps/web  ->  core-*, lang-*, ui-kit, contracts
-core-*    ->  contracts, supabase client
+apps/web  ->  anything
+core-*    ->  contracts, db
 lang-*    ->  contracts
 ui-kit    ->  contracts
+db        ->  contracts
 contracts ->  nothing
 ```
+
+`db` is the only package that knows a database exists. It holds the Kysely instance, the pg driver, the migration runner and the table types. No box imports `pg` or `kysely` directly. See ADR-008.
 
 Enforced by `scripts/check-boundaries.mjs`, which reads every `module.json` and fails if an import crosses a line. Run it before every commit. CI runs it on every push.
 
@@ -35,6 +39,9 @@ flowchart TB
     UI[ui-kit]
   end
   subgraph Core
+    AUTH[core-auth]
+    STO[core-storage]
+    MAIL[core-mail]
     ID[core-identity]
     CUR[core-curriculum]
     CON[core-content]
@@ -55,10 +62,14 @@ flowchart TB
     FR[lang-fr]
   end
   CT[contracts]
-  DB[(Supabase)]
+  DBX[db]
+  PG[(Postgres)]
   LLM[Claude API]
+  FILES[(Files: fs or S3)]
+  SMTP[SMTP]
 
   WEB --> UI
+  WEB --> AUTH
   WEB --> ID
   WEB --> LES
   WEB --> AI
@@ -66,10 +77,16 @@ flowchart TB
   Core --> CT
   Language --> CT
   UI --> CT
+  DBX --> CT
   CON --> DE
   CON --> NL
   CON --> FR
-  Core --> DB
+  Core --> DBX
+  DBX --> PG
+  AUTH --> MAIL
+  SP --> STO
+  STO --> FILES
+  MAIL --> SMTP
   AI --> LLM
 ```
 
@@ -80,7 +97,11 @@ One exception to "core never knows a language": `core-content` loads language pa
 | Box | Job | Owns tables | Emits events |
 |-----|-----|-------------|--------------|
 | `contracts` | Types, event names, interfaces. No logic | none | none |
-| `core-identity` | Sign in, profile, settings, target language | `profiles`, `learner_languages` | `user.signed_up`, `user.language_set` |
+| `db` | Kysely instance on the pg driver, table types, migration runner. The only package that talks to Postgres | none | none |
+| `core-auth` | Sign in with magic link and Google on better-auth. Sessions. Behind `AuthPort` (getSession, signInMagicLink, signInOAuth, signOut) | `users`, `sessions`, `accounts`, `verifications` | `user.signed_up` |
+| `core-storage` | Files behind `StoragePort` (put, get, delete, signedUrl). Adapters: local filesystem, S3 compatible | none | none |
+| `core-mail` | Email behind `MailPort` (send). Adapters: console, SMTP | none | none |
+| `core-identity` | Profile, settings, target language | `profiles`, `learner_languages` | `user.language_set` |
 | `core-curriculum` | The CEFR spine. Levels, can do descriptors, units, lessons as a graph | `cefr_levels`, `cando_descriptors`, `units`, `lessons` | none |
 | `core-content` | Loads and validates content packs, installs them into the curriculum tables, tracks pack versions | `content_pack_versions`, `exercises`, `items` | `content.pack_installed` |
 | `core-lesson-engine` | Runs a lesson session, orders exercises, records attempts | `lesson_sessions`, `attempts` | `attempt.recorded`, `lesson.completed` |
@@ -89,7 +110,7 @@ One exception to "core never knows a language": `core-content` loads language pa
 | `core-progress` | Mastery per can do, level estimate, streaks | `cando_mastery`, `level_estimates`, `streaks` | `cando.mastered`, `level.reached` |
 | `core-assessment` | Placement, checkpoints, exam simulation | `assessments` | `assessment.completed` |
 | `core-ai-tutor` | Claude adapter: conversation, correction, writing rubric, explanations | `tutor_conversations`, `tutor_messages`, `writing_submissions` | `writing.graded`, `tutor.turn` |
-| `core-speech` | Speech to text and text to speech behind one interface | `speech_recordings` | `speech.transcribed` |
+| `core-speech` | Speech to text and text to speech behind one interface. Recordings stored through `core-storage` | `speech_recordings` | `speech.transcribed` |
 | `core-feedback` | In app feedback capture | `feedback` | `feedback.submitted` |
 | `core-analytics` | Event sink, subscribes to every event, writes `events` | `events` | none |
 | `core-entitlements` | May this user do X. Plans, limits, feature flags. Payment adapter slot | `entitlements`, `feature_flags` | `entitlement.changed` |
@@ -112,7 +133,7 @@ core-progress       hears  attempt.recorded  and updates cando_mastery, may emit
 core-analytics      hears  everything        and writes an events row
 ```
 
-Events are fire and forget inside one request. If a subscriber needs durability it writes its own table. There is no queue in beta. If one is needed later, the bus gets a Supabase backed adapter and no box changes.
+Events are fire and forget inside one request. If a subscriber needs durability it writes its own table. There is no queue in beta. If one is needed later, the bus gets a Postgres backed adapter and no box changes.
 
 ## Request flow
 
@@ -124,7 +145,7 @@ sequenceDiagram
   participant X as core-exercise-types
   participant S as core-srs
   participant P as core-progress
-  participant DB as Supabase
+  participant DB as Postgres
 
   B->>W: submit answer
   W->>L: recordAttempt(sessionId, exerciseId, response)
@@ -143,22 +164,29 @@ sequenceDiagram
 
 | Layer | Choice | Why |
 |-------|--------|-----|
-| Web | Next.js (App Router), TypeScript, Tailwind | One codebase, server actions, easy Vercel deploy |
-| Data | Supabase Postgres with row level security | Free tier, auth included, MCP tooling already connected |
-| Auth | Supabase Auth, email magic link plus Google | No passwords to manage |
-| Files | Supabase Storage for audio | Same platform |
+| Web | Next.js (App Router), TypeScript, Tailwind | One codebase, server actions, runs anywhere Node runs |
+| Data | PostgreSQL 16 or later through Kysely and pg in `packages/db`, row level security keyed on `app.user_id` | Open, portable, any host through `DATABASE_URL` |
+| Auth | `core-auth` on better-auth, magic link plus Google, tables in our Postgres | No passwords to manage, no vendor account |
+| Files | `core-storage`, local filesystem in dev and tests, S3 compatible in production | Works offline, any S3 endpoint in production |
+| Email | `core-mail`, console in dev and tests, SMTP in production | Magic links without a vendor SDK |
 | AI | Claude API via `@anthropic-ai/sdk`, server side only | Tutor, grading, content generation |
 | SRS | `ts-fsrs` | Maintained FSRS implementation |
 | Speech | Web Speech API now, adapter for a provider later | Zero cost to start |
 | Tests | Vitest for boxes, Playwright for flows | Fast, standard |
 | Monorepo | pnpm workspaces | Simple, no extra build tool needed |
-| Hosting | Vercel | Free tier, previews per branch |
+| Hosting | Dockerfile builds the web app. Vercel works, so does any VPS | No provider specific code, see ADR-008 |
+| Local | Docker Compose starts Postgres, `pnpm db:migrate` applies migrations | Whole app runs offline |
 
 ## Repository layout
 
 ```
 packages/
   contracts/
+  db/
+    migrations/     numbered SQL, run by pnpm db:migrate
+  core-auth/
+  core-storage/
+  core-mail/
   core-identity/
   core-curriculum/
   core-content/
@@ -179,10 +207,10 @@ apps/
 content/
   schema/
   de/
-supabase/
-  migrations/
 scripts/
 docs/
+docker-compose.yml    Postgres for local development and tests
+Dockerfile            builds the web app for any container host
 ```
 
 Every box has this shape:
@@ -196,6 +224,14 @@ packages/<box>/
   src/...
   tests/
 ```
+
+## Ports and adapters
+
+Every box that persists data defines a small storage port: an interface listing only the reads and writes that box needs, nothing more. The box ships two adapters for it. An in memory adapter is used by unit tests, so they never touch a network or an account. A Postgres adapter, written on `db`, is used by the app and by integration tests against the Docker Postgres. The box logic talks only to the port, so swapping the adapter changes nothing in the box.
+
+The same shape covers the outside world. `core-auth` sits behind `AuthPort`, `core-storage` behind `StoragePort`, `core-mail` behind `MailPort`. Each has a local adapter for dev and tests and a production adapter chosen by an environment variable. A provider is a deployment choice, never an import.
+
+Authorisation is the box's own job. Every public function that touches learner data takes the signed in user id from `core-auth` and checks it. Row level security in Postgres is a second line, keyed on `app.user_id`, which `db` sets with `set_config` at the start of each request. See `docs/03-data-schema.md`.
 
 ## How a change happens
 

@@ -5,7 +5,8 @@
 //
 // Rules (see docs/02-architecture.md):
 //   contracts  -> nothing
-//   core-*     -> contracts only
+//   db (infra) -> contracts only
+//   core-*     -> contracts and db
 //   lang-*     -> contracts only
 //   ui-kit     -> contracts only
 //   surface    -> anything (apps/web)
@@ -64,6 +65,8 @@ function discoverBoxes() {
 function structuralAllowed(box, allIds) {
   if (box.id === 'contracts' || box.kind === 'contracts') return new Set();
   if (box.id === 'ui-kit') return new Set(['contracts']);
+  if (box.kind === 'infra') return new Set(['contracts']);
+  if (box.kind === 'core') return new Set(['contracts', 'db']);
   if (box.kind === 'surface') return new Set(allIds.filter((x) => x !== box.id));
   return new Set(['contracts']);
 }
@@ -74,6 +77,7 @@ function importsAnything(box) {
 
 function expectedKind(id) {
   if (id === 'contracts') return 'contracts';
+  if (id === 'db') return 'infra';
   if (id.startsWith('core-')) return 'core';
   if (id.startsWith('lang-')) return 'lang';
   return 'surface';

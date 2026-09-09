@@ -1,5 +1,7 @@
 # ADR-002: Next.js, Supabase and Vercel
 
+Superseded in part by [ADR-008](ADR-008-provider-independence.md): the Supabase and Vercel specific parts no longer apply. Next.js, TypeScript, Tailwind and pnpm workspaces stand.
+
 Status: Accepted
 Date: 2026-09-09
 

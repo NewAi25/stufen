@@ -1,8 +1,8 @@
 # 03. Data schema
 
-Postgres on Supabase. Every table has row level security. Learners see only their own rows. Content tables are readable by any signed in user. Writes to content tables happen only through the service role during pack installation.
+PostgreSQL 16 or later, reached only through the `db` package (Kysely on the pg driver). Every table has row level security as a second line of defence. Learners see only their own rows. Content tables are readable by any signed in user. Writes to content tables happen only through the app's own database role during pack installation, with no `app.user_id` set.
 
-The SQL lives in `supabase/migrations/0001_init.sql`. This document explains it. Tables are grouped by the box that owns them. A box only reads and writes its own tables. When a box needs data from another box it uses that box's public API, not its tables.
+The SQL lives in `packages/db/migrations/0001_init.sql` and the numbered files after it. This document explains it. Tables are grouped by the box that owns them. A box only reads and writes its own tables, through its own storage port and Postgres adapter. When a box needs data from another box it uses that box's public API, not its tables.
 
 ## Conventions
 
@@ -17,6 +17,9 @@ The SQL lives in `supabase/migrations/0001_init.sql`. This document explains it.
 
 ```mermaid
 erDiagram
+  users ||--|| profiles : "is"
+  users ||--o{ sessions : has
+  users ||--o{ accounts : "signs in with"
   profiles ||--o{ learner_languages : has
   languages ||--o{ learner_languages : "learned by"
   languages ||--o{ units : has
@@ -38,9 +41,23 @@ erDiagram
   profiles ||--|| entitlements : has
 ```
 
+## core-auth
+
+These tables are shaped for better-auth and live in our Postgres like every other table. Fields are listed at summary level; the box README carries the exact columns.
+
+**users** `id`, `email` unique, `email_verified` boolean, `name` nullable, `image` nullable, `created_at`, `updated_at`. The one table every `user_id` in the schema points at.
+
+**sessions** `id`, `user_id`, `token` unique, `expires_at`, `ip_address` nullable, `user_agent` nullable, `created_at`, `updated_at`.
+
+**accounts** One row per sign in method a user has linked. `id`, `user_id`, `provider_id` (`google`, `magic-link`), `account_id` (the id at the provider), `access_token`, `refresh_token`, `id_token`, `access_token_expires_at`, `scope`, all nullable, `created_at`, `updated_at`.
+
+**verifications** Magic link and other short lived tokens. `id`, `identifier` (the email), `value` (the token), `expires_at`, `created_at`, `updated_at`.
+
+`core-auth` reads and writes these through better-auth's Kysely adapter on `db`. No other box touches them. They are not learner data and have no `app.user_id` policy; access is limited to `core-auth` by the code, and RLS on them denies every role except the app's own.
+
 ## core-identity
 
-**profiles** One row per auth user. `id` references `auth.users`. Holds `display_name`, `ui_locale` (interface language, default `en`), `timezone`, `daily_goal_minutes`.
+**profiles** One row per user. `id` references `users(id) on delete cascade`. Holds `display_name`, `ui_locale` (interface language, default `en`), `timezone`, `daily_goal_minutes`.
 
 **learner_languages** Which languages a user is learning. `user_id`, `language_code`, `target_level`, `current_level_estimate`, `started_at`. A user can learn several languages. The app has an "active language" stored in `profiles.active_language`.
 
@@ -118,13 +135,26 @@ erDiagram
 
 ## Row level security summary
 
+Authorisation is done by the boxes. Every public function that reads or writes learner data takes the signed in user id from `core-auth` and checks it before any query runs. Row level security is defence in depth, a second check inside Postgres in case a box gets it wrong.
+
+The policies are keyed on one session variable. At the start of each request `db` runs `select set_config('app.user_id', $1, true)` with the signed in user id, or an empty string when nobody is signed in. Policies read it with `current_setting('app.user_id', true)`. The third argument makes the setting local to the transaction, so it can never leak between requests on a pooled connection. No provider function appears in any policy.
+
+```sql
+create policy attempts_own on attempts
+  using (user_id = current_setting('app.user_id', true)::uuid)
+  with check (user_id = current_setting('app.user_id', true)::uuid);
+```
+
+Content writes and other privileged work (pack installation, analytics writes, the delete script) run with `app.user_id` unset and a policy that allows the app's own role when the setting is empty. The app connects as one Postgres role; there is no service role key.
+
 | Table group | Select | Insert or update |
 |-------------|--------|------------------|
-| Content (`languages`, `cefr_levels`, `cando_descriptors`, `units`, `lessons`, `exercises`, `items`, `content_pack_versions`, `feature_flags`) | any authenticated user | service role only |
-| Learner data (everything keyed by `user_id`) | own rows | own rows |
-| `feedback` | own rows | anyone, including anonymous insert |
+| Content (`languages`, `cefr_levels`, `cando_descriptors`, `units`, `lessons`, `exercises`, `items`, `content_pack_versions`, `feature_flags`) | any request with `app.user_id` set | only with `app.user_id` unset (pack installation) |
+| Auth (`users`, `sessions`, `accounts`, `verifications`) | `core-auth` only, `app.user_id` unset | `core-auth` only, `app.user_id` unset |
+| Learner data (everything keyed by `user_id`) | rows where `user_id` equals `app.user_id` | same |
+| `feedback` | own rows | any request, including anonymous insert |
 | `events` | none for users | own rows insert |
-| `entitlements` | own row | service role only |
+| `entitlements` | own row | only with `app.user_id` unset |
 
 ## Indexes worth having from day one
 
@@ -138,6 +168,8 @@ erDiagram
 
 ## Migration rules
 
-- Files are `NNNN_short_name.sql`, four digits, never renumbered, never edited once applied to any shared environment.
+- Files live in `packages/db/migrations/` and are `NNNN_short_name.sql`, four digits, never renumbered, never edited once applied to any shared environment.
+- `pnpm db:migrate` runs them in order against `DATABASE_URL` and records each in a `schema_migrations` table so a file runs once. The runner is ours, in `packages/db/src/migrate.ts`.
 - Every migration is reversible in a comment block at the bottom, even if we never run it.
 - Seed data for `cefr_levels` and `languages` lives in `0001_init.sql`. Content pack data is installed by `core-content`, not by migrations.
+- A box that adds a table adds the migration, the RLS policy keyed on `app.user_id`, and the Postgres adapter for its storage port in the same commit.

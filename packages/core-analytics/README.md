@@ -22,7 +22,7 @@ Source of truth: `docs/04-module-contracts.md`. If a signature is not there, it 
 |-------|
 | `events` |
 
-Columns and policies are in `docs/03-data-schema.md` and `supabase/migrations/`.
+Columns and policies are in `docs/03-data-schema.md` and `packages/db/migrations/`.
 
 ## Emits and listens
 

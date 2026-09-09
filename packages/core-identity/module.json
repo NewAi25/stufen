@@ -5,7 +5,8 @@
   "status": "planned",
   "owner": "Manisha Sarkar",
   "depends_on": [
-    "contracts"
+    "contracts",
+    "db"
   ],
   "provides": [
     "getProfile",

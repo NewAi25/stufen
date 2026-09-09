@@ -1,8 +1,30 @@
 -- 0001_init.sql
 -- Stufen initial schema. Owner boxes are named above each group.
 -- Never edit this file after it has been applied. Add 0002_*.sql instead.
+--
+-- Runs on plain PostgreSQL 16 or later through packages/db (see its README).
+-- Authorisation model: boxes check the user id themselves. Row level security
+-- stays as defence in depth. The request layer runs
+--   select set_config('app.user_id', '<uuid>', true)
+-- inside each transaction, and every policy below reads that value with
+-- current_setting('app.user_id', true). Policies are granted to the role
+-- stufen_app, which the application connects as. The migration creates the
+-- role without login; the password and login flag are set outside migrations.
 
+-- gen_random_uuid() is built in since PostgreSQL 13. The extension line is
+-- kept because it is harmless and documents the dependency.
 create extension if not exists "pgcrypto";
+
+-- ---------------------------------------------------------------
+-- Application role
+-- ---------------------------------------------------------------
+
+do $$
+begin
+  if not exists (select 1 from pg_roles where rolname = 'stufen_app') then
+    create role stufen_app nologin;
+  end if;
+end $$;
 
 -- ---------------------------------------------------------------
 -- Shared enums and helpers
@@ -19,6 +41,25 @@ begin
   return new;
 end;
 $$ language plpgsql;
+
+-- ---------------------------------------------------------------
+-- core-auth: users
+-- ---------------------------------------------------------------
+-- The users table is owned by core-auth (better-auth). The sessions, accounts
+-- and verifications tables that better-auth also needs arrive in migration
+-- 0002, owned by core-auth. Sign in looks users up by email before any
+-- app.user_id is known, so this table does not use row level security.
+-- core-auth is the only box that reads or writes it.
+
+create table users (
+  id              uuid primary key default gen_random_uuid(),
+  email           text not null unique,
+  email_verified  boolean not null default false,
+  name            text,
+  image           text,
+  created_at      timestamptz not null default now(),
+  updated_at      timestamptz not null default now()
+);
 
 -- ---------------------------------------------------------------
 -- core-curriculum: reference tables
@@ -139,7 +180,7 @@ create table exercises (
 -- ---------------------------------------------------------------
 
 create table profiles (
-  id                  uuid primary key references auth.users(id) on delete cascade,
+  id                  uuid primary key references users(id) on delete cascade,
   display_name        text,
   ui_locale           text not null default 'en',
   timezone            text not null default 'UTC',
@@ -396,79 +437,102 @@ create index tutor_messages_conv_idx on tutor_messages (conversation_id, created
 -- Triggers
 -- ---------------------------------------------------------------
 
+create trigger users_updated before update on users for each row execute function set_updated_at();
 create trigger profiles_updated before update on profiles for each row execute function set_updated_at();
 create trigger review_cards_updated before update on review_cards for each row execute function set_updated_at();
 create trigger cando_mastery_updated before update on cando_mastery for each row execute function set_updated_at();
 create trigger entitlements_updated before update on entitlements for each row execute function set_updated_at();
 
--- New auth user gets a profile and a free_beta entitlement.
-create or replace function handle_new_user() returns trigger as $$
+-- A new user gets a profile and a free_beta entitlement. core-auth calls this
+-- after sign up. Safe to call more than once. Runs as the function owner so it
+-- can write entitlements, which stufen_app may only read.
+create or replace function ensure_profile(p_user_id uuid) returns void as $$
 begin
-  insert into profiles (id, display_name) values (new.id, coalesce(new.raw_user_meta_data->>'name', ''));
-  insert into entitlements (user_id) values (new.id);
-  return new;
+  insert into profiles (id, display_name)
+    select u.id, coalesce(u.name, '') from users u where u.id = p_user_id
+    on conflict (id) do nothing;
+  insert into entitlements (user_id) values (p_user_id)
+    on conflict (user_id) do nothing;
 end;
-$$ language plpgsql security definer;
+$$ language plpgsql security definer set search_path = public;
 
-create trigger on_auth_user_created
-  after insert on auth.users for each row execute function handle_new_user();
+-- ---------------------------------------------------------------
+-- Grants to the application role
+-- ---------------------------------------------------------------
+-- Row level security below decides which rows stufen_app may touch. The grants
+-- only open the door to the tables at all.
+
+grant usage on schema public to stufen_app;
+grant select, insert, update, delete on all tables in schema public to stufen_app;
+grant execute on function ensure_profile(uuid) to stufen_app;
 
 -- ---------------------------------------------------------------
 -- Row level security
 -- ---------------------------------------------------------------
+-- The user id comes from the transaction local setting app.user_id. When it is
+-- unset the value is null; when it was set earlier in the same session and
+-- then reset it can be an empty string, so nullif guards the uuid cast.
 
--- Content: readable by any signed in user, written only by service role.
+-- Content: readable by the application role, written only by the migration owner.
 do $$
 declare t text;
 begin
   foreach t in array array['languages','cefr_levels','cando_descriptors','units','lessons','exercises','items','content_pack_versions','feature_flags']
   loop
     execute format('alter table %I enable row level security', t);
-    execute format('create policy "%s_read" on %I for select to authenticated using (true)', t, t);
+    execute format('create policy "%s_read" on %I for select to stufen_app using (true)', t, t);
   end loop;
 end $$;
 
 -- Learner data: own rows only.
 do $$
-declare t text;
+declare
+  t text;
+  col text;
 begin
   foreach t in array array['profiles','learner_languages','lesson_sessions','attempts','review_cards','review_logs','cando_mastery','level_estimates','streaks','assessments','tutor_conversations','writing_submissions','speech_recordings']
   loop
+    col := case when t = 'profiles' then 'id' else 'user_id' end;
     execute format('alter table %I enable row level security', t);
-    execute format('create policy "%s_own_select" on %I for select to authenticated using (%s = auth.uid())', t, t, case when t = 'profiles' then 'id' else 'user_id' end);
-    execute format('create policy "%s_own_insert" on %I for insert to authenticated with check (%s = auth.uid())', t, t, case when t = 'profiles' then 'id' else 'user_id' end);
-    execute format('create policy "%s_own_update" on %I for update to authenticated using (%s = auth.uid())', t, t, case when t = 'profiles' then 'id' else 'user_id' end);
+    execute format('create policy "%s_own_select" on %I for select to stufen_app using (%I = nullif(current_setting(''app.user_id'', true), '''')::uuid)', t, t, col);
+    execute format('create policy "%s_own_insert" on %I for insert to stufen_app with check (%I = nullif(current_setting(''app.user_id'', true), '''')::uuid)', t, t, col);
+    execute format('create policy "%s_own_update" on %I for update to stufen_app using (%I = nullif(current_setting(''app.user_id'', true), '''')::uuid)', t, t, col);
   end loop;
 end $$;
 
 -- tutor_messages: through the conversation owner.
 alter table tutor_messages enable row level security;
-create policy tutor_messages_own on tutor_messages for all to authenticated
-  using (exists (select 1 from tutor_conversations c where c.id = conversation_id and c.user_id = auth.uid()))
-  with check (exists (select 1 from tutor_conversations c where c.id = conversation_id and c.user_id = auth.uid()));
+create policy tutor_messages_own on tutor_messages for all to stufen_app
+  using (exists (select 1 from tutor_conversations c where c.id = conversation_id and c.user_id = nullif(current_setting('app.user_id', true), '')::uuid))
+  with check (exists (select 1 from tutor_conversations c where c.id = conversation_id and c.user_id = nullif(current_setting('app.user_id', true), '')::uuid));
 
--- feedback: anyone may insert, users read their own.
+-- feedback: anyone may insert (signed out, or signed in as themselves), users read their own.
 alter table feedback enable row level security;
-create policy feedback_insert on feedback for insert to anon, authenticated with check (true);
-create policy feedback_own_select on feedback for select to authenticated using (user_id = auth.uid());
+create policy feedback_insert on feedback for insert to stufen_app
+  with check (
+    nullif(current_setting('app.user_id', true), '') is null
+    or user_id = nullif(current_setting('app.user_id', true), '')::uuid
+  );
+create policy feedback_own_select on feedback for select to stufen_app using (user_id = nullif(current_setting('app.user_id', true), '')::uuid);
 
 -- events: users may insert their own, never read.
 alter table events enable row level security;
-create policy events_insert on events for insert to authenticated with check (user_id = auth.uid());
+create policy events_insert on events for insert to stufen_app with check (user_id = nullif(current_setting('app.user_id', true), '')::uuid);
 
--- entitlements: users read their own. Writes are service role only.
+-- entitlements: users read their own. Writes happen through ensure_profile or the migration owner.
 alter table entitlements enable row level security;
-create policy entitlements_own_select on entitlements for select to authenticated using (user_id = auth.uid());
+create policy entitlements_own_select on entitlements for select to stufen_app using (user_id = nullif(current_setting('app.user_id', true), '')::uuid);
 
 -- ---------------------------------------------------------------
 -- Rollback (manual reference, do not run automatically)
 -- ---------------------------------------------------------------
--- drop trigger if exists on_auth_user_created on auth.users;
--- drop function if exists handle_new_user();
+-- drop function if exists ensure_profile(uuid);
 -- drop table if exists feature_flags, entitlements, events, feedback, speech_recordings,
 --   writing_submissions, tutor_messages, tutor_conversations, assessments, streaks,
 --   level_estimates, cando_mastery, review_logs, review_cards, attempts, lesson_sessions,
 --   learner_languages, profiles, exercises, items, content_pack_versions, lessons, units,
---   cando_descriptors, cefr_levels, languages cascade;
+--   cando_descriptors, cefr_levels, languages, users cascade;
 -- drop function if exists set_updated_at();
 -- drop type if exists skill;
+-- revoke all on schema public from stufen_app;
+-- drop role if exists stufen_app;

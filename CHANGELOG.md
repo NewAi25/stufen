@@ -4,6 +4,9 @@ All notable changes to Stufen. Format follows Keep a Changelog. Versions follow 
 
 ## [Unreleased]
 
+### Changed
+- Provider independence (ADR-008): plain Postgres through the new `db` box with Kysely and SQL migrations in `packages/db/migrations/`, `core-auth`, `core-storage` and `core-mail` boxes with ports and adapters, Docker Postgres for local and CI, `supabase/` removed. Migration 0001 rewritten with an own `users` table and RLS keyed on `app.user_id`.
+
 ### Added
 - Workspace tooling: pnpm workspace, root tsconfig, Vitest, ESLint, Prettier, CI steps for typecheck, lint and format
 

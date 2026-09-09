@@ -87,7 +87,7 @@ Most language apps are gamified vocabulary. Stufen's difference is structural an
 | Content volume for C1 and C2 is huge | Content forge pipeline: generate from descriptors with Claude, validate against schema, human review sample. Ship A1 to B1 first and gate higher levels behind checkpoint |
 | AI grading is wrong or inconsistent | Rubric with anchors, low effort deterministic settings, sampled human check, learner can flag a grade |
 | Speech recognition quality in browser varies | Web Speech API first, adapter interface for a hosted provider later |
-| Free tier limits on Supabase and Vercel | Event sampling, small audio, Claude calls capped per user per day via entitlements |
+| Free tier limits on the hosted Postgres and the web host | Event sampling, small audio, Claude calls capped per user per day via entitlements |
 | Learners game mastery | Mastery needs evidence across two or more exercise types and one production sample |
 
 ## Open questions

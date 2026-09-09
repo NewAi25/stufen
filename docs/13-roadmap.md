@@ -6,7 +6,7 @@ Planning assumptions: one owner working part time, about 10 hours a week, with A
 
 | Phase | Scope | Start | End | Weeks | Tag | Main risk to the date |
 |-------|-------|-------|-----|-------|-----|------------------------|
-| 0 | Foundation: tooling, contracts, auth, feedback, entitlements, analytics | 2026-09-09 | 2026-09-22 | 2 | `v0.1.0` | Supabase and Vercel setup friction |
+| 0 | Foundation: tooling, contracts, auth, feedback, entitlements, analytics | 2026-09-09 | 2026-09-22 | 2 | `v0.1.0` | Docker and auth library setup friction |
 | 1 | German A1 vertical slice: curriculum, content install, lesson engine, SRS, progress, A1 pack | 2026-09-23 | 2026-10-27 | 5 | `v0.2.0` | A1 content authoring, about 60 lessons |
 | 2 | AI tutor, writing studio, AI graded exercises, review sheet | 2026-10-28 | 2026-11-17 | 3 | `v0.3.0` | Correction accuracy below 90 percent on the hand check |
 | 3 | Speech, A2 pack, placement, immersion ramp | 2026-11-18 | 2026-12-15 | 4 | `v0.4.0` | Web Speech API quality in non Chrome browsers |
@@ -69,7 +69,7 @@ Rules: a feedback row is never worked on without a `docs/07` row. Three separate
 | Content review finds a high error rate in generated lessons | More than 20 percent of sampled lessons need an edit | Stop generating. Add a review step per unit in `docs/07`. Phases 4 and 5a stretch. Consider `core-admin` unparked for a review UI |
 | AI correction accuracy stays under 90 percent | Phase 2 hand check fails twice | Hold v0.3.0. Rework prompts and rubric anchors in `docs/10`. Try a stronger model as a config change before any code change |
 | Web Speech API is unusable outside Chrome | Speaking exercises fail for more than a third of testers | Unpark the hosted speech provider. It is one adapter file in `core-speech`. Add it as a Phase 3 row |
-| Supabase or Vercel free tier limits hit | Events or Claude calls throttled | Event sampling (P4-12) moves earlier. Daily limits in `core-entitlements` are lowered as a config change |
+| Hosted Postgres or web host free tier limits hit | Events or Claude calls throttled | Event sampling (P4-12) moves earlier. Daily limits in `core-entitlements` are lowered as a config change |
 | Owner time drops below 10 hours a week | Two consecutive phases slip by more than half | Cut scope, not quality. Ship v1.0.0 with A1 to B2 and gate C levels behind a checkpoint. C levels move to 1.x |
 | Testers do not reach A1 completion | Fewer than 3 zero start testers complete A1 by v0.5.0 | Pause new content. Spend one phase on the daily loop, retention and the level map. Consider unparking `core-notifications` |
 | C2 shape is unclear | The C2 ADR cannot be decided with the data available | Ship v0.9.0 with C1. C2 becomes register and mediation work on C1 content until real C1 learners exist |

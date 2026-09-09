@@ -244,7 +244,7 @@ A complete fixed utterance. Payload: `register` (required, `formal`, `informal` 
 }
 ```
 
-Audio paths are optional everywhere. When absent, `core-speech` synthesises the text with the pack's `tts` settings. When present, the path is relative to `content/<lang>/audio/` and the file is uploaded to Supabase Storage at install time.
+Audio paths are optional everywhere. When absent, `core-speech` synthesises the text with the pack's `tts` settings. When present, the path is relative to `content/<lang>/audio/` and the file is uploaded through `core-storage` at install time.
 
 ## Units and lessons
 

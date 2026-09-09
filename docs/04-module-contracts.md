@@ -50,6 +50,54 @@ interface EventBus {
 }
 ```
 
+## db (infra)
+
+```ts
+createDb(url: string): Kysely<DB>                      // one instance per process, built by apps/web
+migrate(db, dir): Promise<{ applied: string[] }>        // applies missing numbered SQL files, records them in schema_migrations
+withUser<T>(db, userId: string | null, fn: (trx) => Promise<T>): Promise<T>
+                                                        // transaction with set_config('app.user_id', userId, true) so RLS applies
+```
+
+No box imports `pg` or `kysely` directly. Each box that persists data defines its own storage port and ships an in memory adapter for unit tests and a Postgres adapter built on `db`. See ADR-008.
+
+## core-auth
+
+```ts
+interface AuthPort {
+  getSession(request): Promise<{ userId: string; email: string } | null>;
+  signInMagicLink(email, redirectTo): Promise<void>;     // sends through core-mail
+  signInOAuth(provider: 'google', redirectTo): Promise<{ url: string }>;
+  signOut(request): Promise<void>;
+}
+setAuthProvider(p: AuthPort): void
+getSession(...)     // delegates
+// On first sign in: calls ensure_profile(userId) in Postgres, emits user.signed_up
+```
+
+Owns `users`, `sessions`, `accounts`, `verifications`. Default provider is better-auth. Replaceable.
+
+## core-storage
+
+```ts
+interface StoragePort {
+  put(key, data: Blob | Buffer, contentType): Promise<void>;
+  get(key): Promise<Buffer | null>;
+  delete(key): Promise<void>;
+  signedUrl(key, ttlSeconds?): Promise<string>;
+}
+setStorageProvider(p: StoragePort): void      // adapters: fs (dev, tests), s3 (any S3 compatible endpoint)
+```
+
+## core-mail
+
+```ts
+interface MailPort {
+  send(msg: { to: string; subject: string; text: string; html?: string }): Promise<void>;
+}
+setMailProvider(p: MailPort): void            // adapters: console (dev, tests), smtp
+```
+
 ## core-identity
 
 ```ts
@@ -58,6 +106,8 @@ updateProfile(userId, patch: Partial<ProfileEditable>): Promise<Profile>
 setActiveLanguage(userId, language, targetLevel): Promise<void>     // emits user.language_set
 listLearnerLanguages(userId): Promise<LearnerLanguage[]>
 ```
+
+Sign in is not here. `core-auth` owns it and emits `user.signed_up`.
 
 ## core-curriculum
 
@@ -200,7 +250,7 @@ setProvider(p: SpeechProvider): void
 transcribe(...)   // delegates
 speak(...)        // delegates
 compare(transcript, target): { similarity: number; diff: WordDiff[] }   // pure, no provider
-saveRecording(userId, exerciseId, audio, transcript, target): Promise<Recording>  // emits speech.transcribed
+saveRecording(userId, exerciseId, audio, transcript, target): Promise<Recording>  // stores through core-storage, emits speech.transcribed
 ```
 
 ## core-feedback
@@ -254,6 +304,7 @@ Components: `Button`, `Card`, `Progress`, `LevelBadge`, `Choice`, `TextInput`, `
 | Route | Boxes used |
 |-------|------------|
 | `/` | identity, progress, srs, curriculum |
+| `/sign-in` | auth, mail |
 | `/onboarding` | identity, assessment, entitlements |
 | `/lesson/[id]` | lesson-engine, exercise-types, speech, ai-tutor (via graders) |
 | `/review` | srs, exercise-types |

@@ -9,6 +9,8 @@
   },
   "scripts": {
     "dev": "pnpm --filter @stufen/web dev",
+    "db:up": "docker compose up -d db",
+    "db:migrate": "pnpm --filter @stufen/db migrate",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "typecheck": "tsc -p tsconfig.json --noEmit",

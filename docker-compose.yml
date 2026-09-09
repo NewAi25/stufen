@@ -1,0 +1,21 @@
+# Local development database. Start with `pnpm db:up`, apply migrations with
+# `pnpm db:migrate` (DATABASE_URL=postgres://stufen:stufen@localhost:5432/stufen).
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: stufen
+      POSTGRES_USER: stufen
+      POSTGRES_PASSWORD: stufen
+    ports:
+      - '5432:5432'
+    volumes:
+      - stufen_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U stufen -d stufen']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  stufen_pgdata:

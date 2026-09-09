@@ -54,18 +54,18 @@ Every content pack install that goes to production gets a git tag `content-<lang
 
 ## Database migrations
 
-- Files live in `supabase/migrations/` and are named `NNNN_short_name.sql` with four digits, starting at `0001`.
+- Files live in `packages/db/migrations/` and are named `NNNN_short_name.sql` with four digits, starting at `0001`.
 - Numbers are never reused and never skipped. The next number is the highest existing plus one.
 - A migration is never edited after it has been applied to any shared environment. A fix is a new migration.
 - Every migration ends with a comment block containing the reverse SQL, even if we never run it.
-- One migration per commit. The commit scope is `supabase`.
+- One migration per commit. The commit scope is `db`, or the box that owns the tables when the migration belongs to one box (for example `core-auth` for `0002_auth.sql`).
 - Migrations that a box needs are committed before the box change that uses them.
 
 ## Branching
 
 | Branch | Purpose | Naming |
 |--------|---------|--------|
-| `main` | Always deployable. Vercel production follows it | `main` |
+| `main` | Always deployable. The production host (Vercel or a Docker host) follows it | `main` |
 | Feature | One row of `docs/07` | `feat/<box>-<short>`, for example `feat/core-srs-fsrs` |
 | Fix | One bug in one box | `fix/<box>-<short>`, for example `fix/lang-de-dative-plural` |
 | Content | One level of one pack | `content/<lang>-<level>`, for example `content/de-a2` |
@@ -97,7 +97,7 @@ Scope is one of:
 
 - A box name exactly as in `docs/02`: `contracts`, `core-srs`, `lang-de`, `ui-kit`, `web`, and so on. `apps/web` is written as `web`.
 - A content pack and level: `de-a1`, `nl-b2`.
-- `supabase`, `scripts`, `ci`, `content-schema`.
+- `db`, `scripts`, `ci`, `content-schema`.
 - `build-seq` for a commit that only changes `docs/07`.
 - `repo` for root level files, release commits and multi box release work.
 
@@ -124,7 +124,7 @@ Ten example messages:
 | `content(de-a2): add units 5 to 8` | Pack version stays until the level completes |
 | `docs(build-seq): mark core-progress done` | Only when status changes without code, which is rare |
 | `test(ci): add A1 lesson flow` | Playwright step |
-| `chore(supabase): apply 0001 to dev` | No SQL change, records that it was applied |
+| `chore(db): apply 0001 to the shared dev database` | No SQL change, records that it was applied |
 | `refactor(core-progress): split mastery rule into pure function` | No version bump unless the API moved |
 | `release(repo): v0.2.0` | Squash of `release/v0.2.0` |
 
@@ -155,7 +155,7 @@ Rules:
 7. Update the phase overview row in `docs/07` with the actual date.
 8. Commit `release(repo): vX.Y.Z`, open the pull request, wait for CI.
 9. Squash merge. Tag `vX.Y.Z` on `main`. Push the tag.
-10. Confirm the Vercel production deploy is green and sign in works.
+10. Confirm the production deploy is green and sign in works. Migrations run on deploy with `pnpm db:migrate`.
 11. If a content pack changed, tag `content-<lang>-<version>` on the same commit.
 12. Add the release row to the sequence log.
 

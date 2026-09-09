@@ -95,7 +95,7 @@ All other events are acknowledged with 200 and ignored.
 
 Idempotency. Stripe delivers events at least once and out of order. The box keeps a table `payment_events(event_id text primary key, type, received_at, applied boolean)`, added by the same later migration. The handler inserts the event id first; a duplicate key means the event was already seen, so the handler returns 200 and does nothing. For ordering, every subscription event carries the subscription's current state, and the handler applies that whole state rather than a delta, so a late arriving older event cannot regress a newer one because the handler also compares the event `created` timestamp with `entitlements.updated_at` and skips older ones.
 
-The hand editing rule. Rows with `source = stripe` are never edited by hand, not in the Supabase dashboard, not by a script. The next webhook would overwrite the edit and the user would lose whatever was granted. To change a paying user's plan, change it in Stripe and let the webhook do it. To give someone a free upgrade that Stripe does not know about, set `source = manual` and the plan you want; the webhook handler skips rows with `source = manual` and logs them for review. The database test suite has a test that a `manual` row survives a subscription event.
+The hand editing rule. Rows with `source = stripe` are never edited by hand, not in a database client, not by a script. The next webhook would overwrite the edit and the user would lose whatever was granted. To change a paying user's plan, change it in Stripe and let the webhook do it. To give someone a free upgrade that Stripe does not know about, set `source = manual` and the plan you want; the webhook handler skips rows with `source = manual` and logs them for review. The database test suite has a test that a `manual` row survives a subscription event.
 
 ## Feature flags
 
@@ -178,7 +178,7 @@ On the day:
 | 1 | Set `payments_enabled` to `enabled: true` | `feature_flags` |
 | 2 | One SQL update: every row with `plan = free_beta` and `source = default` gets `expires_at = switch day + 60 days` | `entitlements` |
 | 3 | Plans page becomes live; checkout works | `apps/web`, reads the flag |
-| 4 | Watch the webhook log for the first hour | Vercel logs, `payment_events` |
+| 4 | Watch the webhook log for the first hour | app logs, `payment_events` |
 
 After the day, existing `free_beta` users keep every feature and every limit for 60 days of grace. The banner shows days left. On expiry the read path handles it: when `plan()` finds `free_beta` with `expires_at` in the past it returns the `free` plan and writes the row as `plan: free, source: default, expires_at: null`, emitting `entitlement.changed`. No nightly job is needed. Anyone who subscribed during the grace period got a webhook that already set `source: stripe`, so the expiry rule never touches them.
 
@@ -192,17 +192,17 @@ If the switch goes wrong, set `payments_enabled` back to false. Checkout stops. 
 
 | Data | Table or place | Why we have it |
 |------|----------------|----------------|
-| Email, auth identities | `auth.users` (Supabase) | sign in |
+| Email, auth identities, sessions | `users`, `accounts`, `sessions` (owned by `core-auth`) | sign in |
 | Display name, timezone, UI locale | `profiles` | show a name, compute the local day |
 | Everything the learner wrote to the tutor | `tutor_messages.content` | the conversation and its corrections |
 | Writing submissions | `writing_submissions.text` | grading and history |
-| Voice recordings and transcripts | `speech_recordings`, Supabase Storage | speaking exercises |
+| Voice recordings and transcripts | `speech_recordings`, files behind `core-storage` | speaking exercises |
 | Feedback messages | `feedback` | product improvement, may be anonymous |
 | Attempts, reviews, mastery, level estimates | learner tables | the evidence record |
 | Usage events | `events` | product metrics |
 | Stripe customer id (later) | `entitlements.provider_customer_id` | link to billing |
 
-What goes to the Claude API: the learner's first name, their level, and the text they wrote for the tutor or the writing studio. Never email, user id, surname, or anything from `auth.users`. Anthropic's retention terms apply to what is sent. The privacy page says this in one sentence.
+What goes to the Claude API: the learner's first name, their level, and the text they wrote for the tutor or the writing studio. Never email, user id, surname, or anything from the `core-auth` tables. Anthropic's retention terms apply to what is sent. The privacy page says this in one sentence.
 
 What goes to Stripe (later): email and the plan. Card data goes from the learner's browser to Stripe and never touches us.
 
@@ -212,14 +212,14 @@ A learner asks in the app (`/settings`, "delete my account") or by email. The pr
 
 1. Confirm the request came from the account holder: the in app button requires a fresh magic link; an email request gets a reply asking them to use the button, or, if they cannot sign in, a confirmation from the same email address.
 2. Run `scripts/delete-user.mjs <user_id>`. It refuses to run without `--confirm` and prints the counts it is about to delete.
-3. The script first lists `speech_recordings.storage_path` for the user and deletes those objects from Storage, because storage has no foreign key.
+3. The script first lists `speech_recordings.storage_path` for the user and deletes those files through `core-storage`, because file storage has no foreign key.
 4. The script sets `user_id` to null on `feedback` and `events` rows for the user. Feedback stays as anonymous product data; the message is kept, the link to the person is not.
-5. The script deletes the row in `auth.users`. Every learner table has `user_id references auth.users(id) on delete cascade` (checked by a database test), so profiles, entitlements, attempts, reviews, mastery, tutor conversations and messages, writing submissions, speech recordings and assessments all go in one statement.
+5. The script deletes the row in `users`, the table owned by `core-auth`. Every learner table has `user_id references users(id) on delete cascade` (checked by an integration test), so profiles, sessions, accounts, entitlements, attempts, reviews, mastery, tutor conversations and messages, writing submissions, speech recordings and assessments all go in one statement.
 6. Later, if a Stripe customer exists, the script cancels the subscription and calls the Stripe customer delete endpoint.
 7. The script prints a table of table name and rows deleted. That table is the record of the deletion, stored in the owner's private log, not in the database.
 
-Backups: Supabase point in time backups keep the rows for the backup window. The privacy page says deleted data can persist in backups for up to 30 days.
+Backups: whichever Postgres host is in use keeps the rows for its backup window. The privacy page says deleted data can persist in backups for up to 30 days, and the deployment must be configured so that is true.
 
 ### Export
 
-A learner can ask for their data. `scripts/export-user.mjs <user_id>` writes one zip with a JSON file per table holding that user's rows, the audio files from Storage, and a `README.txt` that names each file in plain words. It is sent to the account email by the owner. In a later phase this becomes a button in `/settings` that produces the same zip.
+A learner can ask for their data. `scripts/export-user.mjs <user_id>` writes one zip with a JSON file per table holding that user's rows, the audio files fetched through `core-storage`, and a `README.txt` that names each file in plain words. It is sent to the account email by the owner. In a later phase this becomes a button in `/settings` that produces the same zip.

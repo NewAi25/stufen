@@ -2,10 +2,12 @@
 
 ## Purpose
 
-Sign in, profile, settings and the learner's active target language.
-Wraps Supabase Auth. Knows nothing about lessons or content.
+Profile, settings and the learner's active target language.
+Sign in is not here: `core-auth` owns users and sessions and calls the
+database function `ensure_profile(user_id)` after sign up, which creates the
+`profiles` row this box then manages. Knows nothing about lessons or content.
 
-Kind: `core`. May import: `contracts`.
+Kind: `core`. May import: `contracts`, `db`.
 
 ## Public API
 
@@ -25,14 +27,15 @@ Source of truth: `docs/04-module-contracts.md`. If a signature is not there, it 
 | `profiles` |
 | `learner_languages` |
 
-Columns and policies are in `docs/03-data-schema.md` and `supabase/migrations/`.
+Columns and policies are in `docs/03-data-schema.md` and `packages/db/migrations/`. `profiles.id` references `users.id`, which `core-auth` owns.
 
 ## Emits and listens
 
 | Direction | Event |
 |-----------|-------|
-| emits | `user.signed_up` |
 | emits | `user.language_set` |
+
+`user.signed_up` is emitted by `core-auth`, not by this box.
 
 ## How to change it
 

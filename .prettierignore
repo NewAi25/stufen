@@ -3,7 +3,6 @@ dist
 .next
 coverage
 content
-supabase
 docs
 pnpm-lock.yaml
 *.md
