@@ -44,9 +44,7 @@ function discoverBoxes() {
       const moduleFile = path.join(dir, 'module.json');
       if (!fs.existsSync(moduleFile)) continue;
       const meta = readJson(moduleFile);
-      const id = String(meta.name ?? '').startsWith(SCOPE)
-        ? meta.name.slice(SCOPE.length)
-        : null;
+      const id = String(meta.name ?? '').startsWith(SCOPE) ? meta.name.slice(SCOPE.length) : null;
       boxes.push({
         id,
         rawName: meta.name,
@@ -92,7 +90,8 @@ function listSourceFiles(dir) {
     for (const entry of fs.readdirSync(cur, { withFileTypes: true })) {
       const full = path.join(cur, entry.name);
       if (entry.isDirectory()) {
-        if (entry.name === 'node_modules' || entry.name === '.next' || entry.name === 'dist') continue;
+        if (entry.name === 'node_modules' || entry.name === '.next' || entry.name === 'dist')
+          continue;
         stack.push(full);
       } else if (SRC_EXT.has(path.extname(entry.name))) {
         out.push(full);
@@ -103,9 +102,7 @@ function listSourceFiles(dir) {
 }
 
 function stripComments(code) {
-  return code
-    .replace(/\/\*[\s\S]*?\*\//g, '')
-    .replace(/(^|[^:\\])\/\/[^\n]*/g, '$1');
+  return code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:\\])\/\/[^\n]*/g, '$1');
 }
 
 const IMPORT_PATTERNS = [
@@ -201,7 +198,12 @@ for (const box of boxes) {
         }
         if (target === box.id) continue;
         if (!allowed.has(target)) {
-          violate(box, file, spec, `${box.id} may not import ${target} (allowed: ${[...allowed].join(', ') || 'nothing'})`);
+          violate(
+            box,
+            file,
+            spec,
+            `${box.id} may not import ${target} (allowed: ${[...allowed].join(', ') || 'nothing'})`,
+          );
         }
       } else if (spec.startsWith('.')) {
         importCount++;
@@ -228,8 +230,11 @@ for (const box of boxes) {
 // ---------- output ----------
 
 function table(rows, columns) {
-  const widths = columns.map((c) => Math.max(c.label.length, ...rows.map((r) => String(r[c.key]).length)));
-  const line = (cells) => '| ' + cells.map((v, i) => String(v).padEnd(widths[i])).join(' | ') + ' |';
+  const widths = columns.map((c) =>
+    Math.max(c.label.length, ...rows.map((r) => String(r[c.key]).length)),
+  );
+  const line = (cells) =>
+    '| ' + cells.map((v, i) => String(v).padEnd(widths[i])).join(' | ') + ' |';
   const sep = '|' + widths.map((w) => '-'.repeat(w + 2)).join('|') + '|';
   const out = [line(columns.map((c) => c.label)), sep];
   for (const r of rows) out.push(line(columns.map((c) => r[c.key])));
@@ -240,12 +245,14 @@ console.log(`check-boundaries: ${boxes.length} boxes found under ${BOX_ROOTS.joi
 
 if (violations.length) {
   console.log('VIOLATIONS\n');
-  console.log(table(violations, [
-    { key: 'box', label: 'Box' },
-    { key: 'file', label: 'File' },
-    { key: 'specifier', label: 'Import' },
-    { key: 'problem', label: 'Problem' },
-  ]));
+  console.log(
+    table(violations, [
+      { key: 'box', label: 'Box' },
+      { key: 'file', label: 'File' },
+      { key: 'specifier', label: 'Import' },
+      { key: 'problem', label: 'Problem' },
+    ]),
+  );
   console.log('');
 }
 
@@ -255,14 +262,16 @@ const summaryRows = summary.map((s) => ({
 }));
 
 console.log('SUMMARY\n');
-console.log(table(summaryRows, [
-  { key: 'box', label: 'Box' },
-  { key: 'kind', label: 'Kind' },
-  { key: 'allowed', label: 'May import' },
-  { key: 'files', label: 'Files' },
-  { key: 'imports', label: 'Imports checked' },
-  { key: 'result', label: 'Result' },
-]));
+console.log(
+  table(summaryRows, [
+    { key: 'box', label: 'Box' },
+    { key: 'kind', label: 'Kind' },
+    { key: 'allowed', label: 'May import' },
+    { key: 'files', label: 'Files' },
+    { key: 'imports', label: 'Imports checked' },
+    { key: 'result', label: 'Result' },
+  ]),
+);
 
 if (violations.length) {
   console.log(`\n${violations.length} violation(s). The change is wrong, not the script.`);

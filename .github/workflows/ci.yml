@@ -16,14 +16,21 @@ jobs:
         with:
           node-version: 24
 
+      # The packageManager field in package.json pins pnpm 9.15.9 for corepack.
       - name: Enable corepack
         run: corepack enable
 
-      # No lockfile exists until Phase 0 runs pnpm install for the first time.
-      # Remove continue-on-error once pnpm-lock.yaml is committed.
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-        continue-on-error: true
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Check formatting
+        run: pnpm format:check
 
       - name: Check box boundaries
         run: node scripts/check-boundaries.mjs
@@ -31,8 +38,5 @@ jobs:
       - name: Validate content packs
         run: node scripts/validate-content.mjs
 
-      # Boxes have no tests yet. Remove continue-on-error when Phase 0 lands
-      # and the first box test exists.
       - name: Run box tests
         run: pnpm test
-        continue-on-error: true

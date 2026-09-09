@@ -4,6 +4,9 @@ All notable changes to Stufen. Format follows Keep a Changelog. Versions follow 
 
 ## [Unreleased]
 
+### Added
+- Workspace tooling: pnpm workspace, root tsconfig, Vitest, ESLint, Prettier, CI steps for typecheck, lint and format
+
 ## [0.0.1] - 2026-09-09
 
 ### Added
