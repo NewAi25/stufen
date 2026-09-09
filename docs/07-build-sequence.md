@@ -228,3 +228,10 @@ Every merged commit gets one row. Newest at the bottom. See `docs/08-versioning-
 | Date | Commit | Box | Message |
 |------|--------|-----|---------|
 | 2026-09-09 | 6b49a37 | repo | `chore(repo): planning package v0.0.1` |
+| 2026-09-09 | 7ab9b64 | repo | `chore(repo): normalise line endings to LF` |
+| 2026-09-09 | 4f4747a | repo | `chore(repo): add workspace tooling` |
+| 2026-09-09 | c1caba2 | contracts | `feat(contracts): add shared types and event map` |
+| 2026-09-09 | a32d1a9 | contracts | `feat(contracts): add in process event bus` |
+| 2026-09-09 | 2890187 | prd | `docs(prd): add relocating professional persona and scenario track` |
+| 2026-09-09 | 13cd598 | de | `content(de): verify exam formats against provider documents` |
+| 2026-09-09 | 2c7f55f | curriculum | `docs(curriculum): align level rule with real life CEFR evidence` |
