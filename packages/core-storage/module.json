@@ -1,19 +1,18 @@
 {
   "name": "@stufen/core-storage",
   "kind": "core",
-  "version": "0.0.0",
-  "status": "planned",
+  "version": "0.1.0",
+  "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [
     "contracts"
   ],
   "provides": [
-    "StoragePort",
-    "put",
-    "get",
-    "delete",
-    "signedUrl",
-    "fsStorage",
-    "s3Storage"
+    "StoragePort (type, re exported from contracts)",
+    "createFsStorage",
+    "scoped",
+    "verifySignedUrl",
+    "normaliseKey",
+    "StorageKeyError"
   ]
 }
