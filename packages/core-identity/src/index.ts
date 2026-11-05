@@ -1,7 +1,11 @@
 // @stufen/core-identity
-// Sign in, profile, settings and the learner's active target language.
+// Profile, settings and the learner's active target language. Sign in lives
+// in core-auth.
 // This file is the only public surface of the box. Everything exported here
 // is listed in docs/04-module-contracts.md. Nothing else in src/ is public.
-// Status: planned. See docs/07-build-sequence.md.
+// Status: see docs/07-build-sequence.md.
 
-export {};
+export { createIdentity, ProfileNotFoundError } from './identity';
+export type { Identity, IdentityOptions } from './identity';
+export { createInMemoryProfileStore } from './store';
+export type { ProfileStore, ProfileStorePatch, LearnerLanguageUpsert } from './store';
