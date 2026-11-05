@@ -12,7 +12,7 @@ import { defineConfig } from 'vitest/config';
 const repoRoot = path.dirname(fileURLToPath(import.meta.url));
 const atRepoRoot = path.resolve(process.cwd()) === repoRoot;
 
-const boxTests = ['tests/**/*.test.ts'];
+const boxTests = ['tests/**/*.test.ts', 'tests/**/*.test.tsx'];
 
 function boxProjects() {
   const projects = [];

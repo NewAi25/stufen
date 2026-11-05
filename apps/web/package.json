@@ -9,5 +9,23 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
+  },
+  "dependencies": {
+    "@stufen/contracts": "workspace:*",
+    "@stufen/core-ai-tutor": "workspace:*",
+    "@stufen/core-analytics": "workspace:*",
+    "@stufen/core-assessment": "workspace:*",
+    "@stufen/core-content": "workspace:*",
+    "@stufen/core-curriculum": "workspace:*",
+    "@stufen/core-entitlements": "workspace:*",
+    "@stufen/core-exercise-types": "workspace:*",
+    "@stufen/core-feedback": "workspace:*",
+    "@stufen/core-identity": "workspace:*",
+    "@stufen/core-lesson-engine": "workspace:*",
+    "@stufen/core-progress": "workspace:*",
+    "@stufen/core-speech": "workspace:*",
+    "@stufen/core-srs": "workspace:*",
+    "@stufen/lang-de": "workspace:*",
+    "@stufen/ui-kit": "workspace:*"
   }
 }

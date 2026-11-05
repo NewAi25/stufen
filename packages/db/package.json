@@ -9,6 +9,7 @@
     "migrate": "node src/migrate-cli.mjs"
   },
   "dependencies": {
+    "@stufen/contracts": "workspace:*",
     "kysely": "^0.29.5",
     "pg": "^8.23.0"
   },
