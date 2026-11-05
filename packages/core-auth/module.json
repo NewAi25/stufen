@@ -1,18 +1,18 @@
 {
   "name": "@stufen/core-auth",
   "kind": "core",
-  "version": "0.0.0",
-  "status": "planned",
+  "version": "0.1.0",
+  "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [
     "contracts",
     "db"
   ],
   "provides": [
-    "signUp",
-    "signIn",
-    "signOut",
-    "getSession",
-    "requireUser"
+    "createInMemoryAuth (AuthPort in memory, plus createDevSession)",
+    "AuthStore interface (AuthUser, AuthSessionRecord, AuthLinkToken)",
+    "createInMemoryAuthStore",
+    "AuthError (invalid_email, invalid_redirect)",
+    "types AuthPort and AuthSession, re exported from contracts"
   ]
 }
