@@ -1,27 +1,20 @@
 {
   "name": "@stufen/ui-kit",
   "kind": "surface",
-  "version": "0.0.0",
-  "status": "planned",
+  "version": "0.1.0",
+  "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [
     "contracts"
   ],
   "provides": [
-    "tokens",
+    "tokens (tokens, THEMES, cssVariables)",
+    "src/styles.css (the --st-* variables for light and dark, and the st- component classes)",
     "Button",
     "Card",
     "Progress",
-    "LevelBadge",
-    "Choice",
     "TextInput",
-    "AudioButton",
-    "RecordButton",
-    "CorrectionInline",
-    "RubricBars",
-    "LevelMap",
-    "FeedbackFab",
-    "Toast",
-    "Sheet"
+    "Choice",
+    "Toast (ToastProvider, useToast)"
   ]
 }
