@@ -604,9 +604,9 @@ One accent, a deep teal. Neutrals are warm greys so long reading sessions are ea
 | `--st-color-accent-hover` | `#255A5D` | `#8BC4C7` | Hover and active |
 | `--st-color-accent-soft` | `#DCEBEB` | `#23393B` | Selected background, level in progress |
 | `--st-color-on-accent` | `#FFFFFF` | `#15181A` | Text on accent |
-| `--st-color-success` | `#2E7D4F` | `#6CC28E` | Correct, mastered |
+| `--st-color-success` | `#2C784C` | `#6CC28E` | Correct, mastered |
 | `--st-color-success-soft` | `#DFF0E5` | `#1F3328` | Correct feedback background |
-| `--st-color-error` | `#B4432F` | `#E5806C` | Incorrect, destructive |
+| `--st-color-error` | `#B1422E` | `#E5806C` | Incorrect, destructive |
 | `--st-color-error-soft` | `#F6E1DC` | `#3A231E` | Incorrect feedback background |
 | `--st-color-warning` | `#8A5F10` | `#D9A94A` | Partial, limits |
 | `--st-color-warning-soft` | `#F4EAD2` | `#33290F` | Partial feedback background |
@@ -675,7 +675,7 @@ Rules. Nothing bounces. Nothing loops except the recording pulse on RecordButton
 
 ### 7.7 Token export
 
-`packages/ui-kit/src/tokens.ts` exports one object `tokens` with the groups `color.light`, `color.dark`, `text`, `space`, `radius`, `shadow`, `motion`, `width`, and one function `toCssVariables(theme)` returning the `:root` string. The variable names above are the contract. Adding a token is a minor version bump of `ui-kit`.
+`packages/ui-kit/src/tokens.ts` exports one object `tokens` with the groups `color.light`, `color.dark`, `text`, `space`, `radius`, `shadow`, `motion`, `width`, and one function `cssVariables(theme)` returning the variable names and values for that theme. The variable names above are the contract. Adding a token is a minor version bump of `ui-kit`.
 
 ## 8. Feedback capture
 

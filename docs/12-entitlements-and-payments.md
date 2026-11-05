@@ -15,7 +15,7 @@ Public API, from `docs/04`:
 ```ts
 can(userId, feature: FeatureKey): Promise<boolean>
 remaining(userId, limit: LimitKey): Promise<number>     // resets at the user's midnight
-consume(userId, limit: LimitKey, amount?): Promise<void> // throws LimitExhausted
+consume(userId, limit: LimitKey, amount?): Promise<void> // throws LimitExceededError
 plan(userId): Promise<Entitlement>
 flag(key: string, userId?, ctx?: { level?: CefrLevel }): Promise<boolean>
 setPaymentProvider(p: PaymentProvider): void
@@ -33,7 +33,7 @@ On `user.signed_up` the box inserts an `entitlements` row with `plan` from `STUF
 
 Counts are not stored in `entitlements`. `remaining()` counts today's rows in the table that records the thing: `tutor_messages` where `role = user` for tutor messages, `writing_submissions` for grades, `speech_recordings` duration for minutes. "Today" is the user's local day from `profiles.timezone`. This means the count is always right, survives a crash between check and write, and needs no reset job. The box reads those tables through a single database view `daily_usage(user_id, day)` that it owns, so no box internal is crossed.
 
-`consume()` is then a check, not a write: it recomputes remaining and throws `LimitExhausted` if the amount is not available. The calling route writes the real row afterward. The name stays `consume` so the intent in the route reads clearly.
+`consume()` is then a check, not a write: it recomputes remaining and throws `LimitExceededError` if the amount is not available. The calling route writes the real row afterward. The name stays `consume` so the intent in the route reads clearly.
 
 ## Plans
 
@@ -41,7 +41,7 @@ Proposal. Not active. Only `free_beta` exists in the database during beta. Price
 
 | Plan | Price (placeholder) | tutor | writing_studio | speech | exam_sim | levels_above_b1 | tutor messages per day | writing grades per day | speech minutes per day |
 |------|---------------------|-------|----------------|--------|----------|-----------------|------------------------|------------------------|------------------------|
-| `free_beta` | free, invited | yes | yes | yes | yes | yes | 200 | 20 | 60 |
+| `free_beta` | free, invited | yes | yes | yes | yes | yes | 200 | 20 | 30 |
 | `free` | free | yes | yes | yes | no | no | 10 | 1 | 5 |
 | `plus` | about 9 EUR a month | yes | yes | yes | yes | yes | 100 | 10 | 30 |
 | `pro` | about 19 EUR a month | yes | yes | yes | yes | yes | 400 | 40 | 120 |

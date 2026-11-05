@@ -53,65 +53,69 @@ interface EventBus {
 ## db (infra)
 
 ```ts
-createDb(url: string): Kysely<DB>                      // one instance per process, built by apps/web
-migrate(db, dir): Promise<{ applied: string[] }>        // applies missing numbered SQL files, records them in schema_migrations
+createDb(url: string): Database                          // one instance per process, built by apps/web
+migrate(db, dir): Promise<{ applied: string[]; skipped: string[] }>   // numbered SQL files, ledger in schema_migrations
 withUser<T>(db, userId: string | null, fn: (trx) => Promise<T>): Promise<T>
-                                                        // transaction with set_config('app.user_id', userId, true) so RLS applies
+// transaction that sets app.user_id and switches to role stufen_app, so row security applies to everything fn does
+TABLE_NAMES, type DB, Row<T>, NewRow<T>, RowPatch<T>     // hand written table types for every table in the migrations
 ```
 
-No box imports `pg` or `kysely` directly. Each box that persists data defines its own storage port and ships an in memory adapter for unit tests and a Postgres adapter built on `db`. See ADR-008.
+Two kinds of access. Learner facing reads and writes go through `withUser`, where only the grants and policies of `stufen_app` apply. Owner work (sign up, pack install, entitlement changes, migrations) uses `db` directly as the login role. The login role must be a member of `stufen_app`. No box imports `pg` or `kysely` directly; the types above are re exported from `db`. Each box that persists data defines its own storage port and ships an in memory adapter for unit tests and a Postgres adapter built on `db`. See ADR-008.
 
 ## core-auth
 
 ```ts
-// Interface lives in contracts (src/ports.ts) so any box can depend on it.
+// AuthPort and AuthSession live in contracts (src/ports.ts) so any box can depend on them.
 interface AuthPort {
   getSession(sessionToken): Promise<AuthSession | null>;          // null when missing, unknown or expired
   requestMagicLink(email, redirectTo): Promise<{ sent: true }>;    // sends through a MailPort
-  consumeMagicLink(token): Promise<AuthSession | null>;            // one time; unknown or used tokens return null
+  consumeMagicLink(token): Promise<AuthSession | null>;            // one time; unknown, used or expired tokens return null
   signInWithGoogle(redirectTo): Promise<{ url: string }>;
   signOut(sessionToken): Promise<void>;
 }
-createInMemoryAuth(options: { mail: MailPort; bus?: EventBus; now?: () => Date }): AuthPort
-// On first sign in: emits user.signed_up. The Postgres adapter also calls ensure_profile(userId).
+createInMemoryAuth(options: { mail: MailPort; store?: AuthStore; bus?: EventBus; now?; newToken?; newId?;
+                              sessionTtlMs?; linkTtlMs?; appName? })
+  : AuthPort & { createDevSession(email, name?): Promise<AuthSession> }
+createInMemoryAuthStore(): AuthStore        // AuthStore is the port the Postgres adapter implements in Phase 1
+class AuthError                             // code: invalid_email | invalid_redirect
 ```
 
-Owns `users`, `sessions`, `accounts`, `verifications`. The production adapter is better-auth (Phase 1). Replaceable.
+Emits `user.signed_up` exactly once per new user. Redirects must be a relative path or an http or https URL; `//host` style paths are rejected. Owns `users`, `sessions`, `accounts`, `verifications`. The production adapter is better-auth on Postgres (Phase 1). The in memory adapter loses sessions on restart and is for development and tests only.
 
 ## core-storage
 
 ```ts
-// Interface lives in contracts (src/ports.ts).
-interface StoragePort {
-  put(key, data: Uint8Array, contentType): Promise<void>;
-  get(key): Promise<Uint8Array | null>;
-  delete(key): Promise<void>;
-  signedUrl(key, ttlSeconds?): Promise<string>;
-}
-createFsStorage(options: { root: string; baseUrl?: string }): StoragePort    // dev and tests
-// s3 adapter for any S3 compatible endpoint arrives in Phase 3
+// StoragePort lives in contracts (src/ports.ts).
+createFsStorage(options: { root: string; baseUrl?: string; secret?: string; now? }): StoragePort   // dev and tests
+scoped(storage: StoragePort, prefix: string): StoragePort    // every key is forced under prefix, for per user storage
+verifySignedUrl({ key, expires, sig, secret, now? }): boolean
+normaliseKey(key): string                                     // throws StorageKeyError with a reason code
 ```
 
-Keys are relative paths such as `<userId>/recordings/<id>.webm`. A key that escapes the root throws.
+Keys are relative ASCII paths such as `<userId>/recordings/<id>.webm`. Absolute paths, drive letters, backslashes, dot segments and anything that resolves outside the root throw. `signedUrl` is HMAC signed when a secret is set and plain otherwise, which is for local development only. Known gap for Phase 3: the port cannot return a file's content type, which the file serving route will need. The S3 compatible adapter is a Phase 3 row.
 
 ## core-mail
 
 ```ts
-// Interface lives in contracts (src/ports.ts).
-interface MailPort {
-  send(msg: { to: string; subject: string; text: string; html?: string }): Promise<{ messageId: string }>;
-}
-createConsoleMail(options?: { log?: (line: string) => void }): MailPort & { sent: MailMessage[] }   // dev and tests
-// smtp adapter arrives in Phase 1
+// MailPort and MailMessage live in contracts (src/ports.ts).
+createConsoleMail(options?: { log?: (line: string) => void; newId?; now?; keep?: number })
+  : MailPort & { sent: readonly SentMail[]; last(): SentMail | undefined; clear(): void }
+validateMessage(message): void              // throws MailValidationError with a field name
 ```
+
+The console adapter prints the message and keeps the last messages in memory, which is how the local magic link flow reads its link. It must never run in production. The SMTP adapter is a Phase 1 row.
 
 ## core-identity
 
 ```ts
-getProfile(userId): Promise<Profile>
-updateProfile(userId, patch: Partial<ProfileEditable>): Promise<Profile>
-setActiveLanguage(userId, language, targetLevel): Promise<void>     // emits user.language_set
-listLearnerLanguages(userId): Promise<LearnerLanguage[]>
+createIdentity({ store: ProfileStore, bus: EventBus, now? }) => {
+  ensureProfile(userId, displayName?): Promise<Profile>          // idempotent, creates defaults
+  getProfile(userId): Promise<Profile>                           // throws ProfileNotFoundError
+  updateProfile(userId, patch: Partial<ProfileEditable>): Promise<Profile>   // unknown fields and bad values are rejected
+  setActiveLanguage(userId, language, targetLevel): Promise<void>            // emits user.language_set
+  listLearnerLanguages(userId): Promise<LearnerLanguage[]>
+}
+createInMemoryProfileStore(): ProfileStore
 ```
 
 Sign in is not here. `core-auth` owns it and emits `user.signed_up`.
@@ -263,32 +267,45 @@ saveRecording(userId, exerciseId, audio, transcript, target): Promise<Recording>
 ## core-feedback
 
 ```ts
-submit(input: { userId?: string; kind; page; message; rating?; context? }): Promise<void>   // emits feedback.submitted
-listMine(userId): Promise<FeedbackItem[]>
+createFeedback({ store: FeedbackStore, bus: EventBus, now?, newId? }) => {
+  submit(input: { userId?: string | null; kind; page?; message; rating?; context? }): Promise<void>   // emits feedback.submitted
+  listMine(userId): Promise<FeedbackItem[]>      // newest first, never returns anonymous rows
+  setStatus(id, status): Promise<FeedbackItem | null>
+}
+createInMemoryFeedbackStore(): FeedbackStore
+class FeedbackValidationError                    // carries the field name
 ```
+
+Message is 1 to 4000 characters, except for kind `rating`, where a rating alone is enough. Rating is a whole number from 1 to 5.
 
 ## core-analytics
 
 ```ts
-track(userId | null, name, props?): Promise<void>
-attach(bus: EventBus): void            // subscribes onAny and writes events
+createAnalytics({ store: EventStore, now?, newId?, sampleRate?, random?, onError? }) => {
+  attach(bus: EventBus): () => void              // subscribes onAny, returns unsubscribe; call once per bus
+  track(userId: string | null, name, props?): Promise<void>
+}
+createInMemoryEventStore(): EventStore
 ```
+
+A store failure inside the bus handler is reported through `onError` and never reaches the bus.
 
 ## core-entitlements
 
 ```ts
-can(userId, feature: FeatureKey): Promise<boolean>
-remaining(userId, limit: LimitKey): Promise<number>          // per day, resets at user's midnight
-consume(userId, limit: LimitKey, amount?): Promise<void>     // throws when exhausted
-plan(userId): Promise<Entitlement>
-flag(key: string, userId?, ctx?: { level?: CefrLevel }): Promise<boolean>   // ctx lets a rule gate on level
-// remaining() and consume() count today's rows through a view named daily_usage owned by this box; nothing is stored in entitlements
-// Payment adapter slot, unused in beta:
-interface PaymentProvider { createCheckout(...); handleWebhook(...); }
-setPaymentProvider(p: PaymentProvider): void
+createEntitlements({ store: EntitlementStore, bus: EventBus, now?, dayKeyFor? }) => {
+  plan(userId): Promise<Entitlement>                         // creates the free_beta default lazily
+  can(userId, feature: FeatureKey): Promise<boolean>
+  remaining(userId, limit: LimitKey): Promise<number>        // per day
+  consume(userId, limit: LimitKey, amount?): Promise<void>   // throws LimitExceededError when exhausted
+  flag(key: string, userId?, ctx?: { level?: CefrLevel }): Promise<boolean>
+  setPlan(userId, plan, source): Promise<Entitlement>        // emits entitlement.changed
+}
+createInMemoryEntitlementStore(): EntitlementStore
+PLANS, DEFAULT_PLAN                                          // plan definitions as data; only free_beta is active
 ```
 
-Feature keys in beta: `tutor`, `writing_studio`, `speech`, `exam_sim`, `levels_above_b1`. All true for `free_beta`.
+Feature keys in beta: `tutor`, `writing_studio`, `speech`, `exam_sim`, `levels_above_b1`. All true for `free_beta`. Daily limits for `free_beta`: 200 tutor messages, 20 writing grades, 30 speech minutes. The Postgres adapter reads usage from the `daily_usage` view. The payment provider slot is not implemented until the payments phase.
 
 ## lang-de (implements LanguagePack)
 
