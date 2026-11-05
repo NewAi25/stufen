@@ -1,18 +1,18 @@
 {
   "name": "@stufen/core-entitlements",
   "kind": "core",
-  "version": "0.0.0",
-  "status": "planned",
+  "version": "0.1.0",
+  "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [
     "contracts"
   ],
   "provides": [
-    "can",
-    "remaining",
-    "consume",
-    "plan",
-    "flag",
-    "setPaymentProvider"
+    "createEntitlements (plan, can, remaining, consume, flag, setPlan)",
+    "EntitlementStore interface",
+    "createInMemoryEntitlementStore",
+    "PLANS",
+    "DEFAULT_PLAN",
+    "LimitExceededError"
   ]
 }
