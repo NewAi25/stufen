@@ -69,3 +69,7 @@ pnpm --filter @stufen/contracts test
 ## Status
 
 See the `contracts` row in [docs/07-build-sequence.md](../../docs/07-build-sequence.md).
+
+## Ports
+
+`src/ports.ts` holds `AuthPort`, `AuthSession`, `StoragePort`, `MailPort` and `MailMessage`. They live here so `core-auth`, `core-storage` and `core-mail` can be used by other boxes through the interface only.

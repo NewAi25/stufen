@@ -6,3 +6,4 @@ export * from './types';
 export * from './events';
 export { createEventBus } from './bus';
 export type { EventBusOptions, EventBusErrorHandler, InProcessEventBus } from './bus';
+export * from './ports';

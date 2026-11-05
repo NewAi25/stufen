@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-05
+
+### Added
+- `AuthPort`, `AuthSession`, `StoragePort`, `MailPort`, `MailMessage` in `src/ports.ts`, so boxes can depend on auth, storage and mail without importing each other.
+
 ## [0.2.0] - 2026-09-09
 
 ### Added

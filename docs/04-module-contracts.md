@@ -64,38 +64,45 @@ No box imports `pg` or `kysely` directly. Each box that persists data defines it
 ## core-auth
 
 ```ts
+// Interface lives in contracts (src/ports.ts) so any box can depend on it.
 interface AuthPort {
-  getSession(request): Promise<{ userId: string; email: string } | null>;
-  signInMagicLink(email, redirectTo): Promise<void>;     // sends through core-mail
-  signInOAuth(provider: 'google', redirectTo): Promise<{ url: string }>;
-  signOut(request): Promise<void>;
+  getSession(sessionToken): Promise<AuthSession | null>;          // null when missing, unknown or expired
+  requestMagicLink(email, redirectTo): Promise<{ sent: true }>;    // sends through a MailPort
+  consumeMagicLink(token): Promise<AuthSession | null>;            // one time; unknown or used tokens return null
+  signInWithGoogle(redirectTo): Promise<{ url: string }>;
+  signOut(sessionToken): Promise<void>;
 }
-setAuthProvider(p: AuthPort): void
-getSession(...)     // delegates
-// On first sign in: calls ensure_profile(userId) in Postgres, emits user.signed_up
+createInMemoryAuth(options: { mail: MailPort; bus?: EventBus; now?: () => Date }): AuthPort
+// On first sign in: emits user.signed_up. The Postgres adapter also calls ensure_profile(userId).
 ```
 
-Owns `users`, `sessions`, `accounts`, `verifications`. Default provider is better-auth. Replaceable.
+Owns `users`, `sessions`, `accounts`, `verifications`. The production adapter is better-auth (Phase 1). Replaceable.
 
 ## core-storage
 
 ```ts
+// Interface lives in contracts (src/ports.ts).
 interface StoragePort {
-  put(key, data: Blob | Buffer, contentType): Promise<void>;
-  get(key): Promise<Buffer | null>;
+  put(key, data: Uint8Array, contentType): Promise<void>;
+  get(key): Promise<Uint8Array | null>;
   delete(key): Promise<void>;
   signedUrl(key, ttlSeconds?): Promise<string>;
 }
-setStorageProvider(p: StoragePort): void      // adapters: fs (dev, tests), s3 (any S3 compatible endpoint)
+createFsStorage(options: { root: string; baseUrl?: string }): StoragePort    // dev and tests
+// s3 adapter for any S3 compatible endpoint arrives in Phase 3
 ```
+
+Keys are relative paths such as `<userId>/recordings/<id>.webm`. A key that escapes the root throws.
 
 ## core-mail
 
 ```ts
+// Interface lives in contracts (src/ports.ts).
 interface MailPort {
-  send(msg: { to: string; subject: string; text: string; html?: string }): Promise<void>;
+  send(msg: { to: string; subject: string; text: string; html?: string }): Promise<{ messageId: string }>;
 }
-setMailProvider(p: MailPort): void            // adapters: console (dev, tests), smtp
+createConsoleMail(options?: { log?: (line: string) => void }): MailPort & { sent: MailMessage[] }   // dev and tests
+// smtp adapter arrives in Phase 1
 ```
 
 ## core-identity
