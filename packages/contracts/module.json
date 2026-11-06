@@ -1,7 +1,7 @@
 {
   "name": "@stufen/contracts",
   "kind": "contracts",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [],
@@ -15,6 +15,7 @@
     "ExerciseTypeDefinition interface",
     "SpeechProvider interface",
     "PaymentProvider interface",
-    "ports (AuthPort, StoragePort, MailPort)"
+    "ports (AuthPort, StoragePort, MailPort)",
+    "CurriculumSnapshot"
   ]
 }

@@ -725,3 +725,27 @@ export interface PaymentProvider {
     signature: string,
   ): Promise<{ eventId: string; handled: boolean; change?: EntitlementChange }>;
 }
+
+// ---------------------------------------------------------------
+// Installed content
+// ---------------------------------------------------------------
+
+/** A unit together with its lessons and their exercises, in order. */
+export interface UnitWithLessons extends Unit {
+  lessons: Lesson[];
+}
+
+/**
+ * Everything one language pack installs, with final ids. core-content builds
+ * it from a LanguagePack and hands it to a store. core-curriculum reads from
+ * the same store. The two boxes never import each other; this shape is how
+ * they meet. Ids are stable across installs of the same pack key.
+ */
+export interface CurriculumSnapshot {
+  language: LanguageCode;
+  /** Pack version, for example 0.1.0. */
+  version: string;
+  candos: Cando[];
+  items: Item[];
+  units: UnitWithLessons[];
+}

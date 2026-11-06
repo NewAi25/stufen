@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-11-06
+
+### Added
+- `CurriculumSnapshot` and `UnitWithLessons`: the installed form of a language pack, shared by core-content and core-curriculum.
+
 ## [0.3.0] - 2026-11-05
 
 ### Added
