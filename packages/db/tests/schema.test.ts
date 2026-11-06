@@ -1,7 +1,7 @@
 // Unit test, no database. Checks the hand written table map in src/schema.ts
 // against every *.sql file in migrations/, which are the source of truth.
-// Only `create table` statements are read. A later migration that adds a
-// column with `alter table` needs this parser extended in the same commit.
+// `create table` statements are read, plus columns added later with
+// `alter table <name> add column`. Views are not tables and are not in DB.
 //
 // The type level checks (expectTypeOf) are enforced by the type checker:
 // `pnpm exec tsc -p tsconfig.json --noEmit` from the repo root fails if one of
@@ -49,6 +49,12 @@ function tablesInMigration(sql: string): Map<string, string[]> {
       if (word && !CONSTRAINT_WORDS.has(word.toLowerCase())) columns.push(word);
     }
     tables.set(name, columns);
+  }
+  // Columns added later with `alter table <name> add column <column>`.
+  const addColumn =
+    /alter table\s+([a-z_][a-z0-9_]*)\s+add column\s+(?:if not exists\s+)?([a-z_][a-z0-9_]*)/gi;
+  for (const match of sql.matchAll(addColumn)) {
+    tables.get(match[1] as string)?.push(match[2] as string);
   }
   return tables;
 }

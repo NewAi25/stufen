@@ -63,3 +63,4 @@ export type Row<T extends TableName> = Selectable<DB[T]>;
 export type NewRow<T extends TableName> = Insertable<DB[T]>;
 /** The values an update may set. Every column is optional. */
 export type RowPatch<T extends TableName> = Updateable<DB[T]>;
+export type { DailyUsageView, Views } from './schema';

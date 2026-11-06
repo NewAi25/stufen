@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-11-06
+
+### Added
+- Migration `0004_daily_usage.sql`, owned by core-entitlements: `speech_recordings.duration_ms`, the function `local_day`, and the view `daily_usage` with one row per user and local day. The view uses `security_invoker`, so a learner sees only the own usage.
+- Types `DailyUsageView` and `Views`. Views are reached with `db.withTables<Views>()`.
+- The schema test now follows `alter table ... add column`.
+
 ## [0.4.0] - 2026-11-06
 
 ### Fixed

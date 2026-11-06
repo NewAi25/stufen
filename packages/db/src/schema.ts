@@ -407,6 +407,8 @@ export interface SpeechRecordingsTable {
   similarity: Numeric | null;
   provider: Generated<string>;
   created_at: GeneratedTimestamp;
+  /** From 0004. Null for rows written before the column existed. */
+  duration_ms: number | null;
 }
 
 // ---------- core-feedback ----------
@@ -454,6 +456,25 @@ export interface FeatureFlagsTable {
 }
 
 // ---------- the table map ----------
+
+/**
+ * Views. They are not keys of DB, because DB lists tables only. They are type
+ * aliases, not interfaces, because Kysely's withTables needs an index signature. Reach a view
+ * with `db.withTables<Views>()`, for example
+ * `trx.withTables<Views>().selectFrom('daily_usage')`.
+ */
+export type DailyUsageView = {
+  user_id: string;
+  /** Local day of the user, as YYYY-MM-DD. */
+  day: string;
+  tutor_messages: number;
+  writing_grades: number;
+  speech_minutes: number;
+};
+
+export type Views = {
+  daily_usage: DailyUsageView;
+};
 
 export interface DB {
   // core-auth (users from 0001; sessions, accounts, verifications from 0002)

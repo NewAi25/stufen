@@ -132,7 +132,7 @@ These tables are shaped for better-auth and live in our Postgres like every othe
 
 **feature_flags** `key`, `enabled` boolean, `rules` jsonb (percent rollout, allow list, level gate), `updated_at`.
 
-**daily_usage** (view, migration 0002) Counts per user per local day from `tutor_messages`, `writing_submissions` and `speech_recordings`. Read by `core-entitlements` so it never touches another box's tables directly. See `docs/12-entitlements-and-payments.md`.
+**daily_usage** (view, migration 0004) One row per user and local day: `user_id`, `day` as `YYYY-MM-DD` in the zone from `profiles.timezone`, `tutor_messages`, `writing_grades`, `speech_minutes`. Built from `tutor_messages` sent by the learner, `writing_submissions` and `speech_recordings.duration_ms`. It is a `security_invoker` view, so the row security of those tables applies and a learner sees only the own usage. Read by `core-entitlements`. See `docs/12-entitlements-and-payments.md`.
 
 ## Row level security summary
 
@@ -188,4 +188,5 @@ Every later migration grants `stufen_app` exactly what its new tables need. Noth
 | `0001_init.sql` | all core boxes | First schema, role `stufen_app`, row level security |
 | `0002_auth.sql` | core-auth | `sessions`, `accounts`, `verifications`, owner only |
 | `0003_policy_fixes.sql` | db | `users` readable as own row only and not writable by the app role, `schema_migrations` closed, anonymous `events` inserts, `feature_flags` trigger, explicit grants from now on |
+| `0004_daily_usage.sql` | core-entitlements | `speech_recordings.duration_ms` and the view `daily_usage` |
 

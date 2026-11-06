@@ -11,7 +11,7 @@ import { CompiledQuery, Kysely, PostgresDialect, sql, type Transaction } from 'k
 import pg from 'pg';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { createDb, withUser } from '../src/index';
-import type { DB } from '../src/index';
+import type { DB, Views } from '../src/index';
 
 const url = process.env.DATABASE_URL;
 
@@ -398,6 +398,87 @@ describe.skipIf(!url)('withUser on a real Postgres', () => {
       expect(after.updated_at.getTime()).toBeGreaterThan(before.updated_at.getTime());
     } finally {
       await db.deleteFrom('feature_flags').where('key', '=', key).execute();
+    }
+  });
+
+  // ---------------------------------------------------------------
+  // 0004_daily_usage.sql
+  // ---------------------------------------------------------------
+
+  it('daily_usage: counts the own usage per local day and hides it from others', async () => {
+    const conversation = randomUUID();
+    try {
+      // Owner work stands in for the boxes that write these rows.
+      await db
+        .insertInto('tutor_conversations')
+        .values({ id: conversation, user_id: userA, language_code: 'de', level: 'A1' })
+        .execute();
+      await db
+        .insertInto('tutor_messages')
+        .values([
+          { conversation_id: conversation, role: 'user', content: 'Hallo' },
+          { conversation_id: conversation, role: 'assistant', content: 'Guten Tag' },
+          { conversation_id: conversation, role: 'user', content: 'Wie geht es?' },
+        ])
+        .execute();
+      await db
+        .insertInto('writing_submissions')
+        .values({
+          user_id: userA,
+          language_code: 'de',
+          prompt: 'Stell dich vor.',
+          text: 'Ich bin A.',
+          target_level: 'A1',
+        })
+        .execute();
+      await db
+        .insertInto('speech_recordings')
+        .values({ user_id: userA, duration_ms: 90_000 })
+        .execute();
+
+      const usageSeenBy = (userId: string | null) =>
+        withUser(db, userId, (trx) =>
+          trx
+            .withTables<Views>()
+            .selectFrom('daily_usage')
+            .select(['user_id', 'day', 'tutor_messages', 'writing_grades', 'speech_minutes'])
+            .execute(),
+        );
+
+      const own = await usageSeenBy(userA);
+      expect(own).toHaveLength(1);
+      expect(own[0]).toMatchObject({
+        user_id: userA,
+        tutor_messages: 2,
+        writing_grades: 1,
+        speech_minutes: 2,
+      });
+      expect(own[0]?.day).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+
+      expect(await usageSeenBy(userB)).toEqual([]);
+      expect(await usageSeenBy(null)).toEqual([]);
+    } finally {
+      await db.deleteFrom('speech_recordings').where('user_id', '=', userA).execute();
+      await db.deleteFrom('writing_submissions').where('user_id', '=', userA).execute();
+      await db.deleteFrom('tutor_conversations').where('id', '=', conversation).execute();
+    }
+  });
+
+  it('daily_usage: an unknown time zone falls back to UTC instead of failing', async () => {
+    try {
+      await db
+        .updateTable('profiles')
+        .set({ timezone: 'Not/AZone' })
+        .where('id', '=', userB)
+        .execute();
+      await db.insertInto('speech_recordings').values({ user_id: userB, duration_ms: 1 }).execute();
+      const rows = await withUser(db, userB, (trx) =>
+        trx.withTables<Views>().selectFrom('daily_usage').select(['speech_minutes']).execute(),
+      );
+      expect(rows).toEqual([{ speech_minutes: 1 }]);
+    } finally {
+      await db.deleteFrom('speech_recordings').where('user_id', '=', userB).execute();
+      await db.updateTable('profiles').set({ timezone: 'UTC' }).where('id', '=', userB).execute();
     }
   });
 });
