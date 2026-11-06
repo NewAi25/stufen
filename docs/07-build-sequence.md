@@ -285,3 +285,4 @@ Every merged commit gets one row. Newest at the bottom. See `docs/08-versioning-
 | 2026-11-06 | 54dafc7 | ci | `chore(ci): build the web app on every push` |
 | 2026-11-06 | bf64d95 | web | `feat(web): add settings and onboarding` |
 | 2026-11-06 | bf3346b | web | `feat(web): wire feedback` |
+| 2026-11-06 | aba42c6 | repo | `release(repo): v0.1.0` |
