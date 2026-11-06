@@ -1,38 +1,24 @@
 {
   "name": "@stufen/web",
   "kind": "surface",
-  "version": "0.0.0",
-  "status": "planned",
+  "version": "0.1.0",
+  "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [
     "contracts",
+    "core-auth",
     "core-identity",
-    "core-curriculum",
-    "core-content",
-    "core-lesson-engine",
-    "core-exercise-types",
-    "core-srs",
-    "core-progress",
-    "core-assessment",
-    "core-ai-tutor",
-    "core-speech",
-    "core-feedback",
-    "core-analytics",
     "core-entitlements",
-    "lang-de",
+    "core-analytics",
+    "core-feedback",
+    "core-mail",
+    "core-storage",
     "ui-kit"
   ],
   "provides": [
     "/",
-    "/onboarding",
-    "/lesson/[id]",
-    "/review",
-    "/tutor",
-    "/write",
-    "/progress",
-    "/assess/[kind]",
-    "/settings",
-    "/feedback",
-    "/api/*"
+    "/kit",
+    "/coming-soon",
+    "/api/health"
   ]
 }

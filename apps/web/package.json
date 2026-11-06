@@ -1,31 +1,35 @@
 {
   "name": "@stufen/web",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
-  "main": "src/index.ts",
   "scripts": {
-    "test": "vitest run",
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "dev": "cross-env NEXT_TELEMETRY_DISABLED=1 next dev",
+    "build": "cross-env NEXT_TELEMETRY_DISABLED=1 next build",
+    "start": "cross-env NEXT_TELEMETRY_DISABLED=1 next start",
+    "test": "vitest run"
   },
   "dependencies": {
     "@stufen/contracts": "workspace:*",
-    "@stufen/core-ai-tutor": "workspace:*",
     "@stufen/core-analytics": "workspace:*",
-    "@stufen/core-assessment": "workspace:*",
-    "@stufen/core-content": "workspace:*",
-    "@stufen/core-curriculum": "workspace:*",
+    "@stufen/core-auth": "workspace:*",
     "@stufen/core-entitlements": "workspace:*",
-    "@stufen/core-exercise-types": "workspace:*",
     "@stufen/core-feedback": "workspace:*",
     "@stufen/core-identity": "workspace:*",
-    "@stufen/core-lesson-engine": "workspace:*",
-    "@stufen/core-progress": "workspace:*",
-    "@stufen/core-speech": "workspace:*",
-    "@stufen/core-srs": "workspace:*",
-    "@stufen/lang-de": "workspace:*",
-    "@stufen/ui-kit": "workspace:*"
+    "@stufen/core-mail": "workspace:*",
+    "@stufen/core-storage": "workspace:*",
+    "@stufen/ui-kit": "workspace:*",
+    "next": "^16.4.5",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "cross-env": "^10.1.0",
+    "postcss": "^8.5.32",
+    "tailwindcss": "^4.3.5"
   }
 }

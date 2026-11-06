@@ -1,0 +1,128 @@
+@import 'tailwindcss';
+/* The ui-kit stylesheet. Imported here, once, for the whole app. */
+@import '@stufen/ui-kit/src/styles.css';
+
+/* App shell. Reads only the ui-kit variables, never a raw colour. */
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--st-color-bg);
+  color: var(--st-color-text);
+  font-family: var(--st-font-sans);
+  font-size: var(--st-text-base);
+  line-height: var(--st-leading-base);
+}
+
+.app-skip {
+  position: absolute;
+  left: var(--st-space-3);
+  top: var(--st-space-3);
+  z-index: 50;
+  padding: var(--st-space-2) var(--st-space-4);
+  border-radius: var(--st-radius-md);
+  background: var(--st-color-accent);
+  color: var(--st-color-on-accent);
+  transform: translateY(-200%);
+}
+
+.app-skip:focus {
+  transform: none;
+}
+
+.app-main {
+  box-sizing: border-box;
+  max-width: var(--st-width-wide);
+  margin: 0 auto;
+  padding: var(--st-space-5) var(--st-space-4);
+  /* Room for the bottom bar on narrow screens. */
+  padding-bottom: calc(var(--st-space-8) + var(--st-space-5));
+}
+
+.app-main:focus {
+  outline: none;
+}
+
+.app-rail {
+  display: none;
+}
+
+.app-bar {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 40;
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid var(--st-color-border);
+  background: var(--st-color-surface);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.app-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--st-target-min);
+  padding: var(--st-space-2) var(--st-space-3);
+  border-radius: var(--st-radius-md);
+  color: var(--st-color-text-muted);
+  font-size: var(--st-text-sm);
+  font-weight: var(--st-weight-medium);
+  text-decoration: none;
+}
+
+.app-nav-link:hover {
+  background: var(--st-color-surface-2);
+  color: var(--st-color-text);
+}
+
+.app-nav-link:focus-visible {
+  outline: 2px solid var(--st-color-focus);
+  outline-offset: 2px;
+}
+
+.app-nav-link[aria-current='page'] {
+  background: var(--st-color-accent-soft);
+  color: var(--st-color-text);
+}
+
+.app-brand {
+  padding: var(--st-space-2) var(--st-space-3);
+  font-size: var(--st-text-lg);
+  font-weight: var(--st-weight-semibold);
+}
+
+@media (min-width: 768px) {
+  .app-shell {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    min-height: 100dvh;
+  }
+
+  .app-rail {
+    display: flex;
+    flex-direction: column;
+    gap: var(--st-space-1);
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    box-sizing: border-box;
+    padding: var(--st-space-4) var(--st-space-3);
+    border-right: 1px solid var(--st-color-border);
+    background: var(--st-color-surface);
+  }
+
+  .app-rail .app-nav-link {
+    justify-content: flex-start;
+    font-size: var(--st-text-base);
+  }
+
+  .app-bar {
+    display: none;
+  }
+
+  .app-main {
+    padding: var(--st-space-6) var(--st-space-5);
+    width: 100%;
+  }
+}

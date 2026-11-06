@@ -39,6 +39,16 @@ function boxProjects() {
 }
 
 export default defineConfig({
+  resolve: {
+    alias: [
+      // apps/web marks server modules with `server-only`, which throws outside
+      // the Next bundler. Tests get an empty module instead.
+      {
+        find: /^server-only$/,
+        replacement: path.join(repoRoot, 'apps/web/tests/stubs/server-only.ts'),
+      },
+    ],
+  },
   test: {
     environment: 'node',
     passWithNoTests: true,

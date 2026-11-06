@@ -7,3 +7,5 @@ docs
 pnpm-lock.yaml
 *.md
 **/module.json
+next-env.d.ts
+.data
