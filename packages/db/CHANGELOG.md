@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-06
+
+### Added
+- Migration `0002_auth.sql`, owned by core-auth: `sessions`, `accounts`, `verifications` with indexes and updated_at triggers. Row security is enabled with no policy and no grant for `stufen_app`, so only the owner connection reads or writes them.
+- Typed interfaces for the three tables in `DB` and `TABLE_NAMES`. The schema test now reads every migration file.
+- Integration test: a learner inside `withUser` cannot see session rows, the owner connection can.
+
 ## [0.2.0] - 2026-11-05
 
 ### Added

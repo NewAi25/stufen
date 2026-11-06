@@ -191,3 +191,12 @@ The real migration also runs against Docker Postgres in CI through `pnpm db:migr
 ## Status
 
 See the `db` row in [docs/07-build-sequence.md](../../docs/07-build-sequence.md).
+
+## Migrations
+
+| File | Owner | What |
+|------|-------|------|
+| `0001_init.sql` | all core boxes | Every table of the first schema, the `stufen_app` role, row security |
+| `0002_auth.sql` | core-auth | `sessions`, `accounts`, `verifications`, owner only |
+
+Auth tables are owner only. Learner facing code never reads them; `core-auth` uses the connection directly.

@@ -18,6 +18,7 @@ export type {
   JsonValue,
   Skill,
   // one interface per table
+  AccountsTable,
   AssessmentsTable,
   AttemptsTable,
   CandoDescriptorsTable,
@@ -38,12 +39,14 @@ export type {
   ProfilesTable,
   ReviewCardsTable,
   ReviewLogsTable,
+  SessionsTable,
   SpeechRecordingsTable,
   StreaksTable,
   TutorConversationsTable,
   TutorMessagesTable,
   UnitsTable,
   UsersTable,
+  VerificationsTable,
   WritingSubmissionsTable,
 } from './schema';
 

@@ -1,11 +1,14 @@
 // Unit test, no database. Checks the hand written table map in src/schema.ts
-// against migrations/0001_init.sql, which is the source of truth.
+// against every *.sql file in migrations/, which are the source of truth.
+// Only `create table` statements are read. A later migration that adds a
+// column with `alter table` needs this parser extended in the same commit.
 //
 // The type level checks (expectTypeOf) are enforced by the type checker:
 // `pnpm exec tsc -p tsconfig.json --noEmit` from the repo root fails if one of
 // them is wrong. Vitest runs them as no-ops.
 
 import fs from 'node:fs';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, expectTypeOf, it } from 'vitest';
 import { TABLE_NAMES } from '../src/index';
@@ -14,8 +17,18 @@ import type { DB, NewRow, Row, RowPatch, TableName } from '../src/index';
 const read = (relative: string) =>
   fs.readFileSync(fileURLToPath(new URL(relative, import.meta.url)), 'utf8').replace(/\r\n/g, '\n');
 
-// Line comments removed, so the rollback block at the bottom is not parsed.
-const migration = read('../migrations/0001_init.sql')
+// Every migration file, in the order the runner applies them.
+const migrationsDir = fileURLToPath(new URL('../migrations/', import.meta.url));
+const migrationFiles = fs
+  .readdirSync(migrationsDir)
+  .filter((name) => path.extname(name) === '.sql')
+  .sort();
+
+// Line comments removed, so the rollback block at the bottom of each file is
+// not parsed.
+const migration = migrationFiles
+  .map((name) => read(`../migrations/${name}`))
+  .join('\n')
   .split('\n')
   .map((line) => line.replace(/--.*$/, ''))
   .join('\n');
@@ -62,14 +75,23 @@ function tableInterfaces(source: string): Map<string, string> {
 
 const sqlTables = tablesInMigration(migration);
 
-describe('TABLE_NAMES against 0001_init.sql', () => {
-  it('finds the tables in the migration', () => {
-    expect(sqlTables.size).toBe(27);
-    expect(sqlTables.has('users')).toBe(true);
-    expect(sqlTables.has('feature_flags')).toBe(true);
+describe('TABLE_NAMES against the migrations', () => {
+  it('reads every file in migrations/, not only the first', () => {
+    expect(migrationFiles.slice(0, 2)).toEqual(['0001_init.sql', '0002_auth.sql']);
   });
 
-  it('lists exactly the tables the migration creates', () => {
+  it('finds the tables in the migrations', () => {
+    expect(sqlTables.size).toBe(30);
+    // from 0001
+    expect(sqlTables.has('users')).toBe(true);
+    expect(sqlTables.has('feature_flags')).toBe(true);
+    // from 0002
+    expect(sqlTables.has('sessions')).toBe(true);
+    expect(sqlTables.has('accounts')).toBe(true);
+    expect(sqlTables.has('verifications')).toBe(true);
+  });
+
+  it('lists exactly the tables the migrations create', () => {
     expect([...TABLE_NAMES].sort()).toEqual([...sqlTables.keys()].sort());
   });
 
@@ -83,7 +105,7 @@ describe('TABLE_NAMES against 0001_init.sql', () => {
   });
 });
 
-describe('table interfaces against 0001_init.sql', () => {
+describe('table interfaces against the migrations', () => {
   const interfaces = interfacesInSchema(schemaSource);
   const byTable = tableInterfaces(schemaSource);
 
@@ -99,7 +121,7 @@ describe('table interfaces against 0001_init.sql', () => {
 });
 
 describe('DB at compile time', () => {
-  type TablesIn0001 =
+  type TablesInMigrations =
     | 'users'
     | 'languages'
     | 'cefr_levels'
@@ -126,12 +148,16 @@ describe('DB at compile time', () => {
     | 'feedback'
     | 'events'
     | 'entitlements'
-    | 'feature_flags';
+    | 'feature_flags'
+    // 0002_auth.sql
+    | 'sessions'
+    | 'accounts'
+    | 'verifications';
 
-  it('has one key per table in 0001 and nothing else', () => {
-    expectTypeOf<keyof DB>().toEqualTypeOf<TablesIn0001>();
-    expectTypeOf<TableName>().toEqualTypeOf<TablesIn0001>();
-    expectTypeOf<(typeof TABLE_NAMES)[number]>().toEqualTypeOf<TablesIn0001>();
+  it('has one key per table in the migrations and nothing else', () => {
+    expectTypeOf<keyof DB>().toEqualTypeOf<TablesInMigrations>();
+    expectTypeOf<TableName>().toEqualTypeOf<TablesInMigrations>();
+    expectTypeOf<(typeof TABLE_NAMES)[number]>().toEqualTypeOf<TablesInMigrations>();
   });
 
   it('types selected rows the way the pg driver returns them', () => {
@@ -145,6 +171,10 @@ describe('DB at compile time', () => {
     expectTypeOf<Row<'lessons'>['cando_ids']>().toEqualTypeOf<string[]>();
     expectTypeOf<Row<'cando_mastery'>['exercise_types_seen']>().toEqualTypeOf<string[]>();
     expectTypeOf<Row<'review_cards'>['stability']>().toEqualTypeOf<number>();
+    expectTypeOf<Row<'sessions'>['expires_at']>().toEqualTypeOf<Date>();
+    expectTypeOf<Row<'sessions'>['ip_address']>().toEqualTypeOf<string | null>();
+    expectTypeOf<Row<'accounts'>['refresh_token_expires_at']>().toEqualTypeOf<Date | null>();
+    expectTypeOf<Row<'verifications'>['value']>().toEqualTypeOf<string>();
     expectTypeOf<Row<'exercises'>['skill']>().toEqualTypeOf<
       | 'reading'
       | 'listening'
@@ -172,6 +202,18 @@ describe('DB at compile time', () => {
     expectTypeOf<{ user_id: string; exercise_type: string; correct: boolean }>().not.toExtend<
       NewRow<'attempts'>
     >();
+    // sessions: id and the two timestamps have defaults, the rest is required.
+    expectTypeOf<{ user_id: string; token: string; expires_at: Date }>().toExtend<
+      NewRow<'sessions'>
+    >();
+    expectTypeOf<{ user_id: string; token: string }>().not.toExtend<NewRow<'sessions'>>();
+    // accounts: every token column is nullable, so the user and two ids suffice.
+    expectTypeOf<{ user_id: string; account_id: string; provider_id: string }>().toExtend<
+      NewRow<'accounts'>
+    >();
+    expectTypeOf<{ identifier: string; value: string; expires_at: string }>().toExtend<
+      NewRow<'verifications'>
+    >();
     // A check constraint is a union, so a wrong value does not compile.
     expectTypeOf<{ status: 'archived' }>().not.toExtend<RowPatch<'languages'>>();
     expectTypeOf<{ status: 'hidden' }>().toExtend<RowPatch<'languages'>>();
@@ -179,6 +221,6 @@ describe('DB at compile time', () => {
 
   it('runs', () => {
     // Keeps this block visible in the report; the checks above are types only.
-    expect(TABLE_NAMES.length).toBe(27);
+    expect(TABLE_NAMES.length).toBe(30);
   });
 });

@@ -7,7 +7,7 @@
 // and deletes them again. Nothing else in the database is changed.
 
 import { randomUUID } from 'node:crypto';
-import { CompiledQuery, Kysely, PostgresDialect, sql } from 'kysely';
+import { CompiledQuery, Kysely, PostgresDialect, sql, type Transaction } from 'kysely';
 import pg from 'pg';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { createDb, withUser } from '../src/index';
@@ -38,10 +38,30 @@ describe.skipIf(!url)('withUser on a real Postgres', () => {
   });
 
   afterAll(async () => {
-    // profiles and entitlements go with the users (on delete cascade).
+    // profiles, entitlements and sessions go with the users (on delete cascade).
     await db.deleteFrom('users').where('id', 'in', [userA, userB]).execute();
     await db.destroy();
   });
+
+  /** True for the Postgres error "permission denied" (insufficient_privilege). */
+  const isDenied = (error: unknown) =>
+    typeof error === 'object' && error !== null && 'code' in error && error.code === '42501';
+
+  /**
+   * Runs one statement inside withUser and says what came of it: 'denied' when
+   * Postgres refused it, otherwise the number of rows it returned or changed.
+   */
+  const outcome = async (
+    userId: string | null,
+    run: (trx: Transaction<DB>) => Promise<number>,
+  ): Promise<number | 'denied'> => {
+    try {
+      return await withUser(db, userId, run);
+    } catch (error) {
+      if (isDenied(error)) return 'denied';
+      throw error;
+    }
+  };
 
   const profileIds = (userId: string | null) =>
     withUser(db, userId, async (trx) => {
@@ -119,6 +139,65 @@ describe.skipIf(!url)('withUser on a real Postgres', () => {
     expect(await codes(userB)).toEqual(forA);
     expect(await codes(null)).toEqual(forA);
   });
+
+  it('sessions: the owner sees the row, withUser sees nothing or is denied', async () => {
+    const token = `p026-${randomUUID()}`;
+    // Owner work, the way core-auth writes a session at sign in.
+    await db
+      .insertInto('sessions')
+      .values({ user_id: userA, token, expires_at: new Date(Date.now() + 60_000) })
+      .execute();
+
+    const asOwner = await db
+      .selectFrom('sessions')
+      .select(['user_id', 'token'])
+      .where('token', '=', token)
+      .execute();
+    expect(asOwner).toEqual([{ user_id: userA, token }]);
+
+    // Learner facing work: even the own session row is out of reach.
+    const readSessions = (userId: string | null) =>
+      outcome(userId, async (trx) => {
+        const rows = await trx.selectFrom('sessions').select('token').execute();
+        return rows.length;
+      });
+    expect(['denied', 0]).toContain(await readSessions(userA));
+    expect(['denied', 0]).toContain(await readSessions(userB));
+    expect(['denied', 0]).toContain(await readSessions(null));
+
+    // Writes too: A cannot forge a session or delete the real one.
+    const forged = await outcome(userA, async (trx) => {
+      await trx
+        .insertInto('sessions')
+        .values({ user_id: userA, token: `${token}-forged`, expires_at: new Date() })
+        .execute();
+      return 1;
+    });
+    expect(forged).toBe('denied');
+    const deleted = await outcome(userA, async (trx) => {
+      const result = await trx.deleteFrom('sessions').where('token', '=', token).executeTakeFirst();
+      return Number(result.numDeletedRows);
+    });
+    expect(['denied', 0]).toContain(deleted);
+
+    const still = await db
+      .selectFrom('sessions')
+      .select('token')
+      .where('user_id', '=', userA)
+      .execute();
+    expect(still).toEqual([{ token }]);
+  });
+
+  it.each(['accounts', 'verifications'] as const)(
+    '%s: withUser sees nothing or is denied',
+    async (table) => {
+      const read = await outcome(userA, async (trx) => {
+        const rows = await trx.selectFrom(table).select('id').execute();
+        return rows.length;
+      });
+      expect(['denied', 0]).toContain(read);
+    },
+  );
 
   it('runs fn as stufen_app with app.user_id set', async () => {
     const inside = await withUser(db, userA, async (trx) => {

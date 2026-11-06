@@ -1,5 +1,5 @@
-// Kysely table map for every table in migrations/0001_init.sql, written by
-// hand. The SQL is the source of truth: when a migration adds or changes a
+// Kysely table map for every table the files in migrations/ create, written
+// by hand. The SQL is the source of truth: when a migration adds or changes a
 // column, change the matching interface here in the same commit. The unit test
 // tests/schema.test.ts compares table and column names against the SQL.
 //
@@ -80,6 +80,50 @@ export interface UsersTable {
   email_verified: Generated<boolean>;
   name: string | null;
   image: string | null;
+  created_at: GeneratedTimestamp;
+  updated_at: GeneratedTimestamp;
+}
+
+// The three tables below come from 0002_auth.sql. Only the owner connection
+// may touch them. Inside withUser the role stufen_app has no grant on them, so
+// a query there fails with "permission denied".
+
+export interface SessionsTable {
+  id: Generated<string>;
+  user_id: string;
+  /** The opaque value in the session cookie. Unique. */
+  token: string;
+  expires_at: Timestamp;
+  ip_address: string | null;
+  user_agent: string | null;
+  created_at: GeneratedTimestamp;
+  updated_at: GeneratedTimestamp;
+}
+
+export interface AccountsTable {
+  id: Generated<string>;
+  user_id: string;
+  /** The user's id at the provider. Unique together with provider_id. */
+  account_id: string;
+  /** The sign in method, for example google. */
+  provider_id: string;
+  access_token: string | null;
+  refresh_token: string | null;
+  id_token: string | null;
+  access_token_expires_at: Timestamp | null;
+  refresh_token_expires_at: Timestamp | null;
+  scope: string | null;
+  password: string | null;
+  created_at: GeneratedTimestamp;
+  updated_at: GeneratedTimestamp;
+}
+
+export interface VerificationsTable {
+  id: Generated<string>;
+  /** What the value was issued for, usually the email address. */
+  identifier: string;
+  value: string;
+  expires_at: Timestamp;
   created_at: GeneratedTimestamp;
   updated_at: GeneratedTimestamp;
 }
@@ -412,8 +456,11 @@ export interface FeatureFlagsTable {
 // ---------- the table map ----------
 
 export interface DB {
-  // core-auth (sessions, accounts, verifications arrive in 0002)
+  // core-auth (users from 0001; sessions, accounts, verifications from 0002)
   users: UsersTable;
+  sessions: SessionsTable;
+  accounts: AccountsTable;
+  verifications: VerificationsTable;
   // core-curriculum
   languages: LanguagesTable;
   cefr_levels: CefrLevelsTable;
@@ -495,6 +542,10 @@ const tableNames = [
   'events',
   'entitlements',
   'feature_flags',
+  // 0002_auth.sql
+  'sessions',
+  'accounts',
+  'verifications',
 ] as const satisfies readonly TableName[];
 
 /** Every key of DB, in migration order. Checked at compile time against DB. */
