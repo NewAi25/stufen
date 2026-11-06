@@ -1,10 +1,37 @@
-import { Button, Card } from '../components/kit';
+import { redirect } from 'next/navigation';
+import { Card } from '../components/kit';
+import { SignInSoonCard } from '../components/SignInSoonCard';
+import { LANGUAGE_NAMES } from '../lib/learning-options';
+import { getContainer } from '../server/container';
+import { getSession } from '../server/session';
 
-export default function HomePage() {
+// Reads the session on every request. Never prerendered at build time.
+export const dynamic = 'force-dynamic';
+
+export default async function HomePage() {
+  const session = await getSession();
+  if (!session) return <SignInSoonCard title="Welcome to Stufen" />;
+
+  const { identity } = getContainer();
+  const profile = await identity.ensureProfile(session.userId);
+  const language = profile.activeLanguage;
+  if (language === null) redirect('/onboarding');
+
+  const languages = await identity.listLearnerLanguages(session.userId);
+  const target = languages.find((row) => row.languageCode === language)?.targetLevel;
+  const name = profile.displayName ?? session.email;
+
   return (
-    <Card title="Welcome to Stufen" headingLevel={1}>
-      <p>Your daily German practice will live here.</p>
-      <Button>Start learning</Button>
-    </Card>
+    <div className="flex flex-col gap-6">
+      <Card title={`Welcome, ${name}`} headingLevel={1}>
+        <p>
+          You are learning {LANGUAGE_NAMES[language]}
+          {target ? `, with ${target} as your target level.` : '.'}
+        </p>
+      </Card>
+      <Card title="Lessons" headingLevel={2}>
+        <p>Lessons arrive in the next phase. Your language and level are saved and ready.</p>
+      </Card>
+    </div>
   );
 }

@@ -126,3 +126,61 @@ body {
     width: 100%;
   }
 }
+
+/* Small text helpers for forms and pages. */
+
+.app-step-title {
+  margin: 0;
+  font-size: var(--st-text-base);
+  font-weight: var(--st-weight-semibold);
+}
+
+.app-muted {
+  color: var(--st-color-text-muted);
+  font-size: var(--st-text-sm);
+}
+
+.app-form-error {
+  margin: 0;
+  color: var(--st-color-error);
+  font-size: var(--st-text-sm);
+}
+
+.app-page-title {
+  margin: 0;
+  font-size: var(--st-text-xl);
+  font-weight: var(--st-weight-semibold);
+}
+
+.app-fixed-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--st-space-1);
+  margin: 0;
+}
+
+.app-fixed-field__label {
+  font-size: var(--st-text-sm);
+  font-weight: var(--st-weight-medium);
+}
+
+.app-facts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--st-space-2);
+  margin: var(--st-space-3) 0;
+}
+
+.app-facts__row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--st-space-4);
+}
+
+.app-facts__row dt {
+  color: var(--st-color-text-muted);
+}
+
+.app-facts__row dd {
+  margin: 0;
+}

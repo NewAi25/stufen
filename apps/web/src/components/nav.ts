@@ -20,7 +20,7 @@ const review = soon('Review', '/review');
 const tutor = soon('Tutor', '/tutor');
 const write = soon('Write', '/write');
 const progress = soon('Progress', '/progress');
-const settings = soon('Settings', '/settings');
+const settings: NavItem = { label: 'Settings', href: '/settings', route: '/settings' };
 const more = soon('More', '/more');
 
 /** Left rail on wide screens. */

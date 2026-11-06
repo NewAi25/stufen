@@ -5,7 +5,7 @@
 The Next.js app. Routes, pages, server actions and the wiring that composes every box.
 It is the only place that imports more than `contracts`. Boxes never import it.
 
-Kind: `surface`. May import: every box. Version 0.1.0 is the scaffold: layout, app shell, ui-kit wired, composition root and dev session. No learner features yet.
+Kind: `surface`. May import: every box. Version 0.1.0 was the scaffold: layout, app shell, ui-kit wired, composition root and dev session. Version 0.2.0 adds onboarding, settings and a home page that reads the profile.
 
 ## Run it
 
@@ -46,13 +46,28 @@ Creating the dev user emits `user.signed_up`, so the dev user gets a profile and
 
 | Route | What it shows |
 |-------|---------------|
-| `/` | Welcome card with a ui-kit `Button` |
+| `/` | Signed in with no active language: redirects to `/onboarding`. Otherwise a welcome with the display name or email, the active language and target level, and a card saying lessons arrive in the next phase |
+| `/onboarding` | Step 1 language (German; Dutch and French listed as coming soon and disabled). Step 2 target level with a one line meaning per level. "Start from zero" saves and goes to `/`. "Take the placement test" is disabled until it exists |
+| `/settings` | Display name, timezone, daily goal (5 to 120 minutes), theme toggle, interface language fixed to English, and a read only "Your plan" card with the three daily limits |
 | `/kit` | Gallery of ui-kit components, with the theme toggle and a toast trigger |
 | `/coming-soon` | Target of every navigation entry whose route is not built yet |
 | `/api/health` | JSON `{ ok: true, version }` |
 | anything else | Custom not found page, status 404 |
 
+When `getSession()` returns `null`, which is always the case in production until sign in ships, `/`, `/onboarding` and `/settings` render a short card saying sign in arrives in the next phase.
+
 Navigation follows `docs/06-ui-ux.md` section 2. Wide screens get a left rail: Home, Review, Tutor, Write, Progress, Settings. Narrow screens get a bottom bar: Home, Review, Tutor, Progress, More. The entries live in `src/components/nav.ts`. When a route lands, change its `href` there.
+
+## Server actions
+
+Each form has two layers.
+
+| Layer | Where | What it does |
+|-------|-------|--------------|
+| Pure function | `src/server/actions/identity-actions.ts` | `completeOnboarding(container, userId, input)` and `saveSettings(container, userId, input)`. Validate, call `core-identity`, return `{ ok: true }` or `{ ok: false, field?, message }`. No Next imports, so tests call them with a real container |
+| `'use server'` action | `src/app/onboarding/actions.ts`, `src/app/settings/actions.ts` | Calls `getSession()`, returns a "not signed in" result when it is `null`, calls the pure function, then revalidates. Onboarding redirects to `/` on success |
+
+Only German can be chosen today. `completeOnboarding` rejects Dutch and French on the server, not only in the form. A display name of only spaces is saved as no name. Code that both server and client need (the result type, the language and level options, the plan labels) lives in `src/lib`, which has no `server-only` import.
 
 ## Planned route to box mapping
 
@@ -107,6 +122,7 @@ pnpm --filter @stufen/web test
 | Test file | What it proves |
 |-----------|----------------|
 | `tests/container.test.ts` | `getContainer()` returns one instance; `user.signed_up` creates a profile and a `free_beta` entitlement; analytics records the event |
+| `tests/identity-actions.test.ts` | Onboarding sets the active language and emits `user.language_set`; Dutch, an unknown language and an unknown level are rejected; settings save valid values and reject a daily goal of 3, an unknown timezone and another interface language; a name of only spaces is stored as no name |
 | `tests/config.test.ts` | Safe defaults locally; production throws without `STORAGE_SIGNING_SECRET`; no dev session in production |
 
 Under Vitest the `server-only` package is replaced by `tests/stubs/server-only.ts` through an alias in the root `vitest.config.ts`.
