@@ -6,12 +6,13 @@ The SQL lives in `packages/db/migrations/0001_init.sql` and the numbered files a
 
 ## Conventions
 
-- Primary keys are `uuid` with `gen_random_uuid()`, except reference tables keyed by a natural code.
-- Every table has `created_at timestamptz default now()`. Mutable tables also have `updated_at`.
+- Primary keys are `uuid` with `gen_random_uuid()` on most tables. Reference tables use a natural key (`languages.code`, `cefr_levels.level`, `feature_flags.key`). Tables that hold one row per user and thing use a composite key: `learner_languages`, `review_cards`, `cando_mastery`, `streaks`, `content_pack_versions`. `entitlements` is keyed by `user_id`.
+- Timestamps are `timestamptz`. Most tables have `created_at`. Some name their creation time for what it is instead: `installed_at`, `started_at`, `reviewed_at`. `updated_at` exists, with a trigger that maintains it, on `users`, `profiles`, `review_cards`, `cando_mastery`, `entitlements`, `feature_flags` and the three auth tables from 0002. Other mutable tables do not track it yet; add the column in a migration when a box needs it.
 - Language is a two letter code from `languages.code` (`de`, `nl`, `fr`).
-- CEFR level is one of `A1 A2 B1 B2 C1 C2`, stored as text with a check constraint.
+- CEFR level is text. The check constraint lives on `cefr_levels.level`; every other level column is a foreign key to it.
 - Skills use one enum: `reading, listening, spoken_production, spoken_interaction, writing, mediation, grammar, vocabulary`.
 - JSON payloads (`jsonb`) carry exercise content and AI feedback. Their shape is defined by the JSON schemas in `content/schema/` and by the types in `contracts`.
+- The typed copy of every table is `packages/db/src/schema.ts`. A test fails if a table in the migrations is missing there.
 
 ## Entity overview
 
@@ -137,24 +138,33 @@ These tables are shaped for better-auth and live in our Postgres like every othe
 
 Authorisation is done by the boxes. Every public function that reads or writes learner data takes the signed in user id from `core-auth` and checks it before any query runs. Row level security is defence in depth, a second check inside Postgres in case a box gets it wrong.
 
-The policies are keyed on one session variable. At the start of each request `db` runs `select set_config('app.user_id', $1, true)` with the signed in user id, or an empty string when nobody is signed in. Policies read it with `current_setting('app.user_id', true)`. The third argument makes the setting local to the transaction, so it can never leak between requests on a pooled connection. No provider function appears in any policy.
+**Two kinds of access.** The app connects with one login role that owns the tables and is a member of the role `stufen_app`. There is no service key.
+
+- Learner facing work runs inside `withUser(db, userId, fn)`. It opens a transaction, runs `select set_config('app.user_id', $1, true)` with the user id or an empty string when nobody is signed in, and switches to `set local role stufen_app`. Inside `fn` only the grants and policies of `stufen_app` apply. Both settings are local to the transaction, so nothing leaks between requests on a pooled connection.
+- Owner work uses the connection directly: sign up and sessions in `core-auth`, content pack installation, entitlement changes, account deletion, migrations. The owner is not subject to row level security.
+
+Policies read the user id with a guard, because Postgres returns an empty string, not null, once a transaction local setting ends:
 
 ```sql
-create policy attempts_own on attempts
-  using (user_id = current_setting('app.user_id', true)::uuid)
-  with check (user_id = current_setting('app.user_id', true)::uuid);
+create policy attempts_own_select on attempts for select to stufen_app
+  using (user_id = nullif(current_setting('app.user_id', true), '')::uuid);
 ```
 
-Content writes and other privileged work (pack installation, analytics writes, the delete script) run with `app.user_id` unset and a policy that allows the app's own role when the setting is empty. The app connects as one Postgres role; there is no service role key.
+Learner tables have three policies each, for select, insert and update. There is deliberately no delete policy: learner data is deleted by the owner connection during account deletion, where removing the `users` row cascades. No provider function appears in any policy.
 
-| Table group | Select | Insert or update |
-|-------------|--------|------------------|
-| Content (`languages`, `cefr_levels`, `cando_descriptors`, `units`, `lessons`, `exercises`, `items`, `content_pack_versions`, `feature_flags`) | any request with `app.user_id` set | only with `app.user_id` unset (pack installation) |
-| Auth (`users`, `sessions`, `accounts`, `verifications`) | `core-auth` only, `app.user_id` unset | `core-auth` only, `app.user_id` unset |
-| Learner data (everything keyed by `user_id`) | rows where `user_id` equals `app.user_id` | same |
-| `feedback` | own rows | any request, including anonymous insert |
-| `events` | none for users | own rows insert |
-| `entitlements` | own row | only with `app.user_id` unset |
+| Table group | What `stufen_app` may do |
+|-------------|--------------------------|
+| Content (`languages`, `cefr_levels`, `cando_descriptors`, `units`, `lessons`, `exercises`, `items`, `content_pack_versions`, `feature_flags`) | Read everything, signed in or not. No writes; pack installation is owner work |
+| `users` | Read the own row only. No writes; `core-auth` writes as owner (migration 0003) |
+| `sessions`, `accounts`, `verifications` | Nothing. No grant and no policy (migration 0002) |
+| Learner data (everything keyed by `user_id`) | Read, insert and update rows where `user_id` equals `app.user_id`. No delete |
+| `tutor_messages` | All operations on messages of the own conversations |
+| `feedback` | Insert for anyone including signed out; read own rows |
+| `events` | Insert a row with a null user id or the own user id; never read (migration 0003) |
+| `entitlements` | Read the own row. Writes go through `ensure_profile` or owner work |
+| `schema_migrations` | Nothing (migration 0003) |
+
+Every later migration grants `stufen_app` exactly what its new tables need. Nothing is granted by default.
 
 ## Indexes worth having from day one
 
@@ -168,8 +178,14 @@ Content writes and other privileged work (pack installation, analytics writes, t
 
 ## Migration rules
 
-- Files live in `packages/db/migrations/` and are `NNNN_short_name.sql`, four digits, never renumbered, never edited once applied to any shared environment.
-- `pnpm db:migrate` runs them in order against `DATABASE_URL` and records each in a `schema_migrations` table so a file runs once. The runner is ours, in `packages/db/src/migrate.ts`.
-- Every migration is reversible in a comment block at the bottom, even if we never run it.
+- Files live in `packages/db/migrations/` as `NNNN_short_name.sql`, four digits, never renumbered, never edited once applied to any shared environment. A defect in an applied migration is fixed by a new one.
+- The runner (`pnpm db:migrate`) applies missing files in order, each in a transaction, and records them in `schema_migrations`.
+- Every migration names its owner box at the top and carries a rollback block as a comment at the bottom.
 - Seed data for `cefr_levels` and `languages` lives in `0001_init.sql`. Content pack data is installed by `core-content`, not by migrations.
-- A box that adds a table adds the migration, the RLS policy keyed on `app.user_id`, and the Postgres adapter for its storage port in the same commit.
+
+| File | Owner | What |
+|------|-------|------|
+| `0001_init.sql` | all core boxes | First schema, role `stufen_app`, row level security |
+| `0002_auth.sql` | core-auth | `sessions`, `accounts`, `verifications`, owner only |
+| `0003_policy_fixes.sql` | db | `users` readable as own row only and not writable by the app role, `schema_migrations` closed, anonymous `events` inserts, `feature_flags` trigger, explicit grants from now on |
+

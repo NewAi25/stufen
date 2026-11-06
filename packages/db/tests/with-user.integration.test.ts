@@ -297,4 +297,107 @@ describe.skipIf(!url)('withUser on a real Postgres', () => {
       await sql`drop role ${sql.id(outsider)}`.execute(db);
     }
   });
+
+  // ---------------------------------------------------------------
+  // 0003_policy_fixes.sql
+  // ---------------------------------------------------------------
+
+  it('users: a learner reads only the own row, signed out reads none', async () => {
+    const ids = (userId: string | null) =>
+      withUser(db, userId, async (trx) => {
+        const rows = await trx.selectFrom('users').select('id').execute();
+        return rows.map((row) => row.id);
+      });
+    expect(await ids(userA)).toEqual([userA]);
+    expect(await ids(userB)).toEqual([userB]);
+    expect(await ids(null)).toEqual([]);
+  });
+
+  it('users: a learner cannot insert, update or delete users', async () => {
+    const insert = await outcome(userA, async (trx) => {
+      const result = await trx
+        .insertInto('users')
+        .values({ email: `p029-${randomUUID()}@example.test`, name: 'Intruder' })
+        .executeTakeFirst();
+      return Number(result.numInsertedOrUpdatedRows ?? 0);
+    });
+    const update = await outcome(userA, async (trx) => {
+      const result = await trx
+        .updateTable('users')
+        .set({ name: 'Renamed' })
+        .where('id', '=', userA)
+        .executeTakeFirst();
+      return Number(result.numUpdatedRows);
+    });
+    const remove = await outcome(userA, async (trx) => {
+      const result = await trx.deleteFrom('users').where('id', '=', userA).executeTakeFirst();
+      return Number(result.numDeletedRows);
+    });
+    expect([insert, update, remove]).toEqual(['denied', 'denied', 'denied']);
+
+    const stillThere = await db
+      .selectFrom('users')
+      .select('name')
+      .where('id', '=', userA)
+      .execute();
+    expect(stillThere).toEqual([{ name: 'Test A' }]);
+  });
+
+  it('schema_migrations is out of reach for a learner', async () => {
+    const read = await outcome(userA, async (trx) => {
+      const result = await sql`select filename from schema_migrations`.execute(trx);
+      return result.rows.length;
+    });
+    expect(read).toBe('denied');
+  });
+
+  it('events: an anonymous insert works, another user id is refused', async () => {
+    const name = `p029.test.${randomUUID().slice(0, 8)}`;
+    const insertAs = (userId: string | null, eventUser: string | null) =>
+      outcome(userId, async (trx) => {
+        const result = await trx
+          .insertInto('events')
+          .values({ user_id: eventUser, name, props: {} })
+          .executeTakeFirst();
+        return Number(result.numInsertedOrUpdatedRows ?? 0);
+      });
+    try {
+      expect(await insertAs(null, null)).toBe(1);
+      expect(await insertAs(userA, null)).toBe(1);
+      expect(await insertAs(userA, userA)).toBe(1);
+      expect(await insertAs(userA, userB)).toBe('denied');
+      expect(await insertAs(null, userB)).toBe('denied');
+
+      const stored = await db
+        .selectFrom('events')
+        .select('user_id')
+        .where('name', '=', name)
+        .execute();
+      expect(stored.map((row) => row.user_id).sort()).toEqual([userA, null, null].sort());
+    } finally {
+      await db.deleteFrom('events').where('name', '=', name).execute();
+    }
+  });
+
+  it('feature_flags: updated_at moves when the owner changes a row', async () => {
+    const key = `p029-${randomUUID().slice(0, 8)}`;
+    try {
+      await db.insertInto('feature_flags').values({ key, enabled: false }).execute();
+      const before = await db
+        .selectFrom('feature_flags')
+        .select('updated_at')
+        .where('key', '=', key)
+        .executeTakeFirstOrThrow();
+      await new Promise((resolve) => setTimeout(resolve, 25));
+      await db.updateTable('feature_flags').set({ enabled: true }).where('key', '=', key).execute();
+      const after = await db
+        .selectFrom('feature_flags')
+        .select('updated_at')
+        .where('key', '=', key)
+        .executeTakeFirstOrThrow();
+      expect(after.updated_at.getTime()).toBeGreaterThan(before.updated_at.getTime());
+    } finally {
+      await db.deleteFrom('feature_flags').where('key', '=', key).execute();
+    }
+  });
 });

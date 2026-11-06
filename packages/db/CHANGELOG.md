@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-11-06
+
+### Fixed
+- Migration `0003_policy_fixes.sql` corrects access defects in 0001: `users` now has row security and the app role reads only the own row and cannot write it; the app role has no access to `schema_migrations`; `events` accepts anonymous inserts; `feature_flags.updated_at` is maintained by a trigger; grants are explicit from now on.
+- Five integration tests prove each fix as role `stufen_app` on a real Postgres.
+
 ## [0.3.0] - 2026-11-06
 
 ### Added
