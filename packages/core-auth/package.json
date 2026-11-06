@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@stufen/contracts": "workspace:*",
-    "@stufen/db": "workspace:*"
+    "@stufen/db": "workspace:*",
+    "better-auth": "^1.7.18"
   }
 }

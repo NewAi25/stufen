@@ -8,6 +8,8 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@stufen/contracts": "workspace:*"
+    "@stufen/contracts": "workspace:*",
+    "@stufen/db": "workspace:*",
+    "ts-fsrs": "^6.0.0"
   }
 }
