@@ -70,7 +70,7 @@ Box versions start at 0.0.1 (skeleton) and go to 0.1.0 with the first real featu
 | P0-27 | 0 | core-storage | `StoragePort` (`put`, `get`, `signedUrl`, `delete`) plus fs adapter with tests | P0-10 | 0.1.0 | done | Test: `put` then `get` round trips a file under a user prefix on the local filesystem; a key outside the prefix throws | `feat(core-storage): add StoragePort and fs adapter` |
 | P0-28 | 0 | core-mail | `MailPort` (`send`) plus console adapter | P0-10 | 0.1.0 | done | Test: console adapter prints to, subject and body of one message and returns a message id | `feat(core-mail): add MailPort and console adapter` |
 | P0-29 | 0 | db | Migration `0003_policy_fixes.sql`: row security on `users` with select own only, writes on `users` and all access to `schema_migrations` revoked from `stufen_app`, anonymous `events` inserts allowed, `feature_flags` updated_at trigger, explicit grants from now on | P0-26 | 0.4.0 | done | On a real Postgres as `stufen_app`: a user reads only the own `users` row and cannot write it, cannot read `schema_migrations`, an anonymous event insert succeeds | `fix(db): add 0003 policy fixes` |
-| P0-23 | 0 | release | Tag v0.1.0 | P0-12, P0-17, P0-18, P0-19, P0-22, P0-24, P0-26, P0-27, P0-28, P0-29 | repo 0.1.0 | planned | Tag exists, root CHANGELOG has a 0.1.0 section, preview deploy green | `release(repo): v0.1.0` |
+| P0-23 | 0 | release | Tag v0.1.0 | P0-12, P0-17, P0-18, P0-19, P0-22, P0-24, P0-26, P0-27, P0-28, P0-29 | repo 0.1.0 | done | Tag exists, root CHANGELOG has a 0.1.0 section, CI green; the hosted preview is row P1-40 | `release(repo): v0.1.0` |
 | P1-01 | 1 | core-curriculum | `CurriculumStore` port plus in memory adapter; `listLevels`, `listCandos`, `getCando`, `listUnits`, `listLessons`, `getLesson` | P0-10 | 0.1.0 | planned | Test against seeded in memory rows: `getLesson` returns exercises in ordinal order | `feat(core-curriculum): add read api` |
 | P1-27 | 1 | core-curriculum | 0.2.0 Postgres adapter via `db`, integration test against Docker Postgres | P1-01, P0-24 | 0.2.0 | planned | Integration test: the same read api tests pass against Docker Postgres with seeded rows | `feat(core-curriculum): add postgres adapter` |
 | P1-02 | 1 | core-content | `registerPack`, `validatePack` (schema plus referential checks) | P0-10, P1-01 | 0.1.0 | planned | Test: a pack with a dangling `item_ids` entry fails validation with the id in the report | `feat(core-content): add pack registry and validation` |
@@ -103,6 +103,9 @@ Box versions start at 0.0.1 (skeleton) and go to 0.1.0 with the first real featu
 | P1-38 | 1 | apps/web | Sign in page with magic link and Google through `core-auth`, session middleware, sign out; replaces the dev session from P0-17 | P0-17, P1-37 | 0.4.0 | planned | Locally, request a magic link, follow it from the console mail output and land on `/settings` signed in | `feat(web): add sign in with core-auth` |
 | P1-39 | 1 | repo | Dockerfile completed for `apps/web` (multi stage, pnpm, standalone Next output) and a `web` service in `docker-compose.yml` next to `db` | P0-13, P0-15 | n/a | planned | `docker compose up` serves the app on port 3000 against the compose Postgres | `chore(repo): complete Dockerfile and compose web service` |
 | P1-40 | 1 | CI | Deploy preview on Vercel or a Docker host with `DATABASE_URL` on a hosted Postgres and `MAIL_ADAPTER=smtp`; `pnpm db:migrate` runs on deploy | P1-36, P1-38, P1-39 | n/a | planned | Preview URL serves sign in; a magic link arrives by mail and `/settings` loads signed in | `chore(ci): add preview deploy` |
+| P1-41 | 1 | ui-kit | `FeedbackFab` gains a controlled `open` prop or an imperative handle so the host can open it; add the `'use client'` directive to the interactive components so server components can import them directly | P0-21 | 0.3.0 | planned | Test: a parent opens the sheet without clicking the fab; `apps/web` imports ui-kit without its own client wrapper | `feat(ui-kit): add open control and client directives` |
+| P1-42 | 1 | apps/web | Press `f` outside a text field to open feedback, as the UI spec asks | P1-41 | 0.5.0 | planned | On the dev server pressing `f` on any page opens the feedback sheet; typing `f` in an input does not | `feat(web): add feedback shortcut` |
+| P1-43 | 1 | contracts | `StoragePort` gains `head(key)` returning content type and size, implemented in the fs adapter, so a file route can serve the right content type | P0-27 | 0.4.0 | planned | Test: `put` then `head` returns the stored content type; a missing key returns null | `feat(contracts): add head to StoragePort` |
 | P1-19 | 1 | apps/web | `/lesson/[id]`: runs a session, maps `rendererKey` to components | P1-12, P1-18, P1-29, P1-38 | 0.5.0 | planned | Complete a lesson on preview and see `lesson_sessions.completed_at` set | `feat(web): add lesson route` |
 | P1-20 | 1 | apps/web | `/review`: due queue with flashcard and cloze | P1-15, P1-18, P1-30 | 0.6.0 | planned | Review ten cards on preview; `review_logs` has ten rows | `feat(web): add review route` |
 | P1-21 | 1 | core-curriculum | `nextLessonFor(userId, language)` | P1-01, P1-12 | 0.3.0 | planned | Test: after completing lesson 1, returns lesson 2 of the same unit | `feat(core-curriculum): add nextLessonFor` |
@@ -261,3 +264,24 @@ Every merged commit gets one row. Newest at the bottom. See `docs/08-versioning-
 | 2026-09-09 | 13cd598 | de | `content(de): verify exam formats against provider documents` |
 | 2026-09-09 | 2c7f55f | curriculum | `docs(curriculum): align level rule with real life CEFR evidence` |
 | 2026-09-09 | ce767a9 | repo | `chore(repo): remove provider lock in per ADR-008` |
+| 2026-11-05 | 48f1a3f | contracts | `feat(contracts): add auth, storage and mail ports` |
+| 2026-11-05 | f99d127 | repo | `chore(repo): wire workspace deps, tsx tests and jsx` |
+| 2026-11-05 | 2824b56 | ci | `chore(ci): mark push workflow done` |
+| 2026-11-05 | 6beaba0 | core-identity | `feat(core-identity): add profile api and in memory store` |
+| 2026-11-05 | 206faec | core-entitlements | `feat(core-entitlements): add free_beta plan and limits` |
+| 2026-11-05 | 4a30f7e | core-analytics | `feat(core-analytics): add event sink` |
+| 2026-11-05 | 3ec8935 | core-feedback | `feat(core-feedback): add submit and listMine` |
+| 2026-11-05 | 58aa859 | core-auth | `feat(core-auth): add AuthPort and in memory adapter` |
+| 2026-11-05 | 4d50fd3 | core-storage | `feat(core-storage): add StoragePort and fs adapter` |
+| 2026-11-05 | 0e5768c | core-mail | `feat(core-mail): add MailPort and console adapter` |
+| 2026-11-05 | 1cddc2d | db | `feat(db): add typed schema and withUser` |
+| 2026-11-05 | 84432d2 | ui-kit | `feat(ui-kit): add tokens and base components` |
+| 2026-11-05 | 924dd05 | contracts | `docs(contracts): sync box APIs and tokens after wave 1` |
+| 2026-11-05 | 5ab531e | build-seq | `docs(build-seq): add P0-29 policy fixes row, scope P0-15 to local build` |
+| 2026-11-06 | f2dc626 | db | `feat(db): add 0002 auth migration` |
+| 2026-11-06 | 69eaae8 | db | `fix(db): add 0003 policy fixes` |
+| 2026-11-06 | 20c0b57 | ui-kit | `feat(ui-kit): add FeedbackFab and Sheet` |
+| 2026-11-06 | a0e2583 | web | `feat(web): scaffold app and layout` |
+| 2026-11-06 | 54dafc7 | ci | `chore(ci): build the web app on every push` |
+| 2026-11-06 | bf64d95 | web | `feat(web): add settings and onboarding` |
+| 2026-11-06 | bf3346b | web | `feat(web): wire feedback` |

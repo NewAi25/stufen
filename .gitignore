@@ -12,3 +12,5 @@ Thumbs.db
 next-env.d.ts
 *.tsbuildinfo
 .data/
+# Written by next dev on every run
+apps/web/AGENTS.md

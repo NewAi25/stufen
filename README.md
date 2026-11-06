@@ -6,7 +6,7 @@ Stufen is built as a set of small boxes. Each box does one job, has one public i
 
 ## Status
 
-Planning complete. No application code yet. See the progress table in [docs/07-build-sequence.md](docs/07-build-sequence.md).
+Version 0.1.0, Phase 0 complete (6 November 2026). The foundation boxes, the database layer and the web shell are built and tested. On a local build a learner can pick German, set a target level, change settings and leave feedback. Lessons arrive in Phase 1. See the progress table in [docs/07-build-sequence.md](docs/07-build-sequence.md).
 
 ## Read in this order
 

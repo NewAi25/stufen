@@ -6,16 +6,18 @@ Planning assumptions: one owner working part time, about 10 hours a week, with A
 
 | Phase | Scope | Start | End | Weeks | Tag | Main risk to the date |
 |-------|-------|-------|-----|-------|-----|------------------------|
-| 0 | Foundation: tooling, contracts, auth, feedback, entitlements, analytics | 2026-09-09 | 2026-09-22 | 2 | `v0.1.0` | Docker and auth library setup friction |
-| 1 | German A1 vertical slice: curriculum, content install, lesson engine, SRS, progress, A1 pack | 2026-09-23 | 2026-10-27 | 5 | `v0.2.0` | A1 content authoring, about 60 lessons |
-| 2 | AI tutor, writing studio, AI graded exercises, review sheet | 2026-10-28 | 2026-11-17 | 3 | `v0.3.0` | Correction accuracy below 90 percent on the hand check |
-| 3 | Speech, A2 pack, placement, immersion ramp | 2026-11-18 | 2026-12-15 | 4 | `v0.4.0` | Web Speech API quality in non Chrome browsers |
-| 4 | B1 and B2 packs, checkpoints, level reached rule, beta measures | 2026-12-16 | 2027-02-09 | 8, includes a two week holiday gap | `v0.5.0` | About 190 lessons of content plus B level rules |
-| 5a | C1 and C2 packs, exam simulation, PWA, accessibility, RLS audit | 2027-02-10 | 2027-04-06 | 8 | `v0.9.0` | C level content volume; C2 shape decision |
-| 5b | Public beta hardening, fixes from feedback | 2027-04-07 | 2027-05-04 | 4 | `v1.0.0` | Feedback volume larger than fix capacity |
-| 6 | Dutch pack | 2027-05-05 | 2027-06-08 | 5 | `v1.1.0` | Dutch rule coverage in `lang-nl`; source access for NT2 formats |
-| 7 | French pack | 2027-06-09 | 2027-07-13 | 5 | `v1.2.0` | French agreement rules in `classifyError` |
-| 8 | Entitlements and payments on | 2027-07-14 | 2027-08-03 | 3 | `v1.3.0` | Stripe account and tax setup outside code |
+| 0 | Foundation: tooling, contracts, auth, feedback, entitlements, analytics | 2026-09-09 | 2026-11-06 (done) | 2 of work, paused 10 Sep to 5 Nov | `v0.1.0` | Closed |
+| 1 | German A1 vertical slice: curriculum, content install, lesson engine, SRS, progress, A1 pack | 2026-11-09 | 2026-12-13 | 5 | `v0.2.0` | A1 content authoring, about 60 lessons |
+| 2 | AI tutor, writing studio, AI graded exercises, review sheet | 2026-12-14 | 2027-01-17 | 5, includes a two week holiday gap | `v0.3.0` | Correction accuracy below 90 percent on the hand check |
+| 3 | Speech, A2 pack, placement, immersion ramp | 2027-01-18 | 2027-02-14 | 4 | `v0.4.0` | Web Speech API quality in non Chrome browsers |
+| 4 | B1 and B2 packs, checkpoints, level reached rule, beta measures | 2027-02-15 | 2027-03-28 | 6 | `v0.5.0` | About 190 lessons of content plus B level rules |
+| 5a | C1 and C2 packs, exam simulation, PWA, accessibility, RLS audit | 2027-03-29 | 2027-05-23 | 8 | `v0.9.0` | C level content volume; C2 shape decision |
+| 5b | Public beta hardening, fixes from feedback | 2027-05-24 | 2027-06-20 | 4 | `v1.0.0` | Feedback volume larger than fix capacity |
+| 6 | Dutch pack | 2027-06-21 | 2027-07-25 | 5 | `v1.1.0` | Dutch rule coverage in `lang-nl`; source access for NT2 formats |
+| 7 | French pack | 2027-07-26 | 2027-08-29 | 5 | `v1.2.0` | French agreement rules in `classifyError` |
+| 8 | Entitlements and payments on | 2027-08-30 | 2027-09-19 | 3 | `v1.3.0` | Stripe account and tax setup outside code |
+
+Re dated on 2026-11-06. Phase 0 closed that day, about six and a half weeks later than first planned, because the project paused from 10 September to 5 November for other work. Every later phase keeps its length and moves by the same amount; the holiday gap now falls in Phase 2.
 
 Notes on realism:
 
