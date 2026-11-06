@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { AppShell } from '../components/AppShell';
+import { FeedbackWidget } from '../components/FeedbackWidget';
 import { ToastProvider } from '../components/kit';
 import { ThemeProvider } from '../components/ThemeProvider';
 import { themeInitScript } from '../components/theme-script';
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <ThemeProvider>
           <ToastProvider>
             <AppShell>{children}</AppShell>
+            <FeedbackWidget />
           </ToastProvider>
         </ThemeProvider>
       </body>

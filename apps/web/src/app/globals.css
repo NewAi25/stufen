@@ -184,3 +184,81 @@ body {
 .app-facts__row dd {
   margin: 0;
 }
+
+/* The More entry is a button that looks like the other bar links. */
+
+.app-nav-button {
+  border: 0;
+  background: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.app-nav-button[data-current='true'] {
+  background: var(--st-color-accent-soft);
+  color: var(--st-color-text);
+}
+
+.app-more-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--st-space-1);
+}
+
+.app-more-links .app-nav-link {
+  justify-content: flex-start;
+  font-size: var(--st-text-base);
+}
+
+/* On narrow screens the feedback button sits above the bottom bar. */
+
+.st-feedback-fab.app-feedback-fab {
+  bottom: calc(var(--st-target-min) + var(--st-space-5) + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 768px) {
+  .st-feedback-fab.app-feedback-fab {
+    bottom: var(--st-space-4);
+  }
+}
+
+/* The list of sent feedback on /feedback. */
+
+.app-feedback-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--st-space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.app-feedback-item {
+  padding-bottom: var(--st-space-3);
+  border-bottom: 1px solid var(--st-color-border);
+}
+
+.app-feedback-item:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.app-feedback-item__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--st-space-1) var(--st-space-3);
+  margin: 0;
+  color: var(--st-color-text-muted);
+  font-size: var(--st-text-sm);
+}
+
+.app-feedback-item__kind {
+  color: var(--st-color-text);
+  font-weight: var(--st-weight-semibold);
+}
+
+.app-feedback-item__message {
+  margin: var(--st-space-1) 0 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

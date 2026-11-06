@@ -2,6 +2,26 @@
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-06
+
+### Added
+
+- The ui-kit `FeedbackFab` on every page, through `src/components/FeedbackWidget.tsx` in the root layout. It sends the kind, message and rating with the current route and a small context: theme, viewport width and height, and browser language. A toast says "Sent. Thank you." A rejected submit shows the reason in the sheet and keeps the text.
+- `/feedback`: an invitation to send feedback and, when signed in, the learner's own feedback newest first with kind, message, rating, date and status. Signed out shows the invitation only.
+- `src/server/actions/feedback-actions.ts`: `submitFeedbackFor(container, session, input)` and `listMyFeedback(container, userId)`. A signed out submit is stored without a user id. A `FeedbackValidationError` becomes `{ ok: false, field, message }`.
+- Server action `submitFeedback` in `src/app/feedback/actions.ts`.
+- The bottom bar More entry opens a ui-kit `Sheet` with Write, Settings and Feedback.
+- `tests/feedback-actions.test.ts` against the real in memory container.
+
+### Changed
+
+- `src/components/nav.ts`: `BAR_ITEMS` holds the four bar links, and the new `MORE_ITEMS` holds the links inside the More sheet.
+- On narrow screens the feedback button sits above the bottom bar.
+
+### Not in this version
+
+- The `f` shortcut from `docs/06-ui-ux.md` section 8. `FeedbackFab` keeps its open state inside and offers no way to open it from outside. It needs a ui-kit change first.
+
 ## [0.2.0] - 2026-11-06
 
 ### Added

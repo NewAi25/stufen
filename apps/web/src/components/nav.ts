@@ -21,10 +21,13 @@ const tutor = soon('Tutor', '/tutor');
 const write = soon('Write', '/write');
 const progress = soon('Progress', '/progress');
 const settings: NavItem = { label: 'Settings', href: '/settings', route: '/settings' };
-const more = soon('More', '/more');
+const feedback: NavItem = { label: 'Feedback', href: '/feedback', route: '/feedback' };
 
 /** Left rail on wide screens. */
 export const RAIL_ITEMS: readonly NavItem[] = [home, review, tutor, write, progress, settings];
 
-/** Bottom bar on narrow screens. More will open a Sheet once the Sheet ships. */
-export const BAR_ITEMS: readonly NavItem[] = [home, review, tutor, progress, more];
+/** Bottom bar on narrow screens. A More button follows these and opens a Sheet. */
+export const BAR_ITEMS: readonly NavItem[] = [home, review, tutor, progress];
+
+/** The links inside the More Sheet. */
+export const MORE_ITEMS: readonly NavItem[] = [write, settings, feedback];

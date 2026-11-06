@@ -5,7 +5,7 @@
 The Next.js app. Routes, pages, server actions and the wiring that composes every box.
 It is the only place that imports more than `contracts`. Boxes never import it.
 
-Kind: `surface`. May import: every box. Version 0.1.0 was the scaffold: layout, app shell, ui-kit wired, composition root and dev session. Version 0.2.0 adds onboarding, settings and a home page that reads the profile.
+Kind: `surface`. May import: every box. Version 0.1.0 was the scaffold: layout, app shell, ui-kit wired, composition root and dev session. Version 0.2.0 added onboarding, settings and a home page that reads the profile. Version 0.3.0 adds the feedback button on every page and `/feedback`.
 
 ## Run it
 
@@ -49,14 +49,15 @@ Creating the dev user emits `user.signed_up`, so the dev user gets a profile and
 | `/` | Signed in with no active language: redirects to `/onboarding`. Otherwise a welcome with the display name or email, the active language and target level, and a card saying lessons arrive in the next phase |
 | `/onboarding` | Step 1 language (German; Dutch and French listed as coming soon and disabled). Step 2 target level with a one line meaning per level. "Start from zero" saves and goes to `/`. "Take the placement test" is disabled until it exists |
 | `/settings` | Display name, timezone, daily goal (5 to 120 minutes), theme toggle, interface language fixed to English, and a read only "Your plan" card with the three daily limits |
+| `/feedback` | An invitation to send feedback. Signed in: your own feedback, newest first, with kind, message, rating, date and status. Signed out: the invitation only |
 | `/kit` | Gallery of ui-kit components, with the theme toggle and a toast trigger |
 | `/coming-soon` | Target of every navigation entry whose route is not built yet |
 | `/api/health` | JSON `{ ok: true, version }` |
 | anything else | Custom not found page, status 404 |
 
-When `getSession()` returns `null`, which is always the case in production until sign in ships, `/`, `/onboarding` and `/settings` render a short card saying sign in arrives in the next phase.
+When `getSession()` returns `null`, which is always the case in production until sign in ships, `/`, `/onboarding` and `/settings` render a short card saying sign in arrives in the next phase. `/feedback` and the feedback button still work signed out.
 
-Navigation follows `docs/06-ui-ux.md` section 2. Wide screens get a left rail: Home, Review, Tutor, Write, Progress, Settings. Narrow screens get a bottom bar: Home, Review, Tutor, Progress, More. The entries live in `src/components/nav.ts`. When a route lands, change its `href` there.
+Navigation follows `docs/06-ui-ux.md` section 2. Wide screens get a left rail: Home, Review, Tutor, Write, Progress, Settings. Narrow screens get a bottom bar: Home, Review, Tutor, Progress, and a More button that opens a ui-kit `Sheet` with Write, Settings and Feedback. The entries live in `src/components/nav.ts` as `RAIL_ITEMS`, `BAR_ITEMS` and `MORE_ITEMS`. When a route lands, change its `href` there.
 
 ## Server actions
 
@@ -64,10 +65,21 @@ Each form has two layers.
 
 | Layer | Where | What it does |
 |-------|-------|--------------|
+| Pure function | `src/server/actions/feedback-actions.ts` | `submitFeedbackFor(container, session, input)` and `listMyFeedback(container, userId)`. A `null` session stores the row without a user id. A `FeedbackValidationError` comes back as `{ ok: false, field, message }` |
 | Pure function | `src/server/actions/identity-actions.ts` | `completeOnboarding(container, userId, input)` and `saveSettings(container, userId, input)`. Validate, call `core-identity`, return `{ ok: true }` or `{ ok: false, field?, message }`. No Next imports, so tests call them with a real container |
-| `'use server'` action | `src/app/onboarding/actions.ts`, `src/app/settings/actions.ts` | Calls `getSession()`, returns a "not signed in" result when it is `null`, calls the pure function, then revalidates. Onboarding redirects to `/` on success |
+| `'use server'` action | `src/app/onboarding/actions.ts`, `src/app/settings/actions.ts`, `src/app/feedback/actions.ts` | Calls `getSession()`, calls the pure function, then revalidates. Onboarding and settings return a "not signed in" result when the session is `null`. Onboarding redirects to `/` on success. Feedback accepts a `null` session |
 
 Only German can be chosen today. `completeOnboarding` rejects Dutch and French on the server, not only in the form. A display name of only spaces is saved as no name. Code that both server and client need (the result type, the language and level options, the plan labels) lives in `src/lib`, which has no `server-only` import.
+
+## The feedback flow
+
+1. `src/components/FeedbackWidget.tsx` renders the ui-kit `FeedbackFab` once, in the root layout, so the round button is on every page.
+2. On send it calls the `submitFeedback` server action with the form values, `page` set to the current route, and a context of `theme`, `viewportWidth`, `viewportHeight` and `language` (the browser language).
+3. The action calls `core-feedback.submit` through `submitFeedbackFor`. Signed in, the row carries the user id. Signed out, it carries none.
+4. Success closes the sheet and shows the toast "Sent. Thank you." A rejected submit throws the reason inside the widget, so the sheet stays open, shows it and keeps the text.
+5. `/feedback` lists the signed in user's rows from `core-feedback.listMine`.
+
+The `f` shortcut from `docs/06-ui-ux.md` section 8 is not wired. `FeedbackFab` keeps its open state inside and has no prop or handle to open it from outside, so the shortcut waits for a ui-kit change.
 
 ## Planned route to box mapping
 
@@ -123,6 +135,7 @@ pnpm --filter @stufen/web test
 |-----------|----------------|
 | `tests/container.test.ts` | `getContainer()` returns one instance; `user.signed_up` creates a profile and a `free_beta` entitlement; analytics records the event |
 | `tests/identity-actions.test.ts` | Onboarding sets the active language and emits `user.language_set`; Dutch, an unknown language and an unknown level are rejected; settings save valid values and reject a daily goal of 3, an unknown timezone and another interface language; a name of only spaces is stored as no name |
+| `tests/feedback-actions.test.ts` | A signed in submit appears in `listMyFeedback`; a signed out submit succeeds and appears in nobody's list; an empty message for kind `bug` returns `ok: false` with field `message`; a rating with no message succeeds for kind `rating`; the list is newest first |
 | `tests/config.test.ts` | Safe defaults locally; production throws without `STORAGE_SIGNING_SECRET`; no dev session in production |
 
 Under Vitest the `server-only` package is replaced by `tests/stubs/server-only.ts` through an alias in the root `vitest.config.ts`.

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
+import { MoreMenu } from './MoreMenu';
 import { BAR_ITEMS, RAIL_ITEMS, type NavItem } from './nav';
 
 function NavLinks({ items, pathname }: { items: readonly NavItem[]; pathname: string }) {
@@ -36,6 +37,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       </main>
       <nav className="app-bar" aria-label="Main, compact">
         <NavLinks items={BAR_ITEMS} pathname={pathname} />
+        <MoreMenu pathname={pathname} />
       </nav>
     </div>
   );
