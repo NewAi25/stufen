@@ -25,6 +25,22 @@ export type { TextInputProps } from './components/TextInput';
 export { Choice } from './components/Choice';
 export type { ChoiceProps, ChoiceOption, ChoiceStateLabels } from './components/Choice';
 
+export { TextArea } from './components/TextArea';
+export type { TextAreaProps } from './components/TextArea';
+
+export { RatingInput } from './components/RatingInput';
+export type { RatingInputProps } from './components/RatingInput';
+
+export { Sheet } from './components/Sheet';
+export type { SheetProps, SheetSide } from './components/Sheet';
+
+export { FeedbackFab } from './components/FeedbackFab';
+export type {
+  FeedbackFabProps,
+  FeedbackFabInput,
+  FeedbackFabLabels,
+} from './components/FeedbackFab';
+
 export { ToastProvider, useToast } from './components/Toast';
 export type {
   ToastProviderProps,

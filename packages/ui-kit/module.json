@@ -1,7 +1,7 @@
 {
   "name": "@stufen/ui-kit",
   "kind": "surface",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [
@@ -15,6 +15,10 @@
     "Progress",
     "TextInput",
     "Choice",
-    "Toast (ToastProvider, useToast)"
+    "Toast (ToastProvider, useToast)",
+    "TextArea",
+    "RatingInput",
+    "Sheet",
+    "FeedbackFab"
   ]
 }

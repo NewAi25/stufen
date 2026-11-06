@@ -227,12 +227,46 @@ describe('styles.css stays in step with tokens.ts', () => {
     expect(componentCss.match(/#[0-9a-fA-F]{3,8}\b|rgba?\(|hsla?\(/g)).toBeNull();
   });
 
-  it.each(['st-button', 'st-card', 'st-progress', 'st-input', 'st-choice', 'st-toast'])(
-    'styles the %s class',
+  it.each([
+    'st-button',
+    'st-card',
+    'st-progress',
+    'st-input',
+    'st-choice',
+    'st-toast',
+    'st-sheet',
+    'st-sheet__backdrop',
+    'st-sheet__panel',
+    'st-sheet__close',
+    'st-textarea__control',
+    'st-textarea__count',
+    'st-visually-hidden',
+    'st-rating',
+    'st-rating__option',
+    'st-feedback-fab',
+    'st-feedback',
+    'st-feedback__error',
+  ])('styles the %s class', (name) => {
+    expect(css).toContain(`.${name} {`);
+  });
+
+  it.each(['st-feedback-fab', 'st-sheet__close', 'st-rating__option'])(
+    'gives %s a touch target of at least 44 px',
     (name) => {
-      expect(css).toContain(`.${name} {`);
+      const start = css.indexOf(`.${name} {`);
+      const rule = css.slice(start, css.indexOf('}', start));
+      expect(tokens.target.min).toBeGreaterThanOrEqual(44);
+      expect(rule).toContain('min-width: var(--st-target-min);');
+      expect(rule).toContain('min-height: var(--st-target-min);');
     },
   );
+
+  it('fixes the feedback fab to the bottom right', () => {
+    const start = css.indexOf('.st-feedback-fab {');
+    const rule = css.slice(start, css.indexOf('}', start));
+    expect(rule).toContain('position: fixed;');
+    expect(rule).toContain('inset: auto var(--st-space-4) var(--st-space-4) auto;');
+  });
 });
 
 describe('contrast, WCAG AA 4.5 to 1', () => {
@@ -264,6 +298,10 @@ describe('contrast, WCAG AA 4.5 to 1', () => {
     ['text', 'successSoft', 'correct choice text'],
     ['text', 'errorSoft', 'incorrect choice text'],
     ['warning', 'warningSoft', 'partial feedback'],
+    ['warning', 'surface', 'character count near the limit, in a sheet'],
+    ['warning', 'bg', 'character count near the limit, on the page'],
+    ['onAccent', 'accent', 'feedback fab and selected rating'],
+    ['textMuted', 'surface', 'sheet description and rating scale words'],
   ];
 
   describe.each(THEMES)('%s theme', (theme) => {

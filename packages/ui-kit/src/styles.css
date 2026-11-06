@@ -587,12 +587,311 @@
   color: var(--st-color-text);
 }
 
+/* ---------- Sheet ---------- */
+
+/* Sits under the toasts. The root carries data-theme, so the variables resolve here. */
+.st-sheet {
+  position: fixed;
+  z-index: 900;
+  inset: var(--st-space-0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  color: var(--st-color-text);
+  font-family: var(--st-font-sans);
+  font-size: var(--st-text-base);
+  line-height: var(--st-leading-base);
+}
+
+.st-sheet--right {
+  flex-direction: row;
+  align-items: stretch;
+}
+
+/* A wash of the page colour, so the scrim works in both themes without a raw colour. */
+.st-sheet__backdrop {
+  position: absolute;
+  inset: var(--st-space-0);
+  background-color: color-mix(in srgb, var(--st-color-bg) 75%, transparent);
+}
+
+.st-sheet__panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--st-width-read);
+  max-height: 90%;
+  padding: var(--st-space-4) var(--st-space-4) var(--st-space-5);
+  overflow-y: auto;
+  background-color: var(--st-color-surface);
+  border: 1px solid var(--st-color-border);
+  border-radius: var(--st-radius-lg) var(--st-radius-lg) var(--st-space-0) var(--st-space-0);
+  box-shadow: var(--st-shadow-md);
+  color: var(--st-color-text);
+  animation: st-sheet-up var(--st-motion-slow) var(--st-ease);
+}
+
+.st-sheet--right .st-sheet__panel {
+  max-width: calc(var(--st-width-read) * 0.6);
+  max-height: none;
+  border-radius: var(--st-radius-lg) var(--st-space-0) var(--st-space-0) var(--st-radius-lg);
+  animation-name: st-sheet-in;
+}
+
+@keyframes st-sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes st-sheet-in {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+.st-sheet__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--st-space-3);
+}
+
+.st-sheet__title {
+  margin: var(--st-space-0);
+  font-size: var(--st-text-lg);
+  line-height: var(--st-leading-lg);
+  font-weight: var(--st-weight-semibold);
+}
+
+.st-sheet__close {
+  flex: none;
+  box-sizing: border-box;
+  min-width: var(--st-target-min);
+  min-height: var(--st-target-min);
+  padding: var(--st-space-0);
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--st-radius-md);
+  color: var(--st-color-text-muted);
+  font-family: inherit;
+  font-size: var(--st-text-xl);
+  line-height: var(--st-leading-xl);
+  cursor: pointer;
+  transition: background-color var(--st-motion-fast) var(--st-ease);
+}
+
+.st-sheet__close:hover {
+  background-color: var(--st-color-surface-2);
+  color: var(--st-color-text);
+}
+
+.st-sheet__description {
+  margin: var(--st-space-1) var(--st-space-0) var(--st-space-0);
+  color: var(--st-color-text-muted);
+  font-size: var(--st-text-sm);
+  line-height: var(--st-leading-sm);
+}
+
+.st-sheet__body {
+  margin-top: var(--st-space-4);
+}
+
+/* ---------- TextArea: shares the st-input classes ---------- */
+
+.st-textarea__control {
+  min-height: calc(var(--st-target-min) * 2);
+  resize: vertical;
+}
+
+.st-textarea__count {
+  align-self: flex-end;
+  margin: var(--st-space-0);
+  color: var(--st-color-text-muted);
+  font-size: var(--st-text-xs);
+  line-height: var(--st-leading-xs);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Near the limit the count turns bold as well as changing colour. */
+.st-textarea__count--near {
+  color: var(--st-color-warning);
+  font-weight: var(--st-weight-semibold);
+}
+
+/* In the page for screen readers, not on screen. */
+.st-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: var(--st-space-0);
+  overflow: hidden;
+  clip-path: inset(50%);
+  border: 0;
+  white-space: nowrap;
+}
+
+/* ---------- RatingInput ---------- */
+
+.st-rating {
+  display: flex;
+  flex-direction: column;
+  gap: var(--st-space-1);
+  width: fit-content;
+  max-width: 100%;
+  color: var(--st-color-text);
+  font-family: var(--st-font-sans);
+}
+
+.st-rating__label {
+  font-size: var(--st-text-sm);
+  line-height: var(--st-leading-sm);
+  font-weight: var(--st-weight-medium);
+}
+
+.st-rating__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--st-space-2);
+}
+
+.st-rating__option {
+  box-sizing: border-box;
+  min-width: var(--st-target-min);
+  min-height: var(--st-target-min);
+  padding: var(--st-space-0) var(--st-space-2);
+  background-color: var(--st-color-surface);
+  border: 1px solid var(--st-color-text-muted);
+  border-radius: var(--st-radius-md);
+  color: var(--st-color-text);
+  font-family: inherit;
+  font-size: var(--st-text-base);
+  line-height: var(--st-leading-base);
+  cursor: pointer;
+  transition:
+    background-color var(--st-motion-base) var(--st-ease),
+    border-color var(--st-motion-base) var(--st-ease);
+}
+
+.st-rating__options:not([aria-disabled='true']) .st-rating__option:hover {
+  border-color: var(--st-color-accent);
+}
+
+.st-rating__options[aria-invalid='true'] .st-rating__option {
+  border-color: var(--st-color-error);
+}
+
+/* Selected: filled, bold and ringed, so colour is not the only signal. */
+.st-rating__option[aria-checked='true'] {
+  background-color: var(--st-color-accent);
+  border-color: var(--st-color-accent);
+  box-shadow: inset 0 0 0 2px var(--st-color-surface);
+  color: var(--st-color-on-accent);
+  font-weight: var(--st-weight-semibold);
+}
+
+.st-rating__option[aria-disabled='true'] {
+  cursor: not-allowed;
+}
+
+.st-rating__option[aria-disabled='true']:not([aria-checked='true']) {
+  background-color: var(--st-color-surface-2);
+  color: var(--st-color-text-muted);
+}
+
+.st-rating__scale {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--st-space-3);
+  color: var(--st-color-text-muted);
+  font-size: var(--st-text-xs);
+  line-height: var(--st-leading-xs);
+}
+
+/* ---------- FeedbackFab ---------- */
+
+/* Round, 48 px, bottom right, under the sheet and the toasts. */
+.st-feedback-fab {
+  position: fixed;
+  z-index: 800;
+  inset: auto var(--st-space-4) var(--st-space-4) auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--st-space-7);
+  height: var(--st-space-7);
+  min-width: var(--st-target-min);
+  min-height: var(--st-target-min);
+  padding: var(--st-space-0);
+  background-color: var(--st-color-accent);
+  border: 1px solid transparent;
+  border-radius: var(--st-radius-full);
+  box-shadow: var(--st-shadow-md);
+  color: var(--st-color-on-accent);
+  cursor: pointer;
+  transition: background-color var(--st-motion-fast) var(--st-ease);
+}
+
+.st-feedback-fab:hover,
+.st-feedback-fab:active {
+  background-color: var(--st-color-accent-hover);
+}
+
+.st-feedback-fab__icon {
+  width: var(--st-space-5);
+  height: var(--st-space-5);
+}
+
+.st-feedback {
+  display: flex;
+  flex-direction: column;
+  gap: var(--st-space-4);
+}
+
+.st-feedback__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--st-space-1);
+}
+
+.st-feedback__legend {
+  margin: var(--st-space-0);
+  font-size: var(--st-text-sm);
+  line-height: var(--st-leading-sm);
+  font-weight: var(--st-weight-medium);
+}
+
+.st-feedback__error {
+  margin: var(--st-space-0);
+  padding: var(--st-space-2) var(--st-space-3);
+  background-color: var(--st-color-error-soft);
+  border: 1px solid var(--st-color-error);
+  border-radius: var(--st-radius-md);
+  color: var(--st-color-text);
+}
+
+.st-feedback__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--st-space-2);
+}
+
 /* ---------- focus ring: 2 px solid plus 2 px offset, never removed ---------- */
 
 .st-button:focus-visible,
 .st-input__control:focus-visible,
 .st-choice__option:focus-visible,
-.st-toast__dismiss:focus-visible {
+.st-toast__dismiss:focus-visible,
+.st-sheet__panel:focus-visible,
+.st-sheet__close:focus-visible,
+.st-rating__option:focus-visible,
+.st-feedback-fab:focus-visible {
   outline: 2px solid var(--st-color-focus);
   outline-offset: 2px;
 }
@@ -606,7 +905,8 @@
   --st-motion-slow: 0ms;
 }
 
-[data-motion='reduce'] .st-button__spinner {
+[data-motion='reduce'] .st-button__spinner,
+[data-motion='reduce'] .st-sheet__panel {
   animation: none;
 }
 
@@ -622,11 +922,15 @@
   .st-input__control,
   .st-choice__option,
   .st-choice__mark,
-  .st-toast__dismiss {
+  .st-toast__dismiss,
+  .st-sheet__close,
+  .st-rating__option,
+  .st-feedback-fab {
     transition: none;
   }
 
-  .st-button__spinner {
+  .st-button__spinner,
+  .st-sheet__panel {
     animation: none;
   }
 }

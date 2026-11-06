@@ -2,6 +2,17 @@
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-05
+
+### Added
+- `Sheet`: a modal dialog on the bottom or right edge. `role="dialog"` with `aria-modal`, named by its `title`, optional `description`. Renders nothing while closed. Rendered through a portal on `document.body` and copies `data-theme` and `data-motion` from where it was placed. Moves focus in on open (first focusable element, or `initialFocusRef`), keeps Tab and Shift Tab inside, closes on Escape, on a backdrop click and on a close button with an accessible name, returns focus on close, and locks body scroll while open.
+- `TextArea`: the multiline partner of `TextInput` with the same `label`, `hint`, `error` and `aria-describedby` wiring. With `maxLength` it shows a character count such as `12 / 4000` and announces the characters left in a polite region once the text is within 10 percent of the limit. `remainingLabel` translates that announcement.
+- `RatingInput`: a radiogroup of 1 to `max` (default 5, clamped to 2 to 9) named by a visible `label`. Arrow keys move and select and wrap at the ends, Home and End jump, number keys pick a value while focus is in the group. Each option has an accessible name such as "1 of 5" from `optionLabel`. Optional `lowLabel` and `highLabel`, `hint`, `error`, `required`, `disabled`. With `allowClear`, picking the selected value again, Backspace, Delete or 0 clears it and `onChange` receives `null`.
+- `FeedbackFab`: a floating button fixed bottom right with an accessible name (`label`, default "Give feedback") that opens a `Sheet` titled "Feedback". The form has kind (a `Choice` over the five `FeedbackKind` values from `@stufen/contracts`, words from `kindLabels`), message (`TextArea`, at most 4000 characters, required unless kind is `rating`), rating (`RatingInput`, required when kind is `rating`), a submit button and a cancel button. `onSubmit` receives `{ kind, message, rating? }` with the message trimmed. While it is pending the submit button is loading and a second submit is ignored. Success closes the sheet, resets the form and calls `onSubmitted`. A rejection keeps the sheet open with the text intact and shows the error message in a `role="alert"` region. `labels` overrides every visible string, `defaultKind` sets the first kind, `side` picks the sheet edge and `hidden` renders nothing.
+- Types `SheetProps`, `SheetSide`, `TextAreaProps`, `RatingInputProps`, `FeedbackFabProps`, `FeedbackFabInput`, `FeedbackFabLabels`.
+- `src/styles.css`: classes for `st-sheet`, `st-textarea`, `st-rating`, `st-feedback-fab`, `st-feedback` and `st-visually-hidden`, all from the existing variables. The fab is 48 px and never under the 44 px touch target. The new focusable parts join the shared focus ring and the reduced motion rules.
+- Tests: `tests/sheet.test.tsx`, `tests/text-area.test.tsx`, `tests/rating-input.test.tsx` and `tests/feedback-fab.test.tsx`. `tests/gallery.test.tsx` now renders all ten components in light and in dark. `tests/tokens.test.ts` checks the new classes, the touch target of the fab, the sheet close button and the rating options, and the contrast of the character count warning colour.
+
 ## [0.1.0] - 2026-11-05
 
 ### Added
