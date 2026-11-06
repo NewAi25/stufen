@@ -1,7 +1,7 @@
 {
   "name": "@stufen/db",
   "kind": "infra",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [
@@ -12,6 +12,7 @@
     "migrate",
     "withUser",
     "DB",
-    "TABLE_NAMES"
+    "TABLE_NAMES",
+    "sql"
   ]
 }

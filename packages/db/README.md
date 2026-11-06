@@ -202,3 +202,7 @@ See the `db` row in [docs/07-build-sequence.md](../../docs/07-build-sequence.md)
 | `0004_daily_usage.sql` | core-entitlements | `speech_recordings.duration_ms`, view `daily_usage` for daily limits |
 
 Auth tables are owner only. Learner facing code never reads them; `core-auth` uses the connection directly.
+
+## Raw SQL
+
+`sql` is re exported from this box. Use it only where the query builder cannot express the statement, for example `sql`select ensure_profile(${userId}::uuid)`.execute(db)`.

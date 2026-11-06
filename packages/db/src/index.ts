@@ -64,3 +64,7 @@ export type NewRow<T extends TableName> = Insertable<DB[T]>;
 /** The values an update may set. Every column is optional. */
 export type RowPatch<T extends TableName> = Updateable<DB[T]>;
 export type { DailyUsageView, Views } from './schema';
+// Boxes may not import kysely themselves. This is the raw SQL tag they use for
+// the few statements the query builder cannot express, such as calling
+// ensure_profile.
+export { sql } from 'kysely';

@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-11-06
+
+### Added
+- Re export of the `sql` tag, so boxes can run a raw statement without importing kysely.
+
 ## [0.5.0] - 2026-11-06
 
 ### Added
