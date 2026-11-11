@@ -1,15 +1,18 @@
-// In memory implementation of AuthPort (P0-25). No auth library: magic link
-// tokens and sessions are random strings kept in an AuthStore. Everything it
-// needs is passed in, so there is no module level state. The better-auth and
-// Postgres adapter replaces this in Phase 1 behind the same port.
+// The sign in service behind AuthPort (P0-25, P1-37, ADR-009). No auth
+// library: magic link tokens and sessions are random strings kept in an
+// AuthStore. createAuth runs on any AuthStore; createInMemoryAuth supplies the
+// in memory one. Everything is passed in, so there is no module level state.
 import { randomBytes, randomUUID } from 'node:crypto';
 import type { AuthPort, AuthSession, EventBus, MailPort } from '@stufen/contracts';
 import { createInMemoryAuthStore } from './store';
 import type { AuthStore, AuthUser } from './store';
 
-export type AuthErrorCode = 'invalid_email' | 'invalid_redirect';
+export type AuthErrorCode = 'invalid_email' | 'invalid_redirect' | 'dev_session_disabled';
 
-/** Thrown for input the caller can fix. `code` is stable; `message` is for logs. */
+/**
+ * Thrown for input the caller can fix, and for createDevSession in production.
+ * `code` is stable; `message` is for logs.
+ */
 export class AuthError extends Error {
   readonly code: AuthErrorCode;
 
@@ -20,11 +23,11 @@ export class AuthError extends Error {
   }
 }
 
-export interface InMemoryAuthOptions {
+export interface AuthOptions {
+  /** Where users, sessions and link tokens are kept. */
+  store: AuthStore;
   /** Magic link mail goes through this port. */
   mail: MailPort;
-  /** Default: a fresh in memory store. */
-  store?: AuthStore;
   /** When given, `user.signed_up` is emitted the first time a user is created. */
   bus?: EventBus;
   /** Clock. Default: the system clock. */
@@ -39,15 +42,29 @@ export interface InMemoryAuthOptions {
   linkTtlMs?: number;
   /** Used in the mail subject and text. Default: 'Stufen'. */
   appName?: string;
+  /**
+   * Where NODE_ENV is read from, on every createDevSession call. Default:
+   * process.env. Tests pass their own object.
+   */
+  env?: { readonly NODE_ENV?: string | undefined };
 }
 
-export type InMemoryAuth = AuthPort & {
+export type Auth = AuthPort & {
   /**
-   * Finds or creates the user and returns a session without any link. For
-   * local development and for apps/web before real sign in exists.
+   * Finds or creates the user and returns a session without any link and
+   * without proof of the email address. For local development and tests only:
+   * it throws AuthError 'dev_session_disabled' when NODE_ENV is production.
    */
   createDevSession(email: string, name?: string): Promise<AuthSession>;
 };
+
+/** The options of createAuth, with the store optional. */
+export type InMemoryAuthOptions = Omit<AuthOptions, 'store'> & {
+  /** Default: a fresh in memory store. */
+  store?: AuthStore;
+};
+
+export type InMemoryAuth = Auth;
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const DEFAULT_SESSION_TTL_MS = 30 * DAY_MS;
@@ -94,9 +111,10 @@ function buildLink(redirectTo: string, token: string): string {
   return `${base}${base.includes('?') ? '&' : '?'}token=${token}${fragment}`;
 }
 
-export function createInMemoryAuth(options: InMemoryAuthOptions): InMemoryAuth {
-  const { mail, bus } = options;
-  const store = options.store ?? createInMemoryAuthStore();
+/** The sign in service on the given store. This is what production runs. */
+export function createAuth(options: AuthOptions): Auth {
+  const { store, mail, bus } = options;
+  const env = options.env ?? process.env;
   const now = options.now ?? (() => new Date());
   const newToken = options.newToken ?? (() => randomBytes(32).toString('hex'));
   const newId = options.newId ?? (() => randomUUID());
@@ -196,8 +214,8 @@ export function createInMemoryAuth(options: InMemoryAuthOptions): InMemoryAuth {
 
     async signInWithGoogle(redirectTo) {
       assertRedirect(redirectTo);
-      // Placeholder route. This adapter talks to no provider; the real Google
-      // flow arrives with better-auth in Phase 1 (P1-37).
+      // Placeholder route. Nothing here talks to a provider; Google sign in is
+      // its own row (P1-46, ADR-009).
       return { url: '/auth/dev-google?redirectTo=' + encodeURIComponent(redirectTo) };
     },
 
@@ -206,8 +224,24 @@ export function createInMemoryAuth(options: InMemoryAuthOptions): InMemoryAuth {
     },
 
     async createDevSession(email, name) {
+      // Checked on every call and before anything is read or written. A dev
+      // session needs no proof of the address, so production must never give one.
+      if (env.NODE_ENV?.trim().toLowerCase() === 'production') {
+        throw new AuthError(
+          'dev_session_disabled',
+          'createDevSession is switched off when NODE_ENV is production.',
+        );
+      }
       const user = await findOrCreateUser(normaliseEmail(email), name ?? null);
       return startSession(user);
     },
   };
+}
+
+/**
+ * createAuth with the in memory store unless one is given. For development
+ * and tests: everything is lost when the process restarts.
+ */
+export function createInMemoryAuth(options: InMemoryAuthOptions): InMemoryAuth {
+  return createAuth({ ...options, store: options.store ?? createInMemoryAuthStore() });
 }

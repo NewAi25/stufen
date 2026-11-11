@@ -1,7 +1,7 @@
 {
   "name": "@stufen/core-auth",
   "kind": "core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [
@@ -9,10 +9,12 @@
     "db"
   ],
   "provides": [
-    "createInMemoryAuth (AuthPort in memory, plus createDevSession)",
+    "createAuth (AuthPort on any AuthStore, plus createDevSession, which is refused in production)",
+    "createInMemoryAuth (createAuth with the in memory store, for development and tests)",
     "AuthStore interface (AuthUser, AuthSessionRecord, AuthLinkToken)",
     "createInMemoryAuthStore",
-    "AuthError (invalid_email, invalid_redirect)",
+    "createPostgresAuthStore (AuthStore on PostgreSQL through db as owner, tokens stored as SHA-256 hashes, plus deleteExpiredSessions and deleteExpiredLinkTokens)",
+    "AuthError (invalid_email, invalid_redirect, dev_session_disabled)",
     "types AuthPort and AuthSession, re exported from contracts"
   ]
 }

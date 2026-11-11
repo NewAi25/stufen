@@ -1,7 +1,11 @@
 // Storage port for core-auth: the reads and writes sign in needs, and nothing
 // else. The in memory adapter below is for unit tests and local development.
-// The Postgres and better-auth adapter implements the same port in Phase 1.
+// The Postgres adapter in postgres-store.ts implements the same port, and
+// tests/store-contract.ts holds the behaviour both must show.
 // Every timestamp is an ISO 8601 string.
+//
+// The service hands raw tokens to the port. Whether a token is stored as it
+// is (in memory) or as a hash (Postgres) is the adapter's business.
 
 export interface AuthUser {
   id: string;
@@ -25,7 +29,11 @@ export interface AuthLinkToken {
   email: string;
   redirectTo: string;
   expiresAt: string;
-  /** Null until the link is consumed. */
+  /**
+   * Null on every token a store returns: a used token is deleted, not kept.
+   * A link handed to insertLinkToken with usedAt set counts as used already
+   * and is not stored.
+   */
   usedAt: string | null;
 }
 
@@ -45,10 +53,14 @@ export interface AuthStore {
   deleteSession(token: string): Promise<void>;
 
   insertLinkToken(link: AuthLinkToken): Promise<void>;
+  /** Null for a token that was never stored or has been used. Expiry is the caller's check. */
   findLinkToken(token: string): Promise<AuthLinkToken | null>;
   /**
-   * Sets usedAt if the token exists and is unused. Returns true when this call
-   * claimed it, false otherwise. Must be atomic, so a link works once.
+   * Claims the token by removing it. Returns true when this call removed it,
+   * false when it was unknown or already used. Must be atomic, so of any
+   * number of calls racing for one token exactly one gets true. After that
+   * findLinkToken returns null. `usedAt` is when the claim happened; an
+   * adapter that deletes the token has nowhere to keep it.
    */
   markLinkTokenUsed(token: string, usedAt: string): Promise<boolean>;
 }
@@ -96,6 +108,7 @@ export function createInMemoryAuthStore(): AuthStore {
     },
 
     async insertLinkToken(link) {
+      if (link.usedAt !== null) return;
       linkTokens.set(link.token, { ...link });
     },
 
@@ -104,11 +117,9 @@ export function createInMemoryAuthStore(): AuthStore {
       return link ? { ...link } : null;
     },
 
-    async markLinkTokenUsed(token, usedAt) {
-      const link = linkTokens.get(token);
-      if (!link || link.usedAt !== null) return false;
-      link.usedAt = usedAt;
-      return true;
+    async markLinkTokenUsed(token) {
+      // One synchronous step, so two calls in the same tick cannot both win.
+      return linkTokens.delete(token);
     },
   };
 }
