@@ -526,7 +526,7 @@ Say the language is Dutch, code `nl`.
 2. Fill `content/nl/pack.json`: `code` `nl`, `name` Dutch, `name_native` Nederlands, `locale` `nl-NL`, `levels` `["A1"]` to start, `tts`, and the `sources` list. Cite the Companion Volume, the Dutch word list you will use, and the exam descriptions (CNaVT, Staatsexamen NT2).
 3. Fill `content/nl/ramp.json`. Start from the defaults and change only what Dutch needs.
 4. Write `content/nl/candos/A1.json`. Take the A1 codes from `docs/05` (`A1.REA.01` and so on). The six CEFR skills paraphrase the Companion Volume scales. `GRA` and `VOC` come from the Dutch grammar sequence, which you add to `docs/05` in its own commit first, with its sources.
-5. Write `content/nl/items/A1.jsonl`. Follow the vocabulary source rule in `docs/05`: take the published list, order by frequency, group by unit theme.
+5. Write `content/nl/items/A1.jsonl`. A level may be split by theme into several files named `A1-<theme>.jsonl`; every `*.jsonl` file in `items/` is loaded and item keys must be unique across them. Follow the vocabulary source rule in `docs/05`: take the published list, order by frequency, group by unit theme.
 6. Write `content/nl/units/A1/01-<slug>/unit.json` and its lessons. Follow the lesson pattern. End the unit with a production lesson and a review lesson.
 7. Run `node scripts/validate-content.mjs nl`. Fix every fail row. Read the warn rows.
 8. Run `node scripts/validate-content.mjs nl --write-checksum`.

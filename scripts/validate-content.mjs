@@ -484,10 +484,11 @@ function validatePack(packDir, schemas, opts) {
       .sort();
     if (files.length === 0) report.warn('items/', 'no item files');
     for (const file of files) {
-      const level = file.replace('.jsonl', '');
+      // <LEVEL>.jsonl, or <LEVEL>-<theme>.jsonl when a level is split by theme.
+      const level = file.replace('.jsonl', '').split('-')[0];
       const label = `items/${file}`;
-      if (!LEVELS.includes(level)) {
-        report.fail(label, `file name must be <LEVEL>.jsonl, got ${file}`);
+      if (!LEVELS.includes(level) || !/^[A-C][12](-[a-z0-9]+(-[a-z0-9]+)*)?\.jsonl$/.test(file)) {
+        report.fail(label, `file name must be <LEVEL>.jsonl or <LEVEL>-<theme>.jsonl, got ${file}`);
         continue;
       }
       const errors = [];
