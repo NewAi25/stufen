@@ -1,18 +1,20 @@
 {
   "name": "@stufen/lang-de",
   "kind": "lang",
-  "version": "0.0.0",
-  "status": "planned",
+  "version": "0.1.0",
+  "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [
     "contracts"
   ],
   "provides": [
-    "pack",
-    "articles",
-    "nounGender",
-    "conjugate",
-    "normalize",
-    "classifyError"
+    "createGermanPack (LanguagePack over content/de: manifest, candos, items, units, ramp, exam formats, tts)",
+    "defaultContentDir",
+    "germanRules (assembles LanguageRules from items)",
+    "article tables (DEFINITE_ARTICLES, INDEFINITE_ARTICLES, NEGATIVE_ARTICLES, POSSESSIVE_STEMS, EIN_WORD_ENDINGS), article, possessive",
+    "normalize, normalizeStrict, equalsLenient, equalsStrict",
+    "createNounGender",
+    "conjugate, participle, splitSeparable, createConjugate, verb tables (IRREGULAR_PRESENT, STEM_CHANGES, PARTICIPLES, SEPARABLE_PREFIXES)",
+    "classifyError, createClassifyError"
   ]
 }
