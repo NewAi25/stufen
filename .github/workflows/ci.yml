@@ -59,6 +59,12 @@ jobs:
 
       - name: Run box tests
         run: pnpm test
+        env:
+          # Unit tests only. Database tests run in the next step, one file at a time.
+          DATABASE_URL: ''
+
+      - name: Run database tests
+        run: pnpm test:db
 
       - name: Build the web app
         run: pnpm --filter @stufen/web build

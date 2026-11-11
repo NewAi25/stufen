@@ -284,3 +284,7 @@ Give this to a tester before a release. They tick each step and write one line i
 | 10 | Tap the feedback button and send one line about anything that confused you | It sends in under 30 seconds and you see a thank you |
 
 After the script, ask the tester three questions in chat: what was confusing, what was slow, what would make you come back tomorrow. Paste the answers into the `feedback` table with `kind: other` if they did not use the button.
+
+## Running the database tests
+
+`pnpm test` runs every unit test in parallel and skips the database tests when `DATABASE_URL` is not set. `pnpm test:db` runs only the files named `*.integration.test.ts`, one file at a time, against the database in `DATABASE_URL`. They must not run in parallel on one database, because the curriculum test replaces whole content tables. CI runs both steps.
