@@ -144,6 +144,8 @@ createInMemoryCurriculumStore(): CurriculumStore & SnapshotWriter
 createPostgresCurriculumStore(db): CurriculumStore & SnapshotWriter
 ```
 
+`replaceLanguage` validates the snapshot first and throws `InvalidSnapshotError` without writing. On Postgres it is one owner transaction: upsert by id, then delete what the snapshot no longer has, so kept rows keep their ids and learner rows survive a reinstall. A pack cannot remove a lesson that a learner has a session on; the database refuses and the install rolls back.
+
 Owns `cando_descriptors`, `units`, `lessons`, `exercises`, `items`. The store is written only through `SnapshotWriter.replaceLanguage`, which core-content calls during a pack install. `completedLessonIds(userId)` is injected by the composition root from core-lesson-engine, because boxes do not import each other.
 
 ## core-content
@@ -183,10 +185,11 @@ interface LanguagePack {
 
 ```ts
 createLessonEngine({ store: SessionStore, bus, getLesson, grade, now?, newId? }) => {
-  startSession(userId, lessonId): Promise<LessonSession>
-  currentExercise(sessionId): Promise<Exercise | null>
-  submitAnswer(sessionId, exerciseId, response): Promise<{ grade: GradeResult; next: Exercise | null }>   // emits attempt.recorded
-  completeSession(sessionId): Promise<SessionResult>               // emits lesson.completed
+  startSession(userId, lessonId): Promise<LessonSession>            // resumes the open session if there is one
+  currentExercise(userId, sessionId): Promise<Exercise | null>
+  submitAnswer(userId, sessionId, exerciseId, response, durationMs?)
+    : Promise<{ grade: GradeResult; next: Exercise | null }>        // emits attempt.recorded
+  completeSession(userId, sessionId): Promise<CompletedSessionResult>   // emits lesson.completed once; result carries introducesItemIds
   recordStandaloneAttempt(userId, input: StandaloneAttempt): Promise<void>   // reviews, tutor, assessment
   completedLessonIds(userId): Promise<string[]>
 }
@@ -194,7 +197,11 @@ createInMemorySessionStore(): SessionStore
 createPostgresSessionStore(db): SessionStore
 ```
 
-`getLesson(lessonId)` and `grade(exercise, response, language)` are injected by the composition root from core-curriculum and core-exercise-types.
+`getLesson(lessonId)` returns the lesson with the language of its unit, and `grade(exercise, response, language)` returns a `GradeResult`. Both are injected by the composition root from core-curriculum and core-exercise-types.
+
+Rules: every method that takes a session id takes the acting user first and refuses another learner's session. Exercises are answered in order, one attempt each, and a double submit stores one attempt. A session completes only when every exercise is answered. One open session per learner and lesson and one answer per exercise are also enforced by unique indexes (migration 0006). Errors: `LessonNotFoundError`, `SessionAccessError`, `OutOfOrderError`, `SessionIncompleteError`, `AttemptValidationError`, `DuplicateAttemptError`.
+
+After `completeSession` the composition root passes `introducesItemIds` to `core-srs.introduceItems`. That call is idempotent, so a repeated completion is harmless.
 
 ## core-exercise-types
 
