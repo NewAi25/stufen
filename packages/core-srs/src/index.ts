@@ -8,3 +8,4 @@ export { createSrs, CardNotFoundError } from './srs';
 export type { CreateSrsOptions, SrsService, SrsStats, SrsHandlerErrorContext } from './srs';
 export { createInMemoryCardStore } from './store';
 export type { CardStore, CardCounts, ReviewLogEntry, StoredReviewCard } from './store';
+export { createPostgresCardStore } from './postgres-store';

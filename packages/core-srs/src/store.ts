@@ -67,7 +67,12 @@ export interface CardStore {
   countByState(userId: string, language: LanguageCode, now: Date): Promise<CardCounts>;
   /** Appends one row of review history. */
   insertLog(log: ReviewLogEntry): Promise<void>;
-  /** History of one card, oldest first. Used by tests and later by parameter tuning. */
+  /**
+   * History of one card, oldest `reviewedAt` first. Used by tests and later by
+   * parameter tuning. The order of two logs with the same `reviewedAt` is up
+   * to the adapter: in memory keeps the order they were written in, Postgres
+   * has no insertion counter and orders them by row id.
+   */
   listLogs(userId: string, itemId: string): Promise<ReviewLogEntry[]>;
 }
 
@@ -129,9 +134,13 @@ export function createInMemoryCardStore(): CardStore {
     },
 
     async listLogs(userId, itemId) {
-      return logs
-        .filter((log) => log.userId === userId && log.itemId === itemId)
-        .map((log) => structuredClone(log));
+      return (
+        logs
+          .filter((log) => log.userId === userId && log.itemId === itemId)
+          // The sort is stable, so logs with the same time stay in written order.
+          .sort((a, b) => Date.parse(a.reviewedAt) - Date.parse(b.reviewedAt))
+          .map((log) => structuredClone(log))
+      );
     },
   };
 }

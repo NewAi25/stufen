@@ -2,6 +2,18 @@
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-11
+
+### Added
+- `src/postgres-store.ts`: `createPostgresCardStore(db)`, the Postgres adapter for the `CardStore` port (row P1-30). Every method runs inside `withUser(db, userId, fn)` for the user it acts for, so row level security applies to each statement. Exported from `src/index.ts`.
+- A card's `language` is read by joining `items` on `items.language_code`. `review_cards` has no language column. The due queue and the counts filter on the joined column. On a write the `language` of the card is not stored; the item decides.
+- `scheduledDays` and `learningSteps` are stored in `review_cards.scheduled_days` and `review_cards.learning_steps` (migration 0005).
+- `upsertCard` is one `insert ... on conflict (user_id, item_id) do update`. `listDue` orders by `due`, then `item_id`, and applies the limit in SQL. `countByState` is one grouped query and returns the same shape as the in memory adapter.
+- `tests/store-contract.ts`: `runCardStoreContract(name, makeHarness)`, the behaviour both adapters share. `tests/store-contract.memory.test.ts` runs it in memory. `tests/postgres-store.integration.test.ts` runs it on a real database, then runs `createSrs` on the Postgres store and checks row security between two users. The integration test is skipped when `DATABASE_URL` is not set.
+
+### Changed
+- In memory `listLogs` now sorts by `reviewedAt`, oldest first, as the port has always said. Before, it returned the logs in the order they were written. Logs with the same `reviewedAt` keep their written order. The port comment now says that the order of such ties is up to the adapter.
+
 ## [0.1.0] - 2026-11-06
 
 ### Added
