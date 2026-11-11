@@ -1,3 +1,5 @@
+'use client';
+
 import { useId, useState } from 'react';
 import type { ChangeEvent, ComponentProps } from 'react';
 import { cx } from './cx';

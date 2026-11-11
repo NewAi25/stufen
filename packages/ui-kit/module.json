@@ -1,7 +1,7 @@
 {
   "name": "@stufen/ui-kit",
   "kind": "surface",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [
@@ -19,6 +19,7 @@
     "TextArea",
     "RatingInput",
     "Sheet",
-    "FeedbackFab"
+    "FeedbackFab (open state can be controlled by the host with open and onOpenChange)",
+    "'use client' directive on Choice, FeedbackFab, RatingInput, Sheet, TextArea, TextInput and Toast, so a React Server Component can import them from the entry"
   ]
 }

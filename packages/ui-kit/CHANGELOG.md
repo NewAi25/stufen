@@ -2,6 +2,19 @@
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-06
+
+### Added
+- `FeedbackFab`: optional props `open` and `onOpenChange`. With `open` the host controls the sheet: it shows exactly when `open` is true, and Cancel, Escape, the close button, the backdrop, a successful submit and a click on the fab only call `onOpenChange` with the value they ask for. Without `open` the fab keeps its own state as before. `onOpenChange` is called on every open and close in both modes, and on a successful submit it is called before `onSubmitted`. This lets a host open feedback from a keyboard shortcut.
+- The `'use client'` directive is the first line of `Choice`, `FeedbackFab`, `RatingInput`, `Sheet`, `TextArea`, `TextInput` and `Toast`. A React Server Component in Next.js can now import these from `@stufen/ui-kit` directly, without a wrapper file in the host.
+- Tests: `tests/client-directives.test.ts` reads every file under `src/components` and fails if one imports a React hook or `createPortal` without starting with the directive, or if `src/index.ts` or `src/tokens.ts` carries it. `tests/feedback-fab.test.tsx` gains a block for the open state in both modes.
+
+### Changed
+- `FeedbackFab`: every open and close goes through one function. The field errors are now dropped when the sheet is seen to close, which also covers a host that sets `open` to false itself. The draft is kept as before.
+
+### Not changed
+- `Button`, `Card` and `Progress` stay without the directive. They are markup only, with no hook, state, effect, portal or browser event of their own, so they still render on the server with no script. `src/tokens.ts` and `src/index.ts` stay without it so the tokens can be read on the server.
+
 ## [0.2.0] - 2026-11-05
 
 ### Added

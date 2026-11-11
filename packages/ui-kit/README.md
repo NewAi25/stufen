@@ -11,7 +11,7 @@ The kit has no Tailwind and no CSS in JS. Components render plain class names th
 
 ## Public API
 
-Everything is exported from `src/index.ts`. Version 0.2.0 ships the tokens and ten components.
+Everything is exported from `src/index.ts`. Version 0.3.0 ships the tokens and ten components.
 
 ### Styles
 
@@ -22,6 +22,14 @@ import '@stufen/ui-kit/src/styles.css';
 ```
 
 Theme follows the system by default. Set `data-theme="light"` or `data-theme="dark"` on `<html>`, or on any wrapper, to force one. Set `data-motion="reduce"` on `<html>` when the learner turns on "Reduce animation". The system setting `prefers-reduced-motion` is respected without any attribute.
+
+### Server components
+
+The interactive components carry the `'use client'` directive as their first line: `Choice`, `FeedbackFab`, `RatingInput`, `Sheet`, `TextArea`, `TextInput` and `Toast` (`ToastProvider` and `useToast`). A React Server Component in Next.js can import them from `@stufen/ui-kit` directly. No wrapper file with its own directive is needed in the host.
+
+`Button`, `Card` and `Progress` have no directive. They are markup only and render on the server with no script. A handler such as `onClick` is a function, so a component that passes one to `Button` must itself be a client component. That is a React rule and not a kit rule.
+
+`src/index.ts` and `src/tokens.ts` have no directive either, so `tokens`, `THEMES` and `cssVariables` can be called on the server.
 
 ### Tokens
 
@@ -53,7 +61,7 @@ Every component takes `className`. Components that wrap one native element take 
 | `TextArea` | `label` (required), `hint`, `error`, `inputClassName`, `remainingLabel` | The multiline partner of `TextInput` with the same wiring. Native props and `ref` go to the `<textarea>`. `maxLength` adds a character count |
 | `RatingInput` | `label` (required), `max` (default 5), `value`, `defaultValue`, `onChange`, `lowLabel`, `highLabel`, `allowClear`, `optionLabel`, `hint`, `error`, `required`, `disabled` | A radiogroup of 1 to `max`. `onChange` receives the number, or `null` when cleared |
 | `Sheet` | `open`, `onClose`, `title` (required), `description`, `side` (`bottom`, `right`), `closeLabel` (default "Close"), `initialFocusRef` | A modal dialog in a portal on `document.body`. Renders nothing while closed |
-| `FeedbackFab` | `onSubmit` (required), `onSubmitted`, `label` (default "Give feedback"), `kindLabels`, `labels`, `defaultKind` (default `idea`), `side`, `hidden` | A floating button, bottom right, that opens the feedback form in a `Sheet` |
+| `FeedbackFab` | `onSubmit` (required), `onSubmitted`, `label` (default "Give feedback"), `kindLabels`, `labels`, `defaultKind` (default `idea`), `side`, `hidden`, `open`, `onOpenChange` | A floating button, bottom right, that opens the feedback form in a `Sheet` |
 | `ToastProvider` | `timer`, `defaultDurationMs` (default 5000), `dismissLabel` (default "Dismiss"), `className` | Wrap the app once. Renders the toasts after its children |
 | `useToast()` | | Returns `{ show({ message, tone, durationMs }), dismiss(id) }`. `show` returns the id. `tone` is `info`, `success` or `error` |
 
@@ -158,6 +166,48 @@ export function App() {
 }
 ```
 
+### FeedbackFab open state
+
+By default the fab keeps its own open state. Pass `open` and the host controls it: the sheet shows exactly when `open` is true. In that mode a click on the fab, Cancel, Escape, the close button, the backdrop and a successful submit do not change anything by themselves. Each one calls `onOpenChange` with the value it asks for, and the host sets `open`.
+
+`onOpenChange` also works without `open`. It is then a report: `true` on every open and `false` on every close.
+
+This host opens feedback with the `f` key:
+
+```tsx
+'use client';
+
+import { useEffect, useState } from 'react';
+import { FeedbackFab } from '@stufen/ui-kit';
+import type { FeedbackFabInput } from '@stufen/ui-kit';
+
+function isTyping(target: EventTarget | null): boolean {
+  if (!(target instanceof HTMLElement)) return false;
+  return target.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName);
+}
+
+export function FeedbackWithShortcut({
+  onSubmit,
+}: {
+  onSubmit: (input: FeedbackFabInput) => Promise<void>;
+}) {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent): void {
+      if (event.key !== 'f' || event.ctrlKey || event.altKey || event.metaKey) return;
+      if (isTyping(event.target)) return;
+      event.preventDefault();
+      setOpen(true);
+    }
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, []);
+
+  return <FeedbackFab onSubmit={onSubmit} open={open} onOpenChange={setOpen} />;
+}
+```
+
 ### FeedbackFab behaviour
 
 - The button is fixed bottom right, 48 px, and its accessible name comes from `label`. It opens a `Sheet` titled "Feedback" with three fields: kind, message and rating.
@@ -167,11 +217,13 @@ export function App() {
 - A failed check shows the error under the field, linked with `aria-describedby`, and moves focus to that field. `onSubmit` is not called.
 - `onSubmit` receives `{ kind, message, rating? }`. The message is trimmed. `rating` is left out when nothing is picked.
 - While the promise is pending the submit button is loading and a second submit is ignored.
-- When the promise resolves the sheet closes, the form goes back to `defaultKind` with an empty message and no rating, and `onSubmitted` is called.
+- When the promise resolves the sheet closes (in controlled mode it asks the host to close), the form goes back to `defaultKind` with an empty message and no rating, and `onSubmitted` is called.
 - When the promise rejects the sheet stays open with the text intact and the message of the error is shown in a `role="alert"` region. A rejection without a message shows `labels.submitFailed`. Sending again is the retry.
 - Cancel, Escape, the close button and a backdrop click close the sheet and keep the draft.
 - `labels` overrides every visible string: `title`, `kind`, `message`, `rating`, `submit`, `cancel`, `close`, `messageRequired`, `ratingRequired`, `submitFailed`.
-- `hidden` renders nothing, neither the button nor the sheet.
+- `hidden` renders nothing, neither the button nor the sheet, also when `open` is true.
+- `open` makes the sheet controlled by the host. `onOpenChange(next)` is called on every open and close in both modes. On a successful submit it is called with `false` before `onSubmitted`. It is not called when the host changes `open` itself, and not when the sheet is already in the state that is asked for.
+- The field errors and the submit error are dropped whenever the sheet closes, whoever closed it.
 
 ### Sheet behaviour
 
@@ -199,7 +251,7 @@ export function App() {
 
 `LevelBadge`, `AudioButton`, `RecordButton`, `CorrectionInline`, `RubricBars` and `LevelMap` are named in `docs/04-module-contracts.md` and arrive in later rows of the build sequence.
 
-`FeedbackFab` leaves three things from `docs/06-ui-ux.md` section 8 to the host app: the `f` keyboard shortcut, the sentence that says which context is attached, and the lower opacity on lesson screens. The host also shows the "Sent. Thank you." toast from `onSubmitted`.
+`FeedbackFab` leaves three things from `docs/06-ui-ux.md` section 8 to the host app: the `f` keyboard shortcut (the host listens for the key and sets `open`, see "FeedbackFab open state"), the sentence that says which context is attached, and the lower opacity on lesson screens. The host also shows the "Sent. Thank you." toast from `onSubmitted`.
 
 Source of truth: `docs/04-module-contracts.md`. If a signature is not there, it is not public.
 
@@ -229,7 +281,7 @@ None. This box neither emits nor subscribes.
 
 1. Read this README and the box section of `docs/04-module-contracts.md`. State the public interface after the change before writing code.
 2. Change only files under `packages/ui-kit/`. If `contracts` must change, do that in its own commit first.
-3. A new token goes into `src/tokens.ts` and `src/styles.css` together. A new component gets a file in `src/components/`, an export in `src/index.ts`, classes in `src/styles.css` that read only the variables, a test file, and a place in `tests/gallery.test.tsx`.
+3. A new token goes into `src/tokens.ts` and `src/styles.css` together. A new component gets a file in `src/components/`, an export in `src/index.ts`, classes in `src/styles.css` that read only the variables, a test file, and a place in `tests/gallery.test.tsx`. A component file that uses a hook, state, an effect, a portal or a browser event starts with `'use client';` on its first line. `tests/client-directives.test.ts` fails if it does not.
 4. Add or update tests in `tests/`, update `CHANGELOG.md`, run `node scripts/check-boundaries.mjs`, and update this box's row in `docs/07-build-sequence.md` in the same commit. Commit as `type(ui-kit): message`.
 
 ## How to test it
@@ -238,7 +290,7 @@ None. This box neither emits nor subscribes.
 pnpm --filter @stufen/ui-kit test
 ```
 
-The run prints one line per test file. `tests/gallery.test.tsx` is the acceptance check: all ten components render in light and in dark. `tests/feedback-fab.test.tsx` holds the check for row P0-21: the fab opens a sheet with kind, message and rating fields.
+The run prints one line per test file. `tests/gallery.test.tsx` is the acceptance check: all ten components render in light and in dark. `tests/feedback-fab.test.tsx` holds the check for row P0-21: the fab opens a sheet with kind, message and rating fields. The same file holds the checks for row P1-41: a parent opens the sheet without a click on the fab, controlled mode stays open until the parent sets `open` to false, and `onOpenChange` reports each change. `tests/client-directives.test.ts` checks the `'use client'` directive file by file.
 
 ## Status
 

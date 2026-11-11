@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
 import type { FeedbackKind } from '@stufen/contracts';
@@ -58,6 +60,18 @@ export interface FeedbackFabProps {
   side?: SheetSide;
   /** Renders nothing at all, neither the button nor the sheet. */
   hidden?: boolean;
+  /**
+   * Whether the sheet is shown. Pass it to control the sheet from the host:
+   * the sheet then follows this value and only asks to change through
+   * `onOpenChange`. Leave it out and the fab keeps its own state.
+   */
+  open?: boolean;
+  /**
+   * Called with `true` when the sheet opens and with `false` when it closes,
+   * in both modes. Cancel, Escape, the close button, the backdrop and a
+   * successful submit all report `false` here.
+   */
+  onOpenChange?: (open: boolean) => void;
   /** Class for the floating button. */
   className?: string;
 }
@@ -103,13 +117,19 @@ export function FeedbackFab({
   defaultKind = 'idea',
   side = 'bottom',
   hidden = false,
+  open: openProp,
+  onOpenChange,
   className,
 }: FeedbackFabProps) {
   const formId = useId();
   const words = { ...DEFAULT_LABELS, ...labels };
   const kindWords = { ...DEFAULT_KIND_LABELS, ...kindLabels };
 
-  const [open, setOpen] = useState(false);
+  // Controlled when the host passes `open`, otherwise the fab keeps the state.
+  const [ownOpen, setOwnOpen] = useState(false);
+  const controlled = openProp !== undefined;
+  const open = controlled ? openProp : ownOpen;
+  const [wasOpen, setWasOpen] = useState(open);
   const [kind, setKind] = useState<FeedbackKind>(defaultKind);
   const [message, setMessage] = useState('');
   const [rating, setRating] = useState<number | null>(null);
@@ -124,6 +144,12 @@ export function FeedbackFab({
   const formRef = useRef<HTMLFormElement | null>(null);
   const messageRef = useRef<HTMLTextAreaElement | null>(null);
   const firstFieldRef = useRef<HTMLElement | null>(null);
+  // The value of `open` as last rendered, for handlers that outlive a render.
+  const openRef = useRef(open);
+
+  useEffect(() => {
+    openRef.current = open;
+  });
 
   useEffect(() => {
     mountedRef.current = true;
@@ -144,9 +170,24 @@ export function FeedbackFab({
     setSubmitError('');
   }
 
+  // Errors do not survive a close, whoever closed the sheet. The draft does.
+  if (open !== wasOpen) {
+    setWasOpen(open);
+    if (!open) clearErrors();
+  }
+
+  /** The one path for every open and close. The host hears about each one. */
+  function changeOpen(next: boolean): void {
+    if (next === openRef.current) return;
+    if (!controlled) {
+      openRef.current = next;
+      setOwnOpen(next);
+    }
+    onOpenChange?.(next);
+  }
+
   function close(): void {
-    setOpen(false);
-    clearErrors();
+    changeOpen(false);
   }
 
   function reset(): void {
@@ -196,7 +237,7 @@ export function FeedbackFab({
           pendingRef.current = false;
           if (!mountedRef.current) return;
           setPending(false);
-          setOpen(false);
+          changeOpen(false);
           reset();
           onSubmitted?.();
         },
@@ -222,7 +263,7 @@ export function FeedbackFab({
         aria-label={label}
         aria-haspopup="dialog"
         aria-expanded={open}
-        onClick={() => setOpen(true)}
+        onClick={() => changeOpen(true)}
       >
         <svg
           className="st-feedback-fab__icon"

@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import type { HTMLAttributes, KeyboardEvent, Ref } from 'react';
 import { cx } from './cx';

@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 // Acceptance for P0-21: the fab opens a sheet with kind, message and rating fields.
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { useState } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { FeedbackFab } from '../src/components/FeedbackFab';
 import type { FeedbackFabInput, FeedbackFabProps } from '../src/components/FeedbackFab';
@@ -336,5 +337,194 @@ describe('FeedbackFab', () => {
     expect(messageBox().value).toBe('Half a thought');
     expect(checkedKind()).toBe('Bug');
     expect(screen.queryByRole('alert')).toBeNull();
+  });
+});
+
+/** A host that owns the open state and can open the sheet from its own button. */
+function Host({
+  onSubmit,
+  onOpenChange,
+  obey = true,
+}: {
+  onSubmit: Submit;
+  onOpenChange?: (open: boolean) => void;
+  /** When false the host hears the request and leaves `open` as it is. */
+  obey?: boolean;
+}) {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <button type="button" onClick={() => setOpen(true)}>
+        Host opens
+      </button>
+      <button type="button" onClick={() => setOpen(false)}>
+        Host closes
+      </button>
+      <FeedbackFab
+        onSubmit={onSubmit}
+        open={open}
+        onOpenChange={(next) => {
+          onOpenChange?.(next);
+          if (obey) setOpen(next);
+        }}
+      />
+    </>
+  );
+}
+
+describe('FeedbackFab open state', () => {
+  it('lets a parent open the sheet without a click on the fab', () => {
+    const onOpenChange = vi.fn();
+    render(<Host onSubmit={resolved().onSubmit} onOpenChange={onOpenChange} />);
+    const fab = screen.getByRole('button', { name: 'Give feedback' });
+    expect(screen.queryByRole('dialog')).toBeNull();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Host opens' }));
+    const dialog = screen.getByRole('dialog');
+    expect(within(dialog).getByRole('heading', { name: 'Feedback' })).toBeTruthy();
+    expect(fab.getAttribute('aria-expanded')).toBe('true');
+    expect(document.activeElement).toBe(within(dialog).getByRole('radio', { name: 'Idea' }));
+    // The parent made the change itself, so there is nothing to report back.
+    expect(onOpenChange).not.toHaveBeenCalled();
+  });
+
+  it('opens at once when the parent renders it with open true', () => {
+    render(<FeedbackFab onSubmit={resolved().onSubmit} open onOpenChange={() => undefined} />);
+    expect(screen.getByRole('dialog')).toBeTruthy();
+    expect(
+      screen.getByRole('button', { name: 'Give feedback' }).getAttribute('aria-expanded'),
+    ).toBe('true');
+  });
+
+  it('controlled: stays open until the parent sets open to false', () => {
+    const onOpenChange = vi.fn();
+    render(<Host onSubmit={resolved().onSubmit} onOpenChange={onOpenChange} obey={false} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Host opens' }));
+    const dialog = screen.getByRole('dialog');
+
+    // Each way of closing asks the parent and changes nothing by itself.
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Cancel' }));
+    fireEvent.keyDown(document, { key: 'Escape' });
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Close' }));
+    const backdrop = document.querySelector('.st-sheet__backdrop');
+    if (backdrop === null) throw new Error('no backdrop');
+    fireEvent.click(backdrop);
+    expect(onOpenChange.mock.calls).toEqual([[false], [false], [false], [false]]);
+    expect(screen.getByRole('dialog')).toBe(dialog);
+    expect(
+      screen.getByRole('button', { name: 'Give feedback' }).getAttribute('aria-expanded'),
+    ).toBe('true');
+
+    fireEvent.click(screen.getByRole('button', { name: 'Host closes', hidden: true }));
+    expect(screen.queryByRole('dialog')).toBeNull();
+    expect(onOpenChange).toHaveBeenCalledTimes(4);
+  });
+
+  it('controlled: the fab asks to open and the parent decides', () => {
+    const onOpenChange = vi.fn();
+    render(<Host onSubmit={resolved().onSubmit} onOpenChange={onOpenChange} obey={false} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Give feedback' }));
+    expect(onOpenChange.mock.calls).toEqual([[true]]);
+    expect(screen.queryByRole('dialog')).toBeNull();
+  });
+
+  it('controlled: a successful submit asks to close, and the errors go when the parent closes', async () => {
+    const onOpenChange = vi.fn();
+    const onSubmitted = vi.fn();
+    function Wired() {
+      const [open, setOpen] = useState(true);
+      return (
+        <FeedbackFab
+          onSubmit={resolved().onSubmit}
+          onSubmitted={onSubmitted}
+          open={open}
+          onOpenChange={(next) => {
+            onOpenChange(next);
+            setOpen(next);
+          }}
+        />
+      );
+    }
+    render(<Wired />);
+    send();
+    expect(screen.getByText('Write a short message.')).toBeTruthy();
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(screen.queryByRole('dialog')).toBeNull();
+
+    openSheet();
+    expect(screen.queryByText('Write a short message.')).toBeNull();
+    type('Works from the host.');
+    send();
+    await waitFor(() => expect(onSubmitted).toHaveBeenCalledTimes(1));
+    expect(screen.queryByRole('dialog')).toBeNull();
+    expect(onOpenChange.mock.calls).toEqual([[false], [true], [false]]);
+  });
+
+  it('uncontrolled: still opens and closes by itself and reports each change', async () => {
+    const onOpenChange = vi.fn();
+    const onSubmitted = vi.fn();
+    render(
+      <FeedbackFab
+        onSubmit={resolved().onSubmit}
+        onSubmitted={onSubmitted}
+        onOpenChange={onOpenChange}
+      />,
+    );
+    const fab = screen.getByRole('button', { name: 'Give feedback' });
+    expect(onOpenChange).not.toHaveBeenCalled();
+
+    let dialog = openSheet();
+    expect(onOpenChange.mock.calls).toEqual([[true]]);
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Cancel' }));
+    expect(screen.queryByRole('dialog')).toBeNull();
+    expect(fab.getAttribute('aria-expanded')).toBe('false');
+
+    openSheet();
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(screen.queryByRole('dialog')).toBeNull();
+
+    dialog = openSheet();
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Close' }));
+    expect(screen.queryByRole('dialog')).toBeNull();
+
+    openSheet();
+    const backdrop = document.querySelector('.st-sheet__backdrop');
+    if (backdrop === null) throw new Error('no backdrop');
+    fireEvent.click(backdrop);
+    expect(screen.queryByRole('dialog')).toBeNull();
+
+    openSheet();
+    type('Sent from the fab.');
+    send();
+    await waitFor(() => expect(onSubmitted).toHaveBeenCalledTimes(1));
+    expect(screen.queryByRole('dialog')).toBeNull();
+
+    expect(onOpenChange.mock.calls.map(([next]) => next)).toEqual([
+      true,
+      false,
+      true,
+      false,
+      true,
+      false,
+      true,
+      false,
+      true,
+      false,
+    ]);
+  });
+
+  it('reports the close before onSubmitted runs', async () => {
+    const order: string[] = [];
+    render(
+      <FeedbackFab
+        onSubmit={resolved().onSubmit}
+        onSubmitted={() => order.push('submitted')}
+        onOpenChange={(next) => order.push(next ? 'open' : 'close')}
+      />,
+    );
+    openSheet();
+    type('Order matters.');
+    send();
+    await waitFor(() => expect(order).toEqual(['open', 'close', 'submitted']));
   });
 });
