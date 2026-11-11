@@ -73,14 +73,16 @@ interface AuthPort {
   signInWithGoogle(redirectTo): Promise<{ url: string }>;
   signOut(sessionToken): Promise<void>;
 }
-createInMemoryAuth(options: { mail: MailPort; store?: AuthStore; bus?: EventBus; now?; newToken?; newId?;
-                              sessionTtlMs?; linkTtlMs?; appName? })
+createAuth(options: { store: AuthStore; mail: MailPort; bus?: EventBus; now?; newToken?; newId?;
+                      sessionTtlMs?; linkTtlMs?; appName? })
   : AuthPort & { createDevSession(email, name?): Promise<AuthSession> }
-createInMemoryAuthStore(): AuthStore        // AuthStore is the port the Postgres adapter implements in Phase 1
+createInMemoryAuthStore(): AuthStore
+createPostgresAuthStore(db): AuthStore      // users, sessions, verifications; tokens stored as SHA-256 hashes
+createInMemoryAuth(options)                 // createAuth with the in memory store, for development and tests
 class AuthError                             // code: invalid_email | invalid_redirect
 ```
 
-Emits `user.signed_up` exactly once per new user. Redirects must be a relative path or an http or https URL; `//host` style paths are rejected. Owns `users`, `sessions`, `accounts`, `verifications`. The production adapter is better-auth on Postgres (Phase 1). The in memory adapter loses sessions on restart and is for development and tests only.
+Emits `user.signed_up` exactly once per new user and, on Postgres, calls `ensure_profile`. Redirects must be a relative path or an http or https URL; `//host` style paths are rejected. Owns `users`, `sessions`, `accounts`, `verifications`. Magic link sign in is our own code on the `AuthStore` port (ADR-009). Google sign in is a later row. `createDevSession` is refused when `NODE_ENV` is production.
 
 ## core-storage
 
@@ -98,12 +100,17 @@ Keys are relative ASCII paths such as `<userId>/recordings/<id>.webm`. Absolute 
 
 ```ts
 // MailPort and MailMessage live in contracts (src/ports.ts).
-createConsoleMail(options?: { log?: (line: string) => void; newId?; now?; keep?: number })
+createConsoleMail(options?: { log?; newId?; now?; keep? })
   : MailPort & { sent: readonly SentMail[]; last(): SentMail | undefined; clear(): void }
+createSmtpMail({ url, from, replyTo?, timeoutMs?, transport? })
+  : MailPort & { verify(): Promise<void>; close(): Promise<void> }
+createMailFromEnv(env): MailPort            // MAIL_DRIVER console or smtp, SMTP_URL, MAIL_FROM, MAIL_REPLY_TO
 validateMessage(message): void              // throws MailValidationError with a field name
+class MailDeliveryError                     // retryable flag; never contains the password
+class MailConfigError
 ```
 
-The console adapter prints the message and keeps the last messages in memory, which is how the local magic link flow reads its link. It must never run in production. The SMTP adapter is a Phase 1 row.
+The console adapter prints the message and keeps the last messages in memory, which is how the local magic link flow reads its link. `createMailFromEnv` refuses it when `NODE_ENV` is production.
 
 ## core-identity
 
@@ -123,23 +130,37 @@ Sign in is not here. `core-auth` owns it and emits `user.signed_up`.
 ## core-curriculum
 
 ```ts
-listLevels(): CefrLevel[]
-listCandos(language, level?, skill?): Promise<Cando[]>
-getCando(candoId): Promise<Cando>
-listUnits(language, level): Promise<Unit[]>
-listLessons(unitId): Promise<LessonSummary[]>
-getLesson(lessonId): Promise<Lesson>                    // includes ordered exercises
-nextLessonFor(userId, language): Promise<LessonSummary | null>   // first incomplete lesson at current level
+createCurriculum({ store: CurriculumStore, completedLessonIds? }) => {
+  listLevels(): CefrLevel[]
+  listCandos(language, level?, skill?): Promise<Cando[]>        // language specific plus common descriptors
+  getCando(candoId): Promise<Cando>                              // throws CurriculumNotFoundError
+  listUnits(language, level): Promise<Unit[]>
+  listLessons(unitId): Promise<LessonSummary[]>
+  getLesson(lessonId): Promise<Lesson>                           // exercises in order; throws CurriculumNotFoundError
+  lessonPath(language): Promise<LessonPathEntry[]>               // every lesson in learning order
+  nextLessonFor(userId, language): Promise<LessonSummary | null> // first lesson in the path the learner has not completed
+}
+createInMemoryCurriculumStore(): CurriculumStore & SnapshotWriter
+createPostgresCurriculumStore(db): CurriculumStore & SnapshotWriter
 ```
+
+Owns `cando_descriptors`, `units`, `lessons`, `exercises`, `items`. The store is written only through `SnapshotWriter.replaceLanguage`, which core-content calls during a pack install. `completedLessonIds(userId)` is injected by the composition root from core-lesson-engine, because boxes do not import each other.
 
 ## core-content
 
 ```ts
-registerPack(pack: LanguagePack): void                 // called once at app start by apps/web
-validatePack(language): Promise<ValidationReport>      // schema plus referential checks
-installPack(language, version): Promise<InstallReport> // service role, emits content.pack_installed
-activePackVersion(language): Promise<string | null>
+createContent({ store: ContentStore, writer: SnapshotWriter, bus: EventBus, now? }) => {
+  registerPack(pack: LanguagePack): void
+  validatePack(language): Promise<ValidationReport>        // schema plus referential checks, no writes
+  buildSnapshot(language): Promise<CurriculumSnapshot>     // stable ids derived from the pack's string keys
+  installPack(language): Promise<InstallReport>            // validate, build, writer.replaceLanguage, record version; emits content.pack_installed
+  activePackVersion(language): Promise<string | null>
+}
+createInMemoryContentStore(): ContentStore
+createPostgresContentStore(db): ContentStore
 ```
+
+Owns `content_pack_versions`. Ids in the snapshot are UUID version 5 values derived from the pack's stable keys (`de:cando:A1.LIS.03`, `de:vocab:haus`, `de:lesson:a1-01-01`, exercise keys), so installing the same pack twice gives the same ids and a learner's progress survives a reinstall.
 
 `LanguagePack` is the interface every `lang-*` box implements:
 
@@ -161,48 +182,69 @@ interface LanguagePack {
 ## core-lesson-engine
 
 ```ts
-startSession(userId, lessonId): Promise<LessonSession>
-currentExercise(sessionId): Promise<Exercise | null>
-submitAnswer(sessionId, exerciseId, response): Promise<{ grade: GradeResult; next: Exercise | null }>
-                                                          // emits attempt.recorded
-completeSession(sessionId): Promise<SessionResult>       // emits lesson.completed
-recordStandaloneAttempt(userId, input: StandaloneAttempt): Promise<void>  // used by srs, tutor, assessment
+createLessonEngine({ store: SessionStore, bus, getLesson, grade, now?, newId? }) => {
+  startSession(userId, lessonId): Promise<LessonSession>
+  currentExercise(sessionId): Promise<Exercise | null>
+  submitAnswer(sessionId, exerciseId, response): Promise<{ grade: GradeResult; next: Exercise | null }>   // emits attempt.recorded
+  completeSession(sessionId): Promise<SessionResult>               // emits lesson.completed
+  recordStandaloneAttempt(userId, input: StandaloneAttempt): Promise<void>   // reviews, tutor, assessment
+  completedLessonIds(userId): Promise<string[]>
+}
+createInMemorySessionStore(): SessionStore
+createPostgresSessionStore(db): SessionStore
 ```
+
+`getLesson(lessonId)` and `grade(exercise, response, language)` are injected by the composition root from core-curriculum and core-exercise-types.
 
 ## core-exercise-types
 
 ```ts
-registerType(def: ExerciseTypeDefinition): void
-getType(id: ExerciseTypeId): ExerciseTypeDefinition
-listTypes(): ExerciseTypeDefinition[]
+createExerciseTypeRegistry() => { registerType(def), getType(id), listTypes(), hasType(id) }
+registerDeterministicTypes(registry)        // multiple_choice, cloze, match_pairs, order_words, flashcard, read_answer, listen_answer, dictation
 
 interface ExerciseTypeDefinition {
   id: ExerciseTypeId;
   skill: Skill[];                          // which skills it can evidence
-  payloadSchema: JSONSchema;               // validated at pack install
+  payloadSchema: JSONSchema;               // equal to the content schema for that type
   grade(payload, response, ctx: GradeContext): Promise<GradeResult>;   // ctx has languageRules and aiGrader
-  needsAi: boolean;                        // translate, write_free, speak_prompt
+  needsAi: boolean;                        // translate, write_free, speak_prompt (phase 2)
   rendererKey: string;                     // apps/web maps this to a component
 }
 ```
 
+Responses the learner submits: multiple_choice `{ selected }`, cloze `{ answers: string[] }`, match_pairs `{ pairs: { left, right }[] }`, order_words `{ order: string[] }`, flashcard `{ rating: 'again' | 'hard' | 'good' | 'easy' }`, read_answer and listen_answer `{ answers: (number | string)[] }`, dictation `{ text }`. Errors: `UnknownExerciseTypeError`, `InvalidPayloadError`, `InvalidResponseError`.
+
 ## core-srs
 
 ```ts
-dueQueue(userId, language, limit?): Promise<ReviewCard[]>
-review(userId, itemId, rating: 1|2|3|4): Promise<ReviewCard>     // emits item.reviewed
-introduceItems(userId, itemIds): Promise<void>                   // called after a lesson introduces items
-stats(userId, language): Promise<{ due: number; learning: number; mature: number }>
+createSrs({ store: CardStore, bus, now?, requestRetention?, maximumInterval?, onError? }) => {
+  dueQueue(userId, language, limit?): Promise<ReviewCard[]>
+  review(userId, itemId, rating: 1|2|3|4): Promise<ReviewCard>     // emits item.reviewed; throws CardNotFoundError
+  introduceItems(userId, language, itemIds): Promise<void>         // idempotent
+  stats(userId, language): Promise<{ due: number; learning: number; mature: number }>
+  attach(bus?): () => void                                         // attempt.recorded creates cards and applies a derived rating
+}
+createInMemoryCardStore(): CardStore
+createPostgresCardStore(db): CardStore
 ```
+
+Scheduling is FSRS through `ts-fsrs`. A lesson attempt rates its items: correct with score 0.9 or more is good, correct below that is hard, incorrect is again. Flashcard attempts are skipped there because the review screen calls `review` itself.
 
 ## core-progress
 
 ```ts
-masteryFor(userId, language, level?): Promise<CandoMastery[]>
-levelEstimate(userId, language): Promise<LevelEstimate>
-recordEstimate(userId, language, level, confidence, method): Promise<void>  // emits level.reached when level rises
-streak(userId, language): Promise<Streak>
-levelMap(userId, language): Promise<LevelMap>            // per level: candos, mastered count, checkpoint status
+createProgress({ store: MasteryStore, bus, listCandos, now?, onError? }) => {
+  attach(bus?): () => void                       // attempt.recorded updates evidence, mastery and the streak
+  recordProductionScore(userId, candoId, score)  // 0 to 5, from the tutor and writing boxes through the composition root
+  masteryFor(userId, language, level?): Promise<CandoMastery[]>
+  levelEstimate(userId, language): Promise<LevelEstimate | null>
+  recordEstimate(userId, language, level, confidence, method): Promise<void>  // emits level.reached when the level rises
+  streak(userId, language): Promise<Streak>
+  levelMap(userId, language): Promise<ProgressLevelMap>   // per level: descriptors with evidence, status, checkpoint
+}
+createInMemoryMasteryStore(): MasteryStore
+createPostgresMasteryStore(db): MasteryStore
+isMastered, levelStatus                          // the pure rules
 ```
 
 Default mastery rule, applied per can do unless `cando_descriptors.mastery_rule` overrides:
@@ -212,7 +254,7 @@ evidence_count >= 6
 and correct in at least 2 distinct exercise types
 and recent_accuracy (last 10 attempts) >= 0.8
 and for skills writing, spoken_production, spoken_interaction:
-    best_production_score >= 3 (of 5)
+    best_production_score >= 3 (of 5), or 4 at C1 and C2
 ```
 
 Level L is reached when all four conditions hold:
@@ -310,18 +352,20 @@ Feature keys in beta: `tutor`, `writing_studio`, `speech`, `exam_sim`, `levels_a
 ## lang-de (implements LanguagePack)
 
 ```ts
+createGermanPack({ contentDir? }): LanguagePack      // loads content/de from disk, server only
+germanRules(items): LanguageRules
 rules: {
-  articles: { nominative, accusative, dative, genitive } per gender and number;
-  nounGender(lemma): 'm' | 'f' | 'n' | undefined;
-  conjugate(verb, person, tense): string | undefined;   // regular and listed irregular verbs
-  normalize(text): string;                              // ß, umlauts, case folding for lenient compare
-  classifyError(expected, actual): ErrorType[];         // used by cloze and translate graders
+  articles: definite article table by case, gender and number (indefinite, kein and possessives are exported beside it);
+  nounGender(lemma): 'm' | 'f' | 'n' | undefined;       // from the pack's vocabulary
+  conjugate(verb, person, tense): string | undefined;   // present and Perfekt for regular and listed verbs
+  normalize(text): string;                              // lenient compare: ß and ss, umlauts and ae oe ue
+  classifyError(expected, actual): ErrorType[];         // case means grammatical case; capitalisation is spelling
 }
 ```
 
 ## ui-kit
 
-Components: `Button`, `Card`, `Progress`, `LevelBadge`, `Choice`, `TextInput`, `AudioButton`, `RecordButton`, `CorrectionInline`, `RubricBars`, `LevelMap`, `FeedbackFab`, `Toast`, `Sheet`. Tokens in `packages/ui-kit/src/tokens.ts`. See `docs/06-ui-ux.md`.
+Components built: `Button`, `Card`, `Progress`, `TextInput`, `TextArea`, `Choice`, `RatingInput`, `Toast`, `Sheet`, `FeedbackFab` (with `open` and `onOpenChange`), and from phase 1 the exercise renderers for the eight deterministic types, `LevelBadge`, `AudioButton`, `CorrectionInline`, `LevelMap`. Later: `RecordButton`, `RubricBars`. Interactive components carry the client directive. Tokens in `packages/ui-kit/src/tokens.ts`. See `docs/06-ui-ux.md`.
 
 ## apps/web routes
 

@@ -102,8 +102,8 @@ One exception to "core never knows a language": `core-content` loads language pa
 | `core-storage` | Files behind `StoragePort` (put, get, delete, signedUrl). Adapters: local filesystem, S3 compatible | none | none |
 | `core-mail` | Email behind `MailPort` (send). Adapters: console, SMTP | none | none |
 | `core-identity` | Profile, settings, target language | `profiles`, `learner_languages` | `user.language_set` |
-| `core-curriculum` | The CEFR spine. Levels, can do descriptors, units, lessons as a graph | `cefr_levels`, `cando_descriptors`, `units`, `lessons` | none |
-| `core-content` | Loads and validates content packs, installs them into the curriculum tables, tracks pack versions | `content_pack_versions`, `exercises`, `items` | `content.pack_installed` |
+| `core-curriculum` | The CEFR spine. Levels, can do descriptors, units, lessons with exercises, items. Reads them and writes them through `SnapshotWriter` | `cefr_levels`, `cando_descriptors`, `units`, `lessons`, `exercises`, `items` | none |
+| `core-content` | Loads and validates content packs, builds a snapshot with stable ids, installs it through `SnapshotWriter`, tracks pack versions | `content_pack_versions` | `content.pack_installed` |
 | `core-lesson-engine` | Runs a lesson session, orders exercises, records attempts | `lesson_sessions`, `attempts` | `attempt.recorded`, `lesson.completed` |
 | `core-exercise-types` | Registry of exercise types. Each type has a renderer contract, a grader and a schema | none | none |
 | `core-srs` | FSRS scheduling for items, review queue, review logging | `review_cards`, `review_logs` | `item.reviewed` |

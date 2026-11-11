@@ -223,3 +223,7 @@ Backups: whichever Postgres host is in use keeps the rows for its backup window.
 ### Export
 
 A learner can ask for their data. `scripts/export-user.mjs <user_id>` writes one zip with a JSON file per table holding that user's rows, the audio files fetched through `core-storage`, and a `README.txt` that names each file in plain words. It is sent to the account email by the owner. In a later phase this becomes a button in `/settings` that produces the same zip.
+
+### Open decision: feedback after account deletion
+
+`feedback.user_id` and `events.user_id` are set to null when a user is deleted. The feedback text, page and context stay in the table without the person attached. That keeps product feedback but may hold personal detail a learner typed into the message. Decide before public beta: keep as is and say so in the privacy notice, or delete a user's feedback rows in the deletion script before deleting the user. Until decided the deletion script should delete them, which is the safer default.
