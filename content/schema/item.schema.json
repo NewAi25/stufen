@@ -4,7 +4,15 @@
   "title": "Learnable item",
   "description": "One line of content/<lang>/items/<level>.jsonl. Items are the things the SRS schedules: vocab, grammar points, chunks and phrases. The payload shape depends on kind.",
   "type": "object",
-  "required": ["key", "kind", "lemma", "gloss_en", "level", "source", "payload"],
+  "required": [
+    "key",
+    "kind",
+    "lemma",
+    "gloss_en",
+    "level",
+    "source",
+    "payload"
+  ],
   "additionalProperties": false,
   "properties": {
     "key": {
@@ -12,120 +20,292 @@
       "pattern": "^[a-z]{2}:(vocab|grammar|chunk|phrase):[a-z0-9][a-z0-9-]*$",
       "description": "Stable key, <lang>:<kind>:<slug>. ASCII only. Umlauts become ae oe ue, sharp s becomes ss."
     },
-    "kind": { "enum": ["vocab", "grammar", "chunk", "phrase"] },
+    "kind": {
+      "enum": [
+        "vocab",
+        "grammar",
+        "chunk",
+        "phrase"
+      ]
+    },
     "lemma": {
       "type": "string",
       "minLength": 1,
       "description": "Display form. Dictionary form for vocab, the chunk or phrase text for chunk and phrase, a short name for grammar."
     },
-    "gloss_en": { "type": "string", "minLength": 1 },
-    "level": { "$ref": "#/$defs/level" },
-    "frequency_rank": { "type": "integer", "minimum": 1, "description": "Rank in the frequency source if known." },
-    "source": { "type": "string", "pattern": "^([a-z0-9][a-z0-9-]*|unverified)$" },
-    "source_note": { "type": "string" },
-    "tags": { "type": "array", "items": { "type": "string" } },
-    "reviewed": { "type": "boolean" },
-    "note": { "type": "string" },
-    "payload": { "type": "object" }
+    "gloss_en": {
+      "type": "string",
+      "minLength": 1
+    },
+    "level": {
+      "$ref": "#/$defs/level"
+    },
+    "frequency_rank": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Rank in the frequency source if known."
+    },
+    "source": {
+      "type": "string",
+      "pattern": "^([a-z0-9][a-z0-9-]*|unverified)$"
+    },
+    "source_note": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "reviewed": {
+      "type": "boolean"
+    },
+    "note": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "object"
+    }
   },
   "oneOf": [
     {
       "properties": {
-        "kind": { "const": "vocab" },
-        "payload": { "$ref": "#/$defs/vocabPayload" }
+        "kind": {
+          "const": "vocab"
+        },
+        "payload": {
+          "$ref": "#/$defs/vocabPayload"
+        }
       }
     },
     {
       "properties": {
-        "kind": { "const": "grammar" },
-        "payload": { "$ref": "#/$defs/grammarPayload" }
+        "kind": {
+          "const": "grammar"
+        },
+        "payload": {
+          "$ref": "#/$defs/grammarPayload"
+        }
       }
     },
     {
       "properties": {
-        "kind": { "const": "chunk" },
-        "payload": { "$ref": "#/$defs/chunkPayload" }
+        "kind": {
+          "const": "chunk"
+        },
+        "payload": {
+          "$ref": "#/$defs/chunkPayload"
+        }
       }
     },
     {
       "properties": {
-        "kind": { "const": "phrase" },
-        "payload": { "$ref": "#/$defs/phrasePayload" }
+        "kind": {
+          "const": "phrase"
+        },
+        "payload": {
+          "$ref": "#/$defs/phrasePayload"
+        }
       }
     }
   ],
   "$defs": {
-    "level": { "enum": ["A1", "A2", "B1", "B2", "C1", "C2"] },
+    "level": {
+      "enum": [
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1",
+        "C2"
+      ]
+    },
     "example": {
       "type": "object",
-      "required": ["text", "gloss_en"],
+      "required": [
+        "text",
+        "gloss_en"
+      ],
       "additionalProperties": false,
       "properties": {
-        "text": { "type": "string", "minLength": 1 },
-        "gloss_en": { "type": "string", "minLength": 1 },
-        "audio": { "type": "string", "description": "Path under content/<lang>/audio/. Optional, TTS is used when absent." }
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "gloss_en": {
+          "type": "string",
+          "minLength": 1
+        },
+        "audio": {
+          "type": "string",
+          "description": "Path under content/<lang>/audio/. Optional, TTS is used when absent."
+        }
       }
     },
     "vocabPayload": {
       "type": "object",
-      "required": ["pos", "examples"],
+      "required": [
+        "pos",
+        "examples"
+      ],
       "additionalProperties": false,
       "properties": {
         "pos": {
-          "enum": ["noun", "verb", "adjective", "adverb", "pronoun", "numeral", "preposition", "conjunction", "particle", "interjection", "determiner", "proper_noun", "other"]
+          "enum": [
+            "noun",
+            "verb",
+            "adjective",
+            "adverb",
+            "pronoun",
+            "numeral",
+            "preposition",
+            "conjunction",
+            "particle",
+            "interjection",
+            "determiner",
+            "proper_noun",
+            "other"
+          ]
         },
-        "gender": { "enum": ["m", "f", "n"], "description": "Nouns only." },
-        "plural": { "type": "string", "description": "Nouns only. Full plural form with article, or the literal string none." },
+        "gender": {
+          "enum": [
+            "m",
+            "f",
+            "n"
+          ],
+          "description": "Nouns only."
+        },
+        "plural": {
+          "type": "string",
+          "description": "Nouns only. Full plural form with article, or the literal string none."
+        },
         "forms": {
           "type": "object",
-          "additionalProperties": { "type": "string" },
+          "additionalProperties": {
+            "type": "string"
+          },
           "description": "Inflected forms keyed by a label the lang box understands, for example 1sg, 2sg, 3sg, 1pl, 2pl, 3pl, past_participle, comparative."
         },
-        "examples": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/example" } },
-        "audio": { "type": "string" },
-        "note": { "type": "string" }
+        "examples": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/example"
+          }
+        },
+        "audio": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        },
+        "plural_only": {
+          "type": "boolean",
+          "description": "True for a noun that exists only in the plural (die Eltern, die Leute). Such a noun has no gender; its plural equals the lemma."
+        }
       }
     },
     "grammarPayload": {
       "type": "object",
-      "required": ["explanation_en", "examples"],
+      "required": [
+        "explanation_en",
+        "examples"
+      ],
       "additionalProperties": false,
       "properties": {
-        "explanation_en": { "type": "string", "minLength": 1 },
-        "explanation_native": { "type": "string" },
-        "pattern": { "type": "string", "description": "Short formula, for example ich bin, du bist, er ist." },
+        "explanation_en": {
+          "type": "string",
+          "minLength": 1
+        },
+        "explanation_native": {
+          "type": "string"
+        },
+        "pattern": {
+          "type": "string",
+          "description": "Short formula, for example ich bin, du bist, er ist."
+        },
         "table": {
           "type": "object",
-          "additionalProperties": { "type": "string" },
+          "additionalProperties": {
+            "type": "string"
+          },
           "description": "Paradigm as label to form."
         },
-        "examples": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/example" } },
-        "sequence_ref": { "type": "string" }
+        "examples": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/example"
+          }
+        },
+        "sequence_ref": {
+          "type": "string"
+        }
       }
     },
     "chunkPayload": {
       "type": "object",
-      "required": ["slot", "examples"],
+      "required": [
+        "slot",
+        "examples"
+      ],
       "additionalProperties": false,
       "description": "A frame with one open slot, for example Ich heiße ... The lemma carries the frame with three dots for the slot.",
       "properties": {
-        "slot": { "type": "string", "minLength": 1, "description": "What fills the slot, in English, for example your name." },
-        "examples": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/example" } },
-        "audio": { "type": "string" },
-        "note": { "type": "string" }
+        "slot": {
+          "type": "string",
+          "minLength": 1,
+          "description": "What fills the slot, in English, for example your name."
+        },
+        "examples": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/example"
+          }
+        },
+        "audio": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
       }
     },
     "phrasePayload": {
       "type": "object",
-      "required": ["register", "examples"],
+      "required": [
+        "register",
+        "examples"
+      ],
       "additionalProperties": false,
       "description": "A complete fixed utterance, for example Wie heißen Sie?",
       "properties": {
-        "register": { "enum": ["formal", "informal", "neutral"] },
-        "reply": { "type": "string", "description": "A typical answer, when the phrase is a question or greeting." },
-        "examples": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/example" } },
-        "audio": { "type": "string" },
-        "note": { "type": "string" }
+        "register": {
+          "enum": [
+            "formal",
+            "informal",
+            "neutral"
+          ]
+        },
+        "reply": {
+          "type": "string",
+          "description": "A typical answer, when the phrase is a question or greeting."
+        },
+        "examples": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/example"
+          }
+        },
+        "audio": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
       }
     }
   }

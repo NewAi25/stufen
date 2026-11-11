@@ -99,7 +99,7 @@ The validator enforces all of these. A pack that breaks one does not install.
 | Keys are unique across the whole pack | all files |
 | A descriptor's `level` equals the level in its file name, and its `key` equals `<code>:cando:<code field>` | `candos/` |
 | An item's `level` equals the level in its file name, and its key prefix matches its `kind` | `items/` |
-| A vocab item with `pos` `noun` has `gender` and `plural` | `items/` |
+| A vocab item with `pos` `noun` has `gender` and `plural`, or `plural_only` true and no `gender` | `items/` |
 | Every `source` field is a source id from `pack.json` or the word `unverified` | everywhere |
 | Unit key, `ordinal`, `slug` and `level` agree with the directory path | `units/` |
 | Every file listed in `unit.lessons` exists, and every `lesson-NN.json` on disk is listed | `units/` |
@@ -181,7 +181,7 @@ Payload: `pos` (required), `gender` and `plural` (required for nouns), `forms` (
 }
 ```
 
-For verbs, `forms` carries the paradigm the grader needs: `1sg`, `2sg`, `3sg`, `1pl`, `2pl`, `3pl`, `past_participle`. The `lang-<code>` box knows what the labels mean. Adjectives may carry `comparative` and `superlative`. A noun with no plural writes `"plural": "none"`.
+For verbs, `forms` carries the paradigm the grader needs: `1sg`, `2sg`, `3sg`, `1pl`, `2pl`, `3pl`, `past_participle`. The `lang-<code>` box knows what the labels mean. Adjectives may carry `comparative` and `superlative`. A noun with no plural writes `"plural": "none"`. A noun that exists only in the plural (die Eltern, die Leute) writes `"plural_only": true`, gives no `gender`, and repeats the lemma as `plural`.
 
 ### grammar
 

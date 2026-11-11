@@ -512,7 +512,11 @@ function validatePack(packDir, schemas, opts) {
         if (!sourceOk(it.source))
           errors.push(`${at}.source: ${it.source} is not in pack.json sources`);
         if (it.kind === 'vocab' && isObject(it.payload) && it.payload.pos === 'noun') {
-          if (!it.payload.gender) errors.push(`${at}.payload: noun needs gender`);
+          if (it.payload.plural_only === true) {
+            if (it.payload.gender) errors.push(`${at}.payload: a plural only noun has no gender`);
+          } else if (!it.payload.gender) {
+            errors.push(`${at}.payload: noun needs gender (or plural_only true)`);
+          }
           if (!it.payload.plural)
             errors.push(`${at}.payload: noun needs plural (or the string none)`);
         }
