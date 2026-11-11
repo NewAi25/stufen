@@ -9,6 +9,7 @@ import { describe, expect, it } from 'vitest';
 const testsDir = path.dirname(fileURLToPath(import.meta.url));
 const srcDir = path.join(testsDir, '..', 'src');
 const componentsDir = path.join(srcDir, 'components');
+const exercisesDir = path.join(srcDir, 'exercises');
 
 const DIRECTIVE = /^['"]use client['"];?$/;
 
@@ -49,10 +50,18 @@ const componentFiles = fs
   .filter((name) => /\.tsx?$/.test(name))
   .sort();
 
+const exerciseFiles = fs
+  .readdirSync(exercisesDir)
+  .filter((name) => /.tsx?$/.test(name))
+  .sort();
+
 /** The files that must be client modules whatever the import scan says. */
 const INTERACTIVE = [
+  'AudioButton.tsx',
   'Choice.tsx',
+  'CorrectionInline.tsx',
   'FeedbackFab.tsx',
+  'LevelMap.tsx',
   'RatingInput.tsx',
   'Sheet.tsx',
   'TextArea.tsx',
@@ -82,8 +91,35 @@ describe('client directives', () => {
     const plain = componentFiles.filter(
       (name) => !startsWithDirective(read(path.join(componentsDir, name))),
     );
-    expect(plain).toEqual(['Button.tsx', 'Card.tsx', 'Progress.tsx', 'cx.ts']);
+    expect(plain).toEqual(['Button.tsx', 'Card.tsx', 'LevelBadge.tsx', 'Progress.tsx', 'cx.ts']);
     for (const name of plain) expect(needsClient(read(path.join(componentsDir, name)))).toBe(false);
+  });
+
+  // Row P1-18: the exercise renderers live in src/exercises.
+  const RENDERERS = [
+    'ClozeExercise.tsx',
+    'DictationExercise.tsx',
+    'ExerciseRenderer.tsx',
+    'FlashcardExercise.tsx',
+    'ListenAnswerExercise.tsx',
+    'MatchPairsExercise.tsx',
+    'MultipleChoiceExercise.tsx',
+    'OrderWordsExercise.tsx',
+    'Questions.tsx',
+    'ReadAnswerExercise.tsx',
+  ];
+
+  it.each(RENDERERS)('exercises/%s is a client module', (name) => {
+    expect(exerciseFiles).toContain(name);
+    expect(startsWithDirective(read(path.join(exercisesDir, name)))).toBe(true);
+  });
+
+  it('an exercise file without the directive uses no hook and no portal', () => {
+    const plain = exerciseFiles.filter(
+      (name) => !startsWithDirective(read(path.join(exercisesDir, name))),
+    );
+    expect(plain).toEqual(['Shell.tsx', 'guards.ts', 'shuffle.ts', 'types.ts', 'values.ts']);
+    for (const name of plain) expect(needsClient(read(path.join(exercisesDir, name)))).toBe(false);
   });
 
   it('keeps the entry and the tokens free of the directive so tokens work on the server', () => {

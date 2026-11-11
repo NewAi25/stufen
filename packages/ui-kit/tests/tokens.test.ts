@@ -246,20 +246,47 @@ describe('styles.css stays in step with tokens.ts', () => {
     'st-feedback-fab',
     'st-feedback',
     'st-feedback__error',
+    'st-level-badge',
+    'st-audio',
+    'st-audio__button',
+    'st-correction',
+    'st-correction__mark',
+    'st-exercise',
+    'st-exercise__feedback',
+    'st-cloze__input',
+    'st-match',
+    'st-match__item',
+    'st-order',
+    'st-order__word',
+    'st-flashcard',
+    'st-flashcard__rating',
+    'st-passage',
+    'st-questions',
+    'st-transcript',
+    'st-level-map',
+    'st-level-map__toggle',
+    'st-level-map__table',
   ])('styles the %s class', (name) => {
     expect(css).toContain(`.${name} {`);
   });
 
-  it.each(['st-feedback-fab', 'st-sheet__close', 'st-rating__option'])(
-    'gives %s a touch target of at least 44 px',
-    (name) => {
-      const start = css.indexOf(`.${name} {`);
-      const rule = css.slice(start, css.indexOf('}', start));
-      expect(tokens.target.min).toBeGreaterThanOrEqual(44);
-      expect(rule).toContain('min-width: var(--st-target-min);');
-      expect(rule).toContain('min-height: var(--st-target-min);');
-    },
-  );
+  it.each([
+    'st-feedback-fab',
+    'st-sheet__close',
+    'st-rating__option',
+    'st-audio__button',
+    'st-cloze__input',
+    'st-match__item',
+    'st-order__word',
+    'st-flashcard__rating',
+    'st-level-map__toggle',
+  ])('gives %s a touch target of at least 44 px', (name) => {
+    const start = css.indexOf(`.${name} {`);
+    const rule = css.slice(start, css.indexOf('}', start));
+    expect(tokens.target.min).toBeGreaterThanOrEqual(44);
+    expect(rule).toContain('min-width: var(--st-target-min);');
+    expect(rule).toContain('min-height: var(--st-target-min);');
+  });
 
   it('fixes the feedback fab to the bottom right', () => {
     const start = css.indexOf('.st-feedback-fab {');
@@ -302,6 +329,15 @@ describe('contrast, WCAG AA 4.5 to 1', () => {
     ['warning', 'bg', 'character count near the limit, on the page'],
     ['onAccent', 'accent', 'feedback fab and selected rating'],
     ['textMuted', 'surface', 'sheet description and rating scale words'],
+    ['success', 'bg', 'correct mark beside a cloze gap or a pair'],
+    ['success', 'surface', 'correct mark on a card'],
+    ['success', 'successSoft', 'error category label in a correction'],
+    ['text', 'warningSoft', 'partly correct feedback text'],
+    ['text', 'surface2', 'level badge, paired item, transcript'],
+    ['textMuted', 'surface2', 'partner text on a paired item'],
+    ['accent', 'surface', 'audio button'],
+    ['accent', 'accentSoft', 'audio button while playing'],
+    ['textMuted', 'accentSoft', 'shortcut key on a placed word'],
   ];
 
   describe.each(THEMES)('%s theme', (theme) => {

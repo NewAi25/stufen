@@ -2,6 +2,30 @@
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-11-11
+
+### Added
+- Exercise renderers for the eight deterministic types, one file each under `src/exercises/`: `MultipleChoiceExercise`, `ClozeExercise`, `MatchPairsExercise`, `OrderWordsExercise`, `FlashcardExercise`, `ReadAnswerExercise`, `ListenAnswerExercise` and `DictationExercise`. Every renderer is controlled and takes the same props: `payload`, `value`, `onChange`, `disabled`, `result`, `labels`, `lang`, `promptLang`, `instruction` and `className`. `value` is the response the grader of that type expects. A renderer never grades.
+- `ExerciseRenderer`: takes `type` and the common props and renders the matching renderer. A type without a renderer, or a payload that does not fit its type, shows a calm message and never throws. `RENDERABLE_TYPES` lists the eight type ids.
+- `emptyValue(type, payload)` and `isComplete(type, payload, value)`, so the host can hold a response in state and knows when the Check button may be enabled.
+- `MultipleChoiceExercise`: the question, the options through `Choice` with number keys, and after a result the words "Correct" and "Not quite" on the options.
+- `ClozeExercise`: the sentence with one inline input per `___` gap, each named "Blank 1 of N", with the hint of the blank under it. After a result each gap says "Correct", or "Not quite" with the expected answer.
+- `MatchPairsExercise`: two columns of buttons. Pick one item on each side to pair them, in either order. Arrow keys move within and between the columns, a number then a letter picks a pair, picking a paired item or pressing Backspace undoes a pair. The right column is shuffled the same way on the server and in the browser. After a result every pair is listed with its mark and the right partner.
+- `OrderWordsExercise`: a word bank and an answer line. A click or Enter moves a word to the line and back, the left and right arrow keys reorder the focused word in the line, number keys append a word and Backspace takes the last one back. After a wrong answer the correct sentence is shown with the first differing word underlined.
+- `FlashcardExercise`: the front, a "Show answer" button (Space), then the back, the hint, an audio button and four rating buttons with keys 1 to 4.
+- `ReadAnswerExercise`: the passage with `lang`, then the questions. `ListenAnswerExercise`: an audio button, the questions, and the transcript behind a "Show transcript" button once there is a result. A question with options is a `Choice`, a question without is a short `TextInput`.
+- `DictationExercise`: an audio button, a text area with `lang` and a replay counter. The number of replays goes into the value as `replays`. The text that was spoken is shown after a result.
+- `AudioButton`: plays `src` through an audio element, or speaks `text` with `window.speechSynthesis` when there is no `src` or the file fails. States `idle`, `playing` and `error` on `data-state`, an accessible name that changes between "Play audio" and "Stop audio", `rate` for slow playback, `shortcut` for Space on the page and Ctrl plus Space in a text field, and a visible message when neither a file nor speech synthesis can play.
+- `CorrectionInline`: a learner text with corrections `{ span, errorType, correction, note? }` marked in place. Each mark shows the original, the error category in words and the corrected form, is a tab stop, and is named with the category and the correction. Notes and corrections whose span is not in the text are listed under it.
+- `LevelBadge`: a small badge for a CEFR level with the accessible name "Level B1". Markup only, no directive.
+- `LevelMap`: the ladder A1 to C2. Each level is a button with `aria-expanded` that opens the official descriptor text beside an evidence table per descriptor (state, attempts, exercise types, best production score). The status is in words: "Reached", "Working towards B1", "Not started". The checkpoint button is enabled only when the checkpoint is `available`.
+- Local types for the payloads and responses of the eight types, because the kit may not import `core-exercise-types`: `ExercisePayloadMap`, `ExerciseValueMap`, `ExerciseResult`, `ExerciseRendererProps` and one payload and one value type per exercise type.
+- `src/styles.css`: classes for `st-level-badge`, `st-audio`, `st-correction`, `st-exercise`, `st-cloze`, `st-match`, `st-order`, `st-flashcard`, `st-passage`, `st-questions`, `st-transcript`, `st-dictation` and `st-level-map`, all from the existing variables. Every new control is at least 44 px, joins the shared focus ring and drops its transition under reduced motion.
+- Tests: one file per new component and per renderer, `tests/exercise-values.test.ts`, `tests/exercise-renderer.test.tsx`, and `tests/exercises-real-content.test.tsx`, which loads lessons 1 and 2 of A1 unit 1 and renders every exercise of the eight types through `ExerciseRenderer`. `tests/gallery.test.tsx` gains a second gallery with every renderer and the four new components in light and in dark. `tests/tokens.test.ts` checks the new classes, touch targets and colour pairs. `tests/client-directives.test.ts` now also reads `src/exercises`.
+
+### Not changed
+- No existing component changed its props or its markup.
+
 ## [0.3.0] - 2026-11-06
 
 ### Added

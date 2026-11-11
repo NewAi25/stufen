@@ -1,15 +1,24 @@
 // @vitest-environment jsdom
 // Acceptance for P0-14 and P0-21: all ten components render in light and in dark.
+// Row P1-18 adds a second gallery: the eight exercise renderers, ExerciseRenderer,
+// AudioButton, CorrectionInline, LevelBadge and LevelMap, in light and in dark.
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { useState } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
+  AudioButton,
   Button,
   Card,
   Choice,
+  CorrectionInline,
+  emptyValue,
+  ExerciseRenderer,
   FeedbackFab,
+  LevelBadge,
+  LevelMap,
   Progress,
   RatingInput,
+  RENDERABLE_TYPES,
   Sheet,
   TextArea,
   TextInput,
@@ -17,7 +26,7 @@ import {
   ToastProvider,
   useToast,
 } from '../src/index';
-import type { Theme } from '../src/index';
+import type { ExerciseValue, RenderableExerciseType, Theme } from '../src/index';
 
 // Role queries are slow in jsdom, and slower still while other boxes build on
 // the same machine. The default 5 s is too tight for the first test in a file.
@@ -149,5 +158,142 @@ describe('gallery', () => {
       within(feedback).getByRole('radiogroup', { name: 'How is Stufen so far?' }),
     ).toBeTruthy();
     expect(within(feedback).getByRole('button', { name: 'Send' })).toBeTruthy();
+  });
+});
+
+const QUESTION = { question: 'Wo wohnt Max?', options: ['in Wien', 'in Berlin'], answer_index: 1 };
+
+const EXERCISES: Record<RenderableExerciseType, unknown> = {
+  multiple_choice: { question: 'Which greeting fits 7 pm?', options: ['Guten Tag', 'Guten Abend'] },
+  cloze: { text: 'Ich ___ Anna.', blanks: [{ answer: 'bin', hint: 'sein' }] },
+  match_pairs: {
+    pairs: [
+      { left: 'Hallo', right: 'hello' },
+      { left: 'Danke', right: 'thank you' },
+    ],
+  },
+  order_words: { words: ['heiße', 'Maria.', 'Ich'], answer: 'Ich heiße Maria.' },
+  flashcard: { front: 'die Stadt', back: 'the city', hint: 'Plural: die Städte' },
+  read_answer: { text: 'Max wohnt in Berlin.', questions: [QUESTION] },
+  listen_answer: { transcript: 'Max wohnt in Berlin.', questions: [QUESTION] },
+  dictation: { text: 'Ich wohne in Hamburg.' },
+};
+
+function Exercise({ type }: { type: RenderableExerciseType }) {
+  const payload = EXERCISES[type];
+  const [value, setValue] = useState<ExerciseValue | null>(() => emptyValue(type, payload));
+  return (
+    <ExerciseRenderer
+      type={type}
+      payload={payload}
+      value={value}
+      onChange={setValue}
+      lang="de"
+      instruction={`Try ${type}.`}
+    />
+  );
+}
+
+function ExerciseGallery({ theme }: { theme: Theme }) {
+  return (
+    <div data-theme={theme} data-testid="exercise-gallery">
+      {RENDERABLE_TYPES.map((type) => (
+        <Exercise key={type} type={type} />
+      ))}
+      <ExerciseRenderer type="hologram" payload={{}} value={null} onChange={() => undefined} />
+      <LevelBadge level="B1" />
+      <AudioButton src="/audio/hallo.mp3" labels={{ play: 'Play the word' }} />
+      <CorrectionInline
+        lang="de"
+        text="Ich trinke ein Kaffee."
+        corrections={[{ span: 'ein Kaffee', errorType: 'case', correction: 'einen Kaffee' }]}
+      />
+      <LevelMap
+        levels={[
+          {
+            level: 'A1',
+            status: 'working_towards',
+            descriptorText: 'Can use familiar everyday expressions.',
+            masteredCount: 1,
+            totalCount: 2,
+            checkpoint: 'available',
+            descriptors: [
+              {
+                id: 'a',
+                code: 'A1.REA.01',
+                text: 'Reads short notices',
+                skill: 'reading',
+                mastered: true,
+                evidenceCount: 6,
+                exerciseTypes: ['cloze', 'read_answer'],
+                bestProductionScore: null,
+              },
+            ],
+          },
+        ]}
+      />
+    </div>
+  );
+}
+
+describe('exercise gallery', () => {
+  it.each(THEMES)('renders every renderer and the four new components in the %s theme', (theme) => {
+    render(<ExerciseGallery theme={theme} />);
+    const gallery = screen.getByTestId('exercise-gallery');
+    expect(gallery.getAttribute('data-theme')).toBe(theme);
+    const inside = within(gallery);
+
+    // One frame per type, each with its instruction line
+    for (const type of RENDERABLE_TYPES) {
+      expect(gallery.querySelector(`.st-exercise--${type}`)).toBeTruthy();
+      expect(inside.getByText(`Try ${type}.`)).toBeTruthy();
+    }
+    // MultipleChoiceExercise
+    fireEvent.click(inside.getByRole('radio', { name: 'Guten Abend' }));
+    expect(inside.getByRole('radio', { name: 'Guten Abend' }).getAttribute('aria-checked')).toBe(
+      'true',
+    );
+    // ClozeExercise
+    const blank = inside.getByRole<HTMLInputElement>('textbox', { name: 'Blank 1 of 1' });
+    fireEvent.change(blank, { target: { value: 'bin' } });
+    expect(blank.value).toBe('bin');
+    // MatchPairsExercise
+    expect(inside.getByRole('group', { name: 'Left column' })).toBeTruthy();
+    expect(inside.getByRole('group', { name: 'Right column' })).toBeTruthy();
+    // OrderWordsExercise
+    const bank = inside.getByRole('group', { name: 'Word bank' });
+    fireEvent.click(within(bank).getAllByRole('button')[2] as HTMLElement);
+    const line = inside.getByRole('group', { name: 'Your sentence' });
+    expect(within(line).getAllByRole('button')).toHaveLength(1);
+    // FlashcardExercise
+    fireEvent.click(inside.getByRole('button', { name: 'Show answer' }));
+    expect(inside.getByText('the city')).toBeTruthy();
+    expect(inside.getByRole('group', { name: 'How well did you know it?' })).toBeTruthy();
+    // ReadAnswerExercise and ListenAnswerExercise
+    expect(inside.getByRole('region', { name: 'Text' }).getAttribute('lang')).toBe('de');
+    expect(inside.getAllByRole('radiogroup', { name: 'Wo wohnt Max?' })).toHaveLength(2);
+    // DictationExercise
+    expect(inside.getByRole('textbox', { name: 'Type what you hear' }).getAttribute('lang')).toBe(
+      'de',
+    );
+    // ExerciseRenderer fallback
+    expect(inside.getByRole('note')).toBeTruthy();
+    // LevelBadge
+    expect(inside.getByRole('img', { name: 'Level B1' })).toBeTruthy();
+    // AudioButton
+    expect(
+      inside.getByRole('button', { name: 'Play the word' }).classList.contains('st-audio__button'),
+    ).toBe(true);
+    // CorrectionInline
+    expect(
+      inside.getByRole('group', { name: 'Case. "ein Kaffee" should be "einen Kaffee".' }).tabIndex,
+    ).toBe(0);
+    // LevelMap
+    const map = inside.getByRole('list', { name: 'Level map' });
+    expect(within(map).getByText('Working towards A1')).toBeTruthy();
+    expect(within(map).getByRole('table', { name: 'Evidence for A1' })).toBeTruthy();
+    expect(
+      within(map).getByRole<HTMLButtonElement>('button', { name: 'Take A1 checkpoint' }).disabled,
+    ).toBe(false);
   });
 });

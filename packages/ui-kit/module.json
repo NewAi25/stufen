@@ -1,7 +1,7 @@
 {
   "name": "@stufen/ui-kit",
   "kind": "surface",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [
@@ -20,6 +20,21 @@
     "RatingInput",
     "Sheet",
     "FeedbackFab (open state can be controlled by the host with open and onOpenChange)",
-    "'use client' directive on Choice, FeedbackFab, RatingInput, Sheet, TextArea, TextInput and Toast, so a React Server Component can import them from the entry"
+    "LevelBadge",
+    "AudioButton (audio element or speech synthesis, states idle, playing and error)",
+    "CorrectionInline",
+    "LevelMap",
+    "ExerciseRenderer and RENDERABLE_TYPES (multiple_choice, cloze, match_pairs, order_words, flashcard, read_answer, listen_answer, dictation)",
+    "MultipleChoiceExercise",
+    "ClozeExercise",
+    "MatchPairsExercise",
+    "OrderWordsExercise",
+    "FlashcardExercise",
+    "ReadAnswerExercise",
+    "ListenAnswerExercise",
+    "DictationExercise",
+    "emptyValue and isComplete for the eight renderable exercise types",
+    "local payload and response types for the eight renderable exercise types (ExercisePayloadMap, ExerciseValueMap, ExerciseResult, ExerciseRendererProps)",
+    "'use client' directive on every interactive component and every exercise renderer, so a React Server Component can import them from the entry"
   ]
 }
