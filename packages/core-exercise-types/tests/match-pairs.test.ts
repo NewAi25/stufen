@@ -18,7 +18,7 @@ describe('match_pairs definition', () => {
     expect(matchPairsType.id).toBe('match_pairs');
     expect(matchPairsType.needsAi).toBe(false);
     expect(matchPairsType.rendererKey).toBe('match_pairs');
-    expect(matchPairsType.skill).toEqual(['vocabulary']);
+    expect(matchPairsType.skill).toEqual(['vocabulary', 'grammar', 'reading']);
   });
 });
 

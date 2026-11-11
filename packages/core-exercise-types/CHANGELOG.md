@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-12
+
+### Changed
+- `match_pairs` can evidence vocabulary, grammar and reading. It never evidences speaking or writing.
+- The real content test now covers every lesson file under `content/de/units`, so a new lesson is checked as soon as it exists.
+
 ## [0.1.0] - 2026-11-06
 
 ### Added

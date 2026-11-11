@@ -79,7 +79,9 @@ export function gradeMatchPairs(payload: unknown, response: unknown): GradeResul
 
 export const matchPairsType: ExerciseTypeDefinition = {
   id: 'match_pairs',
-  skill: ['vocabulary'],
+  // Matching can evidence word meaning, a grammar form (noun and plural) and
+  // recognising words on signs. It never evidences speaking or writing.
+  skill: ['vocabulary', 'grammar', 'reading'],
   payloadSchema: matchPairsPayloadSchema,
   needsAi: false,
   rendererKey: 'match_pairs',

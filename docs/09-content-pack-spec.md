@@ -275,7 +275,7 @@ Exercises live inline in the lesson file. Common fields: `key`, `ordinal`, `type
 |------|---------------|-----------|----------|
 | `multiple_choice` | any | exact index | no |
 | `cloze` | grammar, vocabulary | normalised string compare, `accept` list, error classification from `lang-<code>` | no |
-| `match_pairs` | vocabulary | all pairs correct | no |
+| `match_pairs` | vocabulary, grammar, reading | all pairs correct | no |
 | `order_words` | grammar | token sequence compare | no |
 | `translate` | writing, mediation | reference list first, then AI for equivalents | yes |
 | `dictation` | listening | normalised string compare | no |
@@ -284,6 +284,8 @@ Exercises live inline in the lesson file. Common fields: `key`, `ordinal`, `type
 | `write_free` | writing | AI rubric, 0 to 5 per criterion | yes |
 | `speak_prompt` | spoken_production, spoken_interaction | transcript similarity for `read_aloud`, AI rubric for `free` | yes for `free` |
 | `flashcard` | vocabulary | self rated 1 to 4, feeds the SRS directly | no |
+
+The skill of an exercise must be one its type can evidence; a test in `core-exercise-types` checks every lesson. Matching, ordering and gap filling are scaffolding: they never carry the skill `spoken_interaction`, `spoken_production` or `writing`, even when the sentences come from a dialogue. Only `translate`, `write_free` and `speak_prompt` evidence production.
 
 ### multiple_choice
 

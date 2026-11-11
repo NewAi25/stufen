@@ -1,8 +1,10 @@
-// Proves the graders fit the real German content. Loads the two lesson files
-// of unit A1 01, checks every deterministic exercise payload against its
-// type's schema, and grades a right answer built from the payload.
+// Proves the graders fit the real German content. Loads every lesson file of
+// every unit under content/de/units, checks every deterministic exercise
+// payload against its type's schema, and grades a right answer built from the
+// payload. A new lesson is covered as soon as its file exists.
 
 import fs from 'node:fs';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import type { ExerciseTypeId, Skill } from '@stufen/contracts';
@@ -17,10 +19,21 @@ interface PackExercise {
   payload: Record<string, unknown>;
 }
 
-const unitDir = new URL('../../../content/de/units/A1/01-hallo/', import.meta.url);
+const unitsDir = fileURLToPath(new URL('../../../content/de/units/', import.meta.url));
+
+/** Every lesson-*.json under content/de/units, in a stable order. */
+function lessonFiles(dir: string): string[] {
+  const found: string[] = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) found.push(...lessonFiles(full));
+    else if (/^lesson-\d+\.json$/.test(entry.name)) found.push(full);
+  }
+  return found.sort();
+}
 
 function loadExercises(file: string): PackExercise[] {
-  const raw: unknown = JSON.parse(fs.readFileSync(fileURLToPath(new URL(file, unitDir)), 'utf8'));
+  const raw: unknown = JSON.parse(fs.readFileSync(file, 'utf8'));
   if (!isRecord(raw) || !Array.isArray(raw.exercises)) throw new Error(`${file} has no exercises`);
   return raw.exercises as PackExercise[];
 }
@@ -60,11 +73,11 @@ function rightResponse(exercise: PackExercise): unknown {
 const registry = createExerciseTypeRegistry();
 registerDeterministicTypes(registry);
 
-const all = [...loadExercises('lesson-01.json'), ...loadExercises('lesson-02.json')];
+const all = lessonFiles(unitsDir).flatMap(loadExercises);
 const deterministic = all.filter((exercise) => registry.hasType(exercise.type));
 const cases = deterministic.map((exercise) => [exercise.key, exercise.type, exercise] as const);
 
-describe('real content pack, unit A1 01', () => {
+describe('real content pack, every lesson', () => {
   it('has at least one exercise of each of the eight deterministic types', () => {
     const seen = new Set(deterministic.map((exercise) => exercise.type));
     expect([...seen].sort()).toEqual(

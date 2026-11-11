@@ -49,7 +49,7 @@ Each definition is also exported on its own, under the name in the first column.
 |-----------------|--------|------------------------------|--------------|
 | `multiple_choice` `multipleChoiceType` | all eight | `{ selected: number \| number[] }` zero based option index | Correct when the chosen set equals the correct set. Score 1 or 0 |
 | `cloze` `clozeType` | grammar, vocabulary | `{ answers: string[] }` one per blank, in order | Each blank is compared after `languageRules.normalize` against `answer` and `accept`. Score is the share of blanks right. Correct when all are. Wrong blanks add `classifyError` results to `errorTypes` |
-| `match_pairs` `matchPairsType` | vocabulary | `{ pairs: { left: string; right: string }[] }` | Score is the share of pairs joined correctly. Correct when all are |
+| `match_pairs` `matchPairsType` | vocabulary, grammar, reading | `{ pairs: { left: string; right: string }[] }` | Score is the share of pairs joined correctly. Correct when all are |
 | `order_words` `orderWordsType` | grammar | `{ order: string[] }` the tokens as placed | Correct only on an exact match with `answer` or an `accept` entry, after normalising spaces. Score is the share of words in the right position against the closest accepted order. `errorTypes` is `['word_order']` when wrong |
 | `flashcard` `flashcardType` | vocabulary | `{ rating: 'again' \| 'hard' \| 'good' \| 'easy' }` | Self rated. Correct unless `again`. Score 0, 0.6, 0.8, 1 |
 | `read_answer` `readAnswerType` | reading | `{ answers: (number \| string)[] }` one per question | Option question: the index must equal `answer_index`. Short answer question: exact match after normalising against `answer` and `accept`. Score is the share of questions right. Correct when all are |
