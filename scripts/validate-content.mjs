@@ -536,6 +536,10 @@ function validatePack(packDir, schemas, opts) {
   let lessonCount = 0;
   let exerciseCount = 0;
   const endingErrors = [];
+  // Introduction order: an item is introduced once, in the lesson that first
+  // uses it or an earlier one. Lessons are read in learning order.
+  const introduced = new Set();
+  const orderErrors = [];
 
   if (!fs.existsSync(unitDir)) {
     report.fail('units/', 'directory missing');
@@ -653,6 +657,8 @@ function validatePack(packDir, schemas, opts) {
           for (const k of lesson.introduces_item_ids || []) {
             if (!items.has(k)) e.push(`introduces_item_ids: ${k} does not exist`);
             else items.get(k).used = true;
+            if (introduced.has(k)) orderErrors.push(`${llabel}: ${k} is introduced a second time`);
+            introduced.add(k);
           }
 
           // Exercises
@@ -679,6 +685,8 @@ function validatePack(packDir, schemas, opts) {
             for (const k of ex.item_ids) {
               if (!items.has(k)) e.push(`${xat}: item_ids ${k} does not exist`);
               else items.get(k).used = true;
+              if (items.has(k) && !introduced.has(k))
+                orderErrors.push(`${llabel} ${xat}: uses ${k} before a lesson introduces it`);
             }
             e.push(...checkPayload(ex, xat));
           });
@@ -706,6 +714,12 @@ function validatePack(packDir, schemas, opts) {
       `${unitCount} units end with production then review`,
     );
   else report.warn('unit ending rule', 'skipped, pack.json strictUnitEnding is false');
+
+  report.fromErrors(
+    'introduction order',
+    orderErrors.slice(0, 20),
+    'every item is introduced once, before or in the lesson that first uses it',
+  );
 
   // 7. Coverage
   const untargeted = [...candos.entries()].filter(([, v]) => !v.targeted).map(([k]) => k);

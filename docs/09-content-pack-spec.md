@@ -100,6 +100,7 @@ The validator enforces all of these. A pack that breaks one does not install.
 | A descriptor's `level` equals the level in its file name, and its `key` equals `<code>:cando:<code field>` | `candos/` |
 | An item's `level` equals the level in its file name, and its key prefix matches its `kind` | `items/` |
 | A vocab item with `pos` `noun` has `gender` and `plural`, or `plural_only` true and no `gender` | `items/` |
+| An item is listed in `introduces_item_ids` of exactly one lesson, and that lesson is the first one that uses it or an earlier one | lessons |
 | Every `source` field is a source id from `pack.json` or the word `unverified` | everywhere |
 | Unit key, `ordinal`, `slug` and `level` agree with the directory path | `units/` |
 | Every file listed in `unit.lessons` exists, and every `lesson-NN.json` on disk is listed | `units/` |
