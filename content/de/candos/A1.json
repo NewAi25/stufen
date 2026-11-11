@@ -26,7 +26,27 @@
     "skill": "listening",
     "text_en": "Can understand numbers, prices and times given slowly and clearly.",
     "source": "cefr-cv-2020",
-    "source_note": "Listening to announcements and instructions, A1.",
+    "source_note": "Understanding announcements and instructions, A1.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.LIS.04",
+    "code": "A1.LIS.04",
+    "level": "A1",
+    "skill": "listening",
+    "text_en": "Can understand instructions spoken to them slowly and carefully and can follow short, simple directions, for example being told where to sit or which room to go to.",
+    "source": "cefr-cv-2020",
+    "source_note": "Understanding announcements and instructions, A1. The two examples are this pack's, from the A1 table in docs/14.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.LIS.05",
+    "code": "A1.LIS.05",
+    "level": "A1",
+    "skill": "listening",
+    "text_en": "Can pick out concrete information such as places and times from short recordings on familiar everyday topics, as long as they are spoken very slowly and clearly.",
+    "source": "cefr-cv-2020",
+    "source_note": "Understanding audio (or signed) media and recordings, A1.",
     "reviewed": false
   },
   {
@@ -60,6 +80,26 @@
     "reviewed": false
   },
   {
+    "key": "de:cando:A1.REA.04",
+    "code": "A1.REA.04",
+    "level": "A1",
+    "skill": "reading",
+    "text_en": "Can find and understand simple, important information in advertisements, leaflets, brochures and event programmes, such as what is on offer, what it costs, the date, the place and departure times.",
+    "source": "cefr-cv-2020",
+    "source_note": "Reading for orientation, A1.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.REA.05",
+    "code": "A1.REA.05",
+    "level": "A1",
+    "skill": "reading",
+    "text_en": "Can get an idea of the content of simple informational material and short, simple descriptions, especially when there are pictures to help.",
+    "source": "cefr-cv-2020",
+    "source_note": "Reading for information and argument, A1.",
+    "reviewed": false
+  },
+  {
     "key": "de:cando:A1.SPP.01",
     "code": "A1.SPP.01",
     "level": "A1",
@@ -77,6 +117,26 @@
     "text_en": "Can describe themselves, what they do and where they live.",
     "source": "cefr-cv-2020",
     "source_note": "Sustained monologue: describing experience, A1.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.SPP.03",
+    "code": "A1.SPP.03",
+    "level": "A1",
+    "skill": "spoken_production",
+    "text_en": "Can describe simple aspects of their everyday life in a series of simple sentences, using simple words and basic phrases, when they have had time to prepare.",
+    "source": "cefr-cv-2020",
+    "source_note": "Sustained monologue: describing experience, A1.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.SPP.04",
+    "code": "A1.SPP.04",
+    "level": "A1",
+    "skill": "spoken_production",
+    "text_en": "Can name an object and say what shape and colour it is while showing it to someone, using basic words, phrases and set expressions, when they have had time to prepare.",
+    "source": "cefr-cv-2020",
+    "source_note": "Sustained monologue: giving information, A1.",
     "reviewed": false
   },
   {
@@ -110,6 +170,26 @@
     "reviewed": false
   },
   {
+    "key": "de:cando:A1.SPI.04",
+    "code": "A1.SPI.04",
+    "level": "A1",
+    "skill": "spoken_interaction",
+    "text_en": "Can ask people for things and give people things, ask for food and drink with basic expressions, and handle numbers, quantities, cost and time.",
+    "source": "cefr-cv-2020",
+    "source_note": "Obtaining goods and services, A1. Three A1 descriptors of this scale joined into one.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.SPI.05",
+    "code": "A1.SPI.05",
+    "level": "A1",
+    "skill": "spoken_interaction",
+    "text_en": "Can tell a health professional in simple words what the problem is and answer simple questions such as whether something hurts, even if they need gestures and body language to get the message across.",
+    "source": "cefr-cv-2020",
+    "source_note": "Interviewing and being interviewed, A1.",
+    "reviewed": false
+  },
+  {
     "key": "de:cando:A1.WRI.01",
     "code": "A1.WRI.01",
     "level": "A1",
@@ -130,13 +210,53 @@
     "reviewed": false
   },
   {
+    "key": "de:cando:A1.WRI.03",
+    "code": "A1.WRI.03",
+    "level": "A1",
+    "skill": "writing",
+    "text_en": "Can write a short, very simple message, for example a text message, to a friend to pass on a piece of information or to ask a question.",
+    "source": "cefr-cv-2020",
+    "source_note": "Correspondence, A1.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.WRI.04",
+    "code": "A1.WRI.04",
+    "level": "A1",
+    "skill": "writing",
+    "text_en": "Can leave a simple note that says, for instance, where they have gone or what time they will be back.",
+    "source": "cefr-cv-2020",
+    "source_note": "Notes, messages and forms, A1.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.MED.01",
+    "code": "A1.MED.01",
+    "level": "A1",
+    "skill": "mediation",
+    "text_en": "Can pass on in one language simple, predictable information about times and places that was given in short, simple statements in another language.",
+    "source": "cefr-cv-2020",
+    "source_note": "Relaying specific information in speech or sign, A1.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.MED.02",
+    "code": "A1.MED.02",
+    "level": "A1",
+    "skill": "mediation",
+    "text_en": "Can pass on in one language the simple, predictable information given in short, very simple signs, notices, posters and programmes written in another language.",
+    "source": "cefr-cv-2020",
+    "source_note": "Processing text in speech or sign, A1.",
+    "reviewed": false
+  },
+  {
     "key": "de:cando:A1.GRA.01",
     "code": "A1.GRA.01",
     "level": "A1",
     "skill": "grammar",
     "text_en": "Uses the personal pronouns with sein and haben in the present tense.",
-    "source": "profile-deutsch",
-    "source_note": "A1 grammar inventory. Row A1.1 of the German grammar sequence in docs/05.",
+    "source": "goethe-a1-pruefung",
+    "source_note": "Inventory Grammatik, page 103: Personalpronomen im Nominativ. Page 102: Tempus, Präsens aller Verben der Wortliste. Row A1.1 of the German grammar sequence in docs/05.",
     "sequence_ref": "A1.1",
     "reviewed": false
   },
@@ -146,10 +266,11 @@
     "level": "A1",
     "skill": "grammar",
     "text_en": "Uses the present tense endings of regular verbs such as wohnen, kommen and heissen with the correct pronoun.",
-    "source": "profile-deutsch",
-    "source_note": "A1 grammar inventory. Row A1.2 of the German grammar sequence in docs/05.",
+    "source": "goethe-a1-pruefung",
+    "source_note": "Inventory Grammatik, page 102: Tempus, Präsens aller Verben der Wortliste. Row A1.2 of the German grammar sequence in docs/05.",
     "sequence_ref": "A1.2",
-    "reviewed": false
+    "reviewed": false,
+    "note": "Covers the regular verb half of row A1.2. Verbs with stem change (sprechen, fahren) are in the row but not in this text. The text was left as it is because two lessons already target this code. Decide on review whether to widen it."
   },
   {
     "key": "de:cando:A1.GRA.03",
@@ -157,8 +278,8 @@
     "level": "A1",
     "skill": "grammar",
     "text_en": "Forms statements, yes or no questions and W questions with the verb in the correct position.",
-    "source": "profile-deutsch",
-    "source_note": "A1 grammar inventory. Row A1.3 of the German grammar sequence in docs/05.",
+    "source": "goethe-a1-pruefung",
+    "source_note": "Inventory Grammatik, page 105: Syntax, Verbzweitstellung, and Fragesatz with Entscheidungsfrage and Ergänzungsfrage. Row A1.3 of the German grammar sequence in docs/05.",
     "sequence_ref": "A1.3",
     "reviewed": false
   },
@@ -168,9 +289,98 @@
     "level": "A1",
     "skill": "grammar",
     "text_en": "Uses the definite article der, die, das with the gender of common nouns in the nominative.",
-    "source": "profile-deutsch",
-    "source_note": "A1 grammar inventory. Row A1.4 of the German grammar sequence in docs/05.",
+    "source": "goethe-a1-pruefung",
+    "source_note": "Inventory Grammatik, page 102: Nomen, Genus der, die, das. Page 103: Artikel, definit, Nominativ. Row A1.4 of the German grammar sequence in docs/05.",
     "sequence_ref": "A1.4",
+    "reviewed": false,
+    "note": "Covers the definite article half of row A1.4. The indefinite article ein, eine is in the row but not in this text. The text was left as it is because a lesson already targets this code. Decide on review whether to widen it."
+  },
+  {
+    "key": "de:cando:A1.GRA.05",
+    "code": "A1.GRA.05",
+    "level": "A1",
+    "skill": "grammar",
+    "text_en": "Recognises and forms the plural of common nouns in the main patterns, as the A1 word list gives it for each noun, for example Kind and Kinder, Fahrkarte and Fahrkarten.",
+    "source": "goethe-a1-pruefung",
+    "source_note": "Inventory Grammatik, page 103: Numerus, Singular and Plural der Nomen wie in der Wortliste. Row A1.5 of the German grammar sequence in docs/05.",
+    "sequence_ref": "A1.5",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.GRA.06",
+    "code": "A1.GRA.06",
+    "level": "A1",
+    "skill": "grammar",
+    "text_en": "Uses the accusative forms of the articles and of the personal pronouns mich, dich, ihn, sie and es for the direct object, and uses es gibt with the accusative to say what there is.",
+    "source": "goethe-a1-pruefung",
+    "source_note": "Inventory Grammatik, page 103: Kasus, Artikel im Akkusativ, and Personalpronomen im Akkusativ. Page 105: Akkusativergänzung. es gibt is an example under geben in the Wortliste. Row A1.6 of the German grammar sequence in docs/05.",
+    "sequence_ref": "A1.6",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.GRA.07",
+    "code": "A1.GRA.07",
+    "level": "A1",
+    "skill": "grammar",
+    "text_en": "Negates a sentence with nicht and a noun with kein, for example Ich verstehe dich nicht and Wir haben keine Zeit.",
+    "source": "goethe-a1-pruefung",
+    "source_note": "Inventory Grammatik, page 105: Negation with nicht and kein. Page 103: Artikel, negativ, kein. Row A1.7 of the German grammar sequence in docs/05.",
+    "sequence_ref": "A1.7",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.GRA.08",
+    "code": "A1.GRA.08",
+    "level": "A1",
+    "skill": "grammar",
+    "text_en": "Uses the possessive articles mein, dein, sein, ihr, unser and Ihr with the right ending in the nominative and the accusative, for example mein Bruder and meinen Bruder.",
+    "source": "goethe-a1-pruefung",
+    "source_note": "Inventory Grammatik, page 103: Artikel, possessiv, mein, dein, sein, ihr, Ihr, unser. Row A1.8 of the German grammar sequence in docs/05.",
+    "sequence_ref": "A1.8",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.GRA.09",
+    "code": "A1.GRA.09",
+    "level": "A1",
+    "skill": "grammar",
+    "text_en": "Uses the modal verbs können, möchten, müssen and wollen in the present tense, with the modal verb in second position and the infinitive at the end of the sentence.",
+    "source": "goethe-a1-pruefung",
+    "source_note": "Inventory Grammatik, page 102: Modalverben, Präsens von können, wollen, müssen, dürfen, sollen, möchten. Page 105: Satzklammer. The inventory also lists dürfen and sollen, which row A1.9 does not name. Row A1.9 of the German grammar sequence in docs/05.",
+    "sequence_ref": "A1.9",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.GRA.10",
+    "code": "A1.GRA.10",
+    "level": "A1",
+    "skill": "grammar",
+    "text_en": "Uses common separable verbs such as anfangen, einkaufen and mitkommen in the present tense, with the prefix at the end of the sentence.",
+    "source": "goethe-a1-pruefung",
+    "source_note": "Inventory Grammatik, page 102: Verben mit trennbarem Präfix. Row A1.10 of the German grammar sequence in docs/05.",
+    "sequence_ref": "A1.10",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.GRA.11",
+    "code": "A1.GRA.11",
+    "level": "A1",
+    "skill": "grammar",
+    "text_en": "Forms the perfect tense of common verbs with haben or sein and the past participle at the end of the sentence, for example Ich habe gegessen and Ich bin gefahren.",
+    "source": "goethe-a1-pruefung",
+    "source_note": "Inventory Grammatik, page 102: Tempus, Perfekt of fifteen named verbs (arbeiten, bleiben, essen, fahren, fragen, glauben, haben, lesen, lernen, machen, schlafen, sehen, passieren, trinken, verstehen) and ausgewählte Partizipien. Row A1.11 of the German grammar sequence in docs/05.",
+    "sequence_ref": "A1.11",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.GRA.12",
+    "code": "A1.GRA.12",
+    "level": "A1",
+    "skill": "grammar",
+    "text_en": "Uses the fixed A1 prepositions with the right case, for example für, ohne and um with the accusative and aus, bei, mit, nach and zu with the dative, and gives days, months, dates and clock times with am, im, um and von bis.",
+    "source": "goethe-a1-pruefung",
+    "source_note": "Inventory Grammatik, page 104: Präposition, temporal, lokal and modal, each with its case. Numbers, dates and the clock are in the Wortgruppenliste, pages 78 to 80 (Zahlen, Datum, Uhrzeit). Row A1.12 of the German grammar sequence in docs/05.",
+    "sequence_ref": "A1.12",
     "reviewed": false
   },
   {
@@ -180,7 +390,7 @@
     "skill": "vocabulary",
     "text_en": "Uses greetings and farewells and the words needed to give and ask for a name, a country and a city.",
     "source": "goethe-a1-wortliste",
-    "source_note": "Thematic list: Persönliche Angaben, Begrüßung und Abschied.",
+    "source_note": "Themen inventory, page 4: Person (Name, Adresse, Staatsangehörigkeit, Nationalität, Herkunft). Greetings and farewells such as Hallo, Guten Tag and Auf Wiedersehen appear in the Alphabetische Wortliste, pages 9 to 27.",
     "reviewed": false
   },
   {
@@ -190,8 +400,69 @@
     "skill": "vocabulary",
     "text_en": "Understands and says the cardinal numbers one to ten and uses them for telephone numbers and house numbers.",
     "source": "goethe-a1-wortliste",
-    "source_note": "Thematic list: Zahlen. Row A1.12 of the sequence in docs/05 covers numbers, dates and the clock.",
+    "source_note": "Wortgruppenliste, page 6: Zahlen. Row A1.12 of the sequence in docs/05 covers numbers, dates and the clock.",
     "sequence_ref": "A1.12",
+    "reviewed": false,
+    "note": "Covers one to ten only. Numbers above ten and prices are in A1.VOC.07. Days and times of day are in A1.VOC.06, dates and clock times in A1.GRA.12."
+  },
+  {
+    "key": "de:cando:A1.VOC.03",
+    "code": "A1.VOC.03",
+    "level": "A1",
+    "skill": "vocabulary",
+    "text_en": "Understands and says the words for family members and marital status, such as Mutter, Vater, Bruder, Schwester, Kind, Eltern, verheiratet and ledig, and uses them to say who is in their family.",
+    "source": "goethe-a1-wortliste",
+    "source_note": "Themen inventory, page 4: Person, with Familienstand/Familie and Persönliche Beziehungen. Words from the Alphabetische Wortliste, pages 9 to 27.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.VOC.04",
+    "code": "A1.VOC.04",
+    "level": "A1",
+    "skill": "vocabulary",
+    "text_en": "Understands and says the words for common foods, drinks and meals, such as Brot, Obst, Gemüse, Fleisch, Wasser, Kaffee, Milch and Frühstück, and the words needed in a café or restaurant, such as Speisekarte.",
+    "source": "goethe-a1-wortliste",
+    "source_note": "Themen inventory, page 4: Essen/Trinken (Nahrungsmittel, Mahlzeiten, Speisen, Getränke, Lokale). Words from the Alphabetische Wortliste, pages 9 to 27.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.VOC.05",
+    "code": "A1.VOC.05",
+    "level": "A1",
+    "skill": "vocabulary",
+    "text_en": "Understands and says the words for a flat, its rooms and furniture and for renting, such as Wohnung, Zimmer, Küche, Bad, Bett, Schrank, Möbel and Miete.",
+    "source": "goethe-a1-wortliste",
+    "source_note": "Themen inventory, page 4: Wohnen (Wohnung, Räume, Einrichtung/Möbel, Haushalt, Miete/Mietverhältnis, Wohnungswechsel). Words from the Alphabetische Wortliste, pages 9 to 27.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.VOC.06",
+    "code": "A1.VOC.06",
+    "level": "A1",
+    "skill": "vocabulary",
+    "text_en": "Understands and says the words for daily activities and for work, such as aufstehen, frühstücken, arbeiten, schlafen, Beruf, Firma, Chef, Kollege and Pause, together with the days of the week and the times of day.",
+    "source": "goethe-a1-wortliste",
+    "source_note": "Themen inventory, page 4: Person, with Gewohnheiten/Tagesablauf, and Arbeit/Beruf (Arbeitsplatz, Urlaub). Wortgruppenliste, page 7: Woche/Wochentage and Tag/Tageszeiten. Words from the Alphabetische Wortliste, pages 9 to 27.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.VOC.07",
+    "code": "A1.VOC.07",
+    "level": "A1",
+    "skill": "vocabulary",
+    "text_en": "Understands and says the words for shops, prices and paying and for the post office and the bank, such as Geschäft, kaufen, kosten, bezahlen, Preis, Geld, teuer, billig, Post, Bank and Formular, together with the numbers above ten and Euro and Cent for prices.",
+    "source": "goethe-a1-wortliste",
+    "source_note": "Themen inventory, page 4: Einkaufen/Gebrauchsartikel (Geschäfte, Preis/Bezahlen, Lebensmittel, Kleidung) and Dienstleistungen (Post, Telekommunikation, Banken, Polizei). Wortgruppenliste, pages 6 and 8: Zahlen and Währungen. Words from the Alphabetische Wortliste, pages 9 to 27.",
+    "reviewed": false
+  },
+  {
+    "key": "de:cando:A1.VOC.08",
+    "code": "A1.VOC.08",
+    "level": "A1",
+    "skill": "vocabulary",
+    "text_en": "Understands and says the basic words for being ill, seeing a doctor and parts of the body, such as krank, Arzt, Praxis, Termin, Fieber, weh tun, Kopf, Bauch, Arm, Bein and Fuß.",
+    "source": "goethe-a1-wortliste",
+    "source_note": "The Themen inventory on page 4 has no health area. This grouping is the pack's own, made for the health life area in docs/14. Every word named is a headword in the Alphabetische Wortliste, pages 9 to 27.",
     "reviewed": false
   }
 ]
