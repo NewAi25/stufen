@@ -3,13 +3,13 @@
 ## Purpose
 
 In app feedback capture.
-Small on purpose. One table, one factory, three functions.
+Small on purpose. One table, one factory, three functions, two storage adapters.
 
-Kind: `core`. May import: `contracts`.
+Kind: `core`. May import: `contracts`, `db`.
 
 ## Public API
 
-`src/index.ts` exports four things: `createFeedback`, the `FeedbackStore` type, `createInMemoryFeedbackStore` and `FeedbackValidationError`. Nothing is a singleton. `apps/web` builds one service and passes in the store and the bus.
+`src/index.ts` exports five things: `createFeedback`, the `FeedbackStore` type, `createInMemoryFeedbackStore`, `createPostgresFeedbackStore` and `FeedbackValidationError`. Nothing is a singleton. `apps/web` builds one service and passes in the store and the bus.
 
 ```ts
 import { createEventBus } from '@stufen/contracts';
@@ -63,7 +63,7 @@ If a rule is broken, `submit` rejects with a `FeedbackValidationError`. Its `fie
 
 ### FeedbackStore
 
-The storage port. The Postgres adapter planned as P1-35 implements the same four methods.
+The storage port. Both adapters implement the same four methods.
 
 ```ts
 interface FeedbackStore {
@@ -74,7 +74,56 @@ interface FeedbackStore {
 }
 ```
 
-Newest first means `createdAt` descending. Two rows with the same `createdAt` come back with the later insert first. `createInMemoryFeedbackStore()` keeps rows in an array and hands out copies. It is what the unit tests use.
+Newest first means `createdAt` descending. The order of rows with the same `createdAt` is up to the adapter and is stable.
+
+`createInMemoryFeedbackStore()` keeps rows in an array and hands out copies. Rows with the same `createdAt` come back with the later insert first. It is what the unit tests use.
+
+### createPostgresFeedbackStore
+
+```ts
+import { createDb } from '@stufen/db';
+import { createFeedback, createPostgresFeedbackStore } from '@stufen/core-feedback';
+
+const db = createDb(process.env.DATABASE_URL);
+const feedback = createFeedback({ store: createPostgresFeedbackStore(db), bus });
+```
+
+`createPostgresFeedbackStore(db: Database): FeedbackStore` reads and writes the `feedback` table. It takes the connection that `createDb` returns and keeps no state of its own.
+
+**Access model.** Two methods act for a learner and two act for the owner.
+
+| Method | Runs as | Who decides |
+|--------|---------|-------------|
+| `insert(item)` | `withUser(db, item.userId)`, or `withUser(db, null)` for anonymous feedback | Policy `feedback_insert`: anyone may insert, signed out too. A signed in user may insert only in the own name |
+| `listByUser(userId)` | `withUser(db, userId)` | Policy `feedback_own_select`: a learner reads only own rows. Anonymous rows match nobody |
+| `listAll(filter?)` | the connection itself, as owner | Nothing in the database. The caller must be the admin view |
+| `updateStatus(id, status)` | the connection itself, as owner | Nothing in the database. The role `stufen_app` has no update policy on `feedback` |
+
+Inside `withUser` the role is `stufen_app` and row level security applies, so a mistake in this box still cannot show one learner the rows of another. `listAll` and `updateStatus` skip row level security. They exist for a later admin view, and whatever calls them must check that the caller is an admin first. `apps/web` must not call them on behalf of a learner.
+
+**Mapping.** One function in `src/postgres-store.ts` turns a row into a `FeedbackItem` and one turns it back.
+
+| `FeedbackItem` | Column | Note |
+|----------------|--------|------|
+| `id` | `id` | Must be a uuid. The default `newId` of `createFeedback` gives one |
+| `userId` | `user_id` | A uuid, or null for anonymous. Must have a row in `profiles` |
+| `page` | `page` | A null in the table reads as `''` |
+| `context` | `context` | A plain object. The column has no null, so `null` is written as `{}` and `{}` reads as `null` |
+| `createdAt` | `created_at` | ISO string in UTC, to the millisecond |
+| `kind`, `message`, `rating`, `status` | same names | Unchanged |
+
+**Where it differs from the in memory store.**
+
+| Case | Postgres store |
+|------|----------------|
+| `insert` with an id or a `userId` that is not a uuid, or a rating outside 1 to 5 | Rejects with a `TypeError` before any query |
+| `insert` with a `userId` that has no profile | Rejects with the Postgres foreign key error, code `23503` |
+| `insert` with an id that exists | Rejects with `feedback <id> already exists`, the same message as in memory |
+| `listByUser` or `updateStatus` with a value that is not a uuid | Empty list, or null. No such row can exist |
+| Rows with the same `createdAt` | Descending id. The table has no insert counter, so "later insert first" cannot be kept |
+| A context of `{}` | Reads back as `null` |
+
+**When a user is deleted.** `feedback.user_id` references `profiles(id)` with `on delete set null`, and `profiles.id` references `users(id)` with `on delete cascade`. Deleting the `users` row therefore removes the profile and keeps every feedback row that user wrote, with `user_id` set to null. The text of the message, the page and the context stay. The row becomes anonymous: it is in nobody's `listMine` and still in `listAll`. If account deletion must also erase what the user wrote, it has to delete the feedback rows before it deletes the user. This box does not do that today.
 
 Source of truth: `docs/04-module-contracts.md`. If a signature is not there, it is not public.
 
@@ -103,6 +152,48 @@ Columns and policies are in `docs/03-data-schema.md` and `packages/db/migrations
 ```
 pnpm --filter @stufen/core-feedback test
 ```
+
+That runs the unit tests. They need no database, and the integration test reports as skipped.
+
+| File | What it checks |
+|------|----------------|
+| `tests/feedback.test.ts` | `submit`, `listMine`, `setStatus`, every validation rule and the in memory store. Also runs the store contract for the in memory store |
+| `tests/store-contract.ts` | Not a test file. `runFeedbackStoreContract(name, makeStore, makeUserId)` holds the checks both adapters must pass |
+| `tests/postgres-store.integration.test.ts` | The Postgres adapter on a real PostgreSQL. Skipped unless `DATABASE_URL` is set |
+
+### The integration test
+
+It needs a PostgreSQL 16 or later with the migrations applied, and a `DATABASE_URL` for the user that ran them. That user must own the tables or be a superuser, because the test creates users outside `withUser` and deletes them at the end. `packages/db/README.md` says how to start such a database with or without Docker.
+
+```
+pnpm db:up
+DATABASE_URL=postgres://stufen:stufen@localhost:5432/stufen pnpm db:migrate
+DATABASE_URL=postgres://stufen:stufen@localhost:5432/stufen pnpm --filter @stufen/core-feedback test
+```
+
+In PowerShell set the variable first with `$env:DATABASE_URL = '...'`.
+
+The test creates its own users (a `users` row, then `select ensure_profile(id)`) and its own feedback rows, and deletes exactly those in `afterAll`. It never counts or deletes rows it did not create, so it can share a database with other tests.
+
+What it shows:
+
+| Check | Expected |
+|-------|----------|
+| The store contract, the same eleven checks the in memory store passes | pass |
+| Inside `withUser(A)`, a select on `feedback` with no where clause | only A's rows |
+| Inside `withUser(A)`, asking for B's row by id or by user id | no rows |
+| Signed out, a select on `feedback` | no rows, not even anonymous ones |
+| Signed out, an insert through the store | stored with `user_id` null |
+| Inside `withUser(A)`, an insert with B's user id | refused by Postgres, code `42501` |
+| Inside `withUser(A)`, update or delete of the own row | nothing changed |
+| `createFeedback` on the Postgres store: anonymous `submit` | one row in the table, `feedback.submitted` emitted once |
+| `createFeedback` on the Postgres store: `listMine` | only the caller's rows, newest first |
+| `createFeedback` on the Postgres store: a rejected `submit` | no row, no event |
+| Deleting a user | the feedback row stays with `user_id` null |
+
+### The store contract
+
+`runFeedbackStoreContract` is the list of things a `FeedbackStore` must do whatever is behind it: insert then `listByUser` returns the row unchanged and newest first, one user never gets another user's rows, anonymous rows are never listed for a user, `listAll` returns everything and filters by kind and status, `updateStatus` returns the row or null, and a duplicate id is rejected. A new adapter passes the contract before it is used.
 
 ## Status
 

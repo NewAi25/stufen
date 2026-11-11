@@ -1,7 +1,7 @@
 // Storage port for core-feedback and its in memory adapter. The port lists
 // the reads and writes this box needs from the `feedback` table in
-// docs/03-data-schema.md. The Postgres adapter (P1-35) implements the same
-// interface.
+// docs/03-data-schema.md. The Postgres adapter in postgres-store.ts implements
+// the same interface.
 import type { FeedbackItem, FeedbackKind, FeedbackStatus } from '@stufen/contracts';
 
 /** Narrows listAll. Omitted keys do not filter. */
@@ -11,8 +11,10 @@ export interface FeedbackListFilter {
 }
 
 /**
- * "Newest first" means `createdAt` descending. Rows with the same `createdAt`
- * come back with the later insert first.
+ * "Newest first" means `createdAt` descending. How rows with the same
+ * `createdAt` are ordered is up to the adapter, as long as the order is stable:
+ * the in memory store puts the later insert first, the Postgres store orders
+ * them by descending id.
  */
 export interface FeedbackStore {
   /** Adds one row. Rejects when a row with the same id already exists. */

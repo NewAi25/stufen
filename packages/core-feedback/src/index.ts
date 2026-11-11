@@ -7,3 +7,4 @@
 export { createFeedback, FeedbackValidationError } from './feedback';
 export { createInMemoryFeedbackStore } from './store';
 export type { FeedbackStore } from './store';
+export { createPostgresFeedbackStore } from './postgres-store';

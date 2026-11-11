@@ -5,6 +5,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { createEventBus } from '@stufen/contracts';
 import type { FeedbackItem } from '@stufen/contracts';
 import { createFeedback, createInMemoryFeedbackStore, FeedbackValidationError } from '../src/index';
+import { runFeedbackStoreContract } from './store-contract';
 
 type SubmitInput = Parameters<ReturnType<typeof createFeedback>['submit']>[0];
 
@@ -426,3 +427,6 @@ describe('createInMemoryFeedbackStore', () => {
     expect(await two.listAll()).toEqual([]);
   });
 });
+
+// The behaviour shared with the Postgres adapter, see tests/store-contract.ts.
+runFeedbackStoreContract('in memory', createInMemoryFeedbackStore, () => crypto.randomUUID());
