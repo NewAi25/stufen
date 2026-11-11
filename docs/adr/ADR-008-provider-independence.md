@@ -3,6 +3,8 @@
 Status: Accepted
 Date: 2026-09-09
 
+Changed in part by ADR-009: the sign in adapter is our own code, not better-auth.
+
 Supersedes the Supabase and Vercel specific parts of ADR-002. ADR-002 remains accepted for Next.js, TypeScript, Tailwind and pnpm workspaces.
 
 ## Context

@@ -41,6 +41,7 @@ Each alternative and the reason it lost.
 | [ADR-006](ADR-006-claude-for-tutor-and-grading.md) | Claude for tutor and grading | Accepted | 2026-09-09 |
 | [ADR-007](ADR-007-entitlements-first-payments-later.md) | Entitlements first, payments later | Accepted | 2026-09-09 |
 | [ADR-008](ADR-008-provider-independence.md) | Provider independence | Accepted | 2026-09-09 |
+| [ADR-009](ADR-009-own-magic-link-auth.md) | Own magic link sign in on the AuthStore port | Accepted | 2026-11-11 |
 
 ## Adding an ADR
 
