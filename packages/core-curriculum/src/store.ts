@@ -128,8 +128,10 @@ export function assertValidSnapshot(snapshot: CurriculumSnapshot): void {
   }
 }
 
+// The optional fields (titleEn, description, introducesItemIds) are copied
+// only when the snapshot carried them, so a row comes back as it was given.
 function toUnit(unit: Unit): Unit {
-  return {
+  const plain: Unit = {
     id: unit.id,
     languageCode: unit.languageCode,
     level: unit.level,
@@ -139,10 +141,12 @@ function toUnit(unit: Unit): Unit {
     description: unit.description,
     packVersion: unit.packVersion,
   };
+  if (unit.titleEn !== undefined) plain.titleEn = unit.titleEn;
+  return plain;
 }
 
 function toSummary(lesson: LessonSummary): LessonSummary {
-  return {
+  const summary: LessonSummary = {
     id: lesson.id,
     unitId: lesson.unitId,
     ordinal: lesson.ordinal,
@@ -153,6 +157,12 @@ function toSummary(lesson: LessonSummary): LessonSummary {
     candoIds: [...lesson.candoIds],
     packVersion: lesson.packVersion,
   };
+  if (lesson.titleEn !== undefined) summary.titleEn = lesson.titleEn;
+  if (lesson.description !== undefined) summary.description = lesson.description;
+  if (lesson.introducesItemIds !== undefined) {
+    summary.introducesItemIds = [...lesson.introducesItemIds];
+  }
+  return summary;
 }
 
 function sortedExercises(exercises: readonly Exercise[]): Exercise[] {

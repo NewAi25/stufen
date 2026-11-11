@@ -79,7 +79,7 @@ Two adapters implement both ports. `tests/store-contract.ts` holds the behaviour
 
 Reads run inside `withUser(db, null, fn)`. That is the restricted role `stufen_app` with nobody signed in, so every read also shows that the content policies allow it. An id that is not a uuid cannot be stored, so it is answered as unknown without a query. Lists are sorted in this box with the comparators of `src/order.ts`, not by the database, so the order is the same as in memory whatever the collation is.
 
-`replaceLanguage` is owner work. The restricted role has a read policy only, so the adapter uses `db` directly, in one transaction. One function per table maps between the snake_case columns and the contracts types. That mapping is the only place that knows the column names.
+`replaceLanguage` is owner work. The restricted role may only read content: it has a read policy and, since migration 0006, no insert, update or delete grant on the content tables. So the adapter uses `db` directly, in one transaction. One function per table maps between the snake_case columns and the contracts types. That mapping is the only place that knows the column names.
 
 ### What replaceLanguage does
 
@@ -104,6 +104,23 @@ What happens to learner rows when a row does leave the pack is decided by the sc
 | Lesson with a row in `lesson_sessions` | Refused. `lesson_sessions.lesson_id` has no delete rule, so the whole replace fails with a message that says so and nothing changes. Keep the lesson in the pack until `db` gets a rule for this |
 
 Two limits on Postgres. The unique constraints on `(language_code, slug)`, `(unit_id, slug)`, `(language_code, code)` and `(language_code, key)` are checked per statement, and the upsert runs before the delete. So a new id cannot take over the slug, code or key of a row that the same replace removes, and two kept rows cannot swap theirs. The replace fails and rolls back. Ids built by core-content are derived from those keys, so its packs do not do this. `cando_descriptors.mastery_rule` holds the contracts `MasteryRule` as JSON with its camelCase keys.
+
+### Optional content fields
+
+Contracts 0.6.0 added optional fields that a pack may carry. Both adapters store them and hand them back. On Postgres they live in the columns of migration 0006.
+
+| Field | Column | Written when the snapshot leaves it out |
+|-------|--------|------------------------------------------|
+| `Unit.titleEn` | `units.title_en` | null |
+| `LessonSummary.titleEn` | `lessons.title_en` | null |
+| `LessonSummary.description` | `lessons.description` | null |
+| `LessonSummary.introducesItemIds` | `lessons.introduces_item_ids` (uuid array) | empty array |
+| `Exercise.instructionEn` | `exercises.instruction_en` | null |
+| `Exercise.instructionNative` | `exercises.instruction_native` | null |
+
+A replace writes these on insert and on update. A field the new snapshot leaves out is cleared, so a value from an older pack does not stay behind. The entries of `introducesItemIds` must be uuids on Postgres; they are not checked against `items`, like `candoIds` and `itemIds`.
+
+The adapters differ in one point. For a field the snapshot left out, the in memory store returns the row without the field, as it was given. Postgres returns null, or an empty array for `introducesItemIds`. Read these fields with `?? null` and `?? []` and both behave the same.
 
 Source of truth: `docs/04-module-contracts.md`. If a signature is not there, it is not public.
 
@@ -142,14 +159,14 @@ That runs the unit tests. They need no database.
 |------|----------------|
 | `tests/curriculum.test.ts` | The service on the in memory store: every function, the orderings (also on a store that answers backwards), the filters and both not found errors |
 | `tests/next-lesson.test.ts` | `nextLessonFor`: nothing completed, some completed, completed out of order, all completed, a language with no lessons, no `completedLessonIds`, one user's completions not counting for another |
-| `tests/store-contract.ts` | Not a test file. `runCurriculumStoreContract(name, makeStore)` holds the behaviour of both ports: every read, the orderings, copies, and the replace rules above |
+| `tests/store-contract.ts` | Not a test file. `runCurriculumStoreContract(name, makeStore)` holds the behaviour of both ports: every read, the orderings, copies, the optional content fields, and the replace rules above |
 | `tests/store-contract.memory.test.ts` | The contract on the in memory store |
 | `tests/postgres-store.integration.test.ts` | The contract on a real Postgres, plus the Postgres only checks. Skipped unless `DATABASE_URL` is set |
 | `tests/fixtures.ts` | `createFixture()`: a German and a Dutch snapshot with fresh uuids and unique slugs, codes and keys per call |
 
 ### The integration test
 
-It needs a PostgreSQL 16 or later with the migrations applied, and a `DATABASE_URL` for the user that ran them. That user must own the tables or be a superuser, because a replace is owner work and the test creates users.
+It needs a PostgreSQL 16 or later with every migration up to `0006_lesson_fields_and_guards.sql` applied, and a `DATABASE_URL` for the user that ran them. That user must own the tables or be a superuser, because a replace is owner work and the test creates users.
 
 ```
 pnpm db:up
@@ -169,7 +186,8 @@ What it shows beyond the contract:
 | A lesson session, two attempts, a review card and a mastery row, then a replace | All still there. The attempt on a removed exercise has `exercise_id` null |
 | A replace that removes a lesson with a session | Refused, nothing changed |
 | Reads inside `withUser(db, null)` and `withUser(db, userId)` | Role is `stufen_app`, every content row is visible |
-| Insert, update and delete on content as `stufen_app` | Insert refused with 42501; update and delete change no row |
+| Insert, update and delete on content as `stufen_app`, and an update of `languages.pack_version` | All refused with 42501 (no write grants since migration 0006) |
+| The six columns of migration 0006 after an install | The values of the snapshot; null and an empty array for a field left out |
 | Two replaces of one language at once | Both finish; the store holds one whole snapshot |
 | A snapshot that claims an id of another language, or a non uuid id | `InvalidSnapshotError`, nothing changed |
 | Postgres refuses a row half way through a replace | Everything rolled back, both languages as before |

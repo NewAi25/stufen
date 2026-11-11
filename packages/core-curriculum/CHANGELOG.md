@@ -2,6 +2,25 @@
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-11
+
+### Added
+- Both adapters carry the optional content fields of contracts 0.6.0: `Unit.titleEn`, `LessonSummary.titleEn`, `description` and `introducesItemIds`, `Exercise.instructionEn` and `instructionNative`.
+- The Postgres adapter writes them in `replaceLanguage`, on insert and on update, to the columns of migration 0006: `units.title_en`, `lessons.title_en`, `lessons.description`, `lessons.introduces_item_ids`, `exercises.instruction_en` and `exercises.instruction_native`. A field the snapshot leaves out is written as null, or as an empty array for `introducesItemIds`, so a value from an older pack does not stay behind. On read a null column is null and the id list is always an array.
+- The in memory store keeps the fields as given: a field the snapshot leaves out is left out of the row it hands back.
+- An entry of `introducesItemIds` that is not a uuid is rejected by the Postgres adapter with `InvalidSnapshotError`, like the other id lists.
+- `tests/fixtures.ts` carries the fields in three shapes: real values (unit deA1, lesson deA1L1 and its exercises), explicit nulls and an empty list (lesson deA1L2), and left out (every other row).
+- `tests/store-contract.ts`: six new tests run for both adapters. The fields come back as installed, a field left out gives nothing, the id list is a copy, a replace changes an instruction and the other fields in place, and a replace that leaves a field out clears it.
+- `tests/postgres-store.integration.test.ts`: one new test reads the six columns directly and checks null and the empty array for a field left out.
+
+### Changed
+- `tests/postgres-store.integration.test.ts`: migration 0006 took the insert, update and delete grants on content tables away from `stufen_app`. An update or a delete as that role is now refused with 42501; before it ran and changed no row. The access test asserts the new behaviour and also checks `languages.pack_version`.
+
+### Notes
+- The one difference between the adapters is in the contract header: for a field the snapshot left out, the in memory store returns the row without the field, Postgres returns null or an empty list.
+- No change to the ports or to `createCurriculum`.
+
+
 ## [0.2.0] - 2026-11-11
 
 ### Added

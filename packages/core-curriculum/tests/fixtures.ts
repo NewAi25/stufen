@@ -93,6 +93,27 @@ export function createFixture(): Fixture {
     packVersion: overrides.languageCode === 'nl' ? DUTCH_VERSION : GERMAN_VERSION,
   });
 
+  // The optional fields of contracts 0.6.0 come in three shapes on purpose:
+  // lesson deA1L1 and unit deA1 carry real values, lesson deA1L2 carries
+  // explicit nulls and an empty list, every other row leaves them out.
+  function lessonExtras(name: LessonName): Partial<Lesson> {
+    if (name === 'deA1L1') {
+      return {
+        titleEn: 'Hello',
+        description: 'Greetings and names',
+        introducesItemIds: [ids.item.haus, ids.item.auto],
+      };
+    }
+    return name === 'deA1L2' ? { titleEn: null, description: null, introducesItemIds: [] } : {};
+  }
+
+  function exerciseExtras(name: LessonName, n: number): Partial<Exercise> {
+    if (name === 'deA1L1') {
+      return { instructionEn: `Choose answer ${n}`, instructionNative: `Wähle Antwort ${n}` };
+    }
+    return name === 'deA1L2' ? { instructionEn: 'Choose', instructionNative: null } : {};
+  }
+
   /** A lesson whose exercises are listed in the order of `ordinals`. */
   function lesson(name: LessonName, unitId: string, ordinal: number, ordinals: number[]): Lesson {
     const id = ids.lesson[name];
@@ -108,6 +129,7 @@ export function createFixture(): Fixture {
       candoIds: [dutch ? ids.cando.nlA1Lis01 : ids.cando.deA1Lis01],
       itemIds: [dutch ? ids.item.huis : ids.item.haus],
       packVersion,
+      ...exerciseExtras(name, n),
     }));
     return {
       id,
@@ -119,6 +141,7 @@ export function createFixture(): Fixture {
       estimatedMinutes: 10,
       candoIds: [dutch ? ids.cando.nlA1Lis01 : ids.cando.deA1Lis01],
       packVersion,
+      ...lessonExtras(name),
       exercises,
     };
   }
@@ -147,6 +170,7 @@ export function createFixture(): Fixture {
       title: 'Hallo',
       description: 'First words',
       packVersion: GERMAN_VERSION,
+      titleEn: 'Hello',
       lessons: [
         lesson('deA1L2', ids.unit.deA1, 2, [1, 2]),
         lesson('deA1L1', ids.unit.deA1, 1, [3, 1, 2]),

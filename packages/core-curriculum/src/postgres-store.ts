@@ -92,6 +92,7 @@ function unitFromRow(row: Row<'units'>): Unit {
     title: row.title,
     description: row.description,
     packVersion: row.pack_version,
+    titleEn: row.title_en,
   };
 }
 
@@ -106,6 +107,9 @@ function summaryFromRow(row: Row<'lessons'>): LessonSummary {
     estimatedMinutes: row.estimated_minutes,
     candoIds: [...row.cando_ids],
     packVersion: row.pack_version,
+    titleEn: row.title_en,
+    description: row.description,
+    introducesItemIds: [...row.introduces_item_ids],
   };
 }
 
@@ -120,6 +124,8 @@ function exerciseFromRow(row: Row<'exercises'>): Exercise {
     candoIds: [...row.cando_ids],
     itemIds: [...row.item_ids],
     packVersion: row.pack_version,
+    instructionEn: row.instruction_en,
+    instructionNative: row.instruction_native,
   };
 }
 
@@ -175,6 +181,11 @@ function itemToRow(item: Item): NewRow<'items'> {
   };
 }
 
+// The optional fields of a unit, lesson and exercise (titleEn, description,
+// introducesItemIds, instructionEn, instructionNative) have nullable columns,
+// and the id list defaults to empty. A field the snapshot leaves out is written
+// as null or as an empty list, also on update, so a value from an older pack
+// does not stay behind. On the way out a null column is null.
 function unitToRow(unit: Unit): NewRow<'units'> {
   return {
     id: unit.id,
@@ -185,6 +196,7 @@ function unitToRow(unit: Unit): NewRow<'units'> {
     title: unit.title,
     description: unit.description,
     pack_version: unit.packVersion,
+    title_en: unit.titleEn ?? null,
   };
 }
 
@@ -199,6 +211,9 @@ function lessonToRow(lesson: LessonSummary): NewRow<'lessons'> {
     estimated_minutes: lesson.estimatedMinutes,
     cando_ids: lesson.candoIds,
     pack_version: lesson.packVersion,
+    title_en: lesson.titleEn ?? null,
+    description: lesson.description ?? null,
+    introduces_item_ids: lesson.introducesItemIds ?? [],
   };
 }
 
@@ -213,6 +228,8 @@ function exerciseToRow(exercise: Exercise): NewRow<'exercises'> {
     cando_ids: exercise.candoIds,
     item_ids: exercise.itemIds,
     pack_version: exercise.packVersion,
+    instruction_en: exercise.instructionEn ?? null,
+    instruction_native: exercise.instructionNative ?? null,
   };
 }
 
@@ -349,7 +366,7 @@ function assertUuids(language: LanguageCode, flat: FlatSnapshot): void {
     ...[flat.candos, flat.items, flat.units, flat.lessons, flat.exercises].flatMap((rows) =>
       rows.map((row) => row.id),
     ),
-    ...flat.lessons.flatMap((lesson) => lesson.candoIds),
+    ...flat.lessons.flatMap((lesson) => [...lesson.candoIds, ...(lesson.introducesItemIds ?? [])]),
     ...flat.exercises.flatMap((exercise) => [...exercise.candoIds, ...exercise.itemIds]),
   ];
   const bad = all.find((id) => !isUuid(id));
@@ -488,6 +505,7 @@ async function upsertSnapshot(trx: DatabaseTransaction, flat: FlatSnapshot): Pro
           title: eb.ref('excluded.title'),
           description: eb.ref('excluded.description'),
           pack_version: eb.ref('excluded.pack_version'),
+          title_en: eb.ref('excluded.title_en'),
         })),
       )
       .execute();
@@ -506,6 +524,9 @@ async function upsertSnapshot(trx: DatabaseTransaction, flat: FlatSnapshot): Pro
           estimated_minutes: eb.ref('excluded.estimated_minutes'),
           cando_ids: eb.ref('excluded.cando_ids'),
           pack_version: eb.ref('excluded.pack_version'),
+          title_en: eb.ref('excluded.title_en'),
+          description: eb.ref('excluded.description'),
+          introduces_item_ids: eb.ref('excluded.introduces_item_ids'),
         })),
       )
       .execute();
@@ -524,6 +545,8 @@ async function upsertSnapshot(trx: DatabaseTransaction, flat: FlatSnapshot): Pro
           cando_ids: eb.ref('excluded.cando_ids'),
           item_ids: eb.ref('excluded.item_ids'),
           pack_version: eb.ref('excluded.pack_version'),
+          instruction_en: eb.ref('excluded.instruction_en'),
+          instruction_native: eb.ref('excluded.instruction_native'),
         })),
       )
       .execute();

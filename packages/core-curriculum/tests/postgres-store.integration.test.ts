@@ -346,27 +346,79 @@ describe.skipIf(!url)('Postgres curriculum store on a real Postgres', () => {
           .execute(),
       );
       expect(await errorCodeOf(insert)).toBe('42501');
-      // There is a read policy only. An insert is refused; an update or a delete
-      // finds no row it may touch and changes nothing.
-      const updated = await withUser(db, null, (trx) =>
-        trx
-          .updateTable('units')
-          .set({ title: 'taken over' })
-          .where('id', '=', unitId)
-          .executeTakeFirst(),
+      // Since migration 0006 the role has no write grant on content at all, so
+      // an update and a delete are refused too, not just left without a row.
+      const update = withUser(db, null, (trx) =>
+        trx.updateTable('units').set({ title: 'taken over' }).where('id', '=', unitId).execute(),
       );
-      expect(updated.numUpdatedRows).toBe(0n);
-      const removed = await withUser(db, null, (trx) =>
-        trx
-          .deleteFrom('exercises')
-          .where('lesson_id', '=', fx.ids.lesson.deA1L1)
-          .executeTakeFirst(),
+      expect(await errorCodeOf(update)).toBe('42501');
+      const remove = withUser(db, null, (trx) =>
+        trx.deleteFrom('exercises').where('lesson_id', '=', fx.ids.lesson.deA1L1).execute(),
       );
-      expect(removed.numDeletedRows).toBe(0n);
+      expect(await errorCodeOf(remove)).toBe('42501');
+      const version = withUser(db, null, (trx) =>
+        trx.updateTable('languages').set({ pack_version: 'x' }).where('code', '=', 'de').execute(),
+      );
+      expect(await errorCodeOf(version)).toBe('42501');
 
       expect((await store.listUnits('de', 'A1'))[0]?.title).toBe('Hallo');
       expect(await store.listUnits('de')).toHaveLength(2);
       expect((await store.getLesson(fx.ids.lesson.deA1L1))?.exercises).toHaveLength(3);
+      expect(await store.activeVersion('de')).toBe(GERMAN_VERSION);
+    });
+  });
+
+  describe('the columns of migration 0006', () => {
+    it('hold the optional fields, with null and an empty array for a field left out', async () => {
+      await wipe();
+      const fx = createFixture();
+      const { unit, lesson, exercises, item } = fx.ids;
+      await store.replaceLanguage(fx.german());
+
+      const units = await db.selectFrom('units').select(['id', 'title_en']).execute();
+      expect(new Map(units.map((row) => [row.id, row.title_en]))).toEqual(
+        new Map([
+          [unit.deA1, 'Hello'],
+          [unit.deA2, null],
+        ]),
+      );
+      const lessons = await db
+        .selectFrom('lessons')
+        .select(['id', 'title_en', 'description', 'introduces_item_ids'])
+        .execute();
+      expect(new Map(lessons.map(({ id, ...columns }) => [id, columns]))).toEqual(
+        new Map([
+          [
+            lesson.deA1L1,
+            {
+              title_en: 'Hello',
+              description: 'Greetings and names',
+              introduces_item_ids: [item.haus, item.auto],
+            },
+          ],
+          [lesson.deA1L2, { title_en: null, description: null, introduces_item_ids: [] }],
+          [lesson.deA2L1, { title_en: null, description: null, introduces_item_ids: [] }],
+        ]),
+      );
+      const rows = await db
+        .selectFrom('exercises')
+        .select(['id', 'instruction_en', 'instruction_native'])
+        .where('id', 'in', [exercises.deA1L1[0] as string, exercises.deA2L1[0] as string])
+        .execute();
+      expect(new Map(rows.map(({ id, ...columns }) => [id, columns]))).toEqual(
+        new Map([
+          [
+            exercises.deA1L1[0],
+            { instruction_en: 'Choose answer 1', instruction_native: 'Wähle Antwort 1' },
+          ],
+          [exercises.deA2L1[0], { instruction_en: null, instruction_native: null }],
+        ]),
+      );
+      // Read through the store, a field left out is null or an empty list, never absent.
+      const read = await store.getLesson(lesson.deA2L1);
+      expect(read).toMatchObject({ titleEn: null, description: null, introducesItemIds: [] });
+      expect(read?.exercises[0]).toMatchObject({ instructionEn: null, instructionNative: null });
+      expect((await store.listUnits('de', 'A2'))[0]).toMatchObject({ titleEn: null });
     });
   });
 
@@ -462,8 +514,10 @@ describe.skipIf(!url)('Postgres curriculum store on a real Postgres', () => {
       badId.items[0]!.id = 'item-de-haus';
       const badReference = fx.german();
       badReference.units[0]!.lessons[0]!.exercises[0]!.itemIds = ['item-de-haus'];
+      const badIntroduced = fx.german();
+      badIntroduced.units[0]!.lessons[0]!.introducesItemIds = ['item-de-haus'];
 
-      for (const snapshot of [badId, badReference]) {
+      for (const snapshot of [badId, badReference, badIntroduced]) {
         await expect(store.replaceLanguage(snapshot)).rejects.toThrow(
           /"item-de-haus" is not a uuid/,
         );

@@ -6,6 +6,12 @@
 // `makeStore` is called before every test and must hand back a store with no
 // content in it. Each test builds its own fixture, so ids, slugs, codes and
 // keys are new every time. 'de' and 'nl' get content; 'fr' stays empty.
+//
+// One thing is left open on purpose: an optional field that the snapshot
+// leaves out (titleEn, description, introducesItemIds, instructionEn,
+// instructionNative). The in memory store hands the row back without it,
+// Postgres hands back null or an empty list. The contract accepts both and
+// asks only that no value appears from nowhere.
 import { randomUUID } from 'node:crypto';
 import { beforeEach, describe, expect, it } from 'vitest';
 import type { SnapshotWriter } from '@stufen/contracts';
@@ -132,6 +138,7 @@ export function runCurriculumStoreContract(
           title: 'Hallo',
           description: 'First words',
           packVersion: GERMAN_VERSION,
+          titleEn: 'Hello',
         });
       });
 
@@ -193,6 +200,75 @@ export function runCurriculumStoreContract(
         expect(unit).not.toHaveProperty('lessons');
         expect(await store.findLessonUnit(randomUUID())).toBeNull();
         expect(await store.findLessonUnit('nope')).toBeNull();
+      });
+    });
+
+    describe('optional fields', () => {
+      it('returns titleEn, description and introducesItemIds as installed', async () => {
+        await install();
+        const { unit, lesson, item } = fx.ids;
+        expect((await store.listUnits('de', 'A1'))[0]?.titleEn).toBe('Hello');
+        expect((await store.findLessonUnit(lesson.deA1L1))?.titleEn).toBe('Hello');
+
+        const [first, second] = await store.listLessonSummaries(unit.deA1);
+        expect(first).toMatchObject({
+          id: lesson.deA1L1,
+          titleEn: 'Hello',
+          description: 'Greetings and names',
+          introducesItemIds: [item.haus, item.auto],
+        });
+        // Explicit nulls and an explicit empty list come back as they went in.
+        expect(second).toMatchObject({
+          id: lesson.deA1L2,
+          titleEn: null,
+          description: null,
+          introducesItemIds: [],
+        });
+        expect(await store.getLesson(lesson.deA1L1)).toMatchObject({
+          titleEn: 'Hello',
+          description: 'Greetings and names',
+          introducesItemIds: [item.haus, item.auto],
+        });
+      });
+
+      it('returns the instructions of an exercise as installed', async () => {
+        await install();
+        const { lesson } = fx.ids;
+        const full = await store.getLesson(lesson.deA1L1);
+        expect(full?.exercises.map((row) => [row.instructionEn, row.instructionNative])).toEqual([
+          ['Choose answer 1', 'Wähle Antwort 1'],
+          ['Choose answer 2', 'Wähle Antwort 2'],
+          ['Choose answer 3', 'Wähle Antwort 3'],
+        ]);
+        const half = await store.getLesson(lesson.deA1L2);
+        expect(half?.exercises.map((row) => [row.instructionEn, row.instructionNative])).toEqual([
+          ['Choose', null],
+          ['Choose', null],
+        ]);
+      });
+
+      it('gives nothing for a field the snapshot left out', async () => {
+        await install();
+        const { lesson } = fx.ids;
+        const unit = (await store.listUnits('de', 'A2'))[0];
+        expect(unit?.titleEn ?? null).toBeNull();
+        const stored = await store.getLesson(lesson.deA2L1);
+        expect(stored).not.toBeNull();
+        expect(stored?.titleEn ?? null).toBeNull();
+        expect(stored?.description ?? null).toBeNull();
+        expect(stored?.introducesItemIds ?? []).toEqual([]);
+        expect(stored?.exercises[0]?.instructionEn ?? null).toBeNull();
+        expect(stored?.exercises[0]?.instructionNative ?? null).toBeNull();
+      });
+
+      it('hands out a copy of introducesItemIds', async () => {
+        await install();
+        const { lesson, item } = fx.ids;
+        (await store.getLesson(lesson.deA1L1))?.introducesItemIds?.push('extra');
+        expect((await store.getLesson(lesson.deA1L1))?.introducesItemIds).toEqual([
+          item.haus,
+          item.auto,
+        ]);
       });
     });
 
@@ -370,6 +446,66 @@ export function runCurriculumStoreContract(
         expect(ids(first?.exercises ?? [])).toEqual(exercises.deA1L1);
         expect(first?.exercises[1]).toEqual(changed);
         expect(ids(await store.getItems([newItem.id, item.haus]))).toEqual([newItem.id, item.haus]);
+      });
+
+      it('changes an instruction and the other optional fields in place', async () => {
+        await install();
+        const { unit, lesson, exercises, item } = fx.ids;
+        const next = fx.german();
+        const a1 = next.units.find((row) => row.id === unit.deA1)!;
+        const first = a1.lessons.find((row) => row.id === lesson.deA1L1)!;
+        const reworded = first.exercises.find((row) => row.id === exercises.deA1L1[0])!;
+        a1.titleEn = 'Hello again';
+        first.titleEn = 'Saying hello';
+        first.description = null;
+        first.introducesItemIds = [item.reise];
+        reworded.instructionEn = 'Pick the right word';
+        reworded.instructionNative = 'Wähle das richtige Wort';
+        await store.replaceLanguage(next);
+
+        expect((await store.listUnits('de', 'A1'))[0]?.titleEn).toBe('Hello again');
+        const stored = await store.getLesson(lesson.deA1L1);
+        expect(stored).toMatchObject({
+          titleEn: 'Saying hello',
+          description: null,
+          introducesItemIds: [item.reise],
+        });
+        expect(stored?.exercises.map((row) => row.id)).toEqual(exercises.deA1L1);
+        expect(stored?.exercises.map((row) => [row.instructionEn, row.instructionNative])).toEqual([
+          ['Pick the right word', 'Wähle das richtige Wort'],
+          ['Choose answer 2', 'Wähle Antwort 2'],
+          ['Choose answer 3', 'Wähle Antwort 3'],
+        ]);
+        expect((await store.listLessonSummaries(unit.deA1))[0]?.titleEn).toBe('Saying hello');
+      });
+
+      it('clears an optional field that the new snapshot leaves out', async () => {
+        await install();
+        const { unit, lesson } = fx.ids;
+        const next = fx.german();
+        const a1 = next.units.find((row) => row.id === unit.deA1)!;
+        const first = a1.lessons.find((row) => row.id === lesson.deA1L1)!;
+        delete a1.titleEn;
+        delete first.titleEn;
+        delete first.description;
+        delete first.introducesItemIds;
+        for (const row of first.exercises) {
+          delete row.instructionEn;
+          delete row.instructionNative;
+        }
+        await store.replaceLanguage(next);
+
+        // The values of the first install must not stay behind.
+        expect((await store.listUnits('de', 'A1'))[0]?.titleEn ?? null).toBeNull();
+        const stored = await store.getLesson(lesson.deA1L1);
+        expect(stored?.exercises).toHaveLength(3);
+        expect(stored?.titleEn ?? null).toBeNull();
+        expect(stored?.description ?? null).toBeNull();
+        expect(stored?.introducesItemIds ?? []).toEqual([]);
+        for (const row of stored?.exercises ?? []) {
+          expect(row.instructionEn ?? null).toBeNull();
+          expect(row.instructionNative ?? null).toBeNull();
+        }
       });
 
       it('gives the same content when the same snapshot is installed twice', async () => {
