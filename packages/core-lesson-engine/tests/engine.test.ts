@@ -33,6 +33,7 @@ function setup(overrides: Partial<CreateLessonEngineOptions> = {}, lessonOverrid
     makeLesson({
       candoIds: [['cando-1'], ['cando-1', 'cando-2'], [], ['cando-3']],
       itemIds: [['item-1'], [], ['item-2', 'item-3'], []],
+      introducesItemIds: ['item-1', 'item-2', 'item-3'],
     });
   const store = createInMemorySessionStore();
   const bus = createEventBus();
@@ -124,6 +125,17 @@ describe('startSession', () => {
     expect(again).toEqual(first);
     expect(await ctx.store.listSessionsByUser(ADA)).toHaveLength(1);
     expect((await ctx.engine.currentExercise(ADA, again.id))?.id).toBe(ctx.e2.id);
+  });
+
+  it('gives every call the same session when several race to start the lesson', async () => {
+    const ctx = setup();
+
+    const started = await Promise.all(
+      [1, 2, 3, 4].map(() => ctx.engine.startSession(ADA, ctx.lesson.id)),
+    );
+
+    expect(await ctx.store.listSessionsByUser(ADA)).toHaveLength(1);
+    for (const session of started) expect(session).toEqual(started[0]);
   });
 
   it('starts a new session once the earlier one is completed', async () => {
@@ -491,6 +503,7 @@ describe('completeSession', () => {
       attempts: 4,
       correct: 2,
       completedAt: '2026-11-11T09:00:05.000Z',
+      introducesItemIds: ['item-1', 'item-2', 'item-3'],
     });
     expect(ctx.lessonEvents).toEqual([{ userId: ADA, lessonId: ctx.lesson.id, score: 0.625 }]);
     expect(await ctx.store.getSession(ADA, session.id)).toMatchObject({
@@ -538,10 +551,58 @@ describe('completeSession', () => {
       grade: ctx.grader.grade,
     });
 
-    expect(await later.completeSession(ADA, session.id)).toEqual(first);
+    // The score and the counts are stored; the item ids came from the lesson.
+    expect(first.introducesItemIds).toEqual(['item-1', 'item-2', 'item-3']);
+    expect(await later.completeSession(ADA, session.id)).toEqual({
+      ...first,
+      introducesItemIds: [],
+    });
     await expect(later.currentExercise(ADA, session.id)).rejects.toBeInstanceOf(
       LessonNotFoundError,
     );
+  });
+
+  it('returns an empty introducesItemIds for a lesson that names none', async () => {
+    const lesson = makeLesson();
+    const ctx = setup({}, lesson);
+    const session = await ctx.engine.startSession(ADA, lesson.id);
+    await answerAll(ctx, ADA, session.id);
+
+    const result = await ctx.engine.completeSession(ADA, session.id);
+
+    expect(lesson.introducesItemIds).toBeUndefined();
+    expect(result.introducesItemIds).toEqual([]);
+  });
+
+  it('hands out a copy of introducesItemIds, on the first call and on every later one', async () => {
+    const ctx = setup();
+    const session = await ctx.engine.startSession(ADA, ctx.lesson.id);
+    await answerAll(ctx, ADA, session.id);
+
+    const first = await ctx.engine.completeSession(ADA, session.id);
+    first.introducesItemIds.push('added-by-the-caller');
+    const second = await ctx.engine.completeSession(ADA, session.id);
+
+    expect(second.introducesItemIds).toEqual(['item-1', 'item-2', 'item-3']);
+    expect(ctx.lesson.introducesItemIds).toEqual(['item-1', 'item-2', 'item-3']);
+  });
+
+  it('emits lesson.completed once when several calls race to complete the session', async () => {
+    const ctx = setup();
+    const session = await ctx.engine.startSession(ADA, ctx.lesson.id);
+    await answerAll(ctx, ADA, session.id, [RIGHT, WRONG, RIGHT, RIGHT]);
+
+    const results = await Promise.all(
+      [1, 2, 3, 4].map(() => ctx.engine.completeSession(ADA, session.id)),
+    );
+
+    expect(ctx.lessonEvents).toEqual([{ userId: ADA, lessonId: ctx.lesson.id, score: 0.75 }]);
+    for (const result of results) expect(result).toEqual(results[0]);
+    expect(results[0]).toMatchObject({ score: 0.75, attempts: 4, correct: 3 });
+    expect(await ctx.store.getSession(ADA, session.id)).toMatchObject({
+      completedAt: results[0]?.completedAt,
+      score: 0.75,
+    });
   });
 
   it('completes a lesson without exercises with score 0', async () => {

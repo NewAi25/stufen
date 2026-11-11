@@ -6,9 +6,17 @@
 // Status: see the core-lesson-engine row in docs/07-build-sequence.md.
 
 export { createInMemorySessionStore, DuplicateAttemptError } from './store';
-export type { SessionPatch, SessionStore, StoredAttempt, StoredSession } from './store';
+export type {
+  CloseOutcome,
+  SessionCompletion,
+  SessionPatch,
+  SessionStore,
+  StoredAttempt,
+  StoredSession,
+} from './store';
 export { createLessonEngine } from './engine';
 export type {
+  CompletedSessionResult,
   CreateLessonEngineOptions,
   LessonEngine,
   LessonWithLanguage,

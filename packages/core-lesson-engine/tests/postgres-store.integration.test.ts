@@ -44,6 +44,7 @@ describe.skipIf(!url)('Postgres SessionStore on a real Postgres', () => {
     unitId,
     candoIds: [[randomUUID()], [], [], []],
     itemIds: [[], [randomUUID(), randomUUID()], [], []],
+    introducesItemIds: [randomUUID(), randomUUID()],
   });
   const exerciseIds = lesson.exercises.map((exercise) => exercise.id);
   let db: Database;
@@ -80,7 +81,13 @@ describe.skipIf(!url)('Postgres SessionStore on a real Postgres', () => {
     await db
       .insertInto('lessons')
       .values([
-        { ...lessonRow, id: lesson.id, ordinal: 1, slug: `p113-lesson-${lesson.id}` },
+        {
+          ...lessonRow,
+          id: lesson.id,
+          ordinal: 1,
+          slug: `p113-lesson-${lesson.id}`,
+          introduces_item_ids: lesson.introducesItemIds ?? [],
+        },
         { ...lessonRow, id: secondLessonId, ordinal: 2, slug: `p113-lesson-${secondLessonId}` },
       ])
       .execute();
@@ -250,7 +257,7 @@ describe.skipIf(!url)('Postgres SessionStore on a real Postgres', () => {
       expect(await store.listAttemptsByUser(a)).toHaveLength(2);
     });
 
-    it("B cannot attach an own attempt to A's session through the store", async () => {
+    it("B cannot attach an own attempt to A's session, through the store or past it", async () => {
       const { a, session, inSession } = await seededA();
       const b = await newUser();
 
@@ -262,7 +269,25 @@ describe.skipIf(!url)('Postgres SessionStore on a real Postgres', () => {
           exerciseId: exerciseIds[1] ?? null,
         }),
       ).rejects.toThrow(`user ${b} has no lesson session ${session.id}`);
+      // The same row without the store's own check: the insert policy of
+      // migration 0006 refuses it with 42501.
+      const pastTheStore = await errorCodeOf(
+        withUser(db, b, (trx) =>
+          trx
+            .insertInto('attempts')
+            .values(
+              attemptToColumns({
+                ...inSession,
+                id: randomUUID(),
+                userId: b,
+                exerciseId: exerciseIds[1] ?? null,
+              }),
+            )
+            .execute(),
+        ),
+      );
 
+      expect(pastTheStore).toBe('42501');
       expect(await store.listAttemptsByUser(b)).toEqual([]);
       expect(await store.listAttemptsBySession(a, session.id)).toEqual([inSession]);
     });
@@ -280,6 +305,64 @@ describe.skipIf(!url)('Postgres SessionStore on a real Postgres', () => {
       }));
 
       expect(seen).toEqual({ sessions: [], attempts: [] });
+    });
+  });
+
+  // Migration 0006 moved these guards into the database. The store relies on
+  // them, so each is shown here with the store's own statements left out.
+  describe('the database guards the store relies on', () => {
+    it('refuses a second unfinished session for the same user and lesson', async () => {
+      const { a, session } = await seededA();
+
+      const code = await errorCodeOf(
+        withUser(db, a, (trx) =>
+          trx
+            .insertInto('lesson_sessions')
+            .values({ id: randomUUID(), user_id: a, lesson_id: lesson.id })
+            .execute(),
+        ),
+      );
+
+      // 23505 is unique_violation, from lesson_sessions_one_open_key.
+      expect(code).toBe('23505');
+      expect(await store.listSessionsByUser(a)).toEqual([session]);
+    });
+
+    it('refuses a second attempt for the same session and exercise', async () => {
+      const { a, session, inSession } = await seededA();
+
+      const code = await errorCodeOf(
+        withUser(db, a, (trx) =>
+          trx
+            .insertInto('attempts')
+            .values(attemptToColumns({ ...inSession, id: randomUUID() }))
+            .execute(),
+        ),
+      );
+
+      // 23505 again, from attempts_session_exercise_key.
+      expect(code).toBe('23505');
+      expect(await store.listAttemptsBySession(a, session.id)).toEqual([inSession]);
+    });
+
+    it('lets a learner read content and never write it', async () => {
+      const a = await newUser();
+
+      const seen = await withUser(db, a, (trx) =>
+        trx.selectFrom('lessons').select('id').where('id', '=', lesson.id).execute(),
+      );
+      const write = await errorCodeOf(
+        withUser(db, a, (trx) =>
+          trx
+            .updateTable('lessons')
+            .set({ title: 'Taken over' })
+            .where('id', '=', lesson.id)
+            .execute(),
+        ),
+      );
+
+      expect(seen).toEqual([{ id: lesson.id }]);
+      expect(write).toBe('42501');
     });
   });
 
@@ -382,7 +465,9 @@ describe.skipIf(!url)('Postgres SessionStore on a real Postgres', () => {
         score: 0.625,
         attempts: 4,
         correct: 2,
+        introducesItemIds: lesson.introducesItemIds,
       });
+      expect(result.introducesItemIds).toHaveLength(2);
       expect(again).toEqual(result);
       expect(lessonEvents).toEqual([{ userId, lessonId: lesson.id, score: 0.625 }]);
       expect(await engine.completedLessonIds(userId)).toEqual([lesson.id]);
@@ -463,6 +548,43 @@ describe.skipIf(!url)('Postgres SessionStore on a real Postgres', () => {
       expect(lost[0]?.reason).toBeInstanceOf(OutOfOrderError);
       expect(await store.listAttemptsBySession(userId, session.id)).toHaveLength(1);
       expect(attemptEvents).toHaveLength(1);
+    });
+
+    it('gives every call the same session when several race to start the lesson', async () => {
+      const userId = await newUser();
+      const { engine } = engineOnPostgres();
+
+      const started = await Promise.all(
+        [1, 2, 3, 4].map(() => engine.startSession(userId, lesson.id)),
+      );
+
+      const mine = await store.listSessionsByUser(userId);
+      expect(mine).toHaveLength(1);
+      for (const session of started) {
+        expect(session).toEqual(started[0]);
+        expect(session.id).toBe(mine[0]?.id);
+      }
+    });
+
+    it('emits lesson.completed once when several calls race to complete the session', async () => {
+      const userId = await newUser();
+      const { engine, lessonEvents } = engineOnPostgres();
+      const session = await engine.startSession(userId, lesson.id);
+      for (const exercise of lesson.exercises) {
+        await engine.submitAnswer(userId, session.id, exercise.id, RIGHT);
+      }
+
+      const results = await Promise.all(
+        [1, 2, 3, 4].map(() => engine.completeSession(userId, session.id)),
+      );
+
+      expect(lessonEvents).toEqual([{ userId, lessonId: lesson.id, score: 1 }]);
+      for (const result of results) expect(result).toEqual(results[0]);
+      expect(results[0]).toMatchObject({ score: 1, attempts: 4, correct: 4 });
+      expect((await store.getSession(userId, session.id))?.completedAt).toBe(
+        results[0]?.completedAt,
+      );
+      expect(await engine.completedLessonIds(userId)).toEqual([lesson.id]);
     });
 
     it('records a standalone attempt and emits attempt.recorded', async () => {

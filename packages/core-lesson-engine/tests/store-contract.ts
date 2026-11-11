@@ -83,7 +83,10 @@ export function runSessionStoreContract(
       it('insertSession rejects an id that is already stored', async () => {
         const first = await store.insertSession(sessionFor(await h.newUserId()));
 
-        await expect(store.insertSession({ ...first, startedAt: T2 })).rejects.toThrow(
+        // Another lesson, so the one open session rule is not what answers here.
+        const sameId = { ...first, lessonId: h.secondLessonId, exerciseOrder: [], startedAt: T2 };
+
+        await expect(store.insertSession(sameId)).rejects.toThrow(
           `lesson session ${first.id} already exists`,
         );
         expect(await store.getSession(first.userId, first.id)).toEqual(first);
@@ -139,7 +142,9 @@ export function runSessionStoreContract(
       it('listSessionsByUser returns only the own sessions, oldest first', async () => {
         const userId = await h.newUserId();
         const later = await store.insertSession(sessionFor(userId, { startedAt: T3 }));
-        const earlier = await store.insertSession(sessionFor(userId, { startedAt: T1 }));
+        const earlier = await store.insertSession(
+          sessionFor(userId, { startedAt: T1, completedAt: T2, score: 1 }),
+        );
         const middle = await store.insertSession(
           sessionFor(userId, { startedAt: T2, lessonId: h.secondLessonId, exerciseOrder: [] }),
         );
@@ -151,7 +156,9 @@ export function runSessionStoreContract(
       it('listSessionsByUser orders sessions with the same startedAt by id', async () => {
         const userId = await h.newUserId();
         const stored = await Promise.all(
-          [1, 2, 3].map(() => store.insertSession(sessionFor(userId))),
+          [1, 2, 3].map(() =>
+            store.insertSession(sessionFor(userId, { completedAt: T2, score: 1 })),
+          ),
         );
         const ids = stored.map((row) => row.id).sort();
 
@@ -196,6 +203,126 @@ export function runSessionStoreContract(
         copy?.exerciseOrder.push(randomUUID());
 
         expect(await store.getSession(stored.userId, stored.id)).toEqual(stored);
+      });
+    });
+
+    describe('one unfinished session per user and lesson', () => {
+      it('insertSession returns the unfinished session that is already there and adds nothing', async () => {
+        const userId = await h.newUserId();
+        const first = await store.insertSession(sessionFor(userId));
+
+        const second = await store.insertSession(sessionFor(userId, { startedAt: T2 }));
+
+        expect(second).toEqual(first);
+        expect(await store.listSessionsByUser(userId)).toEqual([first]);
+      });
+
+      it('gives every call the same session when several race to start a lesson', async () => {
+        const userId = await h.newUserId();
+
+        const stored = await Promise.all(
+          [1, 2, 3, 4, 5].map(() => store.insertSession(sessionFor(userId))),
+        );
+
+        const mine = await store.listSessionsByUser(userId);
+        expect(mine).toHaveLength(1);
+        for (const session of stored) expect(session).toEqual(mine[0]);
+      });
+
+      it('allows a new session once the earlier one is closed', async () => {
+        const userId = await h.newUserId();
+        const first = await store.insertSession(sessionFor(userId));
+        await store.closeSession(userId, first.id, { completedAt: T2, score: 1 });
+
+        const second = await store.insertSession(sessionFor(userId, { startedAt: T3 }));
+
+        expect(second.id).not.toBe(first.id);
+        expect(second.completedAt).toBeNull();
+        expect(await store.listSessionsByUser(userId)).toHaveLength(2);
+      });
+
+      it('keeps the rule per lesson and per user', async () => {
+        const userId = await h.newUserId();
+        const other = await h.newUserId();
+        const mine = await store.insertSession(sessionFor(userId));
+
+        const secondLesson = await store.insertSession(
+          sessionFor(userId, { lessonId: h.secondLessonId, exerciseOrder: [] }),
+        );
+        const theirs = await store.insertSession(sessionFor(other));
+
+        expect(new Set([mine.id, secondLesson.id, theirs.id]).size).toBe(3);
+        expect(theirs.userId).toBe(other);
+      });
+
+      it('stores any number of completed sessions for one lesson', async () => {
+        const userId = await h.newUserId();
+        const done = { completedAt: T4, score: 0.5 };
+
+        const a = await store.insertSession(sessionFor(userId, done));
+        const b = await store.insertSession(sessionFor(userId, { ...done, startedAt: T2 }));
+        const open = await store.insertSession(sessionFor(userId, { startedAt: T3 }));
+
+        expect(await store.listSessionsByUser(userId)).toEqual([a, b, open]);
+      });
+    });
+
+    describe('closeSession', () => {
+      it('sets completedAt and score once and reports that it closed the session', async () => {
+        const before = await store.insertSession(sessionFor(await h.newUserId()));
+
+        const outcome = await store.closeSession(before.userId, before.id, {
+          completedAt: T3,
+          score: 0.875,
+        });
+
+        const after = { ...before, completedAt: T3, score: 0.875 };
+        expect(outcome).toEqual({ session: after, closed: true });
+        expect(await store.getSession(before.userId, before.id)).toEqual(after);
+        expect(await store.completedLessonIds(before.userId)).toEqual([h.lessonId]);
+      });
+
+      it('leaves a completed session as it is and reports closed false', async () => {
+        const before = await store.insertSession(sessionFor(await h.newUserId()));
+        const first = await store.closeSession(before.userId, before.id, {
+          completedAt: T2,
+          score: 0.25,
+        });
+
+        const second = await store.closeSession(before.userId, before.id, {
+          completedAt: T4,
+          score: 1,
+        });
+
+        expect(second).toEqual({ session: first?.session, closed: false });
+        expect(await store.getSession(before.userId, before.id)).toMatchObject({
+          completedAt: T2,
+          score: 0.25,
+        });
+      });
+
+      it('lets exactly one call close the session when several race', async () => {
+        const before = await store.insertSession(sessionFor(await h.newUserId()));
+
+        const outcomes = await Promise.all(
+          [0.1, 0.2, 0.3, 0.4].map((score) =>
+            store.closeSession(before.userId, before.id, { completedAt: T3, score }),
+          ),
+        );
+
+        expect(outcomes.filter((outcome) => outcome?.closed)).toHaveLength(1);
+        const winner = outcomes.find((outcome) => outcome?.closed)?.session;
+        for (const outcome of outcomes) expect(outcome?.session).toEqual(winner);
+        expect(await store.getSession(before.userId, before.id)).toEqual(winner);
+      });
+
+      it("returns null for another user's session and for an unknown id, and changes nothing", async () => {
+        const mine = await store.insertSession(sessionFor(await h.newUserId()));
+        const completion = { completedAt: T3, score: 1 };
+
+        expect(await store.closeSession(await h.newUserId(), mine.id, completion)).toBeNull();
+        expect(await store.closeSession(mine.userId, randomUUID(), completion)).toBeNull();
+        expect(await store.getSession(mine.userId, mine.id)).toEqual(mine);
       });
     });
 
@@ -262,8 +389,9 @@ export function runSessionStoreContract(
       it('allows the same exercise again in another session and standalone', async () => {
         const userId = await h.newUserId();
         const exerciseId = h.exerciseIds[0] ?? null;
-        const one = await store.insertSession(sessionFor(userId));
+        const one = await store.insertSession(sessionFor(userId, { completedAt: T2, score: 1 }));
         const two = await store.insertSession(sessionFor(userId, { startedAt: T2 }));
+        expect(two.id).not.toBe(one.id);
 
         await store.insertAttempt(attemptFor(userId, { sessionId: one.id, exerciseId }));
         await store.insertAttempt(attemptFor(userId, { sessionId: two.id, exerciseId }));

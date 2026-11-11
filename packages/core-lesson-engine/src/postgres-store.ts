@@ -11,10 +11,17 @@
 // `language` of a session handed to insertSession is not stored.
 import { EXERCISE_TYPES, LANGUAGE_CODES } from '@stufen/contracts';
 import type { ExerciseTypeId, Feedback, LanguageCode } from '@stufen/contracts';
-import { sql, withUser } from '@stufen/db';
+import { withUser } from '@stufen/db';
 import type { Database, DatabaseTransaction, NewRow, Row, RowPatch } from '@stufen/db';
 import { DuplicateAttemptError } from './store';
-import type { SessionPatch, SessionStore, StoredAttempt, StoredSession } from './store';
+import type {
+  CloseOutcome,
+  SessionCompletion,
+  SessionPatch,
+  SessionStore,
+  StoredAttempt,
+  StoredSession,
+} from './store';
 
 // ---------- mapping: the one place that knows the column names ----------
 
@@ -134,6 +141,12 @@ function pgCode(error: unknown): string | undefined {
   return typeof error.code === 'string' ? error.code : undefined;
 }
 
+/** The constraint or unique index a Postgres error names, if any. */
+function pgConstraint(error: unknown): string | undefined {
+  if (typeof error !== 'object' || error === null || !('constraint' in error)) return undefined;
+  return typeof error.constraint === 'string' ? error.constraint : undefined;
+}
+
 /** Sessions joined to lessons and units, so each row carries its language. */
 function sessionsWithLanguage(trx: DatabaseTransaction) {
   return trx
@@ -166,15 +179,88 @@ export async function selectSession(
   return row ? sessionFromRow(row) : null;
 }
 
-/** Inserts the row and reads it back with its language. */
+/** The user's unfinished session for the lesson, if there is one. */
+export async function selectOpenSession(
+  trx: DatabaseTransaction,
+  userId: string,
+  lessonId: string,
+): Promise<StoredSession | null> {
+  if (!isUuid(userId) || !isUuid(lessonId)) return null;
+  const row = await sessionsWithLanguage(trx)
+    .where('s.user_id', '=', userId)
+    .where('s.lesson_id', '=', lessonId)
+    .where('s.completed_at', 'is', null)
+    .executeTakeFirst();
+  return row ? sessionFromRow(row) : null;
+}
+
+/**
+ * Inserts the row and reads it back with its language. The unique index
+ * lesson_sessions_one_open_key (migration 0006) allows one unfinished session
+ * per user and lesson. When the insert meets it, nothing is written and the
+ * result is null: another call has started the lesson, and the caller reads
+ * that session instead. A duplicate id still fails with 23505.
+ */
 export async function insertSessionRow(
   trx: DatabaseTransaction,
   session: StoredSession,
-): Promise<StoredSession> {
-  await trx.insertInto('lesson_sessions').values(sessionToColumns(session)).execute();
+): Promise<StoredSession | null> {
+  const inserted = await trx
+    .insertInto('lesson_sessions')
+    .values(sessionToColumns(session))
+    .onConflict((conflict) =>
+      conflict.columns(['user_id', 'lesson_id']).where('completed_at', 'is', null).doNothing(),
+    )
+    .returning('id')
+    .executeTakeFirst();
+  if (!inserted) return null;
   const stored = await selectSession(trx, session.userId, session.id);
   if (!stored) throw new Error(`lesson session ${session.id} could not be read back`);
   return stored;
+}
+
+/**
+ * insertSessionRow, or the unfinished session that was in its way. The other
+ * session can be completed between the two statements, which leaves nothing to
+ * return, so the pair is tried a few times before giving up.
+ */
+export async function insertOrResumeSession(
+  trx: DatabaseTransaction,
+  session: StoredSession,
+): Promise<StoredSession> {
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const stored = await insertSessionRow(trx, session);
+    if (stored) return stored;
+    const open = await selectOpenSession(trx, session.userId, session.lessonId);
+    if (open) return open;
+  }
+  throw new Error(
+    `lesson session ${session.id} could not be stored: the open session for lesson ${session.lessonId} keeps changing`,
+  );
+}
+
+/**
+ * Completes the session only if it is still unfinished. `closed` tells whether
+ * this statement was the one that set completed_at. Null when the user of the
+ * transaction has no such session.
+ */
+export async function closeSessionRow(
+  trx: DatabaseTransaction,
+  userId: string,
+  id: string,
+  completion: SessionCompletion,
+): Promise<CloseOutcome | null> {
+  if (!isUuid(userId) || !isUuid(id)) return null;
+  const changed = await trx
+    .updateTable('lesson_sessions')
+    .set({ completed_at: completion.completedAt, score: completion.score })
+    .where('id', '=', id)
+    .where('user_id', '=', userId)
+    .where('completed_at', 'is', null)
+    .returning('id')
+    .executeTakeFirst();
+  const session = await selectSession(trx, userId, id);
+  return session ? { session, closed: changed !== undefined } : null;
 }
 
 /** Applies the patch to the user's session. Null when no such row is visible. */
@@ -230,12 +316,17 @@ export async function selectCompletedLessonIds(
   return rows.map((row) => row.lesson_id);
 }
 
+/** The unique index of migration 0006: one attempt per session and exercise. */
+const ATTEMPT_PER_EXERCISE_INDEX = 'attempts_session_exercise_key';
+
 /**
- * Inserts one attempt. For a session attempt it first checks, under a lock per
- * session and exercise, that the session is the user's own and holds no
- * attempt for the exercise yet. The table has no unique constraint for that,
- * and its foreign key to lesson_sessions is not subject to row security, so
- * both rules are kept here.
+ * Inserts one attempt. Two rules for a session attempt are kept twice, here
+ * and in the database (migration 0006):
+ *   * the session is the user's own. Checked here first for a clear message;
+ *     the insert policy on attempts refuses the row as well.
+ *   * the session holds one attempt per exercise. The unique index decides,
+ *     also between two inserts at the same moment, and its 23505 becomes
+ *     DuplicateAttemptError.
  */
 export async function insertAttemptRow(
   trx: DatabaseTransaction,
@@ -248,24 +339,24 @@ export async function insertAttemptRow(
       throw new Error(`user ${attempt.userId} has no lesson session ${sessionId}`);
     }
   }
-  if (sessionId !== null && exerciseId !== null) {
-    // Two inserts racing for the same exercise queue up here until the first commits.
-    const lockKey = `core-lesson-engine.attempt:${sessionId}:${exerciseId}`;
-    await sql`select pg_advisory_xact_lock(hashtextextended(${lockKey}, 0))`.execute(trx);
-    const taken = await trx
-      .selectFrom('attempts')
-      .select('id')
-      .where('session_id', '=', sessionId)
-      .where('exercise_id', '=', exerciseId)
-      .executeTakeFirst();
-    if (taken) throw new DuplicateAttemptError(sessionId, exerciseId);
+  try {
+    const row = await trx
+      .insertInto('attempts')
+      .values(attemptToColumns(attempt))
+      .returningAll()
+      .executeTakeFirstOrThrow();
+    return attemptFromRow(row);
+  } catch (error) {
+    if (
+      pgCode(error) === '23505' &&
+      pgConstraint(error) === ATTEMPT_PER_EXERCISE_INDEX &&
+      sessionId !== null &&
+      exerciseId !== null
+    ) {
+      throw new DuplicateAttemptError(sessionId, exerciseId);
+    }
+    throw error;
   }
-  const row = await trx
-    .insertInto('attempts')
-    .values(attemptToColumns(attempt))
-    .returningAll()
-    .executeTakeFirstOrThrow();
-  return attemptFromRow(row);
 }
 
 /** The user's attempts in one session, oldest first by created_at, then by id. */
@@ -313,8 +404,11 @@ async function namingDuplicates<T>(what: string, work: () => Promise<T>): Promis
   try {
     return await work();
   } catch (error) {
-    // 23505 unique_violation: the only unique constraint on both tables is the id.
-    if (pgCode(error) === '23505') throw new Error(`${what} already exists`, { cause: error });
+    // 23505 unique_violation on the primary key. The other unique indexes on
+    // these tables are handled where the insert runs.
+    if (pgCode(error) === '23505' && pgConstraint(error)?.endsWith('_pkey')) {
+      throw new Error(`${what} already exists`, { cause: error });
+    }
     throw error;
   }
 }
@@ -327,11 +421,13 @@ export function createPostgresSessionStore(db: Database): SessionStore {
   return {
     insertSession: (session) =>
       namingDuplicates(`lesson session ${session.id}`, () =>
-        withUser(db, session.userId, (trx) => insertSessionRow(trx, session)),
+        withUser(db, session.userId, (trx) => insertOrResumeSession(trx, session)),
       ),
     getSession: (userId, id) => withUser(db, userId, (trx) => selectSession(trx, userId, id)),
     updateSession: (userId, id, patch) =>
       withUser(db, userId, (trx) => patchSession(trx, userId, id, patch)),
+    closeSession: (userId, id, completion) =>
+      withUser(db, userId, (trx) => closeSessionRow(trx, userId, id, completion)),
     listSessionsByUser: (userId) =>
       withUser(db, userId, (trx) => selectSessionsByUser(trx, userId)),
     insertAttempt: (attempt) =>

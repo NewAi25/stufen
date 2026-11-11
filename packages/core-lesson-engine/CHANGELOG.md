@@ -2,6 +2,26 @@
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-11
+
+Follows migration 0006, which moved the session and attempt guards into the database, and contracts 0.6.0.
+
+### Added
+- `SessionStore.closeSession(userId, id, { completedAt, score })`: completes a session only while it is unfinished and resolves `{ session, closed }`, where `closed` says whether this call did it. Null when the user has no such session. Both adapters; on Postgres it is one update with `completed_at is null` in the where clause.
+- `CompletedSessionResult`: the contracts `SessionResult` plus `introducesItemIds`. `completeSession` returns it, on the first call and on every later one, so the composition root can hand the items a lesson introduces to the review box. The list is the lesson's `introducesItemIds` from `getLesson`, or empty when the lesson names none or no longer exists. The contracts types and the `lesson.completed` payload are unchanged.
+- Contract tests for one unfinished session per user and lesson, for several `insertSession` calls at the same moment, and for `closeSession` including its race. Engine tests for the start race and the completion race on both stores.
+- Integration tests that show the database guards with the store's own checks left out: a second unfinished session and a second attempt for the same exercise fail with 23505, an attempt on another learner's session fails with 42501, and a learner can read content but not write it.
+
+### Changed
+- `insertSession` no longer adds a second unfinished session for the same user and lesson. It resolves the one that is already there, in both adapters. Several `startSession` calls at the same moment now all get the same session. On Postgres the insert uses `on conflict do nothing` on the unique index `lesson_sessions_one_open_key` and then reads the session that was in the way.
+- `completeSession` closes the session through `closeSession`. Of several calls at the same moment one closes it and emits `lesson.completed`; the others return the result that one stored and emit nothing.
+- Postgres `insertAttempt`: the unique index `attempts_session_exercise_key` now decides whether a session already has an attempt for an exercise, and its error 23505 becomes `DuplicateAttemptError`. The advisory lock and the select before the insert are gone. The check that the session belongs to the user stays, and the new insert policy on `attempts` refuses the same row in the database.
+- A duplicate id is told apart from the other unique indexes by the constraint name, so only a primary key violation reads as "already exists".
+- The Postgres store now needs migration 0006.
+
+### Removed
+- The two known limits about `startSession` and `completeSession` calls at the same moment. Both are closed.
+
 ## [0.1.0] - 2026-11-11
 
 Build sequence rows P1-12, P1-13 and P1-29.

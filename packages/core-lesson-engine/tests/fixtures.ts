@@ -21,6 +21,8 @@ export interface LessonFixtureOptions {
   /** Per exercise, by position. Default: none. */
   candoIds?: string[][];
   itemIds?: string[][];
+  /** Items the lesson introduces. Left off the lesson when not given. */
+  introducesItemIds?: string[];
 }
 
 /** A lesson with four exercises, ordinals 1 to 4, in ordinal order. */
@@ -37,7 +39,12 @@ export function makeLesson(options: LessonFixtureOptions = {}): Lesson {
     itemIds: options.itemIds?.[index] ?? [],
     packVersion: PACK_VERSION,
   }));
+  const introduces =
+    options.introducesItemIds === undefined
+      ? {}
+      : { introducesItemIds: [...options.introducesItemIds] };
   return {
+    ...introduces,
     id: lessonId,
     unitId: options.unitId ?? randomUUID(),
     ordinal: 1,

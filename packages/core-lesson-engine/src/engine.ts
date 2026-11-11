@@ -53,6 +53,16 @@ export interface SubmitAnswerResult {
   next: Exercise | null;
 }
 
+/**
+ * SessionResult plus the items the lesson introduces. The contracts type has no
+ * field for them, and the composition root needs them to hand to the review
+ * box when a lesson is done.
+ */
+export interface CompletedSessionResult extends SessionResult {
+  /** `Lesson.introducesItemIds`, or an empty list when the lesson names none or is gone. */
+  introducesItemIds: string[];
+}
+
 export interface LessonEngine {
   /** Resumes the user's unfinished session for the lesson, or starts a new one. */
   startSession(userId: string, lessonId: string): Promise<LessonSession>;
@@ -67,7 +77,7 @@ export interface LessonEngine {
     durationMs?: number,
   ): Promise<SubmitAnswerResult>;
   /** Closes a fully answered session and emits `lesson.completed` once. */
-  completeSession(userId: string, sessionId: string): Promise<SessionResult>;
+  completeSession(userId: string, sessionId: string): Promise<CompletedSessionResult>;
   /** Stores an attempt that has no session and emits `attempt.recorded`. */
   recordStandaloneAttempt(userId: string, input: StandaloneAttempt): Promise<void>;
   /** Distinct lesson ids of the user's completed sessions, in ascending order. */
@@ -185,6 +195,7 @@ function toLessonSession(session: StoredSession): LessonSession {
 /** Where a session stands: what is answered and what is still open. */
 interface Progress {
   session: StoredSession;
+  lesson: Lesson;
   language: LanguageCode;
   exercises: Map<string, Exercise>;
   attempts: StoredAttempt[];
@@ -221,10 +232,14 @@ export function createLessonEngine(options: CreateLessonEngineOptions): LessonEn
       if (attempt.exerciseId !== null) answered.add(attempt.exerciseId);
     }
     const remaining = session.exerciseOrder.filter((id) => exercises.has(id) && !answered.has(id));
-    return { session, language, exercises, attempts, answered, remaining };
+    return { session, lesson, language, exercises, attempts, answered, remaining };
   }
 
-  function resultOf(session: StoredSession, attempts: StoredAttempt[]): SessionResult {
+  function resultOf(
+    session: StoredSession,
+    attempts: StoredAttempt[],
+    lesson: Lesson | null,
+  ): CompletedSessionResult {
     if (session.completedAt === null || session.score === null) {
       throw new Error(`lesson session ${session.id} is not completed`);
     }
@@ -235,6 +250,7 @@ export function createLessonEngine(options: CreateLessonEngineOptions): LessonEn
       attempts: attempts.length,
       correct: attempts.filter((attempt) => attempt.correct).length,
       completedAt: session.completedAt,
+      introducesItemIds: [...(lesson?.introducesItemIds ?? [])],
     };
   }
 
@@ -323,22 +339,33 @@ export function createLessonEngine(options: CreateLessonEngineOptions): LessonEn
     async completeSession(userId, sessionId) {
       const first = await requireSession(userId, sessionId);
       if (first.completedAt !== null) {
-        // Already closed: the stored result again, and no second event.
-        return resultOf(first, await store.listAttemptsBySession(userId, sessionId));
+        // Already closed: the stored result again, and no second event. The
+        // lesson may be gone by now; then there are no item ids to report.
+        const found = await getLesson(first.lessonId);
+        const attempts = await store.listAttemptsBySession(userId, sessionId);
+        return resultOf(first, attempts, found?.lesson ?? null);
       }
-      const { session, attempts, remaining } = await progressOf(userId, sessionId);
+      const { session, lesson, attempts, remaining } = await progressOf(userId, sessionId);
       if (remaining.length > 0) throw new SessionIncompleteError(sessionId, remaining);
 
       const total = attempts.reduce((sum, attempt) => sum + attempt.score, 0);
       // A lesson without exercises has nothing to average and scores 0.
       const score = attempts.length === 0 ? 0 : round3(total / attempts.length);
-      const updated = await store.updateSession(userId, sessionId, {
+      const outcome = await store.closeSession(userId, sessionId, {
         completedAt: now().toISOString(),
         score,
       });
-      if (!updated) throw new SessionAccessError(userId, sessionId);
-      await bus.emit('lesson.completed', { userId, lessonId: session.lessonId, score });
-      return resultOf(updated, attempts);
+      if (!outcome) throw new SessionAccessError(userId, sessionId);
+      // Of two calls racing here the store lets one close the session. Only
+      // that one emits; the other returns what the winner stored.
+      if (outcome.closed) {
+        await bus.emit('lesson.completed', {
+          userId,
+          lessonId: session.lessonId,
+          score: outcome.session.score ?? score,
+        });
+      }
+      return resultOf(outcome.session, attempts, lesson);
     },
 
     async recordStandaloneAttempt(userId, input) {

@@ -24,6 +24,19 @@ export interface SessionPatch {
   score?: number | null;
 }
 
+/** What closeSession writes. */
+export interface SessionCompletion {
+  completedAt: string;
+  /** 0 to 1, at most three decimals (the column is numeric(4,3)). */
+  score: number;
+}
+
+/** The session after closeSession, and whether this call was the one that closed it. */
+export interface CloseOutcome {
+  session: StoredSession;
+  closed: boolean;
+}
+
 /** One row of `attempts`. `sessionId` is null for a standalone attempt. */
 export interface StoredAttempt {
   id: string;
@@ -60,12 +73,31 @@ export class DuplicateAttemptError extends Error {
 }
 
 export interface SessionStore {
-  /** Adds one session for `session.userId` and resolves to it as stored. */
+  /**
+   * Adds one session for `session.userId` and resolves to it as stored. A user
+   * has at most one unfinished session per lesson: when `session` is unfinished
+   * and the user already has an unfinished one for that lesson, nothing is
+   * added and the existing session is resolved instead, so two calls racing to
+   * start the same lesson end with the same session. Rejects an id that is
+   * already stored.
+   */
   insertSession(session: StoredSession): Promise<StoredSession>;
   /** The session, or null when the id is unknown or it belongs to another user. */
   getSession(userId: string, id: string): Promise<StoredSession | null>;
   /** Sets the given fields. Null when the user has no session with that id. */
   updateSession(userId: string, id: string, patch: SessionPatch): Promise<StoredSession | null>;
+  /**
+   * Completes the session if it is still unfinished: sets `completedAt` and
+   * `score` in one step and resolves with `closed: true`. A session that is
+   * already completed is left as it is and resolved with `closed: false`, so
+   * of two calls racing to complete a session exactly one closes it. Null when
+   * the user has no session with that id.
+   */
+  closeSession(
+    userId: string,
+    id: string,
+    completion: SessionCompletion,
+  ): Promise<CloseOutcome | null>;
   /** The user's sessions, oldest first by `startedAt`, then by id. */
   listSessionsByUser(userId: string): Promise<StoredSession[]>;
   /**
@@ -106,6 +138,15 @@ export function createInMemorySessionStore(): SessionStore {
 
   return {
     async insertSession(session) {
+      if (session.completedAt === null) {
+        const open = sessions.find(
+          (row) =>
+            row.userId === session.userId &&
+            row.lessonId === session.lessonId &&
+            row.completedAt === null,
+        );
+        if (open) return structuredClone(open);
+      }
       if (sessions.some((row) => row.id === session.id)) {
         throw new Error(`lesson session ${session.id} already exists`);
       }
@@ -124,6 +165,17 @@ export function createInMemorySessionStore(): SessionStore {
       if (patch.completedAt !== undefined) row.completedAt = patch.completedAt;
       if (patch.score !== undefined) row.score = patch.score;
       return structuredClone(row);
+    },
+
+    async closeSession(userId, id, completion) {
+      const row = ownSession(userId, id);
+      if (!row) return null;
+      const closed = row.completedAt === null;
+      if (closed) {
+        row.completedAt = completion.completedAt;
+        row.score = completion.score;
+      }
+      return { session: structuredClone(row), closed };
     },
 
     async listSessionsByUser(userId) {
