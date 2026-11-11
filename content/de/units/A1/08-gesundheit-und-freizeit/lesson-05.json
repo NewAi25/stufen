@@ -1,0 +1,640 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-08-05",
+  "unit_key": "de:unit:a1-08-gesundheit-und-freizeit",
+  "ordinal": 5,
+  "slug": "freizeit-und-wetter",
+  "title": "Freizeit und Wetter",
+  "title_en": "Free time and the weather",
+  "description": "Say what you like doing in your free time with gern: Sport, Musik, lesen, schwimmen, Freunde treffen. Ask Was machst du gern?, invite someone with Hast du am Samstag Zeit? and Kommst du mit?, and say yes or no. Talk about the weather: Sonne, Regen, kalt, warm, Wie ist das Wetter? Get the gist of a short description of an event.",
+  "kind": "core",
+  "estimated_minutes": 24,
+  "cando_ids": [
+    "de:cando:A1.REA.05",
+    "de:cando:A1.SPI.03",
+    "de:cando:A1.SPP.03",
+    "de:cando:A1.SPI.01",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.GRA.02",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.GRA.11",
+    "de:cando:A1.WRI.03"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:freizeit",
+    "de:vocab:hobby",
+    "de:vocab:sport",
+    "de:vocab:schwimmen",
+    "de:vocab:tanzen",
+    "de:vocab:einladen",
+    "de:vocab:feier",
+    "de:vocab:feiern",
+    "de:vocab:wetter",
+    "de:vocab:sonne",
+    "de:vocab:regen",
+    "de:vocab:regnen",
+    "de:vocab:scheinen",
+    "de:vocab:kalt",
+    "de:vocab:warm",
+    "de:vocab:heiss",
+    "de:vocab:grad",
+    "de:phrase:wie-ist-das-wetter",
+    "de:phrase:es-regnet",
+    "de:phrase:die-sonne-scheint",
+    "de:phrase:kommst-du-mit",
+    "de:phrase:viel-spass",
+    "de:chunk:ich-spiele-gern",
+    "de:chunk:mein-hobby-ist",
+    "de:chunk:heute-haben-wir-grad"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-08-05-01",
+      "ordinal": 1,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-haben",
+        "de:grammar:perfekt-mit-sein",
+        "de:vocab:wochenende",
+        "de:vocab:spielen",
+        "de:vocab:gehen"
+      ],
+      "instruction_en": "Warm up. Fill in habe or bin.",
+      "payload": {
+        "text": "Am Wochenende ___ ich Fußball gespielt. Am Abend ___ ich ins Kino gegangen.",
+        "blanks": [
+          {
+            "answer": "habe",
+            "hint": "spielen"
+          },
+          {
+            "answer": "bin",
+            "hint": "gehen"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-05-02",
+      "ordinal": 2,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.SPP.03"
+      ],
+      "item_ids": [
+        "de:vocab:lesen",
+        "de:vocab:spielen",
+        "de:vocab:hoeren",
+        "de:vocab:treffen",
+        "de:vocab:wandern",
+        "de:vocab:kochen"
+      ],
+      "instruction_en": "Warm up. Match the verbs you know with their English meaning. They all say what people do in their free time.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "lesen",
+            "right": "to read"
+          },
+          {
+            "left": "spielen",
+            "right": "to play"
+          },
+          {
+            "left": "hören",
+            "right": "to listen to"
+          },
+          {
+            "left": "treffen",
+            "right": "to meet"
+          },
+          {
+            "left": "wandern",
+            "right": "to hike"
+          },
+          {
+            "left": "kochen",
+            "right": "to cook"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-05-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.02",
+        "de:cando:A1.SPI.03"
+      ],
+      "item_ids": [
+        "de:vocab:freizeit",
+        "de:vocab:sport",
+        "de:vocab:schwimmen",
+        "de:chunk:ich-spiele-gern",
+        "de:vocab:musik",
+        "de:chunk:mein-hobby-ist",
+        "de:chunk:hast-du-am-zeit",
+        "de:phrase:die-sonne-scheint",
+        "de:vocab:warm",
+        "de:phrase:kommst-du-mit"
+      ],
+      "instruction_en": "Tom and Sara talk about their free time. Then Sara invites Tom. Listen, then answer the questions.",
+      "payload": {
+        "transcript": "Sara, was machst du gern in der Freizeit? Ich mache gern Sport. Ich schwimme gern und ich spiele gern Fußball. Und du, Tom? Ich lese gern und ich höre gern Musik. Mein Hobby ist Musik. Tom, hast du am Samstag Zeit? Am Samstag scheint die Sonne und es ist warm. Ich gehe schwimmen. Kommst du mit? Ja, gern! Wann? Um zehn Uhr. Gut, bis Samstag!",
+        "questions": [
+          {
+            "question": "Was macht Sara gern?",
+            "options": [
+              "Sie macht gern Sport.",
+              "Sie liest gern.",
+              "Sie kocht gern."
+            ],
+            "answer_index": 0
+          },
+          {
+            "question": "Was ist Toms Hobby?",
+            "options": [
+              "Fußball",
+              "Musik",
+              "Schwimmen"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Wie ist das Wetter am Samstag?",
+            "options": [
+              "Es regnet und es ist kalt.",
+              "Die Sonne scheint und es ist warm."
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Kommt Tom am Samstag mit?",
+            "options": [
+              "Ja, um zehn Uhr.",
+              "Nein, er hat keine Zeit."
+            ],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-05-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": [
+        "de:cando:A1.REA.05"
+      ],
+      "item_ids": [
+        "de:vocab:feier",
+        "de:vocab:feiern",
+        "de:vocab:sonne",
+        "de:phrase:die-sonne-scheint",
+        "de:vocab:tanzen",
+        "de:vocab:musik",
+        "de:vocab:sport",
+        "de:vocab:regnen",
+        "de:vocab:einladen",
+        "de:vocab:park"
+      ],
+      "instruction_en": "Read the notice about an event. The three pictures are described in words. You do not need every word: use the pictures to work out what the event is. Then answer the questions.",
+      "payload": {
+        "title": "Sommer im Park",
+        "text": "Bild 1: Die Sonne scheint. Viele Leute sind im Park. Kinder spielen Fußball.\nBild 2: Eine Frau und ein Mann machen Musik. Die Leute tanzen.\nBild 3: Ein Tisch mit Kuchen, Obst und Saft.\n\nAm Samstag feiern wir im Park. Die Feier fängt um 15 Uhr an. Es gibt Musik und Sport. Es gibt auch Kuchen und Saft. Regnet es am Samstag? Dann feiern wir am Sonntag. Wir laden alle ein!",
+        "questions": [
+          {
+            "question": "What is this notice about?",
+            "options": [
+              "a German course",
+              "a celebration in the park",
+              "a new doctor's practice"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Was machen die Leute auf Bild 2?",
+            "options": [
+              "Sie schwimmen.",
+              "Sie arbeiten.",
+              "Sie tanzen."
+            ],
+            "answer_index": 2
+          },
+          {
+            "question": "Wann fängt die Feier an?",
+            "options": [
+              "am Samstag um 15 Uhr",
+              "am Samstag um 5 Uhr",
+              "am Sonntag um 15 Uhr"
+            ],
+            "answer_index": 0
+          },
+          {
+            "question": "Es regnet am Samstag. Wann ist die Feier?",
+            "options": [
+              "am Samstag",
+              "am Sonntag"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Who is invited?",
+            "options": [
+              "only children",
+              "everybody"
+            ],
+            "answer_index": 1,
+            "explanation_en": "Wir laden alle ein means we invite everybody. einladen splits in two: wir laden ... ein."
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-05-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.SPP.03"
+      ],
+      "item_ids": [
+        "de:vocab:freizeit",
+        "de:vocab:hobby",
+        "de:vocab:sport",
+        "de:vocab:schwimmen",
+        "de:vocab:tanzen",
+        "de:vocab:einladen",
+        "de:vocab:feier",
+        "de:vocab:feiern"
+      ],
+      "instruction_en": "Match the free time words with their English meaning.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "die Freizeit",
+            "right": "free time"
+          },
+          {
+            "left": "das Hobby",
+            "right": "hobby"
+          },
+          {
+            "left": "der Sport",
+            "right": "sport, exercise"
+          },
+          {
+            "left": "schwimmen",
+            "right": "to swim"
+          },
+          {
+            "left": "tanzen",
+            "right": "to dance"
+          },
+          {
+            "left": "einladen",
+            "right": "to invite"
+          },
+          {
+            "left": "die Feier",
+            "right": "celebration, party"
+          },
+          {
+            "left": "feiern",
+            "right": "to celebrate"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-05-06",
+      "ordinal": 6,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.SPP.03"
+      ],
+      "item_ids": [
+        "de:vocab:wetter",
+        "de:vocab:sonne",
+        "de:vocab:regen",
+        "de:vocab:kalt",
+        "de:vocab:warm",
+        "de:vocab:heiss",
+        "de:vocab:scheinen",
+        "de:phrase:es-regnet",
+        "de:phrase:die-sonne-scheint"
+      ],
+      "instruction_en": "Match the weather words and sentences with their English meaning.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "das Wetter",
+            "right": "weather"
+          },
+          {
+            "left": "die Sonne",
+            "right": "sun"
+          },
+          {
+            "left": "der Regen",
+            "right": "rain"
+          },
+          {
+            "left": "kalt",
+            "right": "cold"
+          },
+          {
+            "left": "warm",
+            "right": "warm"
+          },
+          {
+            "left": "heiß",
+            "right": "hot"
+          },
+          {
+            "left": "Es regnet.",
+            "right": "It is raining."
+          },
+          {
+            "left": "Die Sonne scheint.",
+            "right": "The sun is shining."
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-05-07",
+      "ordinal": 7,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.02",
+        "de:cando:A1.SPP.03"
+      ],
+      "item_ids": [
+        "de:chunk:ich-spiele-gern",
+        "de:vocab:gern",
+        "de:vocab:spielen",
+        "de:vocab:lesen",
+        "de:vocab:treffen",
+        "de:vocab:hoeren"
+      ],
+      "instruction_en": "Fill in the right form of the verb under the gap. gern comes after the verb.",
+      "payload": {
+        "text": "Ich ___ gern Fußball. ___ du gern? Lena ___ gern Freunde. Wir ___ gern Musik.",
+        "blanks": [
+          {
+            "answer": "spiele",
+            "hint": "spielen"
+          },
+          {
+            "answer": "Liest",
+            "hint": "lesen"
+          },
+          {
+            "answer": "trifft",
+            "hint": "treffen"
+          },
+          {
+            "answer": "hören",
+            "hint": "hören"
+          }
+        ],
+        "explanation_en": "lesen and treffen change their vowel with du and er, sie, es: du liest, sie liest; du triffst, sie trifft."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-05-08",
+      "ordinal": 8,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.SPI.01",
+        "de:cando:A1.SPI.03"
+      ],
+      "item_ids": [
+        "de:chunk:hast-du-am-zeit",
+        "de:phrase:kommst-du-mit",
+        "de:phrase:wie-ist-das-wetter",
+        "de:phrase:viel-spass",
+        "de:phrase:es-regnet",
+        "de:vocab:gern"
+      ],
+      "instruction_en": "Match each question or sentence with a fitting answer.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "Was machst du gern?",
+            "right": "Ich schwimme gern."
+          },
+          {
+            "left": "Hast du am Sonntag Zeit?",
+            "right": "Ja, am Sonntag habe ich Zeit."
+          },
+          {
+            "left": "Wir gehen ins Kino. Kommst du mit?",
+            "right": "Ja, gern! Wann?"
+          },
+          {
+            "left": "Wie ist das Wetter?",
+            "right": "Es regnet und es ist kalt."
+          },
+          {
+            "left": "Ich gehe heute tanzen.",
+            "right": "Viel Spaß!"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-05-09",
+      "ordinal": 9,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.SPI.01"
+      ],
+      "item_ids": [
+        "de:phrase:kommst-du-mit",
+        "de:vocab:leider",
+        "de:vocab:zeit",
+        "de:chunk:hast-du-am-zeit"
+      ],
+      "instruction_en": "Choose the right answer. You want to say no in a friendly way.",
+      "payload": {
+        "question": "Tom fragt: Wir spielen am Samstag Fußball. Kommst du mit? You are busy on Saturday.",
+        "options": [
+          "Ja, gern!",
+          "Viel Spaß! Ich komme mit.",
+          "Leider nicht. Am Samstag habe ich keine Zeit.",
+          "Die Sonne scheint."
+        ],
+        "answer_index": 2,
+        "explanation_en": "Leider nicht means unfortunately not. To say yes, say Ja, gern!"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-05-10",
+      "ordinal": 10,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.SPP.03"
+      ],
+      "item_ids": [
+        "de:phrase:wie-ist-das-wetter",
+        "de:vocab:wetter",
+        "de:vocab:sonne",
+        "de:vocab:warm",
+        "de:vocab:grad",
+        "de:chunk:heute-haben-wir-grad"
+      ],
+      "instruction_en": "Fill in Wetter, Sonne, warm or Grad.",
+      "payload": {
+        "text": "Wie ist das ___ heute? Die ___ scheint und es ist ___. Heute haben wir 25 ___.",
+        "blanks": [
+          {
+            "answer": "Wetter",
+            "hint": "weather"
+          },
+          {
+            "answer": "Sonne",
+            "hint": "sun"
+          },
+          {
+            "answer": "warm",
+            "hint": "warm"
+          },
+          {
+            "answer": "Grad",
+            "hint": "degrees"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-05-11",
+      "ordinal": 11,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.03",
+        "de:cando:A1.SPI.03"
+      ],
+      "item_ids": [
+        "de:vocab:machen",
+        "de:vocab:gern",
+        "de:vocab:freizeit"
+      ],
+      "instruction_en": "Put the words in the right order to ask what someone likes doing in their free time.",
+      "payload": {
+        "words": [
+          "der",
+          "Was",
+          "machst",
+          "Freizeit?",
+          "gern",
+          "du",
+          "in"
+        ],
+        "answer": "Was machst du gern in der Freizeit?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-05-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.03",
+        "de:cando:A1.GRA.03"
+      ],
+      "item_ids": [
+        "de:chunk:hast-du-am-zeit",
+        "de:phrase:kommst-du-mit",
+        "de:vocab:schwimmen",
+        "de:vocab:sonntag"
+      ],
+      "instruction_en": "Translate into German. This is how you invite a friend in a text message.",
+      "payload": {
+        "source_text": "Do you have time on Sunday? We are going swimming. Are you coming along?",
+        "direction": "to_target",
+        "reference": [
+          "Hast du am Sonntag Zeit? Wir gehen schwimmen. Kommst du mit?"
+        ],
+        "notes_en": "going swimming is schwimmen gehen: Wir gehen schwimmen."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-05-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": [
+        "de:cando:A1.SPI.03",
+        "de:cando:A1.SPI.01",
+        "de:cando:A1.SPP.03"
+      ],
+      "item_ids": [
+        "de:vocab:freizeit",
+        "de:vocab:gern",
+        "de:chunk:ich-spiele-gern",
+        "de:chunk:mein-hobby-ist",
+        "de:chunk:hast-du-am-zeit",
+        "de:phrase:kommst-du-mit",
+        "de:phrase:wie-ist-das-wetter"
+      ],
+      "instruction_en": "Roleplay. A new colleague talks to you in the break. Record your part.",
+      "payload": {
+        "prompt_en": "Your colleague asks: Was machst du gern in der Freizeit? Answer with two or three things you like doing. Ask your colleague the same question. Then invite your colleague to do something with you on Saturday and say what the weather is like.",
+        "prompt_native": "Was machst du gern in der Freizeit?",
+        "mode": "free",
+        "sample_answer": "Ich mache gern Sport. Ich spiele gern Fußball und ich lese gern. Und du? Was machst du gern? Hast du am Samstag Zeit? Die Sonne scheint. Ich gehe in den Park. Kommst du mit?",
+        "rubric_focus": [
+          "two or three free time activities with gern after the verb",
+          "asks a question back",
+          "an invitation with Hast du ... Zeit? or Kommst du mit?",
+          "one sentence about the weather",
+          "can be understood by a patient listener"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

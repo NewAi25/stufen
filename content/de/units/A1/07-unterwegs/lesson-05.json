@@ -1,0 +1,317 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-07-05",
+  "unit_key": "de:unit:a1-07-unterwegs",
+  "ordinal": 5,
+  "slug": "was-steht-da",
+  "title": "Was steht da?",
+  "title_en": "What does it say?",
+  "description": "Help someone who does not read German. Pass on the times and places from a sign, a notice, a timetable or an announcement in simple English, and pass on a simple English message about times and places in simple German.",
+  "kind": "core",
+  "estimated_minutes": 22,
+  "cando_ids": [
+    "de:cando:A1.MED.01",
+    "de:cando:A1.MED.02",
+    "de:cando:A1.REA.03",
+    "de:cando:A1.REA.04",
+    "de:cando:A1.LIS.05",
+    "de:cando:A1.GRA.03"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:durchsage",
+    "de:vocab:plan",
+    "de:vocab:auskunft",
+    "de:vocab:halten",
+    "de:chunk:ich-fahre-mit"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-07-05-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.03"],
+      "item_ids": ["de:phrase:bitte-ziehen-sie-eine-nummer", "de:phrase:was-muss-ich-mitbringen", "de:phrase:haben-sie-ihre-papiere-dabei", "de:chunk:gehen-sie-bitte-zum-schalter", "de:phrase:wo-kann-ich-mich-anmelden"],
+      "instruction_en": "Warm up. Match the sentences from the Bürgeramt with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "Bitte ziehen Sie eine Nummer.", "right": "Please take a number." },
+          { "left": "Was muss ich mitbringen?", "right": "What do I have to bring?" },
+          { "left": "Haben Sie Ihre Papiere dabei?", "right": "Do you have your documents with you?" },
+          { "left": "Gehen Sie bitte zum Schalter zwei!", "right": "Please go to counter two." },
+          { "left": "Wo kann ich mich anmelden?", "right": "Where can I register?" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-05-02",
+      "ordinal": 2,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.REA.04"],
+      "item_ids": ["de:vocab:abfahrt", "de:vocab:ankunft", "de:vocab:gleis"],
+      "instruction_en": "Warm up. Fill in the station word. The hint gives the English word.",
+      "payload": {
+        "text": "Die ___ in Bonn ist um 9:15 Uhr. Die ___ in Köln ist um 9:45 Uhr. Der Zug fährt von ___ 3 ab.",
+        "blanks": [
+          { "answer": "Abfahrt", "hint": "departure" },
+          { "answer": "Ankunft", "hint": "arrival" },
+          { "answer": "Gleis", "hint": "platform" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-05-03",
+      "ordinal": 3,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.MED.02", "de:cando:A1.REA.03"],
+      "item_ids": ["de:vocab:buergeramt", "de:vocab:amt", "de:vocab:geschlossen", "de:vocab:geoeffnet", "de:vocab:auskunft", "de:vocab:rathaus", "de:vocab:montag", "de:vocab:dienstag"],
+      "instruction_en": "Your friend Sam wants to register but cannot read German. You both stand in front of this notice on the door. Read it and choose what you tell Sam.",
+      "payload": {
+        "title": "Schild an der Tür",
+        "text": "Achtung!\nDas Bürgeramt ist am Montag geschlossen.\nAm Dienstag ist das Amt von 8 bis 16 Uhr geöffnet.\nAuskunft: Rathaus, Zimmer 3",
+        "questions": [
+          {
+            "question": "Sam asks: Can I register today? Today is Monday.",
+            "options": ["Yes, from 8 to 16.", "No, the office is closed on Monday.", "Yes, but only in room 3."],
+            "answer_index": 1
+          },
+          {
+            "question": "Sam asks: When can I come back?",
+            "options": ["On Tuesday between 8 and 16.", "On Tuesday between 8 and 12.", "On Thursday from 14."],
+            "answer_index": 0
+          },
+          {
+            "question": "Sam asks: Where can I ask a question?",
+            "options": ["At counter 3 in the station.", "At the bus stop.", "In the town hall, room 3."],
+            "answer_index": 2,
+            "explanation_en": "Die Auskunft is the place where you get information."
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-05-04",
+      "ordinal": 4,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.05", "de:cando:A1.MED.01"],
+      "item_ids": ["de:vocab:durchsage", "de:vocab:zug", "de:vocab:gleis", "de:vocab:abfahrt", "de:chunk:der-zug-faehrt-von-gleis-ab"],
+      "instruction_en": "You and Sam wait for the train to Berlin. There is an announcement, in German eine Durchsage. Listen, then choose what you tell Sam.",
+      "payload": {
+        "transcript": "Achtung, eine Durchsage. Der Zug nach Berlin fährt heute von Gleis zwei ab. Abfahrt um sechzehn Uhr dreißig. Ich wiederhole: Gleis zwei, sechzehn Uhr dreißig.",
+        "questions": [
+          {
+            "question": "Sam asks: What did they say? Choose the right summary.",
+            "options": [
+              "The train from Berlin arrives at platform 2 at 16:30.",
+              "The train to Berlin leaves from platform 16 at 2:30.",
+              "The train to Berlin leaves from platform 2 at 16:30."
+            ],
+            "answer_index": 2
+          },
+          {
+            "question": "Sam asks: So what time is that on my watch?",
+            "options": ["half past four in the afternoon", "half past six in the evening", "half past two in the afternoon"],
+            "answer_index": 0,
+            "explanation_en": "Sechzehn Uhr dreißig is 16:30, so half past four in the afternoon."
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-05-05",
+      "ordinal": 5,
+      "type": "flashcard",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.MED.01"],
+      "item_ids": ["de:chunk:ich-fahre-mit", "de:vocab:bus"],
+      "instruction_en": "Say the meaning to yourself, then turn the card and rate how well you knew it.",
+      "payload": {
+        "front": "Ich fahre mit dem Bus.",
+        "back": "I go by bus.",
+        "hint": "mit takes the dative: mit dem Bus, mit dem Zug, mit der Bahn. About a friend you say: Sam fährt mit dem Bus."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-05-06",
+      "ordinal": 6,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.MED.02", "de:cando:A1.REA.03"],
+      "item_ids": ["de:vocab:durchsage", "de:vocab:plan", "de:vocab:auskunft", "de:vocab:halten", "de:vocab:geschlossen", "de:vocab:geoeffnet"],
+      "instruction_en": "Match the words from signs and notices with their English meaning. Der Plan is a map or a timetable: der Stadtplan, der Fahrplan.",
+      "payload": {
+        "pairs": [
+          { "left": "die Durchsage", "right": "loudspeaker announcement" },
+          { "left": "der Fahrplan", "right": "timetable" },
+          { "left": "der Stadtplan", "right": "map of a town" },
+          { "left": "die Auskunft", "right": "information desk" },
+          { "left": "halten", "right": "to stop" },
+          { "left": "geschlossen", "right": "closed" },
+          { "left": "geöffnet", "right": "open" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-05-07",
+      "ordinal": 7,
+      "type": "multiple_choice",
+      "skill": "mediation",
+      "cando_ids": ["de:cando:A1.MED.02"],
+      "item_ids": ["de:vocab:apotheke", "de:vocab:geschlossen", "de:vocab:bahnhof", "de:vocab:schild"],
+      "instruction_en": "Sam has a cold and wants to go to the pharmacy. Read the sign on the door and choose what you tell Sam.",
+      "payload": {
+        "question": "Apotheke am Park: heute geschlossen. Die nächste Apotheke ist am Bahnhof.",
+        "options": [
+          "This pharmacy is open today until the evening.",
+          "This pharmacy has moved to the park.",
+          "This pharmacy is closed today. The nearest one is at the station."
+        ],
+        "answer_index": 2,
+        "explanation_en": "You do not translate word for word. You pass on what matters to Sam: closed today, and where to go."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-05-08",
+      "ordinal": 8,
+      "type": "translate",
+      "skill": "mediation",
+      "cando_ids": ["de:cando:A1.MED.02"],
+      "item_ids": ["de:vocab:buergeramt", "de:vocab:geoeffnet", "de:chunk:von-bis", "de:vocab:freitag"],
+      "instruction_en": "Sam cannot read this notice. Tell Sam in simple English what it says.",
+      "payload": {
+        "source_text": "Das Bürgeramt ist am Freitag von 8 bis 12 Uhr geöffnet.",
+        "direction": "to_en",
+        "reference": [
+          "The Bürgeramt is open on Friday from 8 to 12.",
+          "The registration office is open on Friday from 8 to 12.",
+          "On Friday the office is open from 8 am to 12 noon."
+        ],
+        "notes_en": "The day and the two times are what Sam needs. You may keep the German name Bürgeramt."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-05-09",
+      "ordinal": 9,
+      "type": "translate",
+      "skill": "mediation",
+      "cando_ids": ["de:cando:A1.MED.01", "de:cando:A1.REA.04"],
+      "item_ids": ["de:chunk:der-zug-faehrt-von-gleis-ab", "de:vocab:zug", "de:vocab:gleis", "de:vocab:abfahren"],
+      "instruction_en": "Sam asks when and where the train to Cologne leaves. You read this line on the board. Tell Sam in simple English.",
+      "payload": {
+        "source_text": "Der Zug nach Köln fährt um 9:15 Uhr von Gleis 3 ab.",
+        "direction": "to_en",
+        "reference": [
+          "The train to Cologne leaves at 9:15 from platform 3.",
+          "The train to Köln leaves from platform 3 at 9:15.",
+          "The Cologne train departs at 9:15 from platform 3."
+        ],
+        "notes_en": "Place, time and platform must all be right."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-05-10",
+      "ordinal": 10,
+      "type": "translate",
+      "skill": "mediation",
+      "cando_ids": ["de:cando:A1.MED.02"],
+      "item_ids": ["de:vocab:haltestelle", "de:vocab:geschlossen", "de:vocab:halten", "de:vocab:bahnhof", "de:vocab:heute"],
+      "instruction_en": "You and Sam want to take the bus. This notice hangs at the stop. Tell Sam in simple English what it says.",
+      "payload": {
+        "source_text": "Achtung! Die Haltestelle Rathaus ist heute geschlossen. Der Bus hält am Bahnhof.",
+        "direction": "to_en",
+        "reference": [
+          "Attention! The Rathaus stop is closed today. The bus stops at the station.",
+          "The town hall stop is closed today. The bus stops at the station.",
+          "This stop is closed today. The bus leaves from the station."
+        ],
+        "notes_en": "Sam needs two things: this stop is closed today, and the bus stops at the station."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-05-11",
+      "ordinal": 11,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03"],
+      "item_ids": ["de:vocab:halten", "de:vocab:bus", "de:vocab:bahnhof", "de:vocab:heute"],
+      "instruction_en": "Put the words in the right order to say where the bus stops today. Start with Der Bus.",
+      "payload": {
+        "words": ["heute", "Der", "Bahnhof.", "hält", "am", "Bus"],
+        "answer": "Der Bus hält heute am Bahnhof."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-05-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "mediation",
+      "cando_ids": ["de:cando:A1.MED.01"],
+      "item_ids": ["de:vocab:ankommen", "de:vocab:bahnhof", "de:chunk:um-uhr"],
+      "instruction_en": "Now the other way round. Sam sends you this in English. Your neighbour Frau Becker speaks only German and wants to meet Sam. Tell her in German.",
+      "payload": {
+        "source_text": "Sam arrives at the station at 6 pm.",
+        "direction": "to_target",
+        "reference": [
+          "Sam kommt um 18 Uhr am Bahnhof an.",
+          "Sam kommt um achtzehn Uhr am Bahnhof an.",
+          "Sam kommt um sechs Uhr am Bahnhof an.",
+          "Sam ist um 18 Uhr am Bahnhof."
+        ],
+        "notes_en": "ankommen is separable, so an goes to the end. At the station is am Bahnhof."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-05-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": ["de:cando:A1.MED.01"],
+      "item_ids": ["de:vocab:ankommen", "de:vocab:gleis", "de:vocab:bus", "de:vocab:haltestelle", "de:chunk:ich-fahre-mit", "de:chunk:um-uhr"],
+      "instruction_en": "Record yourself. Pass on a message in simple German. Take a minute to prepare first.",
+      "payload": {
+        "prompt_en": "Sam writes to you in English: My train arrives in Cologne today at 14:20, platform 5. Then I go by bus 12 to the Rathaus stop. Your neighbour Frau Becker speaks only German and asks: Wann kommt Sam an? Tell her in two or three short German sentences when and where Sam arrives and which bus Sam takes.",
+        "prompt_native": "Wann kommt Sam an?",
+        "mode": "free",
+        "sample_answer": "Sam kommt heute um 14:20 Uhr in Köln an, auf Gleis 5. Dann fährt Sam mit dem Bus 12 zur Haltestelle Rathaus.",
+        "rubric_focus": [
+          "the time, the platform and the bus number are passed on correctly",
+          "the place: Köln and Haltestelle Rathaus",
+          "ankommen with an at the end",
+          "fährt mit dem Bus",
+          "short, simple sentences that a patient listener can follow"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

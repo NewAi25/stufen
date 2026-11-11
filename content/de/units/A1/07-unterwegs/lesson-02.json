@@ -1,0 +1,297 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-07-02",
+  "unit_key": "de:unit:a1-07-unterwegs",
+  "ordinal": 2,
+  "slug": "nach-dem-weg-fragen",
+  "title": "Wie komme ich zum Bahnhof?",
+  "title_en": "How do I get to the station?",
+  "description": "Ask the way with Wie komme ich zum ...? or zur ...?, and follow short directions with links, rechts, geradeaus, nah and weit.",
+  "kind": "core",
+  "estimated_minutes": 20,
+  "cando_ids": [
+    "de:cando:A1.LIS.04",
+    "de:cando:A1.SPI.01",
+    "de:cando:A1.REA.02",
+    "de:cando:A1.REA.03",
+    "de:cando:A1.GRA.12",
+    "de:cando:A1.GRA.03"
+  ],
+  "introduces_item_ids": ["de:vocab:links", "de:vocab:rechts", "de:vocab:geradeaus", "de:vocab:nah", "de:vocab:weit", "de:vocab:ecke", "de:vocab:dort", "de:vocab:zu", "de:chunk:wie-komme-ich-zu", "de:chunk:ist-um-die-ecke", "de:phrase:gehen-sie-immer-geradeaus", "de:phrase:gehen-sie-die-naechste-strasse-links", "de:phrase:an-der-naechsten-ecke-links", "de:phrase:gehen-sie-hier-ueber-die-strasse", "de:phrase:ist-das-weit", "de:phrase:ich-gehe-zu-fuss", "de:vocab:gehen"],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-07-02-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.REA.03"],
+      "item_ids": ["de:vocab:apotheke", "de:vocab:bahnhof", "de:vocab:haltestelle", "de:vocab:rathaus", "de:vocab:schule", "de:vocab:krankenhaus"],
+      "instruction_en": "Warm up. Match each place from the last lesson with what happens there.",
+      "payload": {
+        "pairs": [
+          { "left": "die Apotheke", "right": "you buy medicine here" },
+          { "left": "der Bahnhof", "right": "trains leave from here" },
+          { "left": "die Haltestelle", "right": "you wait for the bus here" },
+          { "left": "das Rathaus", "right": "the town has its offices here" },
+          { "left": "die Schule", "right": "children learn here" },
+          { "left": "das Krankenhaus", "right": "very ill people stay here" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-02-02",
+      "ordinal": 2,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03"],
+      "item_ids": ["de:chunk:gibt-es-hier", "de:vocab:park"],
+      "instruction_en": "Warm up. Put the words in the right order to ask whether there is a park here.",
+      "payload": {
+        "words": ["hier", "Park?", "es", "einen", "Gibt"],
+        "answer": "Gibt es hier einen Park?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-02-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.04", "de:cando:A1.SPI.01"],
+      "item_ids": [
+        "de:chunk:wie-komme-ich-zu",
+        "de:phrase:gehen-sie-hier-ueber-die-strasse",
+        "de:phrase:gehen-sie-immer-geradeaus",
+        "de:phrase:an-der-naechsten-ecke-links",
+        "de:phrase:ist-das-weit",
+        "de:vocab:nah",
+        "de:vocab:dort",
+        "de:vocab:bahnhof"
+      ],
+      "instruction_en": "A man asks the way to the station. Listen to the directions, then answer the questions.",
+      "payload": {
+        "transcript": "Entschuldigung, wie komme ich zum Bahnhof? Gehen Sie hier über die Straße und dann immer geradeaus. An der nächsten Ecke links. Dort ist der Bahnhof. Ist das weit? Nein, das ist ganz nah. Fünf Minuten zu Fuß. Vielen Dank!",
+        "questions": [
+          {
+            "question": "What does he do first?",
+            "options": ["He turns right.", "He crosses the street.", "He takes the bus."],
+            "answer_index": 1
+          },
+          {
+            "question": "Which way does he turn at the next corner?",
+            "options": ["links", "rechts", "geradeaus"],
+            "answer_index": 0
+          },
+          {
+            "question": "Ist der Bahnhof weit?",
+            "options": ["Ja, fünfzehn Minuten mit dem Bus.", "Ja, sehr weit.", "Nein, fünf Minuten zu Fuß."],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-02-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.02", "de:cando:A1.LIS.04"],
+      "item_ids": ["de:vocab:weit", "de:phrase:ich-gehe-zu-fuss", "de:vocab:links", "de:vocab:rechts", "de:vocab:geradeaus", "de:vocab:ecke", "de:vocab:gehen", "de:chunk:ist-neben"],
+      "instruction_en": "Lena has invited Amir. Read her text message with the way to her flat. Then answer the questions.",
+      "payload": {
+        "title": "Nachricht von Lena",
+        "text": "Hallo Amir, meine Wohnung ist nicht weit. Du brauchst keinen Bus. Ich gehe immer zu Fuß. Du gehst am Bahnhof links und dann immer geradeaus. An der nächsten Ecke ist eine Apotheke. Mein Haus ist rechts neben der Apotheke. Bis später! Lena",
+        "questions": [
+          {
+            "question": "Braucht Amir einen Bus?",
+            "options": ["Ja, Bus 12.", "Nein, die Wohnung ist nicht weit."],
+            "answer_index": 1
+          },
+          {
+            "question": "Was macht Amir am Bahnhof?",
+            "options": ["Er geht links.", "Er geht rechts.", "Er geht über die Straße."],
+            "answer_index": 0
+          },
+          {
+            "question": "Wo ist Lenas Haus?",
+            "options": ["links neben dem Bahnhof", "im Park", "rechts neben der Apotheke"],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-02-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.LIS.04"],
+      "item_ids": ["de:vocab:links", "de:vocab:rechts", "de:vocab:geradeaus", "de:vocab:nah", "de:vocab:weit", "de:vocab:ecke", "de:vocab:dort"],
+      "instruction_en": "Match the direction words with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "links", "right": "left" },
+          { "left": "rechts", "right": "right" },
+          { "left": "geradeaus", "right": "straight on" },
+          { "left": "nah", "right": "near" },
+          { "left": "weit", "right": "far" },
+          { "left": "die Ecke", "right": "corner" },
+          { "left": "dort", "right": "over there" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-02-06",
+      "ordinal": 6,
+      "type": "flashcard",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.SPI.01"],
+      "item_ids": ["de:chunk:wie-komme-ich-zu"],
+      "instruction_en": "Say the meaning to yourself, then turn the card and rate how well you knew it.",
+      "payload": {
+        "front": "Wie komme ich zum Bahnhof?",
+        "back": "How do I get to the station?",
+        "hint": "zum is short for zu dem. With a die word it is zur: Wie komme ich zur Apotheke?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-02-07",
+      "ordinal": 7,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:wie-komme-ich-zu", "de:vocab:zu", "de:vocab:apotheke"],
+      "instruction_en": "Choose the right word. Apotheke is a die word.",
+      "payload": {
+        "question": "Wie komme ich ___ Apotheke?",
+        "options": ["zum", "zur", "zu die"],
+        "answer_index": 1,
+        "explanation_en": "zu always takes the dative. For der and das words, zu and dem join to zum: zum Bahnhof, zum Rathaus. For die words, zu and der join to zur: zur Apotheke, zur Schule."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-02-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:wie-komme-ich-zu", "de:vocab:zu", "de:vocab:bahnhof", "de:vocab:schule", "de:vocab:rathaus", "de:vocab:haltestelle"],
+      "instruction_en": "Ask the way. Fill in zum or zur.",
+      "payload": {
+        "text": "Wie komme ich ___ Bahnhof? Wie komme ich ___ Schule? Wie komme ich ___ Rathaus? Wie komme ich ___ Haltestelle?",
+        "blanks": [
+          { "answer": "zum", "hint": "der Bahnhof" },
+          { "answer": "zur", "hint": "die Schule" },
+          { "answer": "zum", "hint": "das Rathaus" },
+          { "answer": "zur", "hint": "die Haltestelle" }
+        ],
+        "explanation_en": "der and das words take zum. die words take zur."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-02-09",
+      "ordinal": 9,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.LIS.04"],
+      "item_ids": ["de:phrase:gehen-sie-immer-geradeaus", "de:phrase:gehen-sie-die-naechste-strasse-links", "de:vocab:rechts", "de:chunk:ist-um-die-ecke", "de:vocab:ecke"],
+      "instruction_en": "Complete the directions. The hint gives the English word.",
+      "payload": {
+        "text": "Gehen Sie immer ___. Gehen Sie die nächste Straße ___. Die Apotheke ist ___. Die Schule ist gleich um die ___.",
+        "blanks": [
+          { "answer": "geradeaus", "hint": "straight on" },
+          { "answer": "links", "hint": "left" },
+          { "answer": "rechts", "hint": "on the right" },
+          { "answer": "Ecke", "hint": "corner" }
+        ],
+        "explanation_en": "Gehen Sie is the polite way to tell someone where to walk. Gleich um die Ecke means just round the corner, so very near."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-02-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03", "de:cando:A1.LIS.04"],
+      "item_ids": ["de:phrase:gehen-sie-die-naechste-strasse-links", "de:vocab:rechts", "de:vocab:gehen"],
+      "instruction_en": "Put the words in the right order to send someone down the next street on the right.",
+      "payload": {
+        "words": ["nächste", "Sie", "rechts.", "Gehen", "Straße", "die"],
+        "answer": "Gehen Sie die nächste Straße rechts."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-02-11",
+      "ordinal": 11,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.04"],
+      "item_ids": ["de:phrase:gehen-sie-immer-geradeaus", "de:vocab:links"],
+      "instruction_en": "Listen to the directions and type what you hear.",
+      "payload": { "text": "Gehen Sie immer geradeaus und dann links." },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-02-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.SPI.01", "de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:wie-komme-ich-zu", "de:phrase:ist-das-weit", "de:vocab:rathaus"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "How do I get to the town hall? Is it far?",
+        "direction": "to_target",
+        "reference": ["Wie komme ich zum Rathaus? Ist das weit?", "Wie komme ich zum Rathaus? Ist es weit?"],
+        "notes_en": "Rathaus is a das word, so it is zum Rathaus."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-02-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.01", "de:cando:A1.LIS.04", "de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:wie-komme-ich-zu", "de:phrase:ist-das-weit", "de:vocab:links", "de:vocab:rechts", "de:vocab:geradeaus", "de:vocab:krankenhaus"],
+      "instruction_en": "Record yourself. You ask a stranger for the way.",
+      "payload": {
+        "prompt_en": "You need to get to the hospital. Stop a person politely and ask the way. The person answers: Gehen Sie immer geradeaus und dann die nächste Straße rechts. Repeat the two directions to check that you understood, ask whether it is far, and say thank you.",
+        "prompt_native": "Gehen Sie immer geradeaus und dann die nächste Straße rechts.",
+        "mode": "free",
+        "sample_answer": "Entschuldigung, wie komme ich zum Krankenhaus? Immer geradeaus und dann die nächste Straße rechts? Ist das weit? Vielen Dank!",
+        "rubric_focus": [
+          "Wie komme ich zum or zur with the right form",
+          "repeats geradeaus and rechts correctly",
+          "asks whether it is far",
+          "polite opening and thanks"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

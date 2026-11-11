@@ -1,0 +1,374 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-05-04",
+  "unit_key": "de:unit:a1-05-wohnen",
+  "ordinal": 4,
+  "slug": "etwas-ist-kaputt",
+  "title": "Die Heizung ist kaputt",
+  "title_en": "The heating is broken",
+  "description": "Something in the flat is broken. Say what does not work with ... ist kaputt and ... funktioniert nicht, tell the landlord or a neighbour in very simple words, and ask Können Sie das reparieren? Nicht and kein from unit 3 come back.",
+  "kind": "core",
+  "estimated_minutes": 20,
+  "cando_ids": [
+    "de:cando:A1.SPI.01",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.REA.02",
+    "de:cando:A1.VOC.05",
+    "de:cando:A1.GRA.07",
+    "de:cando:A1.GRA.09",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.WRI.01"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:heizung",
+    "de:vocab:licht",
+    "de:vocab:dusche",
+    "de:vocab:herd",
+    "de:vocab:waschmaschine",
+    "de:vocab:kaputt",
+    "de:vocab:reparieren",
+    "de:vocab:reparatur",
+    "de:chunk:ist-kaputt",
+    "de:phrase:koennen-sie-das-reparieren"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-05-04-01",
+      "ordinal": 1,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.07"],
+      "item_ids": [
+        "de:grammar:negation-nicht",
+        "de:grammar:negation-kein",
+        "de:vocab:nicht",
+        "de:vocab:kein",
+        "de:vocab:aufzug",
+        "de:vocab:lampe"
+      ],
+      "instruction_en": "Warm up. Fill in nicht or the right form of kein.",
+      "payload": {
+        "text": "Das Haus hat ___ Aufzug. Das Zimmer ist ___ hell. Ich habe ___ Lampe.",
+        "blanks": [
+          { "answer": "keinen", "hint": "der Aufzug" },
+          { "answer": "nicht", "hint": "before hell" },
+          { "answer": "keine", "hint": "die Lampe" }
+        ],
+        "explanation_en": "kein stands before a noun. nicht stands before a describing word such as hell."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-04-02",
+      "ordinal": 2,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:miete",
+        "de:vocab:vermieter",
+        "de:vocab:aufzug",
+        "de:vocab:stock",
+        "de:vocab:schluessel",
+        "de:vocab:tuer"
+      ],
+      "instruction_en": "Warm up. Match the words from the last lessons with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "die Miete", "right": "rent" },
+          { "left": "der Vermieter", "right": "landlord" },
+          { "left": "der Aufzug", "right": "lift" },
+          { "left": "der Stock", "right": "floor, storey" },
+          { "left": "der Schlüssel", "right": "key" },
+          { "left": "die Tür", "right": "door" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-04-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02", "de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:heizung",
+        "de:vocab:kaputt",
+        "de:chunk:ist-kaputt",
+        "de:phrase:koennen-sie-das-reparieren",
+        "de:vocab:reparieren",
+        "de:vocab:montag"
+      ],
+      "instruction_en": "Listen. Frau Okafor phones her landlord. Die Heizung is the heating, kaputt means broken and kalt means cold. Ich habe ein Problem means I have a problem. Then answer the questions.",
+      "payload": {
+        "transcript": "Guten Tag, Herr Krause. Hier ist Amira Okafor. Ich habe ein Problem. Die Heizung ist kaputt. Es ist kalt in der Wohnung. Können Sie das reparieren? Ja, Frau Okafor. Ich komme am Montag.",
+        "questions": [
+          {
+            "question": "Was ist kaputt?",
+            "options": ["das Licht", "die Heizung", "die Dusche"],
+            "answer_index": 1
+          },
+          {
+            "question": "Wann kommt Herr Krause?",
+            "options": ["am Montag", "am Freitag", "am Samstag"],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-04-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.02", "de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:licht",
+        "de:vocab:dusche",
+        "de:vocab:kaputt",
+        "de:chunk:ist-kaputt",
+        "de:phrase:koennen-sie-das-reparieren",
+        "de:chunk:ich-wohne-im-stock",
+        "de:vocab:bad"
+      ],
+      "instruction_en": "Read the message to the landlord. Das Licht is the light and die Dusche is the shower. Funktioniert nicht means does not work. Then answer the questions.",
+      "payload": {
+        "title": "Eine Nachricht an den Vermieter",
+        "text": "Guten Tag Herr Krause,\nich wohne im zweiten Stock. Das Licht im Bad funktioniert nicht. Die Dusche ist auch kaputt. Das Wasser ist kalt. Können Sie das bitte reparieren?\nViele Grüße\nTom Berger",
+        "questions": [
+          {
+            "question": "Wo wohnt Tom?",
+            "options": ["im ersten Stock", "im zweiten Stock"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was funktioniert nicht?",
+            "options": ["das Licht im Bad", "das Licht in der Küche", "die Heizung"],
+            "answer_index": 0
+          },
+          {
+            "question": "Was ist auch kaputt?",
+            "options": ["der Herd", "die Waschmaschine", "die Dusche"],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-04-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:heizung",
+        "de:vocab:licht",
+        "de:vocab:dusche",
+        "de:vocab:herd",
+        "de:vocab:waschmaschine",
+        "de:vocab:kaputt",
+        "de:vocab:reparieren",
+        "de:vocab:reparatur"
+      ],
+      "instruction_en": "Match the words with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "die Heizung", "right": "heating" },
+          { "left": "das Licht", "right": "light" },
+          { "left": "die Dusche", "right": "shower" },
+          { "left": "der Herd", "right": "cooker" },
+          { "left": "die Waschmaschine", "right": "washing machine" },
+          { "left": "kaputt", "right": "broken" },
+          { "left": "reparieren", "right": "to repair" },
+          { "left": "die Reparatur", "right": "the repair" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-04-06",
+      "ordinal": 6,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.05"],
+      "item_ids": ["de:vocab:herd", "de:chunk:ist-kaputt"],
+      "instruction_en": "Choose the right answer.",
+      "payload": {
+        "question": "Your neighbour Frau Yilmaz says: Mein Herd ist kaputt. What is her problem?",
+        "options": ["She cannot cook.", "She has no light.", "Her flat is cold."],
+        "answer_index": 0,
+        "explanation_en": "Der Herd is the cooker."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-04-07",
+      "ordinal": 7,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:chunk:ist-kaputt",
+        "de:vocab:kaputt",
+        "de:vocab:heizung",
+        "de:vocab:licht",
+        "de:phrase:koennen-sie-das-reparieren",
+        "de:vocab:reparieren"
+      ],
+      "instruction_en": "You tell the landlord what is wrong. Fill in the missing words.",
+      "payload": {
+        "text": "Die Heizung ist ___. Das Licht funktioniert ___. Können Sie das ___?",
+        "blanks": [
+          { "answer": "kaputt", "hint": "broken" },
+          { "answer": "nicht", "hint": "not" },
+          { "answer": "reparieren", "hint": "repair" }
+        ],
+        "explanation_en": "Two ways to say it: Die Heizung ist kaputt. Die Heizung funktioniert nicht."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-04-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.07", "de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:grammar:negation-nicht",
+        "de:grammar:negation-kein",
+        "de:vocab:herd",
+        "de:vocab:licht",
+        "de:vocab:dusche",
+        "de:vocab:waschmaschine"
+      ],
+      "instruction_en": "Fill in nicht, kein or keine.",
+      "payload": {
+        "text": "Der Herd funktioniert ___. Wir haben ___ Licht im Bad. Die Dusche ist ___ kaputt, aber das Wasser ist kalt. Ich habe ___ Waschmaschine.",
+        "blanks": [
+          { "answer": "nicht", "hint": "after the verb" },
+          { "answer": "kein", "hint": "das Licht" },
+          { "answer": "nicht", "hint": "before kaputt" },
+          { "answer": "keine", "hint": "die Waschmaschine" }
+        ],
+        "explanation_en": "nicht makes a verb or a describing word negative: funktioniert nicht, nicht kaputt. kein makes a noun negative: kein Licht, keine Waschmaschine."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-04-09",
+      "ordinal": 9,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": [
+        "de:phrase:koennen-sie-das-reparieren",
+        "de:vocab:koennen",
+        "de:vocab:reparieren",
+        "de:grammar:satzklammer-modalverben"
+      ],
+      "instruction_en": "Choose the right form.",
+      "payload": {
+        "question": "Können Sie das ___?",
+        "options": ["repariert", "reparieren", "repariere"],
+        "answer_index": 1,
+        "explanation_en": "After können the second verb stands at the end in its basic form: Können Sie das reparieren?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-04-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03", "de:cando:A1.GRA.07"],
+      "item_ids": ["de:vocab:licht", "de:vocab:bad", "de:grammar:negation-nicht"],
+      "instruction_en": "Put the words in the right order.",
+      "payload": {
+        "words": ["funktioniert", "Bad", "Licht", "nicht.", "im", "Das"],
+        "answer": "Das Licht im Bad funktioniert nicht."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-04-11",
+      "ordinal": 11,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.01", "de:cando:A1.VOC.05"],
+      "item_ids": ["de:chunk:ist-kaputt", "de:vocab:heizung", "de:vocab:kaputt"],
+      "instruction_en": "Listen and type what you hear.",
+      "payload": {
+        "text": "Die Heizung ist kaputt."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-04-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.GRA.07"],
+      "item_ids": ["de:vocab:licht", "de:grammar:negation-nicht", "de:phrase:koennen-sie-das-reparieren"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "The light does not work. Can you repair that?",
+        "direction": "to_target",
+        "reference": [
+          "Das Licht funktioniert nicht. Können Sie das reparieren?",
+          "Das Licht ist kaputt. Können Sie das reparieren?"
+        ],
+        "notes_en": "nicht comes after the verb. Use Sie with a landlord."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-04-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.01", "de:cando:A1.VOC.05", "de:cando:A1.GRA.07"],
+      "item_ids": [
+        "de:chunk:ist-kaputt",
+        "de:phrase:koennen-sie-das-reparieren",
+        "de:vocab:heizung",
+        "de:vocab:licht",
+        "de:vocab:kaputt",
+        "de:chunk:ich-wohne-im-stock",
+        "de:vocab:vermieter"
+      ],
+      "instruction_en": "Roleplay. You phone your landlord. Record your part.",
+      "payload": {
+        "prompt_en": "Two things in your flat do not work. You phone your landlord, Herr Krause. He asks: Was ist das Problem? Greet him, say your name and which floor you live on, say what is broken and what does not work, and ask if he can repair it.",
+        "prompt_native": "Was ist das Problem?",
+        "mode": "free",
+        "sample_answer": "Guten Tag, Herr Krause. Hier ist Tom Berger. Ich wohne im zweiten Stock. Die Heizung ist kaputt und das Licht im Bad funktioniert nicht. Können Sie das reparieren? Danke!",
+        "rubric_focus": [
+          "says who is calling",
+          "names two things with ist kaputt or funktioniert nicht",
+          "nicht in the right place",
+          "asks Können Sie das reparieren?",
+          "can be understood by a patient listener"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

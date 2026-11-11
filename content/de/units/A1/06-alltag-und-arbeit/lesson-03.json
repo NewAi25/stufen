@@ -1,0 +1,315 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-06-03",
+  "unit_key": "de:unit:a1-06-alltag-und-arbeit",
+  "ordinal": 3,
+  "slug": "arbeit-und-kurs",
+  "title": "Bei der Arbeit und im Kurs",
+  "title_en": "At work and in the course",
+  "description": "Words for work and for the German course, saying what you work as with Ich arbeite als, and the classroom phrases you need when you do not understand: Ich verstehe das nicht, Können Sie das bitte wiederholen? and Können Sie bitte langsam sprechen? Understanding slow, careful instructions from a teacher.",
+  "kind": "core",
+  "estimated_minutes": 22,
+  "cando_ids": [
+    "de:cando:A1.LIS.04",
+    "de:cando:A1.SPI.01",
+    "de:cando:A1.VOC.06",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.REA.01",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.GRA.09",
+    "de:cando:A1.GRA.10"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:arbeit",
+    "de:vocab:buero",
+    "de:vocab:chef",
+    "de:vocab:pause",
+    "de:vocab:firma",
+    "de:vocab:beruf",
+    "de:vocab:lehrer",
+    "de:vocab:lehrerin",
+    "de:vocab:aufgabe",
+    "de:vocab:hausaufgabe",
+    "de:vocab:schreiben",
+    "de:vocab:verstehen",
+    "de:vocab:wiederholen",
+    "de:vocab:langsam",
+    "de:chunk:ich-arbeite-als",
+    "de:chunk:ich-arbeite-bei",
+    "de:phrase:was-sind-sie-von-beruf",
+    "de:phrase:ich-verstehe-das-nicht",
+    "de:phrase:koennen-sie-das-bitte-wiederholen",
+    "de:phrase:koennen-sie-bitte-langsam-sprechen",
+    "de:phrase:noch-einmal-bitte"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-06-03-01",
+      "ordinal": 1,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.10", "de:cando:A1.GRA.03"],
+      "item_ids": ["de:chunk:ich-stehe-um-auf", "de:vocab:aufstehen", "de:grammar:trennbare-verben"],
+      "instruction_en": "Warm up. Put the words in the right order. The prefix goes to the end.",
+      "payload": { "words": ["sechs", "auf.", "Ich", "Uhr", "um", "stehe"], "answer": "Ich stehe um sechs Uhr auf." },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-03-02",
+      "ordinal": 2,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.06", "de:cando:A1.GRA.10"],
+      "item_ids": ["de:vocab:anfangen", "de:vocab:aufhoeren", "de:vocab:kurs"],
+      "instruction_en": "Warm up. Choose the verb that fits.",
+      "payload": { "question": "Der Kurs fängt um neun Uhr an und ... um zwölf Uhr auf.", "options": ["steht", "hört", "kauft"], "answer_index": 1, "explanation_en": "Aufhören means to stop or to end: Der Kurs hört um zwölf Uhr auf." },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-03-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02", "de:cando:A1.VOC.06"],
+      "item_ids": ["de:vocab:buero", "de:vocab:chef", "de:vocab:arbeit", "de:vocab:pause", "de:vocab:anfangen", "de:vocab:kollege"],
+      "instruction_en": "It is Ana's first day in a new job. A colleague shows her round. Das Büro is the office, der Chef is the boss, die Arbeit is work and die Pause is the break. Listen and answer the questions.",
+      "payload": {
+        "transcript": "Guten Morgen! Ich bin Ana. Ich bin neu hier. Hallo Ana, ich bin Jonas, dein Kollege. Das ist das Büro. Der Chef heißt Herr Braun. Die Arbeit fängt um acht Uhr an. Um zwölf Uhr machen wir eine Pause.",
+        "questions": [
+          { "question": "Wie heißt der Chef?", "options": ["Herr Jonas", "Herr Braun", "Herr Kaya"], "answer_index": 1 },
+          { "question": "Wann fängt die Arbeit an?", "options": ["um 8 Uhr", "um 9 Uhr", "um 12 Uhr"], "answer_index": 0 },
+          { "question": "Wann ist die Pause?", "options": ["um 8 Uhr", "um 10 Uhr", "um 12 Uhr"], "answer_index": 2 }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-03-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.01", "de:cando:A1.VOC.06"],
+      "item_ids": [
+        "de:chunk:ich-arbeite-als",
+        "de:chunk:ich-arbeite-bei",
+        "de:vocab:firma",
+        "de:vocab:chef",
+        "de:vocab:lehrerin",
+        "de:vocab:hausaufgabe",
+        "de:vocab:kurs",
+        "de:vocab:verkaeufer"
+      ],
+      "instruction_en": "Read about Tarek. Er arbeitet als means he works as, die Firma is the company, die Lehrerin is the teacher and die Hausaufgaben are the homework. Then answer the questions.",
+      "payload": {
+        "text": "Tarek arbeitet als Verkäufer. Er arbeitet bei einer Firma in Köln. Sein Chef heißt Herr Weber. Am Dienstag und am Donnerstag hat Tarek Deutschkurs. Die Lehrerin heißt Frau Lang. Am Abend macht Tarek die Hausaufgaben.",
+        "questions": [
+          { "question": "Was ist Tarek von Beruf?", "options": ["Lehrer", "Kellner", "Verkäufer"], "answer_index": 2 },
+          { "question": "Wer ist Frau Lang?", "options": ["die Lehrerin", "die Chefin", "eine Kollegin"], "answer_index": 0 },
+          { "question": "Wann macht Tarek die Hausaufgaben?", "options": ["am Vormittag", "am Abend", "am Dienstag um neun Uhr"], "answer_index": 1 }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-03-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.06"],
+      "item_ids": ["de:vocab:arbeit", "de:vocab:buero", "de:vocab:chef", "de:vocab:kollege", "de:vocab:pause", "de:vocab:firma", "de:vocab:beruf"],
+      "instruction_en": "Words for work. Match the pairs.",
+      "payload": {
+        "pairs": [
+          { "left": "die Arbeit", "right": "work" },
+          { "left": "das Büro", "right": "office" },
+          { "left": "der Chef", "right": "boss" },
+          { "left": "der Kollege", "right": "colleague" },
+          { "left": "die Pause", "right": "break" },
+          { "left": "die Firma", "right": "company" },
+          { "left": "der Beruf", "right": "occupation" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-03-06",
+      "ordinal": 6,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.06"],
+      "item_ids": ["de:vocab:kurs", "de:vocab:lehrer", "de:vocab:lehrerin", "de:vocab:aufgabe", "de:vocab:hausaufgabe", "de:vocab:schreiben"],
+      "instruction_en": "Words for the course. Match the pairs.",
+      "payload": {
+        "pairs": [
+          { "left": "der Kurs", "right": "course" },
+          { "left": "der Lehrer", "right": "teacher (man)" },
+          { "left": "die Lehrerin", "right": "teacher (woman)" },
+          { "left": "die Aufgabe", "right": "task, exercise" },
+          { "left": "die Hausaufgabe", "right": "homework" },
+          { "left": "schreiben", "right": "to write" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-03-07",
+      "ordinal": 7,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.06"],
+      "item_ids": [
+        "de:phrase:was-sind-sie-von-beruf",
+        "de:chunk:ich-arbeite-als",
+        "de:chunk:ich-arbeite-bei",
+        "de:vocab:beruf",
+        "de:vocab:chef",
+        "de:vocab:pause"
+      ],
+      "instruction_en": "Talking about your job. Fill in the missing words. The English word is under each gap. There is no article before the job after als.",
+      "payload": {
+        "text": "Was sind Sie von ___? Ich ___ als Kellner. Ich arbeite ___ der Post. Mein ___ heißt Herr Braun. Um zwölf Uhr mache ich eine ___.",
+        "blanks": [
+          { "answer": "Beruf", "hint": "occupation" },
+          { "answer": "arbeite", "hint": "work" },
+          { "answer": "bei", "hint": "for, at" },
+          { "answer": "Chef", "hint": "boss" },
+          { "answer": "Pause", "hint": "break" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-03-08",
+      "ordinal": 8,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.SPI.01"],
+      "item_ids": [
+        "de:phrase:ich-verstehe-das-nicht",
+        "de:phrase:koennen-sie-das-bitte-wiederholen",
+        "de:phrase:koennen-sie-bitte-langsam-sprechen",
+        "de:phrase:noch-einmal-bitte",
+        "de:phrase:ich-habe-eine-frage",
+        "de:vocab:verstehen",
+        "de:vocab:wiederholen",
+        "de:vocab:langsam"
+      ],
+      "instruction_en": "Phrases for the classroom and for work when you do not understand. Verstehen is to understand, wiederholen is to repeat and langsam is slowly. Match the pairs.",
+      "payload": {
+        "pairs": [
+          { "left": "Ich verstehe das nicht.", "right": "I do not understand that." },
+          { "left": "Können Sie das bitte wiederholen?", "right": "Can you repeat that, please?" },
+          { "left": "Können Sie bitte langsam sprechen?", "right": "Can you speak slowly, please?" },
+          { "left": "Noch einmal, bitte.", "right": "Once more, please." },
+          { "left": "Ich habe eine Frage.", "right": "I have a question." }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-03-09",
+      "ordinal": 9,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.SPI.01"],
+      "item_ids": ["de:phrase:koennen-sie-bitte-langsam-sprechen", "de:phrase:koennen-sie-das-bitte-wiederholen", "de:vocab:langsam"],
+      "instruction_en": "Choose the right phrase.",
+      "payload": {
+        "question": "Your teacher speaks very fast. What do you say?",
+        "options": ["Können Sie das bitte buchstabieren?", "Können Sie bitte langsam sprechen?", "Ich habe keine Frage."],
+        "answer_index": 1,
+        "explanation_en": "Langsam means slowly. You can also say: Können Sie das bitte wiederholen?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-03-10",
+      "ordinal": 10,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.04"],
+      "item_ids": ["de:vocab:aufgabe", "de:vocab:hausaufgabe", "de:vocab:pause", "de:vocab:schreiben", "de:vocab:anfangen", "de:vocab:machen"],
+      "instruction_en": "Your teacher speaks slowly and tells the class what to do. Machen Sie bitte means please do and die Antworten are the answers. Listen and answer the questions.",
+      "payload": {
+        "transcript": "Guten Morgen! Wir fangen an. Machen Sie bitte Aufgabe drei. Schreiben Sie bitte die Antworten. Um halb elf machen wir eine Pause. Die Hausaufgabe ist Aufgabe fünf.",
+        "questions": [
+          { "question": "Was machen Sie im Kurs?", "options": ["Aufgabe 3", "Aufgabe 5", "Aufgabe 11"], "answer_index": 0 },
+          { "question": "Was machen Sie bei Aufgabe drei?", "options": ["Sie buchstabieren.", "Sie schreiben.", "Sie machen eine Pause."], "answer_index": 1 },
+          { "question": "Wann ist die Pause?", "options": ["um 10.30 Uhr", "um 11.00 Uhr", "um 11.30 Uhr"], "answer_index": 0 },
+          { "question": "Was ist die Hausaufgabe?", "options": ["Aufgabe 3", "Aufgabe 5", "Aufgabe 10"], "answer_index": 1 }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-03-11",
+      "ordinal": 11,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09", "de:cando:A1.GRA.03"],
+      "item_ids": ["de:phrase:koennen-sie-das-bitte-wiederholen", "de:vocab:koennen", "de:vocab:wiederholen", "de:grammar:satzklammer-modalverben"],
+      "instruction_en": "Put the words in the right order to ask someone to repeat. Können comes first and the other verb goes to the end.",
+      "payload": { "words": ["das", "wiederholen?", "Sie", "bitte", "Können"], "answer": "Können Sie das bitte wiederholen?", "accept": ["Können Sie bitte das wiederholen?"] },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-03-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.VOC.06"],
+      "item_ids": ["de:chunk:ich-arbeite-als", "de:vocab:chef", "de:vocab:kellner"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "I work as a waiter and my boss is called Mr Braun.",
+        "direction": "to_target",
+        "reference": ["Ich arbeite als Kellner und mein Chef heißt Herr Braun.", "Ich arbeite als Kellnerin und mein Chef heißt Herr Braun."],
+        "notes_en": "No article before the job: Ich arbeite als Kellner. A woman says Kellnerin."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-03-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.01", "de:cando:A1.VOC.06"],
+      "item_ids": [
+        "de:phrase:ich-verstehe-das-nicht",
+        "de:phrase:koennen-sie-das-bitte-wiederholen",
+        "de:phrase:koennen-sie-bitte-langsam-sprechen",
+        "de:phrase:was-sind-sie-von-beruf",
+        "de:chunk:ich-arbeite-als"
+      ],
+      "instruction_en": "Roleplay. You are in the German course. Record your part.",
+      "payload": {
+        "prompt_en": "Your teacher asks you something very fast and you do not understand. Say that you do not understand, ask the teacher to repeat it, and ask the teacher to speak slowly. Then the teacher asks slowly: Was sind Sie von Beruf? Answer with your job, or with a job you know in German.",
+        "prompt_native": "Was sind Sie von Beruf?",
+        "mode": "free",
+        "sample_answer": "Ich verstehe das nicht. Können Sie das bitte wiederholen? Können Sie bitte langsam sprechen? Danke. Ich arbeite als Verkäuferin.",
+        "rubric_focus": [
+          "says that they do not understand",
+          "asks politely with Können Sie ... bitte",
+          "answers the job question with Ich arbeite als or Ich bin ... von Beruf",
+          "can be understood by a patient listener"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

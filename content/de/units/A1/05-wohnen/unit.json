@@ -1,0 +1,22 @@
+{
+  "$schema": "https://stufen.app/schema/unit.json",
+  "key": "de:unit:a1-05-wohnen",
+  "level": "A1",
+  "ordinal": 5,
+  "slug": "wohnen",
+  "title": "Wohnen",
+  "title_en": "Housing and home",
+  "description": "Name the rooms and furniture of a flat and say where things are, read a simple housing advert for rent, size, rooms and date, ask a landlord about a flat, say in very simple words that something is broken, read a notice in the stairwell and a message from a neighbour, and leave a short note. Grammar: in, an, auf, neben, vor, hinter and zwischen as fixed chunks with the dative form given, and nicht and kein again.",
+  "theme": "home",
+  "lessons": [
+    "lesson-01.json",
+    "lesson-02.json",
+    "lesson-03.json",
+    "lesson-04.json",
+    "lesson-05.json",
+    "lesson-06.json",
+    "lesson-07.json"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false
+}

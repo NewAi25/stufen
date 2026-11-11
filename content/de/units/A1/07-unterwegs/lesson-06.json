@@ -1,0 +1,240 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-07-06",
+  "unit_key": "de:unit:a1-07-unterwegs",
+  "ordinal": 6,
+  "slug": "jetzt-du-unterwegs",
+  "title": "Jetzt du: unterwegs in der Stadt",
+  "title_en": "Your turn: out and about in town",
+  "description": "Production lesson. Ask the way and buy a ticket in roleplays, tell a friend in simple English and in simple German what an office notice says, and write a short message saying which train you take and when you arrive.",
+  "kind": "production",
+  "estimated_minutes": 25,
+  "cando_ids": [
+    "de:cando:A1.SPI.01",
+    "de:cando:A1.SPI.04",
+    "de:cando:A1.MED.01",
+    "de:cando:A1.MED.02",
+    "de:cando:A1.WRI.03",
+    "de:cando:A1.GRA.10",
+    "de:cando:A1.GRA.12",
+    "de:cando:A1.GRA.03"
+  ],
+  "introduces_item_ids": [],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-07-06-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.SPI.01"],
+      "item_ids": ["de:chunk:wie-komme-ich-zu", "de:phrase:ist-das-weit", "de:chunk:wann-faehrt-der-zug-nach", "de:vocab:umsteigen", "de:phrase:was-muss-ich-mitbringen"],
+      "instruction_en": "Warm up. Match each question with a fitting answer.",
+      "payload": {
+        "pairs": [
+          { "left": "Wie komme ich zum Bahnhof?", "right": "Gehen Sie immer geradeaus und dann links." },
+          { "left": "Ist das weit?", "right": "Nein, fünf Minuten zu Fuß." },
+          { "left": "Wann fährt der Zug nach Köln?", "right": "Um 9:15 Uhr von Gleis 3." },
+          { "left": "Muss ich umsteigen?", "right": "Ja, in Bonn." },
+          { "left": "Was muss ich mitbringen?", "right": "Ihren Pass und das Formular." }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-06-02",
+      "ordinal": 2,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.10", "de:cando:A1.GRA.12"],
+      "item_ids": ["de:grammar:trennbare-verben", "de:vocab:abfahren", "de:vocab:ankommen", "de:chunk:wie-komme-ich-zu"],
+      "instruction_en": "Warm up. Fill in the two parts of the verb, then zum or zur.",
+      "payload": {
+        "text": "Der Zug ___ von Gleis zwei ___. Ich ___ um zehn Uhr in Hamburg ___. Wie komme ich ___ Rathaus? Wie komme ich ___ Haltestelle?",
+        "blanks": [
+          { "answer": "fährt", "hint": "abfahren" },
+          { "answer": "ab", "hint": "abfahren" },
+          { "answer": "komme", "hint": "ankommen" },
+          { "answer": "an", "hint": "ankommen" },
+          { "answer": "zum", "hint": "das Rathaus" },
+          { "answer": "zur", "hint": "die Haltestelle" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-06-03",
+      "ordinal": 3,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.10", "de:cando:A1.GRA.03"],
+      "item_ids": ["de:vocab:ankommen", "de:chunk:um-uhr"],
+      "instruction_en": "Warm up. Put the words in the right order to say when you arrive in Hamburg. Give the time before the place.",
+      "payload": {
+        "words": ["um", "an.", "Ich", "Hamburg", "zehn", "komme", "Uhr", "in"],
+        "answer": "Ich komme um zehn Uhr in Hamburg an.",
+        "accept": ["Ich komme in Hamburg um zehn Uhr an."]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-06-04",
+      "ordinal": 4,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.SPI.01", "de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:wie-komme-ich-zu", "de:phrase:ist-das-weit", "de:vocab:buergeramt"],
+      "instruction_en": "Translate into German. This is how you ask the way.",
+      "payload": {
+        "source_text": "Excuse me, how do I get to the Bürgeramt? Is it far?",
+        "direction": "to_target",
+        "reference": [
+          "Entschuldigung, wie komme ich zum Bürgeramt? Ist das weit?",
+          "Entschuldigung, wie komme ich zum Bürgeramt? Ist es weit?"
+        ],
+        "notes_en": "Bürgeramt is a das word, so it is zum Bürgeramt."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-06-05",
+      "ordinal": 5,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.03", "de:cando:A1.GRA.10"],
+      "item_ids": ["de:vocab:nehmen", "de:vocab:zug", "de:vocab:ankommen", "de:chunk:um-uhr"],
+      "instruction_en": "Translate into German. This is how you tell a friend about your train.",
+      "payload": {
+        "source_text": "I am taking the train at 8. I arrive in Berlin at 12.",
+        "direction": "to_target",
+        "reference": [
+          "Ich nehme den Zug um 8 Uhr. Ich komme um 12 Uhr in Berlin an.",
+          "Ich nehme den Zug um acht Uhr. Ich komme um zwölf Uhr in Berlin an.",
+          "Ich nehme den Zug um 8 Uhr. Um 12 Uhr komme ich in Berlin an."
+        ],
+        "notes_en": "Zug is a der word, so after nehmen it is den Zug. The an of ankommen goes to the end."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-06-06",
+      "ordinal": 6,
+      "type": "translate",
+      "skill": "mediation",
+      "cando_ids": ["de:cando:A1.MED.02", "de:cando:A1.MED.01"],
+      "item_ids": ["de:vocab:buergeramt", "de:vocab:geschlossen", "de:vocab:anmeldung", "de:vocab:pass", "de:vocab:mitbringen", "de:chunk:von-bis"],
+      "instruction_en": "Your friend Sam cannot read this notice at the Bürgeramt. Tell Sam in simple English what it says.",
+      "payload": {
+        "source_text": "Das Bürgeramt ist am Mittwoch geschlossen. Anmeldung: Donnerstag von 14 bis 18 Uhr, Zimmer 12. Bitte bringen Sie Ihren Pass mit.",
+        "direction": "to_en",
+        "reference": [
+          "The Bürgeramt is closed on Wednesday. Registration is on Thursday from 14 to 18 in room 12. Please bring your passport.",
+          "The office is closed on Wednesday. You can register on Thursday from 2 pm to 6 pm in room 12. Bring your passport."
+        ],
+        "notes_en": "Pass on the days, the times, the room and what to bring. It does not have to be word for word."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-06-07",
+      "ordinal": 7,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.01", "de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:wie-komme-ich-zu", "de:phrase:ist-das-weit", "de:chunk:gibt-es-hier", "de:vocab:buergeramt", "de:vocab:haltestelle", "de:vocab:links", "de:vocab:rechts"],
+      "instruction_en": "Roleplay. You are at the station and need to find the Bürgeramt. Record your part.",
+      "payload": {
+        "prompt_en": "Stop a person politely and ask how you get to the Bürgeramt. The person says: Gehen Sie hier links und dann immer geradeaus. Das Bürgeramt ist im Rathaus. Repeat the directions to check, ask whether it is far, and ask whether there is a bus stop here. Say thank you.",
+        "prompt_native": "Gehen Sie hier links und dann immer geradeaus. Das Bürgeramt ist im Rathaus.",
+        "mode": "free",
+        "sample_answer": "Entschuldigung, wie komme ich zum Bürgeramt? Hier links und dann immer geradeaus? Ist das weit? Gibt es hier eine Haltestelle? Vielen Dank!",
+        "rubric_focus": [
+          "Wie komme ich zum Bürgeramt",
+          "repeats links and geradeaus correctly",
+          "asks whether it is far",
+          "Gibt es hier with eine Haltestelle",
+          "polite opening and thanks"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-06-08",
+      "ordinal": 8,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.04", "de:cando:A1.GRA.10"],
+      "item_ids": ["de:chunk:eine-fahrkarte-nach-bitte", "de:chunk:was-kostet", "de:vocab:abfahren", "de:vocab:umsteigen", "de:vocab:gleis", "de:phrase:kann-ich-mit-karte-zahlen"],
+      "instruction_en": "Roleplay. You are at the ticket counter. Record your part.",
+      "payload": {
+        "prompt_en": "The clerk says: Guten Tag! Wohin möchten Sie fahren? Greet the clerk and ask for a ticket to Munich. Ask what it costs, when the train leaves, which platform it is and whether you have to change. At the end ask whether you can pay by card.",
+        "prompt_native": "Guten Tag! Wohin möchten Sie fahren?",
+        "mode": "free",
+        "sample_answer": "Guten Tag! Eine Fahrkarte nach München, bitte. Was kostet die Fahrkarte? Wann fährt der Zug ab? Welches Gleis, bitte? Muss ich umsteigen? Kann ich mit Karte zahlen?",
+        "rubric_focus": [
+          "asks for the ticket with nach and the city",
+          "asks for price and departure time",
+          "asks about the platform with the word Gleis",
+          "Muss ich umsteigen with the verb at the end",
+          "polite greeting and bitte"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-06-09",
+      "ordinal": 9,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": ["de:cando:A1.MED.01", "de:cando:A1.MED.02"],
+      "item_ids": ["de:vocab:buergeramt", "de:vocab:geschlossen", "de:vocab:pass", "de:vocab:mitbringen", "de:chunk:von-bis", "de:vocab:muessen"],
+      "instruction_en": "Record yourself. Your flatmate Amir speaks a little German but cannot read the notice at the Bürgeramt. Tell him in simple German what it says.",
+      "payload": {
+        "prompt_en": "The notice says: Das Bürgeramt ist am Mittwoch geschlossen. Anmeldung: Donnerstag von 14 bis 18 Uhr, Zimmer 12. Bitte bringen Sie Ihren Pass mit. Amir asks: Was steht da? Tell him in three or four short sentences: when the office is closed, when and where he can register, and what he has to bring. Speak to him with du.",
+        "prompt_native": "Was steht da?",
+        "mode": "free",
+        "sample_answer": "Das Bürgeramt ist am Mittwoch geschlossen. Du kannst am Donnerstag kommen, von 14 bis 18 Uhr. Die Anmeldung ist in Zimmer 12. Du musst deinen Pass mitbringen.",
+        "rubric_focus": [
+          "days and times are passed on correctly",
+          "the room number is passed on",
+          "says what to bring with musst and mitbringen at the end",
+          "short, simple sentences in own words, not read aloud from the notice"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-06-10",
+      "ordinal": 10,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.03", "de:cando:A1.GRA.10"],
+      "item_ids": ["de:vocab:zug", "de:vocab:nehmen", "de:vocab:abfahren", "de:vocab:ankommen", "de:vocab:bahnhof", "de:chunk:um-uhr"],
+      "instruction_en": "Write a text message in German.",
+      "payload": {
+        "prompt_en": "You are travelling from Cologne to Hamburg on Saturday to visit your friend Lena. Write her a short text message. Say which train you take and when it leaves, say when you arrive in Hamburg, and ask whether she can come to the station.",
+        "min_words": 15,
+        "max_words": 50,
+        "sample_answer": "Hallo Lena, ich nehme am Samstag den Zug um 8:15 Uhr. Der Zug fährt in Köln ab. Ich komme um 12:20 Uhr in Hamburg an. Kannst du zum Bahnhof kommen? Bis Samstag! Sam",
+        "rubric_focus": [
+          "says which train with a day and a time",
+          "arrival time with ankommen and an at the end",
+          "a question to the friend with the verb in the right position",
+          "reads like a message: greeting and a name"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

@@ -1,0 +1,312 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-07-07",
+  "unit_key": "de:unit:a1-07-unterwegs",
+  "ordinal": 7,
+  "slug": "wiederholung-unterwegs",
+  "title": "Wiederholung: In der Stadt und unterwegs",
+  "title_en": "Review: in town and on the move",
+  "description": "Mixed review of the unit: places in town, asking the way and following directions, tickets, departure boards and announcements, the Bürgeramt, and passing on what a sign says. No new words.",
+  "kind": "review",
+  "estimated_minutes": 20,
+  "cando_ids": [
+    "de:cando:A1.REA.03",
+    "de:cando:A1.REA.04",
+    "de:cando:A1.LIS.04",
+    "de:cando:A1.LIS.05",
+    "de:cando:A1.LIS.03",
+    "de:cando:A1.SPI.01",
+    "de:cando:A1.SPI.04",
+    "de:cando:A1.MED.02",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.GRA.09",
+    "de:cando:A1.GRA.10",
+    "de:cando:A1.GRA.12"
+  ],
+  "introduces_item_ids": [],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-07-07-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.REA.03"],
+      "item_ids": ["de:vocab:bahnhof", "de:vocab:haltestelle", "de:vocab:rathaus", "de:vocab:ecke", "de:vocab:gleis", "de:vocab:verspaetung", "de:vocab:pass", "de:vocab:ausgang"],
+      "instruction_en": "Match the words from the unit with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "der Bahnhof", "right": "railway station" },
+          { "left": "die Haltestelle", "right": "stop for a bus or tram" },
+          { "left": "das Rathaus", "right": "town hall" },
+          { "left": "die Ecke", "right": "corner" },
+          { "left": "das Gleis", "right": "platform" },
+          { "left": "die Verspätung", "right": "delay" },
+          { "left": "der Pass", "right": "passport" },
+          { "left": "der Ausgang", "right": "exit" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-07-02",
+      "ordinal": 2,
+      "type": "flashcard",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.GRA.10"],
+      "item_ids": ["de:vocab:umsteigen"],
+      "instruction_en": "Say the meaning to yourself, then turn the card and rate how well you knew it.",
+      "payload": {
+        "front": "umsteigen",
+        "back": "to change trains or buses",
+        "hint": "Ich steige in Köln um. Sie müssen in Köln umsteigen."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-07-03",
+      "ordinal": 3,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.REA.03"],
+      "item_ids": ["de:vocab:buergeramt", "de:vocab:bahnhof", "de:vocab:apotheke", "de:vocab:krankenhaus"],
+      "instruction_en": "Choose the right place.",
+      "payload": {
+        "question": "You have moved into a new flat and must register your address. Which place do you need?",
+        "options": ["der Bahnhof", "das Bürgeramt", "die Apotheke", "das Krankenhaus"],
+        "answer_index": 1,
+        "explanation_en": "You register at the Bürgeramt. This is called die Anmeldung."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-07-04",
+      "ordinal": 4,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:wie-komme-ich-zu", "de:vocab:krankenhaus", "de:vocab:apotheke", "de:vocab:park"],
+      "instruction_en": "Ask the way. Fill in zum or zur.",
+      "payload": {
+        "text": "Wie komme ich ___ Krankenhaus? Wie komme ich ___ Apotheke? Wie komme ich ___ Park?",
+        "blanks": [
+          { "answer": "zum", "hint": "das Krankenhaus" },
+          { "answer": "zur", "hint": "die Apotheke" },
+          { "answer": "zum", "hint": "der Park" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-07-05",
+      "ordinal": 5,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.10", "de:cando:A1.GRA.09"],
+      "item_ids": ["de:grammar:trennbare-verben", "de:grammar:satzklammer-modalverben", "de:vocab:ankommen", "de:vocab:umsteigen", "de:vocab:anmelden"],
+      "instruction_en": "Fill in the verb. Split it when there is no modal verb. Keep it in one piece after müssen.",
+      "payload": {
+        "text": "Der Zug ___ um 15 Uhr in München ___. Wir müssen in Köln ___. Ich ___ mich am Donnerstag ___.",
+        "blanks": [
+          { "answer": "kommt", "hint": "ankommen" },
+          { "answer": "an", "hint": "ankommen" },
+          { "answer": "umsteigen", "hint": "umsteigen" },
+          { "answer": "melde", "hint": "anmelden" },
+          { "answer": "an", "hint": "anmelden" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-07-06",
+      "ordinal": 6,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03"],
+      "item_ids": ["de:phrase:der-zug-hat-verspaetung", "de:vocab:zug", "de:vocab:verspaetung"],
+      "instruction_en": "Put the words in the right order to say that the train to Hamburg is twenty minutes late.",
+      "payload": {
+        "words": ["Hamburg", "Verspätung.", "Der", "zwanzig", "hat", "nach", "Zug", "Minuten"],
+        "answer": "Der Zug nach Hamburg hat zwanzig Minuten Verspätung."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-07-07",
+      "ordinal": 7,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.04"],
+      "item_ids": ["de:chunk:wo-ist", "de:phrase:gehen-sie-die-naechste-strasse-links", "de:phrase:gehen-sie-immer-geradeaus", "de:vocab:rechts", "de:vocab:links", "de:phrase:ist-das-weit", "de:chunk:ist-um-die-ecke", "de:vocab:apotheke"],
+      "instruction_en": "A woman asks for the pharmacy. Listen to the directions, then answer the questions.",
+      "payload": {
+        "transcript": "Entschuldigung, wo ist die Apotheke? Gehen Sie die nächste Straße rechts und dann immer geradeaus. Die Apotheke ist links, neben der Schule. Ist das weit? Nein, die Apotheke ist gleich um die Ecke.",
+        "questions": [
+          {
+            "question": "Which way does she turn into the next street?",
+            "options": ["links", "rechts"],
+            "answer_index": 1
+          },
+          {
+            "question": "Wo ist die Apotheke?",
+            "options": ["links, neben der Schule", "rechts, neben dem Rathaus", "geradeaus, im Bahnhof"],
+            "answer_index": 0
+          },
+          {
+            "question": "Ist die Apotheke weit?",
+            "options": ["Ja, zwanzig Minuten zu Fuß.", "Ja, sie braucht einen Bus.", "Nein, sie ist gleich um die Ecke."],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-07-08",
+      "ordinal": 8,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.05", "de:cando:A1.LIS.03"],
+      "item_ids": ["de:vocab:zug", "de:vocab:abfahrt", "de:vocab:verspaetung", "de:vocab:gleis", "de:chunk:der-zug-faehrt-von-gleis-ab"],
+      "instruction_en": "Listen to the slow station announcement. Then answer the questions.",
+      "payload": {
+        "transcript": "Achtung an Gleis vier. Der Zug nach Leipzig, Abfahrt elf Uhr zwanzig, hat heute fünfzehn Minuten Verspätung. Der Zug fährt heute von Gleis sieben ab. Ich wiederhole: Der Zug nach Leipzig fährt von Gleis sieben ab.",
+        "questions": [
+          {
+            "question": "Wohin fährt der Zug?",
+            "options": ["nach Leipzig", "nach Berlin", "nach Frankfurt"],
+            "answer_index": 0
+          },
+          {
+            "question": "Wie viel Verspätung hat der Zug?",
+            "options": ["fünf Minuten", "fünfzehn Minuten", "zwanzig Minuten"],
+            "answer_index": 1
+          },
+          {
+            "question": "Von Gleis ... fährt der Zug heute ab.",
+            "options": ["vier", "elf", "sieben"],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-07-09",
+      "ordinal": 9,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.04"],
+      "item_ids": ["de:vocab:plan", "de:vocab:bus", "de:vocab:abfahrt", "de:vocab:ankunft", "de:vocab:bahnhof", "de:vocab:rathaus", "de:vocab:krankenhaus", "de:vocab:haltestelle"],
+      "instruction_en": "Read the timetable for bus 12. Then answer the questions.",
+      "payload": {
+        "title": "Fahrplan Bus 12, Montag bis Samstag",
+        "text": "Haltestelle Bahnhof, Abfahrt: 7:10, 7:40, 8:10\nHaltestelle Rathaus, Ankunft: 7:25, 7:55, 8:25\nHaltestelle Krankenhaus, Ankunft: 7:35, 8:05, 8:35\nAm Sonntag fährt der Bus nicht.",
+        "questions": [
+          {
+            "question": "You get on at the station at 7:40. When are you at the Rathaus?",
+            "options": ["um 7:25 Uhr", "um 7:55 Uhr", "um 8:05 Uhr"],
+            "answer_index": 1
+          },
+          {
+            "question": "You have an appointment at the hospital at 8:15. Which is the last bus you can take from the station?",
+            "options": ["der Bus um 7:40 Uhr", "der Bus um 8:10 Uhr", "der Bus um 7:10 Uhr"],
+            "answer_index": 0
+          },
+          {
+            "question": "Fährt der Bus am Sonntag?",
+            "options": ["Ja, um 8:10 Uhr.", "Ja, aber nur zum Rathaus.", "Nein."],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-07-10",
+      "ordinal": 10,
+      "type": "multiple_choice",
+      "skill": "mediation",
+      "cando_ids": ["de:cando:A1.MED.02"],
+      "item_ids": ["de:vocab:eingang", "de:vocab:geschlossen", "de:vocab:schild", "de:vocab:rechts"],
+      "instruction_en": "Your friend Sam cannot read the sign on the door of the town hall. Choose what you tell Sam.",
+      "payload": {
+        "question": "Eingang A ist heute geschlossen. Eingang B ist rechts um die Ecke.",
+        "options": [
+          "Entrance A is closed today. Entrance B is round the corner on the right.",
+          "Entrance A is on the right. Entrance B is closed today.",
+          "The town hall is closed today. Come back on another day."
+        ],
+        "answer_index": 0
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-07-11",
+      "ordinal": 11,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.03", "de:cando:A1.GRA.10"],
+      "item_ids": ["de:chunk:der-zug-faehrt-von-gleis-ab", "de:vocab:abfahren", "de:chunk:um-uhr"],
+      "instruction_en": "Listen and type what you hear. Write the numbers as words.",
+      "payload": {
+        "text": "Der Zug fährt um neun Uhr von Gleis drei ab.",
+        "accept": ["Der Zug fährt um 9 Uhr von Gleis 3 ab.", "Der Zug fährt um neun Uhr von Gleis 3 ab.", "Der Zug fährt um 9 Uhr von Gleis drei ab."]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-07-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.SPI.04", "de:cando:A1.GRA.09"],
+      "item_ids": ["de:chunk:eine-fahrkarte-nach-bitte", "de:vocab:umsteigen", "de:vocab:muessen"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "A ticket to Berlin, please. Do I have to change?",
+        "direction": "to_target",
+        "reference": ["Eine Fahrkarte nach Berlin, bitte. Muss ich umsteigen?"],
+        "notes_en": "After muss the verb umsteigen stays in one piece at the end."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-07-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.01", "de:cando:A1.GRA.09"],
+      "item_ids": ["de:phrase:ich-moechte-mich-anmelden", "de:vocab:termin", "de:phrase:was-muss-ich-mitbringen", "de:chunk:wo-ist", "de:vocab:schalter", "de:vocab:pass"],
+      "instruction_en": "Roleplay. You arrive at the Bürgeramt for your appointment. Record your part.",
+      "payload": {
+        "prompt_en": "The clerk at the entrance says: Guten Morgen! Bitte schön? Greet the clerk. Say that you would like to register and that you have an appointment at nine. Say that you have your passport and the form with you. Ask where counter five is.",
+        "prompt_native": "Guten Morgen! Bitte schön?",
+        "mode": "free",
+        "sample_answer": "Guten Morgen! Ich möchte mich anmelden. Ich habe einen Termin um neun Uhr. Hier sind mein Pass und das Formular. Wo ist Schalter fünf, bitte?",
+        "rubric_focus": [
+          "Ich möchte mich anmelden",
+          "appointment with einen Termin and the time",
+          "names the papers: Pass and Formular",
+          "asks where with Wo ist",
+          "polite greeting"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

@@ -1,0 +1,286 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-05-06",
+  "unit_key": "de:unit:a1-05-wohnen",
+  "ordinal": 6,
+  "slug": "meine-wohnung-und-nachrichten",
+  "title": "Jetzt du: meine Wohnung",
+  "title_en": "Your turn: my flat",
+  "description": "Production lesson. Describe your flat in speech, ask a landlord two questions about a flat in a roleplay, write a short note to a neighbour and write a short message to the landlord about a broken heating.",
+  "kind": "production",
+  "estimated_minutes": 25,
+  "cando_ids": [
+    "de:cando:A1.SPP.03",
+    "de:cando:A1.SPI.01",
+    "de:cando:A1.WRI.03",
+    "de:cando:A1.WRI.04",
+    "de:cando:A1.WRI.01",
+    "de:cando:A1.VOC.05",
+    "de:cando:A1.GRA.12",
+    "de:cando:A1.GRA.07",
+    "de:cando:A1.GRA.03"
+  ],
+  "introduces_item_ids": [],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-05-06-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:phrase:ist-die-wohnung-noch-frei",
+        "de:phrase:wie-hoch-ist-die-miete",
+        "de:phrase:koennen-sie-das-reparieren",
+        "de:vocab:schluessel",
+        "de:vocab:zurueck",
+        "de:chunk:liegt-auf"
+      ],
+      "instruction_en": "Warm up. Match each question with a fitting answer.",
+      "payload": {
+        "pairs": [
+          { "left": "Ist die Wohnung noch frei?", "right": "Nein, die Wohnung ist schon vermietet." },
+          { "left": "Wie hoch ist die Miete?", "right": "650 Euro." },
+          { "left": "Wo ist der Schlüssel?", "right": "Der Schlüssel liegt auf dem Tisch." },
+          { "left": "Können Sie das reparieren?", "right": "Ja, ich komme am Montag." },
+          { "left": "Wann bist du zurück?", "right": "Um 18 Uhr." }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-06-02",
+      "ordinal": 2,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.12", "de:cando:A1.GRA.07"],
+      "item_ids": [
+        "de:chunk:ich-bin-in",
+        "de:chunk:ist-neben",
+        "de:grammar:negation-nicht",
+        "de:vocab:sofa",
+        "de:vocab:lampe",
+        "de:vocab:heizung"
+      ],
+      "instruction_en": "Warm up. Fill in im, dem or nicht.",
+      "payload": {
+        "text": "Das Sofa steht ___ Wohnzimmer. Die Lampe steht neben ___ Bett. Die Heizung funktioniert ___.",
+        "blanks": [
+          { "answer": "im", "hint": "in dem" },
+          { "answer": "dem", "hint": "das Bett" },
+          { "answer": "nicht", "hint": "not" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-06-03",
+      "ordinal": 3,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03"],
+      "item_ids": ["de:vocab:wohnung", "de:vocab:hell", "de:vocab:ruhig"],
+      "instruction_en": "Warm up. Put the words in the right order.",
+      "payload": {
+        "words": ["hell", "ruhig.", "Wohnung", "und", "Meine", "ist"],
+        "answer": "Meine Wohnung ist hell und ruhig."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-06-04",
+      "ordinal": 4,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.VOC.05"],
+      "item_ids": ["de:chunk:die-wohnung-hat-zimmer", "de:vocab:wohnzimmer", "de:vocab:hell"],
+      "instruction_en": "Translate into German. This is how you describe a flat.",
+      "payload": {
+        "source_text": "My flat has two rooms. The living room is big and bright.",
+        "direction": "to_target",
+        "reference": ["Meine Wohnung hat zwei Zimmer. Das Wohnzimmer ist groß und hell."],
+        "notes_en": "Wohnzimmer is a das word."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-06-05",
+      "ordinal": 5,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.03"],
+      "item_ids": ["de:chunk:ist-kaputt", "de:vocab:heizung", "de:phrase:koennen-sie-das-reparieren"],
+      "instruction_en": "Translate into German. This is how you tell the landlord about a problem.",
+      "payload": {
+        "source_text": "The heating is broken. Can you repair that, please?",
+        "direction": "to_target",
+        "reference": [
+          "Die Heizung ist kaputt. Können Sie das bitte reparieren?",
+          "Die Heizung ist kaputt. Können Sie das reparieren, bitte?",
+          "Die Heizung funktioniert nicht. Können Sie das bitte reparieren?"
+        ],
+        "notes_en": "Use Sie with a landlord. reparieren stands at the end."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-06-06",
+      "ordinal": 6,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.04", "de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:ich-bin-in", "de:vocab:zurueck", "de:vocab:uhr"],
+      "instruction_en": "Translate into German. This is how you write a note.",
+      "payload": {
+        "source_text": "I am at the supermarket. I am back at 7 pm.",
+        "direction": "to_target",
+        "reference": [
+          "Ich bin im Supermarkt. Ich bin um 19 Uhr zurück.",
+          "Ich bin im Supermarkt. Um 19 Uhr bin ich zurück."
+        ],
+        "notes_en": "In a note 7 pm is 19 Uhr."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-06-07",
+      "ordinal": 7,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": ["de:cando:A1.SPP.03", "de:cando:A1.VOC.05", "de:cando:A1.GRA.12"],
+      "item_ids": [
+        "de:chunk:die-wohnung-hat-zimmer",
+        "de:vocab:wohnung",
+        "de:vocab:zimmer",
+        "de:vocab:kueche",
+        "de:vocab:bad",
+        "de:vocab:hell",
+        "de:vocab:ruhig",
+        "de:chunk:ich-wohne-im-stock",
+        "de:chunk:ich-bin-in",
+        "de:chunk:ist-neben",
+        "de:vocab:bett",
+        "de:vocab:tisch"
+      ],
+      "instruction_en": "Record yourself. Take a minute to prepare first.",
+      "payload": {
+        "prompt_en": "Describe your flat, or a flat you know, in five or six short sentences. Say which floor it is on and how many rooms it has. Name two rooms and say what they are like. Say where two pieces of furniture are. Say one thing the flat does not have.",
+        "mode": "free",
+        "sample_answer": "Ich wohne im zweiten Stock. Meine Wohnung hat zwei Zimmer, eine Küche und ein Bad. Das Wohnzimmer ist groß und hell. Das Schlafzimmer ist klein, aber ruhig. Mein Bett steht neben dem Fenster. Der Tisch steht in der Küche. Die Wohnung hat keinen Balkon.",
+        "rubric_focus": [
+          "a series of simple sentences",
+          "Die Wohnung hat ... Zimmer and room words with the right article",
+          "describing words after ist: groß, klein, hell, ruhig, schön",
+          "place chunks: im, in der, auf dem, neben dem",
+          "one negative with kein",
+          "can be understood by a patient listener"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-06-08",
+      "ordinal": 8,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.01", "de:cando:A1.VOC.05", "de:cando:A1.GRA.03"],
+      "item_ids": [
+        "de:phrase:wie-hoch-ist-die-miete",
+        "de:phrase:wann-kann-ich-einziehen",
+        "de:phrase:wie-gross-ist-die-wohnung",
+        "de:phrase:ist-die-wohnung-noch-frei",
+        "de:vocab:vermieter",
+        "de:vocab:miete",
+        "de:vocab:aufzug"
+      ],
+      "instruction_en": "Roleplay. You look at a flat with the landlord. Record your part.",
+      "payload": {
+        "prompt_en": "You are looking at a flat. The landlord says: Guten Tag! Das ist die Wohnung. Haben Sie Fragen? Greet the landlord and ask at least two questions about the flat, for example about the rent, the size, the lift or when you can move in. Say thank you at the end.",
+        "prompt_native": "Guten Tag! Das ist die Wohnung. Haben Sie Fragen?",
+        "mode": "free",
+        "sample_answer": "Guten Tag! Ja, ich habe zwei Fragen. Wie hoch ist die Miete? Und wann kann ich einziehen? Danke!",
+        "rubric_focus": [
+          "at least two questions about the flat",
+          "the verb in the right position in each question",
+          "formal Sie, not du",
+          "a greeting and a thank you",
+          "can be understood by a patient listener"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-06-09",
+      "ordinal": 9,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.04", "de:cando:A1.GRA.12"],
+      "item_ids": [
+        "de:vocab:nachbar",
+        "de:vocab:zurueck",
+        "de:chunk:ich-bin-in",
+        "de:vocab:uhr",
+        "de:vocab:paket",
+        "de:vocab:haus"
+      ],
+      "instruction_en": "Write a note in German.",
+      "payload": {
+        "prompt_en": "You are going out and a parcel may come for you. Leave a short note on the door of your neighbour, Frau Demir. Start with Hallo Frau Demir. Say that you are not at home, say where you are, say when you are back, and ask if she can take your parcel. End with thank you, your name and your floor.",
+        "min_words": 15,
+        "max_words": 45,
+        "sample_answer": "Hallo Frau Demir, ich bin nicht zu Hause. Ich bin im Supermarkt. Ich bin um 17 Uhr zurück. Können Sie bitte mein Paket nehmen? Danke! Tom Berger, 2. Stock",
+        "rubric_focus": [
+          "says where the writer is",
+          "says when the writer is back with um ... Uhr and zurück",
+          "a polite question with Können Sie",
+          "formal Sie for the neighbour",
+          "reads like a note: a name at the start and at the end"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-06-10",
+      "ordinal": 10,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.03", "de:cando:A1.GRA.07", "de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:heizung",
+        "de:chunk:ist-kaputt",
+        "de:vocab:kaputt",
+        "de:phrase:koennen-sie-das-reparieren",
+        "de:chunk:ich-wohne-im-stock",
+        "de:vocab:vermieter",
+        "de:grammar:negation-nicht"
+      ],
+      "instruction_en": "Write a short message in German.",
+      "payload": {
+        "prompt_en": "The heating in your flat does not work. Write a short message to your landlord, Herr Krause. Start with Guten Tag Herr Krause. Say which floor you live on, say that the heating is broken or does not work, ask if he can repair it, and say on which day you are at home. End with Viele Grüße and your name.",
+        "min_words": 15,
+        "max_words": 50,
+        "sample_answer": "Guten Tag Herr Krause, ich wohne im zweiten Stock. Die Heizung funktioniert nicht. Es ist kalt in der Wohnung. Können Sie das bitte reparieren? Ich bin am Samstag zu Hause. Viele Grüße Tom Berger",
+        "rubric_focus": [
+          "names the problem with ist kaputt or funktioniert nicht",
+          "nicht in the right place",
+          "asks Können Sie das reparieren?",
+          "formal Sie and a greeting",
+          "says when the writer is at home"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

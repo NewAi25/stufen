@@ -1,0 +1,367 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-05-01",
+  "unit_key": "de:unit:a1-05-wohnen",
+  "ordinal": 1,
+  "slug": "die-wohnung-und-die-zimmer",
+  "title": "Meine Wohnung",
+  "title_en": "My flat",
+  "description": "The flat and its rooms: Wohnung, Zimmer, Küche, Bad, Wohnzimmer, Schlafzimmer and Balkon. Say how many rooms a flat has with Die Wohnung hat ... Zimmer and describe it with groß, klein, hell, ruhig and schön.",
+  "kind": "core",
+  "estimated_minutes": 20,
+  "cando_ids": [
+    "de:cando:A1.VOC.05",
+    "de:cando:A1.VOC.07",
+    "de:cando:A1.GRA.01",
+    "de:cando:A1.GRA.04",
+    "de:cando:A1.GRA.06",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.REA.01",
+    "de:cando:A1.WRI.01",
+    "de:cando:A1.SPP.02"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:wohnung",
+    "de:vocab:zimmer",
+    "de:vocab:kueche",
+    "de:vocab:bad",
+    "de:vocab:wohnzimmer",
+    "de:vocab:schlafzimmer",
+    "de:vocab:toilette",
+    "de:vocab:balkon",
+    "de:vocab:fenster",
+    "de:vocab:hell",
+    "de:vocab:ruhig",
+    "de:vocab:schoen",
+    "de:chunk:die-wohnung-hat-zimmer"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-05-01-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07"],
+      "item_ids": [
+        "de:vocab:gross",
+        "de:vocab:klein",
+        "de:vocab:neu",
+        "de:vocab:alt",
+        "de:vocab:teuer",
+        "de:vocab:billig"
+      ],
+      "instruction_en": "Warm up. You know these words from shopping. Match them with their English meaning. You need them again for flats.",
+      "payload": {
+        "pairs": [
+          { "left": "groß", "right": "big" },
+          { "left": "klein", "right": "small" },
+          { "left": "neu", "right": "new" },
+          { "left": "alt", "right": "old" },
+          { "left": "teuer", "right": "expensive" },
+          { "left": "billig", "right": "cheap" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-01-02",
+      "ordinal": 2,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.01"],
+      "item_ids": ["de:vocab:haben"],
+      "instruction_en": "Warm up. Fill in the right form of haben.",
+      "payload": {
+        "text": "Ich ___ einen Bruder. Meine Schwester ___ zwei Kinder. Wir ___ kein Brot.",
+        "blanks": [
+          { "answer": "habe", "hint": "ich" },
+          { "answer": "hat", "hint": "sie" },
+          { "answer": "haben", "hint": "wir" }
+        ],
+        "explanation_en": "ich habe, du hast, er or sie hat, wir haben."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-01-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02", "de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:wohnung",
+        "de:vocab:zimmer",
+        "de:vocab:kueche",
+        "de:vocab:bad",
+        "de:vocab:hell",
+        "de:vocab:ruhig",
+        "de:chunk:die-wohnung-hat-zimmer",
+        "de:vocab:klein"
+      ],
+      "instruction_en": "Listen to Lena. She talks about her flat. Die Wohnung is the flat and das Zimmer is the room. Then answer the questions.",
+      "payload": {
+        "transcript": "Hallo, ich bin Lena. Das ist meine Wohnung. Die Wohnung hat zwei Zimmer, eine Küche und ein Bad. Die Wohnung ist klein, aber hell und ruhig.",
+        "questions": [
+          {
+            "question": "Wie viele Zimmer hat die Wohnung?",
+            "options": ["zwei", "drei", "vier"],
+            "answer_index": 0
+          },
+          {
+            "question": "Wie ist die Wohnung?",
+            "options": ["groß und teuer", "klein und hell", "alt und groß"],
+            "answer_index": 1,
+            "explanation_en": "hell means bright and ruhig means quiet."
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-01-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.01", "de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:wohnung",
+        "de:vocab:zimmer",
+        "de:vocab:kueche",
+        "de:vocab:bad",
+        "de:vocab:balkon",
+        "de:vocab:wohnzimmer",
+        "de:vocab:schlafzimmer",
+        "de:vocab:fenster",
+        "de:vocab:hell",
+        "de:vocab:ruhig",
+        "de:chunk:die-wohnung-hat-zimmer"
+      ],
+      "instruction_en": "Read what Amir writes about his flat. Das Wohnzimmer is the living room, das Schlafzimmer is the bedroom, der Balkon is the balcony and das Fenster is the window. Then answer the questions.",
+      "payload": {
+        "title": "Meine Wohnung",
+        "text": "Ich heiße Amir und ich wohne in Köln. Meine Wohnung hat drei Zimmer, eine Küche, ein Bad und einen Balkon. Das Wohnzimmer ist groß und hell. Das Schlafzimmer ist klein, aber ruhig. Die Küche ist neu. Das Bad hat ein Fenster.",
+        "questions": [
+          {
+            "question": "Wie ist das Wohnzimmer?",
+            "options": ["klein und ruhig", "groß und hell", "alt und klein"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was ist klein und ruhig?",
+            "options": ["das Schlafzimmer", "das Wohnzimmer", "die Küche"],
+            "answer_index": 0
+          },
+          {
+            "question": "Hat die Wohnung einen Balkon?",
+            "options": ["Ja.", "Nein."],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-01-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:wohnung",
+        "de:vocab:zimmer",
+        "de:vocab:kueche",
+        "de:vocab:bad",
+        "de:vocab:wohnzimmer",
+        "de:vocab:schlafzimmer",
+        "de:vocab:toilette",
+        "de:vocab:balkon",
+        "de:vocab:fenster"
+      ],
+      "instruction_en": "Match the words for the flat and its rooms with their English meaning. Learn each word with der, die or das.",
+      "payload": {
+        "pairs": [
+          { "left": "die Wohnung", "right": "flat" },
+          { "left": "das Zimmer", "right": "room" },
+          { "left": "die Küche", "right": "kitchen" },
+          { "left": "das Bad", "right": "bathroom" },
+          { "left": "das Wohnzimmer", "right": "living room" },
+          { "left": "das Schlafzimmer", "right": "bedroom" },
+          { "left": "die Toilette", "right": "toilet" },
+          { "left": "der Balkon", "right": "balcony" },
+          { "left": "das Fenster", "right": "window" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-01-06",
+      "ordinal": 6,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.05"],
+      "item_ids": ["de:vocab:kueche", "de:vocab:bad", "de:vocab:schlafzimmer"],
+      "instruction_en": "Choose the right room.",
+      "payload": {
+        "question": "In which room do you cook?",
+        "options": ["das Bad", "die Küche", "das Schlafzimmer"],
+        "answer_index": 1
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-01-07",
+      "ordinal": 7,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.04", "de:cando:A1.VOC.05"],
+      "item_ids": ["de:vocab:kueche", "de:vocab:bad", "de:vocab:balkon", "de:vocab:wohnzimmer"],
+      "instruction_en": "You show a friend your flat. Fill in der, die or das.",
+      "payload": {
+        "text": "Hier ist ___ Küche. Das ist ___ Bad. Und hier ist ___ Balkon. Wie groß ist ___ Wohnzimmer?",
+        "blanks": [
+          { "answer": "die" },
+          { "answer": "das" },
+          { "answer": "der" },
+          { "answer": "das" }
+        ],
+        "explanation_en": "die Küche, das Bad, der Balkon, das Wohnzimmer. Every word that ends in Zimmer is a das word."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-01-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:hell",
+        "de:vocab:ruhig",
+        "de:vocab:klein",
+        "de:vocab:schoen",
+        "de:vocab:wohnzimmer",
+        "de:vocab:schlafzimmer"
+      ],
+      "instruction_en": "Describe the rooms. Fill in the German word for the English hint.",
+      "payload": {
+        "text": "Das Wohnzimmer ist ___. Das Schlafzimmer ist ___. Der Balkon ist ___, aber ___.",
+        "blanks": [
+          { "answer": "hell", "hint": "bright" },
+          { "answer": "ruhig", "hint": "quiet" },
+          { "answer": "klein", "hint": "small" },
+          {
+            "answer": "schön",
+            "accept": ["schoen"],
+            "hint": "nice, beautiful"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-01-09",
+      "ordinal": 9,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.06"],
+      "item_ids": ["de:grammar:akkusativ-artikel", "de:vocab:balkon", "de:vocab:haben"],
+      "instruction_en": "Choose the right word. Balkon is a der word.",
+      "payload": {
+        "question": "Die Wohnung hat ___ Balkon.",
+        "options": ["ein", "einen", "eine"],
+        "answer_index": 1,
+        "explanation_en": "After haben the thing you have stands in the accusative. Only der words change: ein becomes einen. So: einen Balkon, but eine Küche and ein Bad."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-01-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03"],
+      "item_ids": ["de:chunk:die-wohnung-hat-zimmer", "de:vocab:wohnung", "de:vocab:zimmer"],
+      "instruction_en": "Put the words in the right order.",
+      "payload": {
+        "words": ["hat", "Zimmer.", "Wohnung", "drei", "Die"],
+        "answer": "Die Wohnung hat drei Zimmer."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-01-11",
+      "ordinal": 11,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.01", "de:cando:A1.VOC.05"],
+      "item_ids": ["de:vocab:wohnung", "de:vocab:hell", "de:vocab:ruhig"],
+      "instruction_en": "Listen and type what you hear.",
+      "payload": {
+        "text": "Die Wohnung ist hell und ruhig."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-01-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.VOC.05"],
+      "item_ids": ["de:chunk:die-wohnung-hat-zimmer", "de:vocab:kueche", "de:vocab:bad"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "My flat has two rooms, a kitchen and a bathroom.",
+        "direction": "to_target",
+        "reference": ["Meine Wohnung hat zwei Zimmer, eine Küche und ein Bad."],
+        "notes_en": "Wohnung is a die word, so it is meine Wohnung. Zimmer has the same form in the plural."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-01-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": ["de:cando:A1.SPP.02", "de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:chunk:die-wohnung-hat-zimmer",
+        "de:vocab:wohnung",
+        "de:vocab:zimmer",
+        "de:vocab:kueche",
+        "de:vocab:bad",
+        "de:vocab:hell",
+        "de:vocab:ruhig"
+      ],
+      "instruction_en": "Record yourself.",
+      "payload": {
+        "prompt_en": "Describe your flat or a flat you know in three or four short sentences. Say how many rooms it has, name two rooms, and say what the flat is like with two words such as groß, klein, hell, ruhig or schön.",
+        "mode": "free",
+        "sample_answer": "Meine Wohnung hat zwei Zimmer, eine Küche und ein Bad. Das Wohnzimmer ist groß und hell. Das Schlafzimmer ist klein. Die Wohnung ist ruhig.",
+        "rubric_focus": [
+          "Die Wohnung hat ... Zimmer",
+          "room words with the right article",
+          "two describing words after ist",
+          "can be understood by a patient listener"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

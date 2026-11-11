@@ -1,0 +1,321 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-07-03",
+  "unit_key": "de:unit:a1-07-unterwegs",
+  "ordinal": 3,
+  "slug": "bus-und-bahn",
+  "title": "Eine Fahrkarte nach Köln, bitte",
+  "title_en": "A ticket to Cologne, please",
+  "description": "Travel by bus and train: buy a ticket, read a departure board for time and platform, pick out places and times from a slow station announcement, and use einsteigen, aussteigen, umsteigen, abfahren and ankommen.",
+  "kind": "core",
+  "estimated_minutes": 22,
+  "cando_ids": [
+    "de:cando:A1.REA.04",
+    "de:cando:A1.LIS.05",
+    "de:cando:A1.LIS.03",
+    "de:cando:A1.SPI.04",
+    "de:cando:A1.SPI.01",
+    "de:cando:A1.GRA.10",
+    "de:cando:A1.GRA.09",
+    "de:cando:A1.GRA.03"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:zug",
+    "de:vocab:bus",
+    "de:vocab:fahrkarte",
+    "de:vocab:gleis",
+    "de:vocab:abfahrt",
+    "de:vocab:ankunft",
+    "de:vocab:verspaetung",
+    "de:vocab:einsteigen",
+    "de:vocab:aussteigen",
+    "de:vocab:umsteigen",
+    "de:vocab:abfahren",
+    "de:vocab:ankommen",
+    "de:chunk:eine-fahrkarte-nach-bitte",
+    "de:chunk:wann-faehrt-der-zug-nach",
+    "de:chunk:der-zug-faehrt-von-gleis-ab",
+    "de:phrase:der-zug-hat-verspaetung",
+    "de:phrase:wo-muss-ich-umsteigen",
+    "de:phrase:wo-muss-ich-aussteigen",
+    "de:vocab:wohin"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-07-03-01",
+      "ordinal": 1,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.01"],
+      "item_ids": ["de:phrase:ist-das-weit", "de:chunk:ist-um-die-ecke", "de:vocab:weit"],
+      "instruction_en": "Warm up. Choose the right answer.",
+      "payload": {
+        "question": "Someone asks you about the pharmacy: Ist das weit? The pharmacy is two minutes away. What do you say?",
+        "options": ["Ja, das ist sehr weit.", "Nein, die Apotheke ist gleich um die Ecke.", "Gehen Sie zum Bahnhof."],
+        "answer_index": 1,
+        "explanation_en": "Gleich um die Ecke means just round the corner."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-03-02",
+      "ordinal": 2,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.LIS.03"],
+      "item_ids": ["de:chunk:um-uhr", "de:vocab:uhr"],
+      "instruction_en": "Warm up. Timetables and announcements use the 24 hour clock. Choose how this time is said.",
+      "payload": {
+        "question": "The board says 14:10. What do you hear in the announcement?",
+        "options": ["vier Uhr zehn", "vierzehn Uhr zehn", "zehn Uhr vierzehn"],
+        "answer_index": 1,
+        "explanation_en": "Official times are said as hour, Uhr, minutes: vierzehn Uhr zehn. Among friends the same time is zehn nach zwei."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-03-03",
+      "ordinal": 3,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.04"],
+      "item_ids": ["de:vocab:abfahrt", "de:vocab:ankunft", "de:vocab:zug", "de:vocab:gleis", "de:vocab:verspaetung", "de:vocab:bahnhof"],
+      "instruction_en": "Read the departure board at the station in Bonn. Abfahrt is the departure, Ankunft the arrival, Gleis the platform and Verspätung a delay. Then answer the questions.",
+      "payload": {
+        "title": "Bahnhof Bonn: Abfahrt",
+        "text": "09:15 Zug nach Köln. Gleis 3. Ankunft in Köln: 09:45\n09:32 Zug nach Frankfurt. Gleis 1. 10 Minuten Verspätung\n09:48 Zug nach Koblenz. Gleis 2. Ankunft in Koblenz: 10:30",
+        "questions": [
+          {
+            "question": "Wann fährt der Zug nach Köln ab?",
+            "options": ["um 09:15 Uhr", "um 09:32 Uhr", "um 09:45 Uhr"],
+            "answer_index": 0
+          },
+          {
+            "question": "Der Zug nach Koblenz fährt von Gleis ...",
+            "options": ["1", "2", "3"],
+            "answer_index": 1
+          },
+          {
+            "question": "Which train is late?",
+            "options": ["der Zug nach Köln", "der Zug nach Koblenz", "der Zug nach Frankfurt"],
+            "answer_index": 2
+          },
+          {
+            "question": "Wann kommt der Zug in Köln an?",
+            "options": ["um 09:15 Uhr", "um 09:45 Uhr", "um 10:30 Uhr"],
+            "answer_index": 1
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-03-04",
+      "ordinal": 4,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.05", "de:cando:A1.LIS.03"],
+      "item_ids": ["de:vocab:zug", "de:vocab:abfahrt", "de:vocab:verspaetung", "de:vocab:gleis", "de:chunk:der-zug-faehrt-von-gleis-ab", "de:phrase:der-zug-hat-verspaetung", "de:vocab:wohin"],
+      "instruction_en": "You are at the station and hear a slow announcement. Achtung means attention. Wohin asks where to. Listen for the place, the delay and the platform. Then answer the questions.",
+      "payload": {
+        "transcript": "Achtung an Gleis acht. Der Zug nach Hamburg, Abfahrt vierzehn Uhr zehn, hat heute zwanzig Minuten Verspätung. Der Zug fährt heute von Gleis fünf ab. Ich wiederhole: Der Zug nach Hamburg fährt heute von Gleis fünf ab.",
+        "questions": [
+          {
+            "question": "Wohin fährt der Zug?",
+            "options": ["nach Köln", "nach München", "nach Hamburg"],
+            "answer_index": 2
+          },
+          {
+            "question": "Wie viel Verspätung hat der Zug?",
+            "options": ["zwanzig Minuten", "zehn Minuten", "vierzehn Minuten"],
+            "answer_index": 0
+          },
+          {
+            "question": "Von Gleis ... fährt der Zug heute ab.",
+            "options": ["acht", "fünf", "zehn"],
+            "answer_index": 1
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-03-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.REA.04"],
+      "item_ids": ["de:vocab:zug", "de:vocab:bus", "de:vocab:fahrkarte", "de:vocab:gleis", "de:vocab:abfahrt", "de:vocab:ankunft", "de:vocab:verspaetung"],
+      "instruction_en": "Match the words you see at a station with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "der Zug", "right": "train" },
+          { "left": "der Bus", "right": "bus" },
+          { "left": "die Fahrkarte", "right": "ticket" },
+          { "left": "das Gleis", "right": "platform" },
+          { "left": "die Abfahrt", "right": "departure" },
+          { "left": "die Ankunft", "right": "arrival" },
+          { "left": "die Verspätung", "right": "delay" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-03-06",
+      "ordinal": 6,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.GRA.10"],
+      "item_ids": ["de:vocab:einsteigen", "de:vocab:aussteigen", "de:vocab:umsteigen", "de:vocab:abfahren", "de:vocab:ankommen"],
+      "instruction_en": "Match the travel verbs with their English meaning. All five are separable verbs.",
+      "payload": {
+        "pairs": [
+          { "left": "einsteigen", "right": "to get on" },
+          { "left": "aussteigen", "right": "to get off" },
+          { "left": "umsteigen", "right": "to change trains" },
+          { "left": "abfahren", "right": "to leave, to depart" },
+          { "left": "ankommen", "right": "to arrive" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-03-07",
+      "ordinal": 7,
+      "type": "flashcard",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.SPI.04"],
+      "item_ids": ["de:chunk:eine-fahrkarte-nach-bitte"],
+      "instruction_en": "Say the meaning to yourself, then turn the card and rate how well you knew it.",
+      "payload": {
+        "front": "Eine Fahrkarte nach Köln, bitte.",
+        "back": "A ticket to Cologne, please.",
+        "hint": "nach stands before the name of a city. Köln is the German name of Cologne."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-03-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.10"],
+      "item_ids": ["de:grammar:trennbare-verben", "de:vocab:abfahren", "de:vocab:umsteigen", "de:vocab:ankommen", "de:chunk:der-zug-faehrt-von-gleis-ab"],
+      "instruction_en": "Fill in the two parts of the separable verb. The verb goes in the first gap and its prefix at the end.",
+      "payload": {
+        "text": "Der Zug ___ von Gleis drei ___. Wir ___ in Köln ___. Ich ___ um elf Uhr in Berlin ___.",
+        "blanks": [
+          { "answer": "fährt", "hint": "abfahren" },
+          { "answer": "ab", "hint": "abfahren" },
+          { "answer": "steigen", "hint": "umsteigen" },
+          { "answer": "um", "hint": "umsteigen" },
+          { "answer": "komme", "hint": "ankommen" },
+          { "answer": "an", "hint": "ankommen" }
+        ],
+        "explanation_en": "A separable verb splits in a main clause. The verb takes second position and the prefix goes to the end: Der Zug fährt um neun Uhr ab. Fahren changes its vowel: er fährt."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-03-09",
+      "ordinal": 9,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09", "de:cando:A1.GRA.10"],
+      "item_ids": ["de:grammar:satzklammer-modalverben", "de:phrase:wo-muss-ich-umsteigen", "de:phrase:wo-muss-ich-aussteigen", "de:vocab:umsteigen", "de:vocab:aussteigen", "de:vocab:einsteigen", "de:vocab:bus", "de:vocab:muessen"],
+      "instruction_en": "After müssen and können the travel verb stays in one piece at the end. Fill in the verb.",
+      "payload": {
+        "text": "Mein Zug fährt nach Bonn. Wo muss ich ___? Ich möchte zum Rathaus. Wo muss ich ___? Der Bus kommt. Wir können jetzt ___.",
+        "blanks": [
+          { "answer": "umsteigen", "hint": "change to another train" },
+          { "answer": "aussteigen", "hint": "get off" },
+          { "answer": "einsteigen", "hint": "get on" }
+        ],
+        "explanation_en": "With a modal verb the separable verb is not split. The whole infinitive stands at the end: Sie müssen in Köln umsteigen."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-03-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03", "de:cando:A1.SPI.04"],
+      "item_ids": ["de:chunk:wann-faehrt-der-zug-nach", "de:vocab:zug", "de:vocab:wann"],
+      "instruction_en": "Put the words in the right order to ask when the train to Munich leaves.",
+      "payload": {
+        "words": ["der", "nach", "Wann", "München?", "Zug", "fährt"],
+        "answer": "Wann fährt der Zug nach München?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-03-11",
+      "ordinal": 11,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.03", "de:cando:A1.LIS.05"],
+      "item_ids": ["de:phrase:der-zug-hat-verspaetung", "de:vocab:verspaetung", "de:vocab:minute"],
+      "instruction_en": "Listen and type what you hear. Write the number as a word.",
+      "payload": {
+        "text": "Der Zug hat zehn Minuten Verspätung.",
+        "accept": ["Der Zug hat 10 Minuten Verspätung."]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-03-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.SPI.04", "de:cando:A1.GRA.10"],
+      "item_ids": ["de:chunk:eine-fahrkarte-nach-bitte", "de:vocab:fahrkarte", "de:vocab:abfahren", "de:vocab:zug"],
+      "instruction_en": "Translate into German. This is what you say at the ticket counter.",
+      "payload": {
+        "source_text": "A ticket to Hamburg, please. When does the train leave?",
+        "direction": "to_target",
+        "reference": ["Eine Fahrkarte nach Hamburg, bitte. Wann fährt der Zug ab?", "Eine Fahrkarte nach Hamburg, bitte. Wann fährt der Zug?"],
+        "notes_en": "abfahren is separable, so ab goes to the end of the question."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-03-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.04", "de:cando:A1.SPI.01"],
+      "item_ids": ["de:chunk:eine-fahrkarte-nach-bitte", "de:chunk:wann-faehrt-der-zug-nach", "de:phrase:wo-muss-ich-umsteigen", "de:vocab:umsteigen", "de:chunk:was-kostet", "de:vocab:fahrkarte"],
+      "instruction_en": "Roleplay. You are at the ticket counter in the station. Record your part.",
+      "payload": {
+        "prompt_en": "The clerk says: Guten Tag! Bitte schön? Greet the clerk and ask for a ticket to Leipzig. Ask what the ticket costs, when the train leaves and whether you have to change.",
+        "prompt_native": "Guten Tag! Bitte schön?",
+        "mode": "free",
+        "sample_answer": "Guten Tag! Eine Fahrkarte nach Leipzig, bitte. Was kostet die Fahrkarte? Wann fährt der Zug ab? Muss ich umsteigen?",
+        "rubric_focus": [
+          "asks for the ticket with nach and the city",
+          "asks for the price",
+          "asks for the departure time with wann",
+          "question with muss and umsteigen at the end",
+          "polite greeting and bitte"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

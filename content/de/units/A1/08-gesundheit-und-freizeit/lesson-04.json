@@ -1,0 +1,557 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-08-04",
+  "unit_key": "de:unit:a1-08-gesundheit-und-freizeit",
+  "ordinal": 4,
+  "slug": "perfekt-mit-sein",
+  "title": "Ich bin nach Berlin gefahren",
+  "title_en": "I went to Berlin",
+  "description": "The Perfekt with sein for verbs that take you from one place to another, gehen, kommen, fahren, fliegen and aufstehen, and for bleiben: Ich bin nach Berlin gefahren. Ich bin zu Hause geblieben. Say when with gestern and am Wochenende.",
+  "kind": "core",
+  "estimated_minutes": 24,
+  "cando_ids": [
+    "de:cando:A1.GRA.11",
+    "de:cando:A1.GRA.12",
+    "de:cando:A1.GRA.01",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.REA.02",
+    "de:cando:A1.WRI.01",
+    "de:cando:A1.SPP.03"
+  ],
+  "introduces_item_ids": ["de:grammar:perfekt-mit-sein", "de:vocab:gestern", "de:vocab:wochenende", "de:vocab:fahren", "de:vocab:fliegen", "de:vocab:besuchen", "de:vocab:kino", "de:vocab:ausflug", "de:vocab:wandern", "de:chunk:ich-fahre-nach"],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-08-04-01",
+      "ordinal": 1,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.01"
+      ],
+      "item_ids": [
+        "de:vocab:sein",
+        "de:vocab:muede",
+        "de:vocab:krank",
+        "de:vocab:gesund",
+        "de:vocab:haus"
+      ],
+      "instruction_en": "Warm up. Fill in the right form of sein. You need all of them in this lesson.",
+      "payload": {
+        "text": "Ich ___ müde. ___ du krank? Lena ___ gesund. Wir ___ zu Hause.",
+        "blanks": [
+          {
+            "answer": "bin",
+            "hint": "ich"
+          },
+          {
+            "answer": "Bist",
+            "hint": "du"
+          },
+          {
+            "answer": "ist",
+            "hint": "sie"
+          },
+          {
+            "answer": "sind",
+            "hint": "wir"
+          }
+        ],
+        "explanation_en": "zu Hause means at home. nach Hause means home, when you are going there."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-04-02",
+      "ordinal": 2,
+      "type": "match_pairs",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:grammar:partizip-perfekt",
+        "de:vocab:machen",
+        "de:vocab:arbeiten",
+        "de:vocab:essen",
+        "de:vocab:trinken",
+        "de:vocab:lesen"
+      ],
+      "instruction_en": "Warm up. Match each verb from the last lesson with its participle.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "machen",
+            "right": "gemacht"
+          },
+          {
+            "left": "arbeiten",
+            "right": "gearbeitet"
+          },
+          {
+            "left": "essen",
+            "right": "gegessen"
+          },
+          {
+            "left": "trinken",
+            "right": "getrunken"
+          },
+          {
+            "left": "lesen",
+            "right": "gelesen"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-04-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.02",
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-sein",
+        "de:vocab:wochenende",
+        "de:vocab:fahren",
+        "de:vocab:gehen",
+        "de:vocab:besuchen",
+        "de:vocab:kino",
+        "de:vocab:bruder"
+      ],
+      "instruction_en": "Lena and Samir talk about the weekend. Listen for the places. Then answer the questions.",
+      "payload": {
+        "transcript": "Hallo Samir! Was hast du am Wochenende gemacht? Hallo Lena. Am Samstag bin ich nach Berlin gefahren. Ich habe meinen Bruder besucht. Am Abend sind wir ins Kino gegangen. Und du? Ich bin zu Hause geblieben. Mir geht es nicht gut. Oh! Gute Besserung!",
+        "questions": [
+          {
+            "question": "Wohin ist Samir am Samstag gefahren?",
+            "options": [
+              "nach Hamburg",
+              "nach Berlin",
+              "nach Hause"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Wer wohnt in Berlin?",
+            "options": [
+              "Samirs Bruder",
+              "Lenas Bruder"
+            ],
+            "answer_index": 0
+          },
+          {
+            "question": "Was haben Samir und sein Bruder am Abend gemacht?",
+            "options": [
+              "Sie haben gekocht.",
+              "Sie haben Fußball gespielt.",
+              "Sie sind ins Kino gegangen."
+            ],
+            "answer_index": 2
+          },
+          {
+            "question": "Was hat Lena am Wochenende gemacht?",
+            "options": [
+              "Sie ist zu Hause geblieben.",
+              "Sie ist nach Berlin gefahren."
+            ],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-04-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": [
+        "de:cando:A1.REA.02",
+        "de:cando:A1.GRA.11",
+        "de:cando:A1.GRA.12"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-sein",
+        "de:grammar:perfekt-mit-haben",
+        "de:vocab:gestern",
+        "de:vocab:aufstehen",
+        "de:vocab:fahren",
+        "de:vocab:zug",
+        "de:vocab:ausflug",
+        "de:vocab:wandern",
+        "de:vocab:kommen"
+      ],
+      "instruction_en": "Read Tom's message about his day out. Look at which verbs go with bin or sind and which go with habe or haben. Then answer the questions.",
+      "payload": {
+        "title": "Ein Ausflug",
+        "text": "Hallo Sara, gestern habe ich mit Freunden einen Ausflug gemacht. Ich bin um sechs Uhr aufgestanden. Wir sind mit dem Zug nach Füssen gefahren. Dort sind wir drei Stunden gewandert. Am Mittag haben wir Brot und Käse gegessen. Am Abend bin ich spät nach Hause gekommen. Heute bin ich sehr müde! Tschüss! Tom",
+        "questions": [
+          {
+            "question": "Wann ist Tom aufgestanden?",
+            "options": [
+              "um sechs Uhr",
+              "um sieben Uhr",
+              "um drei Uhr"
+            ],
+            "answer_index": 0
+          },
+          {
+            "question": "Wie sind Tom und seine Freunde nach Füssen gefahren?",
+            "options": [
+              "mit dem Bus",
+              "mit dem Auto",
+              "mit dem Zug"
+            ],
+            "answer_index": 2
+          },
+          {
+            "question": "Was haben sie in Füssen gemacht?",
+            "options": [
+              "Sie haben eingekauft.",
+              "Sie sind gewandert.",
+              "Sie sind ins Kino gegangen."
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Which verbs in the message go with bin or sind?",
+            "options": [
+              "aufstehen, fahren, wandern, kommen",
+              "machen, essen"
+            ],
+            "answer_index": 0,
+            "explanation_en": "Verbs that take you from one place to another build the Perfekt with sein. machen and essen use haben."
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-04-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-sein",
+        "de:grammar:partizip-perfekt",
+        "de:vocab:gehen",
+        "de:vocab:kommen",
+        "de:vocab:fahren",
+        "de:vocab:aufstehen",
+        "de:vocab:fliegen"
+      ],
+      "instruction_en": "Verbs that take you from one place to another build the Perfekt with sein, and so does bleiben, to stay. Match each verb with its participle.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "gehen",
+            "right": "gegangen"
+          },
+          {
+            "left": "kommen",
+            "right": "gekommen"
+          },
+          {
+            "left": "fahren",
+            "right": "gefahren"
+          },
+          {
+            "left": "bleiben",
+            "right": "geblieben"
+          },
+          {
+            "left": "aufstehen",
+            "right": "aufgestanden"
+          },
+          {
+            "left": "fliegen",
+            "right": "geflogen"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-04-06",
+      "ordinal": 6,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-sein",
+        "de:grammar:partizip-perfekt",
+        "de:vocab:gehen",
+        "de:vocab:fahren",
+        "de:vocab:aufstehen"
+      ],
+      "instruction_en": "Fill in the participle of the verb under the gap.",
+      "payload": {
+        "text": "Ich bin nach Hause ___. Lena ist nach Berlin ___. Wir sind zu Hause ___. Wann bist du ___?",
+        "blanks": [
+          {
+            "answer": "gegangen",
+            "hint": "gehen"
+          },
+          {
+            "answer": "gefahren",
+            "hint": "fahren"
+          },
+          {
+            "answer": "geblieben",
+            "hint": "bleiben"
+          },
+          {
+            "answer": "aufgestanden",
+            "hint": "aufstehen"
+          }
+        ],
+        "explanation_en": "In a separable verb ge stands between the two parts: aufstehen, aufgestanden."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-04-07",
+      "ordinal": 7,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.11",
+        "de:cando:A1.GRA.01"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-sein",
+        "de:vocab:sein",
+        "de:vocab:gestern",
+        "de:vocab:aufstehen",
+        "de:vocab:kino"
+      ],
+      "instruction_en": "Fill in the right form of sein.",
+      "payload": {
+        "text": "Wann ___ du gestern aufgestanden? Ich ___ um sieben Uhr aufgestanden. Tom und Sara ___ ins Kino gegangen. Lena ___ zu Hause geblieben.",
+        "blanks": [
+          {
+            "answer": "bist",
+            "hint": "du"
+          },
+          {
+            "answer": "bin",
+            "hint": "ich"
+          },
+          {
+            "answer": "sind",
+            "hint": "sie, two people"
+          },
+          {
+            "answer": "ist",
+            "hint": "sie"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-04-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-haben",
+        "de:grammar:perfekt-mit-sein",
+        "de:vocab:gestern",
+        "de:vocab:arbeiten",
+        "de:vocab:fahren",
+        "de:vocab:kochen",
+        "de:vocab:gehen"
+      ],
+      "instruction_en": "haben or sein? Fill in habe or bin.",
+      "payload": {
+        "text": "Gestern ___ ich gearbeitet. Dann ___ ich nach Hause gefahren. Ich ___ Suppe gekocht und ich ___ früh ins Bett gegangen.",
+        "blanks": [
+          {
+            "answer": "habe",
+            "hint": "arbeiten"
+          },
+          {
+            "answer": "bin",
+            "hint": "fahren"
+          },
+          {
+            "answer": "habe",
+            "hint": "kochen"
+          },
+          {
+            "answer": "bin",
+            "hint": "gehen"
+          }
+        ],
+        "explanation_en": "fahren and gehen take you from one place to another, so they use sein. arbeiten and kochen use haben."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-04-09",
+      "ordinal": 9,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.12"
+      ],
+      "item_ids": [
+        "de:vocab:wochenende",
+        "de:vocab:gestern",
+        "de:chunk:ich-fahre-nach"
+      ],
+      "instruction_en": "Choose the words that fit both gaps.",
+      "payload": {
+        "question": "___ Wochenende bin ich ___ Hamburg gefahren.",
+        "options": [
+          "Im ... zu",
+          "Am ... nach",
+          "Um ... in",
+          "Am ... zu"
+        ],
+        "answer_index": 1,
+        "explanation_en": "am Wochenende, like am Samstag. nach before a city or a country. gestern needs no extra word: Gestern bin ich nach Hamburg gefahren."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-04-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.11",
+        "de:cando:A1.GRA.03"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-sein",
+        "de:vocab:gestern",
+        "de:vocab:haus"
+      ],
+      "instruction_en": "Put the words in the right order. Start with Gestern.",
+      "payload": {
+        "words": [
+          "zu",
+          "ich",
+          "Gestern",
+          "Hause",
+          "bin",
+          "geblieben."
+        ],
+        "answer": "Gestern bin ich zu Hause geblieben."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-04-11",
+      "ordinal": 11,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.01",
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-sein",
+        "de:vocab:wochenende",
+        "de:vocab:fahren"
+      ],
+      "instruction_en": "Listen and type what you hear.",
+      "payload": {
+        "text": "Am Wochenende bin ich nach Berlin gefahren."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-04-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.01",
+        "de:cando:A1.GRA.11",
+        "de:cando:A1.GRA.12"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-sein",
+        "de:vocab:gestern",
+        "de:vocab:aufstehen",
+        "de:vocab:fahren",
+        "de:vocab:arbeit"
+      ],
+      "instruction_en": "Translate into German. Use the Perfekt with sein.",
+      "payload": {
+        "source_text": "Yesterday I got up at seven o'clock. I went to work by bus.",
+        "direction": "to_target",
+        "reference": [
+          "Gestern bin ich um sieben Uhr aufgestanden. Ich bin mit dem Bus zur Arbeit gefahren.",
+          "Ich bin gestern um sieben Uhr aufgestanden. Ich bin mit dem Bus zur Arbeit gefahren."
+        ],
+        "notes_en": "to work is zur Arbeit. by bus is mit dem Bus."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-04-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": [
+        "de:cando:A1.SPP.03",
+        "de:cando:A1.GRA.11",
+        "de:cando:A1.GRA.12"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-sein",
+        "de:grammar:perfekt-mit-haben",
+        "de:vocab:gestern",
+        "de:vocab:aufstehen",
+        "de:vocab:fahren",
+        "de:vocab:gehen",
+        "de:vocab:kommen"
+      ],
+      "instruction_en": "Record yourself. Take a minute to prepare first.",
+      "payload": {
+        "prompt_en": "Say what you did yesterday in four or five short sentences. Say when you got up, where you went and how, one thing you did there, and when you came home. Use bin with aufgestanden, gefahren, gegangen and gekommen, and habe with the other verbs.",
+        "mode": "free",
+        "sample_answer": "Gestern bin ich um sieben Uhr aufgestanden. Ich bin mit dem Bus zur Arbeit gefahren. Ich habe bis fünf Uhr gearbeitet. Dann bin ich nach Hause gekommen. Am Abend habe ich gekocht.",
+        "rubric_focus": [
+          "a series of simple sentences about yesterday",
+          "sein with verbs of movement and haben with the other verbs",
+          "participle at the end of the sentence",
+          "time expressions such as gestern, um sieben Uhr, am Abend"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

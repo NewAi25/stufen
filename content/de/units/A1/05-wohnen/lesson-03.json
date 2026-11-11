@@ -1,0 +1,418 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-05-03",
+  "unit_key": "de:unit:a1-05-wohnen",
+  "ordinal": 3,
+  "slug": "wohnung-suchen",
+  "title": "Ich suche eine Wohnung",
+  "title_en": "I am looking for a flat",
+  "description": "Looking for a flat. Read a simple housing advert and find the rent, the size, the number of rooms and the date, read a short reply from a landlord, and ask the three questions that matter: Ist die Wohnung noch frei? Wie hoch ist die Miete? Wann kann ich einziehen?",
+  "kind": "core",
+  "estimated_minutes": 22,
+  "cando_ids": [
+    "de:cando:A1.REA.04",
+    "de:cando:A1.REA.02",
+    "de:cando:A1.VOC.05",
+    "de:cando:A1.VOC.07",
+    "de:cando:A1.GRA.12",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.LIS.03",
+    "de:cando:A1.WRI.01",
+    "de:cando:A1.SPI.01"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:miete",
+    "de:vocab:vermieter",
+    "de:vocab:mieten",
+    "de:vocab:apartment",
+    "de:vocab:stock",
+    "de:vocab:aufzug",
+    "de:vocab:garten",
+    "de:vocab:haus",
+    "de:chunk:ich-wohne-im-stock",
+    "de:phrase:ich-suche-eine-wohnung",
+    "de:phrase:wie-hoch-ist-die-miete",
+    "de:phrase:wie-gross-ist-die-wohnung",
+    "de:phrase:ist-die-wohnung-noch-frei",
+    "de:phrase:die-wohnung-ist-schon-vermietet",
+    "de:phrase:wann-kann-ich-einziehen"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-05-03-01",
+      "ordinal": 1,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.12"],
+      "item_ids": [
+        "de:chunk:ich-bin-in",
+        "de:chunk:liegt-auf",
+        "de:chunk:ist-neben",
+        "de:vocab:bett",
+        "de:vocab:schluessel",
+        "de:vocab:stuhl"
+      ],
+      "instruction_en": "Warm up. Say where the things are. Fill in im, dem or der.",
+      "payload": {
+        "text": "Das Bett steht ___ Schlafzimmer. Der Schlüssel liegt auf ___ Tisch. Der Stuhl steht neben ___ Tür.",
+        "blanks": [
+          { "answer": "im", "hint": "in dem" },
+          { "answer": "dem", "hint": "der Tisch" },
+          { "answer": "der", "hint": "die Tür" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-03-02",
+      "ordinal": 2,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07"],
+      "item_ids": ["de:vocab:hundert", "de:vocab:fuenfzig", "de:vocab:euro"],
+      "instruction_en": "Warm up. You need big numbers for the rent. Choose the right number.",
+      "payload": {
+        "question": "sechshundertfünfzig Euro",
+        "options": ["560 Euro", "650 Euro", "615 Euro"],
+        "answer_index": 1,
+        "explanation_en": "sechshundert is 600 and fünfzig is 50."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-03-03",
+      "ordinal": 3,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.04", "de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:miete",
+        "de:vocab:vermieter",
+        "de:vocab:stock",
+        "de:vocab:aufzug",
+        "de:vocab:balkon",
+        "de:chunk:die-wohnung-hat-zimmer",
+        "de:chunk:ich-wohne-im-stock"
+      ],
+      "instruction_en": "Read the housing advert. Die Miete is the rent and der Vermieter is the landlord. 2. Stock is the second floor, mit Aufzug means with a lift, m² is Quadratmeter (square metres) and frei ab 1. Mai means available from 1 May. Then answer the questions.",
+      "payload": {
+        "title": "Wohnung frei",
+        "text": "2-Zimmer-Wohnung in Köln\n50 m², Küche, Bad und Balkon\n2. Stock, mit Aufzug\nMiete: 650 Euro\nFrei ab 1. Mai\nVermieter: Herr Krause, Telefon 0221 555 01 23",
+        "questions": [
+          {
+            "question": "Wie hoch ist die Miete?",
+            "options": ["560 Euro", "50 Euro", "650 Euro"],
+            "answer_index": 2
+          },
+          {
+            "question": "Wie groß ist die Wohnung?",
+            "options": ["50 m²", "65 m²", "2 m²"],
+            "answer_index": 0
+          },
+          {
+            "question": "Wie viele Zimmer hat die Wohnung?",
+            "options": ["ein Zimmer", "zwei Zimmer", "drei Zimmer"],
+            "answer_index": 1
+          },
+          {
+            "question": "Wann ist die Wohnung frei?",
+            "options": ["ab 2. Mai", "ab 1. Mai", "ab Montag"],
+            "answer_index": 1
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-03-04",
+      "ordinal": 4,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02", "de:cando:A1.LIS.03"],
+      "item_ids": [
+        "de:phrase:ich-suche-eine-wohnung",
+        "de:phrase:ist-die-wohnung-noch-frei",
+        "de:phrase:wie-gross-ist-die-wohnung",
+        "de:phrase:wie-hoch-ist-die-miete",
+        "de:vocab:miete"
+      ],
+      "instruction_en": "Listen. Frau Okafor phones the landlord, Herr Krause. Noch frei means still available and Quadratmeter means square metres. Then answer the questions.",
+      "payload": {
+        "transcript": "Guten Tag, Herr Krause. Mein Name ist Okafor. Ich suche eine Wohnung. Ist die Wohnung noch frei? Ja, die Wohnung ist noch frei. Wie groß ist die Wohnung? Die Wohnung hat zwei Zimmer und ist fünfzig Quadratmeter groß. Und wie hoch ist die Miete? Die Miete ist sechshundertfünfzig Euro.",
+        "questions": [
+          {
+            "question": "Ist die Wohnung noch frei?",
+            "options": ["Ja.", "Nein."],
+            "answer_index": 0
+          },
+          {
+            "question": "Wie hoch ist die Miete?",
+            "options": ["650 Euro", "560 Euro", "605 Euro"],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-03-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:miete",
+        "de:vocab:vermieter",
+        "de:vocab:mieten",
+        "de:vocab:apartment",
+        "de:vocab:stock",
+        "de:vocab:aufzug",
+        "de:vocab:garten",
+        "de:vocab:haus"
+      ],
+      "instruction_en": "Match the words for renting a flat with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "die Miete", "right": "rent" },
+          { "left": "der Vermieter", "right": "landlord" },
+          { "left": "mieten", "right": "to rent" },
+          { "left": "das Apartment", "right": "small flat, studio" },
+          { "left": "der Stock", "right": "floor, storey" },
+          { "left": "der Aufzug", "right": "lift" },
+          { "left": "der Garten", "right": "garden" },
+          { "left": "das Haus", "right": "house" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-03-06",
+      "ordinal": 6,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:phrase:ist-die-wohnung-noch-frei",
+        "de:phrase:die-wohnung-ist-schon-vermietet",
+        "de:phrase:wie-hoch-ist-die-miete",
+        "de:phrase:wie-gross-ist-die-wohnung",
+        "de:phrase:wann-kann-ich-einziehen",
+        "de:vocab:aufzug"
+      ],
+      "instruction_en": "Match each question to the landlord with a fitting answer. Schon vermietet means already let: someone else has the flat.",
+      "payload": {
+        "pairs": [
+          { "left": "Ist die Wohnung noch frei?", "right": "Nein, die Wohnung ist schon vermietet." },
+          { "left": "Wie hoch ist die Miete?", "right": "700 Euro." },
+          { "left": "Wie groß ist die Wohnung?", "right": "60 Quadratmeter." },
+          { "left": "Wann kann ich einziehen?", "right": "Ab 1. Mai." },
+          { "left": "Hat das Haus einen Aufzug?", "right": "Nein, es gibt keinen Aufzug." }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-03-07",
+      "ordinal": 7,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:phrase:ich-suche-eine-wohnung",
+        "de:phrase:wie-hoch-ist-die-miete",
+        "de:phrase:ist-die-wohnung-noch-frei",
+        "de:phrase:wann-kann-ich-einziehen"
+      ],
+      "instruction_en": "You phone a landlord. Fill in the missing words.",
+      "payload": {
+        "text": "Guten Tag! Ich ___ eine Wohnung. Ist die Wohnung noch ___? Wie ___ ist die Miete? Wann kann ich ___?",
+        "blanks": [
+          { "answer": "suche", "hint": "am looking for" },
+          { "answer": "frei", "hint": "available" },
+          { "answer": "hoch", "hint": "how high" },
+          { "answer": "einziehen", "hint": "move in" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-03-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:chunk:ich-wohne-im-stock",
+        "de:vocab:stock",
+        "de:vocab:aufzug",
+        "de:vocab:garten",
+        "de:vocab:haus"
+      ],
+      "instruction_en": "Fill in the German word for the English hint. On a sign you read 1. Stock and 2. Stock. You say im ersten Stock and im zweiten Stock.",
+      "payload": {
+        "text": "Ich wohne im ersten ___. Das Haus hat keinen ___, aber es gibt einen ___.",
+        "blanks": [
+          { "answer": "Stock", "hint": "floor" },
+          { "answer": "Aufzug", "hint": "lift" },
+          { "answer": "Garten", "hint": "garden" }
+        ],
+        "explanation_en": "In Germany the first floor, der erste Stock, is one floor up from the street."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-03-09",
+      "ordinal": 9,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.04", "de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:apartment",
+        "de:vocab:miete",
+        "de:vocab:stock",
+        "de:vocab:garten",
+        "de:vocab:aufzug",
+        "de:vocab:balkon"
+      ],
+      "instruction_en": "Read the two adverts. Ab sofort means from now. Then answer the questions.",
+      "payload": {
+        "title": "Zwei Wohnungen in Bonn",
+        "text": "Apartment, 1 Zimmer, 28 m²\nKüche und Bad, 1. Stock\nMiete: 420 Euro\nFrei ab sofort\n\n3-Zimmer-Wohnung, 75 m²\nBalkon und Garten, 3. Stock, kein Aufzug\nMiete: 980 Euro\nFrei ab 1. Juni",
+        "questions": [
+          {
+            "question": "Was kostet 420 Euro?",
+            "options": ["das Apartment", "die 3-Zimmer-Wohnung"],
+            "answer_index": 0
+          },
+          {
+            "question": "Was hat einen Garten?",
+            "options": ["das Apartment", "die 3-Zimmer-Wohnung"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was ist ab sofort frei?",
+            "options": ["das Apartment", "die 3-Zimmer-Wohnung"],
+            "answer_index": 0
+          },
+          {
+            "question": "Hat die 3-Zimmer-Wohnung einen Aufzug?",
+            "options": ["Ja.", "Nein."],
+            "answer_index": 1
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-03-10",
+      "ordinal": 10,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.02"],
+      "item_ids": [
+        "de:vocab:vermieter",
+        "de:phrase:ist-die-wohnung-noch-frei",
+        "de:vocab:adresse",
+        "de:vocab:samstag"
+      ],
+      "instruction_en": "Read the short message from the landlord. Viele Grüße is a friendly way to end a message. Then answer the questions.",
+      "payload": {
+        "title": "Eine Nachricht von Herrn Krause",
+        "text": "Guten Tag Frau Okafor,\ndie Wohnung ist noch frei. Sie können am Samstag von 10 bis 12 Uhr kommen. Die Adresse ist Gartenstraße 12.\nViele Grüße\nJan Krause",
+        "questions": [
+          {
+            "question": "Ist die Wohnung schon vermietet?",
+            "options": ["Ja.", "Nein, die Wohnung ist noch frei."],
+            "answer_index": 1
+          },
+          {
+            "question": "Wann kann Frau Okafor kommen?",
+            "options": ["am Samstag", "am Sonntag", "am Montag"],
+            "answer_index": 0
+          },
+          {
+            "question": "Wie ist die Adresse?",
+            "options": ["Gartenstraße 10", "Gartenstraße 12", "Bahnhofstraße 12"],
+            "answer_index": 1
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-03-11",
+      "ordinal": 11,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03"],
+      "item_ids": ["de:phrase:ist-die-wohnung-noch-frei"],
+      "instruction_en": "Put the words in the right order to make a question.",
+      "payload": {
+        "words": ["Wohnung", "frei?", "die", "Ist", "noch"],
+        "answer": "Ist die Wohnung noch frei?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-03-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.VOC.05"],
+      "item_ids": ["de:phrase:ich-suche-eine-wohnung", "de:phrase:wie-hoch-ist-die-miete"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "I am looking for a flat. How much is the rent?",
+        "direction": "to_target",
+        "reference": ["Ich suche eine Wohnung. Wie hoch ist die Miete?"],
+        "notes_en": "German asks how high the rent is: Wie hoch ist die Miete?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-03-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.01", "de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:phrase:ich-suche-eine-wohnung",
+        "de:phrase:ist-die-wohnung-noch-frei",
+        "de:phrase:wie-hoch-ist-die-miete",
+        "de:phrase:wann-kann-ich-einziehen",
+        "de:vocab:vermieter"
+      ],
+      "instruction_en": "Roleplay. You phone a landlord about a flat. Record your part.",
+      "payload": {
+        "prompt_en": "You saw an advert for a flat and phone the landlord. He says: Krause, guten Tag! Greet him, say your name and that you are looking for a flat. Then ask three questions: whether the flat is still available, how much the rent is, and when you can move in.",
+        "prompt_native": "Krause, guten Tag!",
+        "mode": "free",
+        "sample_answer": "Guten Tag, Herr Krause. Mein Name ist Okafor. Ich suche eine Wohnung. Ist die Wohnung noch frei? Wie hoch ist die Miete? Wann kann ich einziehen?",
+        "rubric_focus": [
+          "greeting and name",
+          "Ich suche eine Wohnung",
+          "three clear questions with the verb in the right position",
+          "formal Sie, not du",
+          "can be understood by a patient listener"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

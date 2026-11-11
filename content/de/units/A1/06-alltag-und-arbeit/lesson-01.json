@@ -1,0 +1,286 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-06-01",
+  "unit_key": "de:unit:a1-06-alltag-und-arbeit",
+  "ordinal": 1,
+  "slug": "wie-spaet-ist-es",
+  "title": "Wie spät ist es?",
+  "title_en": "What time is it?",
+  "description": "Clock times with full and half hours, um for a clock time and am for a day or a part of the day, the days Dienstag, Mittwoch and Donnerstag, the parts of the day, and the question Wann beginnt der Kurs?",
+  "kind": "core",
+  "estimated_minutes": 20,
+  "cando_ids": ["de:cando:A1.GRA.12", "de:cando:A1.VOC.06", "de:cando:A1.LIS.03", "de:cando:A1.REA.04", "de:cando:A1.GRA.03", "de:cando:A1.SPI.04"],
+  "introduces_item_ids": [
+    "de:vocab:dienstag",
+    "de:vocab:mittwoch",
+    "de:vocab:donnerstag",
+    "de:vocab:woche",
+    "de:vocab:tag",
+    "de:vocab:heute",
+    "de:vocab:morgen-nomen",
+    "de:vocab:vormittag",
+    "de:vocab:mittag",
+    "de:vocab:nachmittag",
+    "de:vocab:abend",
+    "de:vocab:nacht",
+    "de:vocab:halb",
+    "de:vocab:um",
+    "de:vocab:kurs",
+    "de:chunk:um-uhr",
+    "de:chunk:am-tag",
+    "de:chunk:es-ist-uhr",
+    "de:chunk:es-ist-halb",
+    "de:phrase:wie-spaet-ist-es",
+    "de:phrase:wie-viel-uhr-ist-es"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-06-01-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.06"],
+      "item_ids": ["de:vocab:montag", "de:vocab:freitag", "de:vocab:samstag", "de:vocab:sonntag"],
+      "instruction_en": "Warm up. You know four days of the week already. Match them with the English days.",
+      "payload": {
+        "pairs": [
+          { "left": "der Montag", "right": "Monday" },
+          { "left": "der Freitag", "right": "Friday" },
+          { "left": "der Samstag", "right": "Saturday" },
+          { "left": "der Sonntag", "right": "Sunday" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-01-02",
+      "ordinal": 2,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:von-bis", "de:vocab:uhr", "de:vocab:geoeffnet", "de:vocab:geschlossen", "de:vocab:post"],
+      "instruction_en": "Warm up with opening hours from the last unit.",
+      "payload": {
+        "question": "Die Post ist von 8 bis 18 Uhr geöffnet. Es ist 19 Uhr. Die Post ist ...",
+        "options": ["geöffnet", "geschlossen", "teuer"],
+        "answer_index": 1,
+        "explanation_en": "19 Uhr is 7 pm. That is after 18 Uhr, so the post office is closed."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-01-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.03"],
+      "item_ids": ["de:phrase:wie-spaet-ist-es", "de:chunk:es-ist-uhr", "de:chunk:um-uhr", "de:vocab:halb", "de:vocab:kurs"],
+      "instruction_en": "Two learners meet in front of the language school. Wie spät ist es? means what time is it. Halb zehn is half past nine. Listen and answer the questions.",
+      "payload": {
+        "transcript": "Guten Morgen, Ana! Wie spät ist es? Guten Morgen, Tarek! Es ist neun Uhr. Und wann beginnt der Kurs? Der Kurs beginnt um halb zehn. Gut, danke!",
+        "questions": [
+          { "question": "Wie spät ist es?", "options": ["8 Uhr", "9 Uhr", "10 Uhr"], "answer_index": 1 },
+          { "question": "Wann beginnt der Kurs?", "options": ["um 9.30 Uhr", "um 10.00 Uhr", "um 10.30 Uhr"], "answer_index": 0, "explanation_en": "Halb zehn is half way to ten, so 9.30." }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-01-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.04", "de:cando:A1.GRA.12"],
+      "item_ids": [
+        "de:vocab:kurs",
+        "de:vocab:dienstag",
+        "de:vocab:mittwoch",
+        "de:vocab:donnerstag",
+        "de:vocab:vormittag",
+        "de:vocab:nachmittag",
+        "de:chunk:von-bis"
+      ],
+      "instruction_en": "Read the notice at the language school. Dienstag, Mittwoch and Donnerstag are Tuesday, Wednesday and Thursday. Am Vormittag is in the morning before noon, am Nachmittag is in the afternoon. Then answer the questions.",
+      "payload": {
+        "title": "Deutschkurs A1",
+        "text": "Deutschkurs A1\nDienstag und Donnerstag: am Vormittag, von 9 bis 12 Uhr\nMittwoch: am Nachmittag, von 14 bis 17 Uhr\nAm Montag und am Freitag ist kein Kurs.\nDer Kurs beginnt am Dienstag.",
+        "questions": [
+          { "question": "Wann ist der Kurs am Dienstag?", "options": ["von 9 bis 12 Uhr", "von 14 bis 17 Uhr", "von 9 bis 17 Uhr"], "answer_index": 0 },
+          { "question": "Wann ist der Kurs am Nachmittag?", "options": ["am Dienstag", "am Mittwoch", "am Donnerstag"], "answer_index": 1 },
+          { "question": "Ist am Freitag Kurs?", "options": ["Ja, am Vormittag.", "Ja, am Nachmittag.", "Nein, am Freitag ist kein Kurs."], "answer_index": 2 }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-01-05",
+      "ordinal": 5,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.06"],
+      "item_ids": ["de:vocab:woche", "de:vocab:tag", "de:vocab:dienstag", "de:vocab:mittwoch", "de:vocab:donnerstag"],
+      "instruction_en": "Fill in the three missing days.",
+      "payload": {
+        "text": "Die Woche hat sieben Tage: Montag, ___, ___, ___, Freitag, Samstag und Sonntag.",
+        "blanks": [
+          { "answer": "Dienstag", "hint": "Tuesday" },
+          { "answer": "Mittwoch", "hint": "Wednesday" },
+          { "answer": "Donnerstag", "hint": "Thursday" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-01-06",
+      "ordinal": 6,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.06"],
+      "item_ids": ["de:vocab:morgen-nomen", "de:vocab:vormittag", "de:vocab:mittag", "de:vocab:nachmittag", "de:vocab:abend", "de:vocab:nacht"],
+      "instruction_en": "The parts of the day. Match each word with its time.",
+      "payload": {
+        "pairs": [
+          { "left": "der Morgen", "right": "morning" },
+          { "left": "der Vormittag", "right": "the time before noon" },
+          { "left": "der Mittag", "right": "midday, noon" },
+          { "left": "der Nachmittag", "right": "afternoon" },
+          { "left": "der Abend", "right": "evening" },
+          { "left": "die Nacht", "right": "night" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-01-07",
+      "ordinal": 7,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.GRA.12", "de:cando:A1.VOC.06"],
+      "item_ids": ["de:chunk:es-ist-uhr", "de:chunk:es-ist-halb", "de:vocab:halb", "de:vocab:uhr"],
+      "instruction_en": "Match each sentence with the clock. Halb looks forward: halb acht is half way to eight, so 7.30.",
+      "payload": {
+        "pairs": [
+          { "left": "Es ist acht Uhr.", "right": "8.00" },
+          { "left": "Es ist halb acht.", "right": "7.30" },
+          { "left": "Es ist halb neun.", "right": "8.30" },
+          { "left": "Es ist zwölf Uhr.", "right": "12.00" },
+          { "left": "Es ist halb eins.", "right": "12.30" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-01-08",
+      "ordinal": 8,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:es-ist-halb", "de:phrase:wie-viel-uhr-ist-es", "de:vocab:halb"],
+      "instruction_en": "Wie viel Uhr ist es? is another way to ask the time. Choose the right answer.",
+      "payload": {
+        "question": "It is 2.30. Someone asks: Wie viel Uhr ist es? What do you say?",
+        "options": ["Es ist halb zwei.", "Es ist halb drei.", "Es ist halb zwei Uhr."],
+        "answer_index": 1,
+        "explanation_en": "Name the hour that is coming: 2.30 is halb drei. After halb there is no Uhr."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-01-09",
+      "ordinal": 9,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.12"],
+      "item_ids": ["de:vocab:um", "de:chunk:um-uhr", "de:chunk:am-tag", "de:vocab:abend", "de:vocab:kurs"],
+      "instruction_en": "Fill in am or um. Use am for a day or a part of the day and um for a clock time.",
+      "payload": {
+        "text": "Der Kurs beginnt ___ Dienstag ___ neun Uhr. ___ Abend koche ich. Ich esse ___ halb acht.",
+        "blanks": [
+          { "answer": "am", "hint": "a day" },
+          { "answer": "um", "hint": "a clock time" },
+          { "answer": "Am", "hint": "a part of the day" },
+          { "answer": "um", "hint": "a clock time" }
+        ],
+        "explanation_en": "am Dienstag, am Abend, but um neun Uhr and um halb acht. The one exception is the night: in der Nacht."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-01-10",
+      "ordinal": 10,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.03"],
+      "item_ids": ["de:chunk:um-uhr", "de:chunk:am-tag", "de:vocab:mittwoch", "de:vocab:donnerstag", "de:vocab:halb", "de:vocab:kurs"],
+      "instruction_en": "The teacher tells the class about this week. Listen for the days and the times. Then answer the questions.",
+      "payload": {
+        "transcript": "Guten Morgen! Am Mittwoch beginnt der Kurs um halb neun. Am Donnerstag beginnt der Kurs um zehn Uhr. Am Freitag ist kein Kurs.",
+        "questions": [
+          { "question": "Wann beginnt der Kurs am Mittwoch?", "options": ["um 8.30 Uhr", "um 9.00 Uhr", "um 9.30 Uhr"], "answer_index": 0 },
+          { "question": "Wann beginnt der Kurs am Donnerstag?", "options": ["um 9.30 Uhr", "um 10.00 Uhr", "um 10.30 Uhr"], "answer_index": 1 },
+          { "question": "Wann ist kein Kurs?", "options": ["am Mittwoch", "am Donnerstag", "am Freitag"], "answer_index": 2 }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-01-11",
+      "ordinal": 11,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.12", "de:cando:A1.GRA.03"],
+      "item_ids": ["de:chunk:um-uhr", "de:chunk:am-tag", "de:vocab:kurs", "de:vocab:dienstag"],
+      "instruction_en": "Put the words in the right order. Start with Der Kurs. The day comes before the clock time.",
+      "payload": { "words": ["um", "beginnt", "Uhr.", "Dienstag", "Der", "neun", "am", "Kurs"], "answer": "Der Kurs beginnt am Dienstag um neun Uhr." },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-01-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:um-uhr", "de:chunk:am-tag", "de:vocab:donnerstag", "de:vocab:halb", "de:vocab:kurs"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "The course starts on Thursday at half past nine.",
+        "direction": "to_target",
+        "reference": ["Der Kurs beginnt am Donnerstag um halb zehn.", "Am Donnerstag beginnt der Kurs um halb zehn."],
+        "notes_en": "Half past nine is halb zehn. There is no Uhr after halb."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-01-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.04", "de:cando:A1.GRA.12"],
+      "item_ids": ["de:phrase:wie-spaet-ist-es", "de:chunk:es-ist-halb", "de:chunk:um-uhr", "de:chunk:am-tag", "de:vocab:kurs", "de:vocab:heute"],
+      "instruction_en": "Record yourself. A new classmate asks you two questions.",
+      "payload": {
+        "prompt_en": "A new classmate asks you: Wie spät ist es? Und wann ist der Deutschkurs? Answer in two or three short sentences. Say that it is half past eight, that the course starts at nine today, and on which two days of the week the course is.",
+        "prompt_native": "Wie spät ist es? Und wann ist der Deutschkurs?",
+        "mode": "free",
+        "sample_answer": "Es ist halb neun. Der Kurs beginnt heute um neun Uhr. Der Kurs ist am Dienstag und am Donnerstag.",
+        "rubric_focus": ["clock time with Es ist and halb", "um before the clock time", "am before the day", "can be understood by a patient listener"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

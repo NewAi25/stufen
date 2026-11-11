@@ -1,0 +1,249 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-06-06",
+  "unit_key": "de:unit:a1-06-alltag-und-arbeit",
+  "ordinal": 6,
+  "slug": "mein-tag-und-meine-termine",
+  "title": "Jetzt du: mein Tag und meine Termine",
+  "title_en": "Your turn: my day and my appointments",
+  "description": "Production lesson. Describe a typical day in a series of simple sentences, tell a colleague when you can meet in a roleplay, and write short messages to say that you are coming later or cannot come.",
+  "kind": "production",
+  "estimated_minutes": 25,
+  "cando_ids": [
+    "de:cando:A1.SPP.03",
+    "de:cando:A1.SPI.03",
+    "de:cando:A1.WRI.03",
+    "de:cando:A1.GRA.09",
+    "de:cando:A1.GRA.10",
+    "de:cando:A1.GRA.12",
+    "de:cando:A1.VOC.06"
+  ],
+  "introduces_item_ids": [],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-06-06-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.SPI.03", "de:cando:A1.VOC.06"],
+      "item_ids": [
+        "de:phrase:was-machst-du-heute-abend",
+        "de:chunk:hast-du-am-zeit",
+        "de:phrase:was-sind-sie-von-beruf",
+        "de:phrase:wie-spaet-ist-es",
+        "de:vocab:aufstehen"
+      ],
+      "instruction_en": "Warm up. Match each question with a fitting answer.",
+      "payload": {
+        "pairs": [
+          { "left": "Wann stehst du auf?", "right": "Um halb sieben." },
+          { "left": "Was machst du heute Abend?", "right": "Ich koche und ich sehe fern." },
+          { "left": "Hast du am Samstag Zeit?", "right": "Nein, leider nicht. Ich muss arbeiten." },
+          { "left": "Was sind Sie von Beruf?", "right": "Ich arbeite als Verkäufer." },
+          { "left": "Wie spät ist es?", "right": "Es ist zehn Uhr." }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-06-02",
+      "ordinal": 2,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.10"],
+      "item_ids": ["de:grammar:trennbare-verben", "de:vocab:aufstehen", "de:vocab:anfangen", "de:vocab:einkaufen", "de:vocab:arbeit"],
+      "instruction_en": "Warm up. Fill in the prefix at the end of each sentence.",
+      "payload": {
+        "text": "Ich stehe um sechs Uhr ___. Die Arbeit fängt um acht Uhr ___. Am Abend kaufe ich ___.",
+        "blanks": [
+          { "answer": "auf", "hint": "aufstehen" },
+          { "answer": "an", "hint": "anfangen" },
+          { "answer": "ein", "hint": "einkaufen" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-06-03",
+      "ordinal": 3,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:koennen", "de:vocab:leider", "de:vocab:heute", "de:grammar:satzklammer-modalverben"],
+      "instruction_en": "Warm up. Put the words in the right order to say that you cannot come today.",
+      "payload": { "words": ["nicht", "Ich", "leider", "kommen.", "heute", "kann"], "answer": "Ich kann heute leider nicht kommen.", "accept": ["Ich kann leider heute nicht kommen."] },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-06-04",
+      "ordinal": 4,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.GRA.10", "de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:ich-stehe-um-auf", "de:vocab:anfangen", "de:chunk:um-uhr", "de:vocab:halb"],
+      "instruction_en": "Translate into German. This is how you talk about your day.",
+      "payload": {
+        "source_text": "I get up at half past six and I start at eight.",
+        "direction": "to_target",
+        "reference": [
+          "Ich stehe um halb sieben auf und ich fange um acht Uhr an.",
+          "Ich stehe um halb sieben auf und fange um acht Uhr an.",
+          "Ich stehe um halb sieben auf und ich fange um acht an."
+        ],
+        "notes_en": "Half past six is halb sieben. Both prefixes go to the end: auf and an."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-06-05",
+      "ordinal": 5,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.03"],
+      "item_ids": ["de:vocab:kommen", "de:vocab:heute", "de:vocab:minute", "de:vocab:spaet"],
+      "instruction_en": "Translate into German. This is how you say that you are coming later.",
+      "payload": {
+        "source_text": "I am coming twenty minutes later today.",
+        "direction": "to_target",
+        "reference": ["Ich komme heute zwanzig Minuten später.", "Heute komme ich zwanzig Minuten später."],
+        "notes_en": "Later is später. German uses the simple present here: ich komme."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-06-06",
+      "ordinal": 6,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.03", "de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:leider", "de:vocab:koennen", "de:vocab:muessen", "de:vocab:morgen", "de:vocab:arbeiten"],
+      "instruction_en": "Translate into German. This is how you say that you cannot come.",
+      "payload": {
+        "source_text": "Unfortunately I cannot come tomorrow. I have to work.",
+        "direction": "to_target",
+        "reference": ["Ich kann morgen leider nicht kommen. Ich muss arbeiten.", "Leider kann ich morgen nicht kommen. Ich muss arbeiten."],
+        "notes_en": "Kommen and arbeiten go to the end of their sentences."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-06-07",
+      "ordinal": 7,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": ["de:cando:A1.SPP.03", "de:cando:A1.GRA.10", "de:cando:A1.VOC.06"],
+      "item_ids": [
+        "de:chunk:ich-stehe-um-auf",
+        "de:vocab:fruehstuecken",
+        "de:vocab:anfangen",
+        "de:vocab:arbeiten",
+        "de:vocab:pause",
+        "de:vocab:einkaufen",
+        "de:vocab:fernsehen",
+        "de:vocab:schlafen",
+        "de:vocab:oft"
+      ],
+      "instruction_en": "Record yourself. Take a minute to prepare first.",
+      "payload": {
+        "prompt_en": "Describe a typical day in five or six short sentences. Say when you get up, when your work or your course starts, when you have a break, when you stop, and what you often do in the evening. Use at least two clock times.",
+        "mode": "free",
+        "sample_answer": "Ich stehe um sechs Uhr auf. Ich frühstücke um halb sieben. Die Arbeit fängt um acht Uhr an. Um zwölf Uhr mache ich eine Pause. Ich arbeite bis fünf Uhr. Am Abend koche ich und ich sehe oft fern.",
+        "rubric_focus": [
+          "a series of simple sentences about one day",
+          "separable verbs with the prefix at the end",
+          "clock times with um",
+          "words for daily activities",
+          "can be understood by a patient listener"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-06-08",
+      "ordinal": 8,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.03", "de:cando:A1.GRA.09", "de:cando:A1.GRA.12"],
+      "item_ids": [
+        "de:chunk:hast-du-am-zeit",
+        "de:vocab:leider",
+        "de:vocab:muessen",
+        "de:vocab:koennen",
+        "de:chunk:um-uhr",
+        "de:chunk:am-tag",
+        "de:vocab:kollege"
+      ],
+      "instruction_en": "Roleplay. A colleague wants to meet you this week. Record your part.",
+      "payload": {
+        "prompt_en": "Your colleague asks: Hast du am Dienstag oder am Mittwoch Zeit? Wann kannst du? Answer in three or four short sentences. Say that you have no time on Tuesday and give a reason. Say that you can on Wednesday and name a clock time. Then ask if your colleague can come then too.",
+        "prompt_native": "Hast du am Dienstag oder am Mittwoch Zeit? Wann kannst du?",
+        "mode": "free",
+        "sample_answer": "Am Dienstag habe ich leider keine Zeit. Ich muss bis sechs Uhr arbeiten. Am Mittwoch kann ich um halb fünf kommen. Kannst du auch um halb fünf?",
+        "rubric_focus": [
+          "answers both parts of the question",
+          "a reason with muss and the infinitive at the end",
+          "a day with am and a clock time with um",
+          "asks a question back",
+          "can be understood by a patient listener"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-06-09",
+      "ordinal": 9,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.03", "de:cando:A1.GRA.12"],
+      "item_ids": ["de:vocab:spaet", "de:vocab:minute", "de:vocab:muessen", "de:vocab:heute", "de:chunk:um-uhr", "de:vocab:kommen"],
+      "instruction_en": "Write a text message in German.",
+      "payload": {
+        "prompt_en": "You are going to be late for work today. Write a short text message to a colleague. Say that you are coming later, say how many minutes later or at what time you can be there, and give a short reason.",
+        "min_words": 10,
+        "max_words": 40,
+        "sample_answer": "Hallo Jonas, ich komme heute dreißig Minuten später. Ich muss ein Paket abholen. Ich bin um halb neun im Büro. Ana",
+        "rubric_focus": [
+          "says clearly that they are coming later",
+          "a number of minutes or a clock time with um",
+          "a short reason",
+          "reads like a message: a greeting and a name"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-06-10",
+      "ordinal": 10,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.03", "de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:leider", "de:vocab:koennen", "de:vocab:muessen", "de:vocab:morgen", "de:vocab:kurs", "de:vocab:hausaufgabe", "de:chunk:am-tag"],
+      "instruction_en": "Write a text message in German.",
+      "payload": {
+        "prompt_en": "You cannot come to the German course tomorrow. Write a short text message to a friend from the course. Say that you cannot come tomorrow, say why, say on which day you are coming again, and ask what the homework is.",
+        "min_words": 15,
+        "max_words": 50,
+        "sample_answer": "Hallo Tarek, ich kann morgen leider nicht kommen. Ich muss arbeiten. Am Donnerstag kann ich kommen. Was ist die Hausaufgabe? Danke! Ana",
+        "rubric_focus": [
+          "says clearly that they cannot come and when",
+          "modal verb with the infinitive at the end",
+          "a day with am",
+          "one question with the verb in the right position"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

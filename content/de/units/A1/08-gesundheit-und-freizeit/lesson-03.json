@@ -1,0 +1,579 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-08-03",
+  "unit_key": "de:unit:a1-08-gesundheit-und-freizeit",
+  "ordinal": 3,
+  "slug": "perfekt-mit-haben",
+  "title": "Was hast du gemacht?",
+  "title_en": "What did you do?",
+  "description": "The Perfekt with haben, the usual way to talk about the past when you speak: Ich habe gearbeitet. Ich habe Deutsch gelernt. Participles of regular verbs with ge and t, the commonest irregular participles such as gegessen, getrunken, gelesen and geschlafen, and the participle at the end of the sentence.",
+  "kind": "core",
+  "estimated_minutes": 24,
+  "cando_ids": [
+    "de:cando:A1.GRA.11",
+    "de:cando:A1.GRA.01",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.VOC.06",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.REA.02",
+    "de:cando:A1.WRI.01",
+    "de:cando:A1.SPP.03"
+  ],
+  "introduces_item_ids": [
+    "de:grammar:perfekt-mit-haben",
+    "de:grammar:partizip-perfekt",
+    "de:vocab:lesen",
+    "de:vocab:buch",
+    "de:vocab:spielen",
+    "de:vocab:fussball",
+    "de:vocab:hoeren",
+    "de:vocab:musik",
+    "de:vocab:treffen",
+    "de:vocab:muede"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-08-03-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.06"
+      ],
+      "item_ids": [
+        "de:vocab:arbeiten",
+        "de:vocab:lernen",
+        "de:vocab:machen",
+        "de:vocab:kaufen",
+        "de:vocab:kochen",
+        "de:vocab:schlafen"
+      ],
+      "instruction_en": "Warm up. Match the verbs you know with their English meaning.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "arbeiten",
+            "right": "to work"
+          },
+          {
+            "left": "lernen",
+            "right": "to learn"
+          },
+          {
+            "left": "machen",
+            "right": "to do, to make"
+          },
+          {
+            "left": "kaufen",
+            "right": "to buy"
+          },
+          {
+            "left": "kochen",
+            "right": "to cook"
+          },
+          {
+            "left": "schlafen",
+            "right": "to sleep"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-03-02",
+      "ordinal": 2,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.01"
+      ],
+      "item_ids": [
+        "de:vocab:haben"
+      ],
+      "instruction_en": "Warm up. Fill in the right form of haben. You need all of them for the past.",
+      "payload": {
+        "text": "Du ___ ein Auto. Lena ___ einen Termin. Ihr ___ Zeit. Tom und Sara ___ zwei Kinder.",
+        "blanks": [
+          {
+            "answer": "hast",
+            "hint": "du"
+          },
+          {
+            "answer": "hat",
+            "hint": "sie"
+          },
+          {
+            "answer": "habt",
+            "hint": "ihr"
+          },
+          {
+            "answer": "haben",
+            "hint": "sie, two people"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-03-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.02",
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-haben",
+        "de:vocab:machen",
+        "de:vocab:arbeiten",
+        "de:vocab:kochen",
+        "de:vocab:lernen",
+        "de:vocab:hoeren",
+        "de:vocab:musik",
+        "de:vocab:spielen",
+        "de:vocab:fussball"
+      ],
+      "instruction_en": "It is Monday. Tom and Lena talk about Saturday and Sunday. Listen, then answer the questions.",
+      "payload": {
+        "transcript": "Hallo Lena! Was hast du am Samstag gemacht? Hallo Tom. Am Samstag habe ich gearbeitet. Am Abend habe ich Suppe gekocht. Und du? Was hast du gemacht? Ich habe am Samstag Deutsch gelernt und Musik gehört. Am Sonntag habe ich Fußball gespielt.",
+        "questions": [
+          {
+            "question": "Was hat Lena am Samstag gemacht?",
+            "options": [
+              "Sie hat geschlafen.",
+              "Sie hat gearbeitet.",
+              "Sie hat Fußball gespielt."
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Was hat Lena am Abend gekocht?",
+            "options": [
+              "Suppe",
+              "Fisch",
+              "Nudeln"
+            ],
+            "answer_index": 0
+          },
+          {
+            "question": "Wer hat Deutsch gelernt?",
+            "options": [
+              "Lena",
+              "Tom"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Wann hat Tom Fußball gespielt?",
+            "options": [
+              "am Samstag",
+              "am Montag",
+              "am Sonntag"
+            ],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-03-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": [
+        "de:cando:A1.REA.02",
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-haben",
+        "de:grammar:partizip-perfekt",
+        "de:vocab:lernen",
+        "de:vocab:einkaufen",
+        "de:vocab:lesen",
+        "de:vocab:buch",
+        "de:vocab:essen",
+        "de:vocab:trinken",
+        "de:vocab:muede"
+      ],
+      "instruction_en": "Read Samir's message. Look at the two parts of the verb in each sentence. Then answer the questions.",
+      "payload": {
+        "title": "Eine Nachricht von Samir",
+        "text": "Hallo Lena, wie geht's? Heute habe ich viel gemacht. Am Vormittag habe ich im Kurs Deutsch gelernt. Dann habe ich im Supermarkt eingekauft. Am Nachmittag habe ich ein Buch gelesen. Am Abend habe ich mit Sara gegessen. Wir haben Fisch gegessen und Tee getrunken. Jetzt bin ich müde. Tschüss! Samir",
+        "questions": [
+          {
+            "question": "Wo hat Samir Deutsch gelernt?",
+            "options": [
+              "im Kurs",
+              "im Supermarkt"
+            ],
+            "answer_index": 0
+          },
+          {
+            "question": "Was hat Samir am Nachmittag gemacht?",
+            "options": [
+              "Er hat gearbeitet.",
+              "Er hat ein Buch gelesen.",
+              "Er hat geschlafen."
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Was haben Samir und Sara getrunken?",
+            "options": [
+              "Kaffee",
+              "Wasser",
+              "Tee"
+            ],
+            "answer_index": 2
+          },
+          {
+            "question": "Look at gelernt, eingekauft and gelesen. Where do these words stand?",
+            "options": [
+              "in second position",
+              "at the end of the sentence"
+            ],
+            "answer_index": 1,
+            "explanation_en": "The Perfekt has two parts. The form of haben stands in second position and the participle goes to the end."
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-03-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:grammar:partizip-perfekt",
+        "de:vocab:machen",
+        "de:vocab:lernen",
+        "de:vocab:arbeiten",
+        "de:vocab:kaufen",
+        "de:vocab:spielen",
+        "de:vocab:hoeren"
+      ],
+      "instruction_en": "Regular verbs: ge, then the stem, then t. Match each verb with its participle.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "machen",
+            "right": "gemacht"
+          },
+          {
+            "left": "lernen",
+            "right": "gelernt"
+          },
+          {
+            "left": "arbeiten",
+            "right": "gearbeitet"
+          },
+          {
+            "left": "kaufen",
+            "right": "gekauft"
+          },
+          {
+            "left": "spielen",
+            "right": "gespielt"
+          },
+          {
+            "left": "hören",
+            "right": "gehört"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-03-06",
+      "ordinal": 6,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-haben",
+        "de:grammar:partizip-perfekt",
+        "de:vocab:lernen",
+        "de:vocab:spielen",
+        "de:vocab:arbeiten",
+        "de:vocab:kaufen"
+      ],
+      "instruction_en": "Fill in the participle of the verb under the gap.",
+      "payload": {
+        "text": "Ich habe Deutsch ___. Wir haben Fußball ___. Tom hat am Samstag ___. Hast du Brot ___?",
+        "blanks": [
+          {
+            "answer": "gelernt",
+            "hint": "lernen"
+          },
+          {
+            "answer": "gespielt",
+            "hint": "spielen"
+          },
+          {
+            "answer": "gearbeitet",
+            "hint": "arbeiten"
+          },
+          {
+            "answer": "gekauft",
+            "hint": "kaufen"
+          }
+        ],
+        "explanation_en": "arbeiten adds et after the stem because the stem ends in t: gearbeitet."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-03-07",
+      "ordinal": 7,
+      "type": "match_pairs",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:grammar:partizip-perfekt",
+        "de:vocab:essen",
+        "de:vocab:trinken",
+        "de:vocab:lesen",
+        "de:vocab:schlafen",
+        "de:vocab:schreiben",
+        "de:vocab:treffen"
+      ],
+      "instruction_en": "Some common verbs are irregular: the participle ends in en and the vowel often changes. Learn them one by one. Match each verb with its participle.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "essen",
+            "right": "gegessen"
+          },
+          {
+            "left": "trinken",
+            "right": "getrunken"
+          },
+          {
+            "left": "lesen",
+            "right": "gelesen"
+          },
+          {
+            "left": "schlafen",
+            "right": "geschlafen"
+          },
+          {
+            "left": "schreiben",
+            "right": "geschrieben"
+          },
+          {
+            "left": "treffen",
+            "right": "getroffen"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-03-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-haben",
+        "de:grammar:partizip-perfekt",
+        "de:vocab:lesen",
+        "de:vocab:buch",
+        "de:vocab:essen",
+        "de:vocab:trinken",
+        "de:vocab:schlafen"
+      ],
+      "instruction_en": "Fill in the participle of the irregular verb under the gap.",
+      "payload": {
+        "text": "Ich habe ein Buch ___. Wir haben Brot ___ und Wasser ___. Hast du gut ___?",
+        "blanks": [
+          {
+            "answer": "gelesen",
+            "hint": "lesen"
+          },
+          {
+            "answer": "gegessen",
+            "hint": "essen"
+          },
+          {
+            "answer": "getrunken",
+            "hint": "trinken"
+          },
+          {
+            "answer": "geschlafen",
+            "hint": "schlafen"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-03-09",
+      "ordinal": 9,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.11",
+        "de:cando:A1.GRA.03"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-haben",
+        "de:vocab:lernen"
+      ],
+      "instruction_en": "Choose the sentence with the right word order.",
+      "payload": {
+        "question": "Which sentence is correct?",
+        "options": [
+          "Ich habe gelernt heute Deutsch.",
+          "Ich habe heute Deutsch gelernt.",
+          "Ich gelernt habe heute Deutsch.",
+          "Ich heute Deutsch gelernt habe."
+        ],
+        "answer_index": 1,
+        "explanation_en": "habe stands in second position. The participle gelernt goes to the very end."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-03-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.11",
+        "de:cando:A1.GRA.03"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-haben",
+        "de:vocab:treffen",
+        "de:vocab:freund",
+        "de:vocab:samstag"
+      ],
+      "instruction_en": "Put the words in the right order. Start with Ich.",
+      "payload": {
+        "words": [
+          "habe",
+          "getroffen.",
+          "Freunde",
+          "Ich",
+          "Samstag",
+          "am"
+        ],
+        "answer": "Ich habe am Samstag Freunde getroffen.",
+        "accept": [
+          "Ich habe Freunde am Samstag getroffen."
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-03-11",
+      "ordinal": 11,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.01",
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-haben",
+        "de:vocab:machen",
+        "de:vocab:arbeiten"
+      ],
+      "instruction_en": "Listen and type what you hear.",
+      "payload": {
+        "text": "Was hast du heute gemacht? Ich habe gearbeitet."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-03-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.01",
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-haben",
+        "de:grammar:partizip-perfekt",
+        "de:vocab:arbeiten",
+        "de:vocab:lernen",
+        "de:vocab:deutsch-sprache"
+      ],
+      "instruction_en": "Translate into German. Use the Perfekt.",
+      "payload": {
+        "source_text": "I worked today. In the evening I learned German.",
+        "direction": "to_target",
+        "reference": [
+          "Ich habe heute gearbeitet. Am Abend habe ich Deutsch gelernt.",
+          "Heute habe ich gearbeitet. Am Abend habe ich Deutsch gelernt.",
+          "Ich habe heute gearbeitet. Ich habe am Abend Deutsch gelernt."
+        ],
+        "notes_en": "When the sentence starts with Am Abend, habe still stands in second position: Am Abend habe ich ..."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-03-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": [
+        "de:cando:A1.SPP.03",
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-haben",
+        "de:grammar:partizip-perfekt",
+        "de:vocab:machen",
+        "de:vocab:arbeiten",
+        "de:vocab:lernen",
+        "de:vocab:essen",
+        "de:vocab:kaufen"
+      ],
+      "instruction_en": "Record yourself. Take a minute to prepare first.",
+      "payload": {
+        "prompt_en": "Say what you did today in four short sentences. Use ich habe and a participle at the end, for example gearbeitet, gelernt, gekauft, gekocht, gegessen, getrunken, gelesen or gespielt.",
+        "mode": "free",
+        "sample_answer": "Heute habe ich gearbeitet. Ich habe im Supermarkt Brot und Milch gekauft. Am Abend habe ich Suppe gekocht. Dann habe ich ein Buch gelesen.",
+        "rubric_focus": [
+          "a series of simple sentences about the day",
+          "haben in second position",
+          "participle at the end of the sentence",
+          "correct participles of common verbs"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

@@ -1,0 +1,571 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-08-01",
+  "unit_key": "de:unit:a1-08-gesundheit-und-freizeit",
+  "ordinal": 1,
+  "slug": "koerper-und-krank-sein",
+  "title": "Mein Kopf tut weh",
+  "title_en": "My head hurts",
+  "description": "The body and feeling ill: Kopf, Bauch, Rücken, Hals, Arm, Bein and Fuß, krank and gesund, Fieber and Schmerzen. Say what hurts with Mein ... tut weh and Ich habe ...schmerzen, and say that you are not well with Mir geht es nicht gut.",
+  "kind": "core",
+  "estimated_minutes": 22,
+  "cando_ids": [
+    "de:cando:A1.VOC.08",
+    "de:cando:A1.SPI.05",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.REA.02",
+    "de:cando:A1.GRA.01",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.GRA.04",
+    "de:cando:A1.GRA.08",
+    "de:cando:A1.WRI.01"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:koerper",
+    "de:vocab:kopf",
+    "de:vocab:hals",
+    "de:vocab:bauch",
+    "de:vocab:ruecken",
+    "de:vocab:arm",
+    "de:vocab:hand",
+    "de:vocab:bein",
+    "de:vocab:fuss",
+    "de:vocab:auge",
+    "de:vocab:ohr",
+    "de:vocab:nase",
+    "de:vocab:mund",
+    "de:vocab:zahn",
+    "de:vocab:krank",
+    "de:vocab:gesund",
+    "de:vocab:fieber",
+    "de:vocab:schmerzen",
+    "de:vocab:kopfschmerzen",
+    "de:vocab:wehtun",
+    "de:phrase:ich-habe-kopfschmerzen",
+    "de:phrase:mir-geht-es-nicht-gut",
+    "de:phrase:ich-bin-krank",
+    "de:phrase:gute-besserung",
+    "de:chunk:mein-tut-weh",
+    "de:chunk:ich-habe-schmerzen"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-08-01-01",
+      "ordinal": 1,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.01"
+      ],
+      "item_ids": [
+        "de:vocab:haben",
+        "de:vocab:zeit",
+        "de:vocab:hunger",
+        "de:phrase:ich-habe-eine-frage"
+      ],
+      "instruction_en": "Warm up. Fill in the right form of haben. You need haben to say what is wrong with you.",
+      "payload": {
+        "text": "Ich ___ eine Frage. ___ du Zeit? Wir ___ Hunger.",
+        "blanks": [
+          {
+            "answer": "habe",
+            "hint": "ich"
+          },
+          {
+            "answer": "Hast",
+            "hint": "du"
+          },
+          {
+            "answer": "haben",
+            "hint": "wir"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-01-02",
+      "ordinal": 2,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.08"
+      ],
+      "item_ids": [
+        "de:grammar:possessivartikel-nominativ",
+        "de:vocab:bruder",
+        "de:vocab:mutter"
+      ],
+      "instruction_en": "Warm up. Choose the right word for my. You need it to say what hurts.",
+      "payload": {
+        "question": "Das ist ___ Bruder und das ist ___ Mutter.",
+        "options": [
+          "mein ... meine",
+          "meine ... mein",
+          "mein ... mein",
+          "meine ... meine"
+        ],
+        "answer_index": 0,
+        "explanation_en": "mein before a der word or a das word, meine before a die word."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-01-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.02",
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:phrase:wie-gehts",
+        "de:phrase:mir-geht-es-nicht-gut",
+        "de:phrase:ich-bin-krank",
+        "de:vocab:kopfschmerzen",
+        "de:vocab:fieber",
+        "de:vocab:hals",
+        "de:chunk:mein-tut-weh",
+        "de:phrase:gute-besserung"
+      ],
+      "instruction_en": "Listen to Sara and Tom. Tom is not well today. Then answer the questions.",
+      "payload": {
+        "transcript": "Hallo Tom! Wie geht's? Hallo Sara. Mir geht es nicht gut. Ich bin krank. Oh! Was hast du? Ich habe Kopfschmerzen und Fieber. Mein Hals tut auch weh. Gute Besserung, Tom! Danke, Sara.",
+        "questions": [
+          {
+            "question": "Wie geht es Tom?",
+            "options": [
+              "Gut.",
+              "Nicht gut.",
+              "Sehr gut."
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Was hat Tom?",
+            "options": [
+              "Hunger",
+              "eine Frage",
+              "Kopfschmerzen und Fieber"
+            ],
+            "answer_index": 2
+          },
+          {
+            "question": "Was tut auch weh?",
+            "options": [
+              "der Hals",
+              "der Rücken",
+              "der Bauch"
+            ],
+            "answer_index": 0
+          },
+          {
+            "question": "What does Sara say at the end?",
+            "options": [
+              "Guten Appetit!",
+              "Gute Besserung!",
+              "Gute Nacht!"
+            ],
+            "answer_index": 1,
+            "explanation_en": "Gute Besserung means get well soon."
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-01-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": [
+        "de:cando:A1.REA.02",
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:vocab:krank",
+        "de:vocab:fieber",
+        "de:vocab:bauch",
+        "de:chunk:mein-tut-weh",
+        "de:vocab:gesund",
+        "de:vocab:kommen"
+      ],
+      "instruction_en": "Read the two text messages. Then answer the questions.",
+      "payload": {
+        "title": "Zwei Nachrichten",
+        "text": "Hallo Lena, ich komme heute nicht. Ich bin krank. Ich habe Fieber und mein Bauch tut weh. Tschüss! Samir\n\nHallo Samir, oh nein! Gute Besserung! Ich bin gesund, aber meine Tochter ist auch krank. Sie hat Kopfschmerzen. Lena",
+        "questions": [
+          {
+            "question": "Wer kommt heute nicht?",
+            "options": [
+              "Lena",
+              "Samir"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Was tut Samir weh?",
+            "options": [
+              "der Kopf",
+              "der Bauch",
+              "der Hals"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Ist Lena krank?",
+            "options": [
+              "Ja, sie hat Fieber.",
+              "Nein, sie ist gesund."
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Was hat Lenas Tochter?",
+            "options": [
+              "Kopfschmerzen",
+              "Fieber",
+              "Hunger"
+            ],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-01-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:vocab:kopf",
+        "de:vocab:hals",
+        "de:vocab:bauch",
+        "de:vocab:ruecken",
+        "de:vocab:arm",
+        "de:vocab:hand",
+        "de:vocab:bein",
+        "de:vocab:fuss"
+      ],
+      "instruction_en": "Match the parts of the body with their English meaning.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "der Kopf",
+            "right": "head"
+          },
+          {
+            "left": "der Hals",
+            "right": "neck, throat"
+          },
+          {
+            "left": "der Bauch",
+            "right": "belly, stomach"
+          },
+          {
+            "left": "der Rücken",
+            "right": "back"
+          },
+          {
+            "left": "der Arm",
+            "right": "arm"
+          },
+          {
+            "left": "die Hand",
+            "right": "hand"
+          },
+          {
+            "left": "das Bein",
+            "right": "leg"
+          },
+          {
+            "left": "der Fuß",
+            "right": "foot"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-01-06",
+      "ordinal": 6,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:vocab:auge",
+        "de:vocab:ohr",
+        "de:vocab:nase",
+        "de:vocab:mund",
+        "de:vocab:zahn",
+        "de:vocab:koerper"
+      ],
+      "instruction_en": "Now the head. Match the words with their English meaning.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "das Auge",
+            "right": "eye"
+          },
+          {
+            "left": "das Ohr",
+            "right": "ear"
+          },
+          {
+            "left": "die Nase",
+            "right": "nose"
+          },
+          {
+            "left": "der Mund",
+            "right": "mouth"
+          },
+          {
+            "left": "der Zahn",
+            "right": "tooth"
+          },
+          {
+            "left": "der Körper",
+            "right": "body"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-01-07",
+      "ordinal": 7,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.04",
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:vocab:kopf",
+        "de:vocab:hand",
+        "de:vocab:bein",
+        "de:vocab:ruecken",
+        "de:vocab:nase"
+      ],
+      "instruction_en": "Fill in der, die or das. Learn every part of the body with its article.",
+      "payload": {
+        "text": "___ Kopf, ___ Hand, ___ Bein, ___ Rücken, ___ Nase",
+        "blanks": [
+          {
+            "answer": "der"
+          },
+          {
+            "answer": "die"
+          },
+          {
+            "answer": "das"
+          },
+          {
+            "answer": "der"
+          },
+          {
+            "answer": "die"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-01-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.08",
+        "de:cando:A1.GRA.01"
+      ],
+      "item_ids": [
+        "de:vocab:wehtun",
+        "de:chunk:mein-tut-weh",
+        "de:chunk:ich-habe-schmerzen",
+        "de:vocab:schmerzen",
+        "de:vocab:fieber",
+        "de:vocab:bein"
+      ],
+      "instruction_en": "Fill in tut, tun or habe. One thing hurts: tut weh. Two or more things hurt: tun weh.",
+      "payload": {
+        "text": "Mein Kopf ___ weh. Meine Beine ___ auch weh. Ich ___ Schmerzen und ich ___ Fieber.",
+        "blanks": [
+          {
+            "answer": "tut",
+            "hint": "wehtun, one thing"
+          },
+          {
+            "answer": "tun",
+            "hint": "wehtun, two things"
+          },
+          {
+            "answer": "habe",
+            "hint": "haben"
+          },
+          {
+            "answer": "habe",
+            "hint": "haben"
+          }
+        ],
+        "explanation_en": "wehtun splits in two: tut stands in second position and weh goes to the end."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-01-09",
+      "ordinal": 9,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:chunk:ich-habe-schmerzen",
+        "de:vocab:bauch",
+        "de:vocab:schmerzen"
+      ],
+      "instruction_en": "Choose the sentence with the same meaning.",
+      "payload": {
+        "question": "Mein Bauch tut weh.",
+        "options": [
+          "Ich habe Kopfschmerzen.",
+          "Ich habe Bauchschmerzen.",
+          "Ich habe Hunger.",
+          "Ich bin gesund."
+        ],
+        "answer_index": 1,
+        "explanation_en": "You can build a word with the part of the body and schmerzen: Bauchschmerzen, Kopfschmerzen, Halsschmerzen, Rückenschmerzen, Zahnschmerzen."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-01-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.03",
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:chunk:mein-tut-weh",
+        "de:vocab:ruecken",
+        "de:vocab:wehtun"
+      ],
+      "instruction_en": "Put the words in the right order to say that your back hurts a lot.",
+      "payload": {
+        "words": [
+          "Mein",
+          "sehr",
+          "Rücken",
+          "weh.",
+          "tut"
+        ],
+        "answer": "Mein Rücken tut sehr weh."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-01-11",
+      "ordinal": 11,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.01",
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:phrase:ich-bin-krank",
+        "de:phrase:mir-geht-es-nicht-gut",
+        "de:vocab:fieber"
+      ],
+      "instruction_en": "Listen and type what you hear.",
+      "payload": {
+        "text": "Mir geht es nicht gut. Ich habe Fieber."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-01-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.01",
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:phrase:ich-bin-krank",
+        "de:phrase:ich-habe-kopfschmerzen",
+        "de:vocab:krank",
+        "de:vocab:kopfschmerzen"
+      ],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "I am ill. I have a headache.",
+        "direction": "to_target",
+        "reference": [
+          "Ich bin krank. Ich habe Kopfschmerzen.",
+          "Ich bin krank. Mein Kopf tut weh."
+        ],
+        "notes_en": "German says I have head pains: Ich habe Kopfschmerzen."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-01-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": [
+        "de:cando:A1.SPI.05",
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:phrase:mir-geht-es-nicht-gut",
+        "de:phrase:ich-bin-krank",
+        "de:chunk:mein-tut-weh",
+        "de:chunk:ich-habe-schmerzen",
+        "de:vocab:fieber"
+      ],
+      "instruction_en": "Record yourself. You may point at the part of your body while you speak.",
+      "payload": {
+        "prompt_en": "A colleague sees that you look ill and asks: Wie geht's? Was hast du? Answer in three or four short sentences. Say that you are not well, say what you have (for example a headache or a fever) and say which part of your body hurts.",
+        "prompt_native": "Wie geht's? Was hast du?",
+        "mode": "free",
+        "sample_answer": "Mir geht es nicht gut. Ich bin krank. Ich habe Kopfschmerzen und Fieber. Mein Hals tut auch weh.",
+        "rubric_focus": [
+          "says that they are not well or ill",
+          "names a problem with ich habe",
+          "Mein ... tut weh with a part of the body",
+          "can be understood by a patient listener"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

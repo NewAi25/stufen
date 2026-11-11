@@ -1,0 +1,564 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-08-07",
+  "unit_key": "de:unit:a1-08-gesundheit-und-freizeit",
+  "ordinal": 7,
+  "slug": "wiederholung-gesundheit-und-freizeit",
+  "title": "Wiederholung: Gesundheit und Freizeit",
+  "title_en": "Review: health and free time",
+  "description": "Mixed review of the unit: the body and being ill, at the doctor's, the Perfekt with haben and sein, free time, invitations and the weather. No new words.",
+  "kind": "review",
+  "estimated_minutes": 20,
+  "cando_ids": [
+    "de:cando:A1.VOC.08",
+    "de:cando:A1.SPI.05",
+    "de:cando:A1.GRA.11",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.LIS.04",
+    "de:cando:A1.REA.02",
+    "de:cando:A1.WRI.01",
+    "de:cando:A1.SPP.03"
+  ],
+  "introduces_item_ids": [],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-08-07-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:vocab:bauch",
+        "de:vocab:ruecken",
+        "de:vocab:bein",
+        "de:vocab:fieber",
+        "de:vocab:rezept",
+        "de:vocab:apotheke",
+        "de:vocab:gesund",
+        "de:vocab:krank"
+      ],
+      "instruction_en": "Match the words with their English meaning.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "der Bauch",
+            "right": "belly, stomach"
+          },
+          {
+            "left": "der Rücken",
+            "right": "back"
+          },
+          {
+            "left": "das Bein",
+            "right": "leg"
+          },
+          {
+            "left": "das Fieber",
+            "right": "fever"
+          },
+          {
+            "left": "das Rezept",
+            "right": "prescription"
+          },
+          {
+            "left": "die Apotheke",
+            "right": "pharmacy"
+          },
+          {
+            "left": "gesund",
+            "right": "healthy"
+          },
+          {
+            "left": "krank",
+            "right": "ill"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-07-02",
+      "ordinal": 2,
+      "type": "flashcard",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:vocab:krankenkasse"
+      ],
+      "instruction_en": "Say the meaning to yourself, then turn the card and rate how well you knew it.",
+      "payload": {
+        "front": "die Krankenkasse",
+        "back": "health insurance fund",
+        "hint": "Meine Krankenkasse heißt ..."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-07-03",
+      "ordinal": 3,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.08",
+        "de:cando:A1.SPI.05"
+      ],
+      "item_ids": [
+        "de:phrase:tut-das-weh",
+        "de:vocab:wehtun"
+      ],
+      "instruction_en": "Choose the right answer. It hurts a lot.",
+      "payload": {
+        "question": "Die Ärztin fragt: Tut das weh?",
+        "options": [
+          "Ja, gern.",
+          "Ja, sehr.",
+          "Nein, danke.",
+          "Viel Spaß!"
+        ],
+        "answer_index": 1
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-07-04",
+      "ordinal": 4,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:phrase:mir-geht-es-nicht-gut",
+        "de:chunk:mein-tut-weh",
+        "de:vocab:fieber",
+        "de:phrase:ich-muss-zum-arzt"
+      ],
+      "instruction_en": "Fill in geht, tut, habe or muss.",
+      "payload": {
+        "text": "Mir ___ es nicht gut. Mein Kopf ___ weh und ich ___ Fieber. Ich ___ zum Arzt.",
+        "blanks": [
+          {
+            "answer": "geht",
+            "hint": "gehen"
+          },
+          {
+            "answer": "tut",
+            "hint": "wehtun"
+          },
+          {
+            "answer": "habe",
+            "hint": "haben"
+          },
+          {
+            "answer": "muss",
+            "hint": "müssen"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-07-05",
+      "ordinal": 5,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:grammar:partizip-perfekt",
+        "de:vocab:gestern",
+        "de:vocab:arbeiten",
+        "de:vocab:essen",
+        "de:vocab:gehen",
+        "de:vocab:kommen"
+      ],
+      "instruction_en": "Fill in the participle of the verb under the gap.",
+      "payload": {
+        "text": "Gestern habe ich bis sechs Uhr ___. Dann habe ich Suppe ___. Am Abend bin ich ins Kino ___. Ich bin spät nach Hause ___.",
+        "blanks": [
+          {
+            "answer": "gearbeitet",
+            "hint": "arbeiten"
+          },
+          {
+            "answer": "gegessen",
+            "hint": "essen"
+          },
+          {
+            "answer": "gegangen",
+            "hint": "gehen"
+          },
+          {
+            "answer": "gekommen",
+            "hint": "kommen"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-07-06",
+      "ordinal": 6,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-haben",
+        "de:grammar:perfekt-mit-sein",
+        "de:vocab:wochenende",
+        "de:vocab:machen",
+        "de:vocab:fahren",
+        "de:vocab:lesen"
+      ],
+      "instruction_en": "haben or sein? Fill in the right form.",
+      "payload": {
+        "text": "Was ___ du am Wochenende gemacht? Ich ___ nach Hamburg gefahren. Lena ___ zu Hause geblieben. Sie ___ ein Buch gelesen.",
+        "blanks": [
+          {
+            "answer": "hast",
+            "hint": "du, machen"
+          },
+          {
+            "answer": "bin",
+            "hint": "ich, fahren"
+          },
+          {
+            "answer": "ist",
+            "hint": "sie, bleiben"
+          },
+          {
+            "answer": "hat",
+            "hint": "sie, lesen"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-07-07",
+      "ordinal": 7,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.11",
+        "de:cando:A1.GRA.03"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-haben",
+        "de:vocab:sonntag",
+        "de:vocab:park",
+        "de:vocab:fussball",
+        "de:vocab:spielen"
+      ],
+      "instruction_en": "Put the words in the right order. Start with Am Sonntag.",
+      "payload": {
+        "words": [
+          "Fußball",
+          "Am",
+          "Sonntag",
+          "gespielt.",
+          "Park",
+          "haben",
+          "wir",
+          "im"
+        ],
+        "answer": "Am Sonntag haben wir im Park Fußball gespielt.",
+        "accept": [
+          "Am Sonntag haben wir Fußball im Park gespielt."
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-07-08",
+      "ordinal": 8,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.02",
+        "de:cando:A1.LIS.04",
+        "de:cando:A1.SPI.05"
+      ],
+      "item_ids": [
+        "de:phrase:ich-habe-einen-termin",
+        "de:phrase:was-fehlt-ihnen",
+        "de:chunk:mein-tut-weh",
+        "de:vocab:ruecken",
+        "de:vocab:gestern",
+        "de:vocab:zimmer",
+        "de:vocab:aerztin"
+      ],
+      "instruction_en": "Lena Fischer is at the doctor's reception. Listen, then answer the questions.",
+      "payload": {
+        "transcript": "Guten Tag. Mein Name ist Lena Fischer. Ich habe einen Termin um neun Uhr. Guten Tag, Frau Fischer. Was fehlt Ihnen? Mein Rücken tut weh. Seit gestern. Nehmen Sie bitte Platz. Frau Fischer? Gehen Sie bitte in Zimmer drei. Die Ärztin kommt jetzt.",
+        "questions": [
+          {
+            "question": "Wann ist der Termin?",
+            "options": [
+              "um neun Uhr",
+              "um zehn Uhr",
+              "um drei Uhr"
+            ],
+            "answer_index": 0
+          },
+          {
+            "question": "Was tut Frau Fischer weh?",
+            "options": [
+              "der Bauch",
+              "der Rücken",
+              "der Kopf"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "What should she do first?",
+            "options": [
+              "go to the pharmacy",
+              "take a seat",
+              "come back tomorrow"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Which room does she go to?",
+            "options": [
+              "Zimmer neun",
+              "Zimmer zwei",
+              "Zimmer drei"
+            ],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-07-09",
+      "ordinal": 9,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.02",
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:vocab:wochenende",
+        "de:vocab:regnen",
+        "de:vocab:musik",
+        "de:vocab:schwimmen",
+        "de:phrase:die-sonne-scheint",
+        "de:phrase:kommst-du-mit",
+        "de:grammar:perfekt-mit-sein"
+      ],
+      "instruction_en": "Sara asks Tom about his weekend. Listen, then answer the questions.",
+      "payload": {
+        "transcript": "Hallo Tom! Was hast du am Wochenende gemacht? Am Samstag hat es geregnet. Ich bin zu Hause geblieben und habe Musik gehört. Am Sonntag bin ich mit Freunden schwimmen gegangen. Und heute? Heute scheint die Sonne. Ich gehe in den Park. Kommst du mit? Ja, gern!",
+        "questions": [
+          {
+            "question": "Was hat Tom am Samstag gemacht?",
+            "options": [
+              "Er ist zu Hause geblieben.",
+              "Er ist schwimmen gegangen.",
+              "Er hat gearbeitet."
+            ],
+            "answer_index": 0
+          },
+          {
+            "question": "Was hat Tom am Sonntag gemacht?",
+            "options": [
+              "Er hat Musik gehört.",
+              "Er ist schwimmen gegangen."
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Wie ist das Wetter heute?",
+            "options": [
+              "Es regnet.",
+              "Es ist kalt.",
+              "Die Sonne scheint."
+            ],
+            "answer_index": 2
+          },
+          {
+            "question": "Kommt Sara mit in den Park?",
+            "options": [
+              "Ja, gern.",
+              "Nein, sie hat keine Zeit."
+            ],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-07-10",
+      "ordinal": 10,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": [
+        "de:cando:A1.REA.02"
+      ],
+      "item_ids": [
+        "de:vocab:feiern",
+        "de:vocab:feier",
+        "de:vocab:tanzen",
+        "de:vocab:musik",
+        "de:vocab:gesund",
+        "de:vocab:krank",
+        "de:chunk:hast-du-am-zeit",
+        "de:vocab:einladen"
+      ],
+      "instruction_en": "Read Lena's invitation and Samir's answer. Then answer the questions.",
+      "payload": {
+        "title": "Eine Einladung",
+        "text": "Hallo Samir, wie geht's? Bist du noch krank? Am Samstag feiere ich meinen Geburtstag. Die Feier fängt um 19 Uhr an. Wir essen Kuchen, hören Musik und tanzen. Hast du am Samstag Zeit? Ich lade dich ein! Lena\n\nHallo Lena, danke! Ich bin nicht mehr krank. Ich bin gesund. Am Samstag habe ich Zeit. Ich komme gern. Bis Samstag! Samir",
+        "questions": [
+          {
+            "question": "Was feiert Lena am Samstag?",
+            "options": [
+              "ihren Geburtstag",
+              "ihre neue Wohnung",
+              "ihren neuen Job"
+            ],
+            "answer_index": 0
+          },
+          {
+            "question": "Wann fängt die Feier an?",
+            "options": [
+              "um 9 Uhr",
+              "um 19 Uhr",
+              "um 17 Uhr"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Ist Samir noch krank?",
+            "options": [
+              "Ja, er hat Fieber.",
+              "Nein, er ist gesund."
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Kommt Samir zur Feier?",
+            "options": [
+              "Ja, er kommt gern.",
+              "Nein, er hat keine Zeit."
+            ],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-07-11",
+      "ordinal": 11,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.01",
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-sein",
+        "de:vocab:gestern",
+        "de:vocab:arzt",
+        "de:vocab:gehen"
+      ],
+      "instruction_en": "Listen and type what you hear.",
+      "payload": {
+        "text": "Gestern bin ich zum Arzt gegangen."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-07-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.01",
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-sein",
+        "de:grammar:perfekt-mit-haben",
+        "de:vocab:wochenende",
+        "de:vocab:buch",
+        "de:vocab:lesen"
+      ],
+      "instruction_en": "Translate into German. Use the Perfekt.",
+      "payload": {
+        "source_text": "At the weekend I stayed at home. I read a book.",
+        "direction": "to_target",
+        "reference": [
+          "Am Wochenende bin ich zu Hause geblieben. Ich habe ein Buch gelesen.",
+          "Ich bin am Wochenende zu Hause geblieben. Ich habe ein Buch gelesen."
+        ],
+        "notes_en": "bleiben uses sein: ich bin geblieben. lesen uses haben: ich habe gelesen."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-07-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": [
+        "de:cando:A1.SPI.05",
+        "de:cando:A1.SPP.03",
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:phrase:mir-geht-es-nicht-gut",
+        "de:phrase:ich-bin-krank",
+        "de:chunk:mein-tut-weh",
+        "de:vocab:gestern",
+        "de:grammar:perfekt-mit-sein",
+        "de:grammar:perfekt-mit-haben",
+        "de:vocab:arzt"
+      ],
+      "instruction_en": "Record yourself. A friend phones you.",
+      "payload": {
+        "prompt_en": "Your friend asks: Wie geht's? Was hast du gestern gemacht? Say that you are not well and what hurts. Then say two or three things you did yesterday, for example that you went to the doctor, stayed at home and slept a lot.",
+        "prompt_native": "Wie geht's? Was hast du gestern gemacht?",
+        "mode": "free",
+        "sample_answer": "Mir geht es nicht gut. Ich bin krank. Mein Hals tut weh. Gestern bin ich zum Arzt gegangen. Dann bin ich zu Hause geblieben. Ich habe viel Tee getrunken und viel geschlafen.",
+        "rubric_focus": [
+          "says how they feel and what hurts",
+          "two or three sentences about yesterday in the Perfekt",
+          "haben or sein chosen correctly, participle at the end",
+          "can be understood by a patient listener"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

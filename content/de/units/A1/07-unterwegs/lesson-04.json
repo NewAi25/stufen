@@ -1,0 +1,306 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-07-04",
+  "unit_key": "de:unit:a1-07-unterwegs",
+  "ordinal": 4,
+  "slug": "im-buergeramt",
+  "title": "Ich möchte mich anmelden",
+  "title_en": "I would like to register",
+  "description": "First paperwork at the Bürgeramt: registering your address. Say what you want, ask what to bring, follow the instructions to take a number and go to a counter, and get the gist of an information leaflet from its headings and pictures.",
+  "kind": "core",
+  "estimated_minutes": 22,
+  "cando_ids": [
+    "de:cando:A1.REA.05",
+    "de:cando:A1.REA.03",
+    "de:cando:A1.LIS.04",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.SPI.01",
+    "de:cando:A1.GRA.09",
+    "de:cando:A1.GRA.10",
+    "de:cando:A1.VOC.07"
+  ],
+  "introduces_item_ids": ["de:vocab:amt", "de:vocab:pass", "de:vocab:papiere", "de:vocab:nummer", "de:vocab:anmelden", "de:vocab:mitbringen", "de:vocab:warten", "de:phrase:ich-moechte-mich-anmelden", "de:phrase:wo-kann-ich-mich-anmelden", "de:phrase:was-muss-ich-mitbringen", "de:phrase:haben-sie-ihre-papiere-dabei", "de:phrase:bitte-ziehen-sie-eine-nummer", "de:chunk:gehen-sie-bitte-zum-schalter", "de:vocab:termin"],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-07-04-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07"],
+      "item_ids": ["de:vocab:formular", "de:vocab:schalter", "de:vocab:ausweis", "de:vocab:unterschrift", "de:vocab:ausfuellen", "de:vocab:unterschreiben"],
+      "instruction_en": "Warm up. You met these words at the post office and the bank. Match them with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "das Formular", "right": "form" },
+          { "left": "der Schalter", "right": "counter" },
+          { "left": "der Ausweis", "right": "identity card" },
+          { "left": "die Unterschrift", "right": "signature" },
+          { "left": "ausfüllen", "right": "to fill in" },
+          { "left": "unterschreiben", "right": "to sign" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-04-02",
+      "ordinal": 2,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.10"],
+      "item_ids": ["de:grammar:trennbare-verben", "de:vocab:abfahren", "de:vocab:aussteigen"],
+      "instruction_en": "Warm up. Fill in the two parts of the separable verb from the last lesson.",
+      "payload": {
+        "text": "Der Bus ___ um acht Uhr ___. Ich ___ am Rathaus ___.",
+        "blanks": [
+          { "answer": "fährt", "hint": "abfahren" },
+          { "answer": "ab", "hint": "abfahren" },
+          { "answer": "steige", "hint": "aussteigen" },
+          { "answer": "aus", "hint": "aussteigen" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-04-03",
+      "ordinal": 3,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.05", "de:cando:A1.REA.03"],
+      "item_ids": ["de:vocab:buergeramt", "de:vocab:anmeldung", "de:vocab:termin", "de:vocab:pass", "de:vocab:formular", "de:vocab:mitbringen", "de:vocab:amt", "de:phrase:bitte-ziehen-sie-eine-nummer", "de:vocab:vermieter"],
+      "instruction_en": "Read the leaflet from the town hall. You do not need every word. Use the headings and the pictures, which are described in brackets. Der Termin means the appointment. Then answer the questions.",
+      "payload": {
+        "title": "Neu in Köln? Ihre Anmeldung im Bürgeramt",
+        "text": "[Bild: ein Haus mit dem Schild „Bürgeramt“]\nWO?\nBürgeramt im Rathaus, Eingang B, Zimmer 12\n\n[Bild: eine Uhr]\nWANN?\nMit Termin: Montag bis Freitag von 8 bis 12 Uhr\nOhne Termin: Donnerstag von 14 bis 18 Uhr\n\n[Bild: ein Pass und ein Formular]\nWAS MÜSSEN SIE MITBRINGEN?\nIhren Pass oder Ausweis\ndas Formular „Anmeldung“\ndie Wohnungsgeberbestätigung (ein Papier vom Vermieter)\n\n[Bild: eine Hand zieht eine Nummer]\nOHNE TERMIN IM AMT\nBitte ziehen Sie eine Nummer und warten Sie.",
+        "questions": [
+          {
+            "question": "What is this leaflet about?",
+            "options": ["buying a train ticket", "registering your address", "renting a flat"],
+            "answer_index": 1
+          },
+          {
+            "question": "Under which heading do you find the opening hours?",
+            "options": ["WANN?", "WO?", "WAS MÜSSEN SIE MITBRINGEN?"],
+            "answer_index": 0
+          },
+          {
+            "question": "Was müssen Sie mitbringen?",
+            "options": ["eine Fahrkarte und einen Schlüssel", "ein Foto und 20 Euro", "Pass oder Ausweis, Formular und ein Papier vom Vermieter"],
+            "answer_index": 2
+          },
+          {
+            "question": "Sie haben keinen Termin. Wann können Sie kommen?",
+            "options": ["am Montag um 9 Uhr", "am Donnerstag um 15 Uhr", "am Freitag um 14 Uhr"],
+            "answer_index": 1,
+            "explanation_en": "Ohne Termin means without an appointment. That is only possible on Donnerstag from 14 to 18 Uhr."
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-04-04",
+      "ordinal": 4,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.04", "de:cando:A1.LIS.02"],
+      "item_ids": ["de:phrase:ich-moechte-mich-anmelden", "de:vocab:termin", "de:phrase:bitte-ziehen-sie-eine-nummer", "de:vocab:warten", "de:phrase:haben-sie-ihre-papiere-dabei", "de:vocab:pass", "de:chunk:gehen-sie-bitte-zum-schalter", "de:vocab:nummer"],
+      "instruction_en": "Frau Okafor is at the Bürgeramt on a Thursday afternoon. Listen to the clerk at the entrance and to the call for her number. Then answer the questions.",
+      "payload": {
+        "transcript": "Guten Tag. Ich möchte mich anmelden. Guten Tag. Haben Sie einen Termin? Nein, ich habe keinen Termin. Dann ziehen Sie bitte eine Nummer und warten Sie. Haben Sie Ihre Papiere dabei? Ja, hier sind mein Pass und das Formular. Gut. Nummer vierundzwanzig, gehen Sie bitte zum Schalter drei!",
+        "questions": [
+          {
+            "question": "Was möchte Frau Okafor?",
+            "options": ["Sie möchte sich anmelden.", "Sie möchte eine Wohnung mieten.", "Sie möchte einen Pass abholen."],
+            "answer_index": 0
+          },
+          {
+            "question": "What does she have to do because she has no appointment?",
+            "options": ["come back on Monday", "fill in a second form", "take a number and wait"],
+            "answer_index": 2
+          },
+          {
+            "question": "Wohin geht Nummer 24?",
+            "options": ["zum Schalter 24", "zum Schalter 3", "zum Eingang B"],
+            "answer_index": 1
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-04-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.REA.05"],
+      "item_ids": ["de:vocab:amt", "de:vocab:buergeramt", "de:vocab:anmeldung", "de:vocab:termin", "de:vocab:pass", "de:vocab:papiere", "de:vocab:nummer", "de:vocab:warten"],
+      "instruction_en": "Match the office words with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "das Amt", "right": "public office" },
+          { "left": "das Bürgeramt", "right": "office where you register your address" },
+          { "left": "die Anmeldung", "right": "registration" },
+          { "left": "der Termin", "right": "appointment" },
+          { "left": "der Pass", "right": "passport" },
+          { "left": "die Papiere", "right": "documents" },
+          { "left": "die Nummer", "right": "number" },
+          { "left": "warten", "right": "to wait" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-04-06",
+      "ordinal": 6,
+      "type": "flashcard",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.SPI.01"],
+      "item_ids": ["de:phrase:ich-moechte-mich-anmelden"],
+      "instruction_en": "Say the meaning to yourself, then turn the card and rate how well you knew it.",
+      "payload": {
+        "front": "Ich möchte mich anmelden.",
+        "back": "I would like to register.",
+        "hint": "Learn it as one piece. mich means myself and anmelden goes to the end."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-04-07",
+      "ordinal": 7,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.01"],
+      "item_ids": ["de:phrase:was-muss-ich-mitbringen", "de:phrase:wo-kann-ich-mich-anmelden", "de:phrase:wo-muss-ich-umsteigen"],
+      "instruction_en": "Choose the right question.",
+      "payload": {
+        "question": "You have an appointment at the Bürgeramt next week. You want to know which documents you need. What do you ask?",
+        "options": ["Wo kann ich mich anmelden?", "Wo muss ich umsteigen?", "Was muss ich mitbringen?"],
+        "answer_index": 2,
+        "explanation_en": "mitbringen means to bring along. Wo kann ich mich anmelden? asks where you can register."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-04-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": ["de:grammar:satzklammer-modalverben", "de:phrase:ich-moechte-mich-anmelden", "de:phrase:was-muss-ich-mitbringen", "de:phrase:wo-kann-ich-mich-anmelden", "de:vocab:moechten", "de:vocab:muessen", "de:vocab:koennen"],
+      "instruction_en": "Fill in the right form of möchten, müssen or können.",
+      "payload": {
+        "text": "Ich ___ mich anmelden. Was ___ ich mitbringen? Wo ___ ich mich anmelden? Sie ___ eine Nummer ziehen.",
+        "blanks": [
+          { "answer": "möchte", "hint": "would like" },
+          { "answer": "muss", "hint": "have to" },
+          { "answer": "kann", "hint": "can" },
+          { "answer": "müssen", "hint": "have to, with Sie" }
+        ],
+        "explanation_en": "The modal verb is in second position and the other verb stands at the end as an infinitive: Ich möchte mich anmelden."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-04-09",
+      "ordinal": 9,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.10"],
+      "item_ids": ["de:grammar:trennbare-verben", "de:vocab:mitbringen", "de:vocab:anmelden", "de:vocab:pass", "de:vocab:buergeramt"],
+      "instruction_en": "mitbringen and anmelden are separable verbs. Fill in the two parts.",
+      "payload": {
+        "text": "Bitte ___ Sie Ihren Pass ___. Ich ___ mich im Bürgeramt ___.",
+        "blanks": [
+          { "answer": "bringen", "hint": "mitbringen" },
+          { "answer": "mit", "hint": "mitbringen" },
+          { "answer": "melde", "hint": "anmelden" },
+          { "answer": "an", "hint": "anmelden" }
+        ],
+        "explanation_en": "Without a modal verb the prefix goes to the end: Ich melde mich an. With a modal verb the verb stays in one piece: Ich möchte mich anmelden."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-04-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": ["de:phrase:ich-moechte-mich-anmelden", "de:vocab:anmelden", "de:vocab:buergeramt"],
+      "instruction_en": "Put the words in the right order.",
+      "payload": {
+        "words": ["mich", "anmelden.", "Ich", "Bürgeramt", "möchte", "im"],
+        "answer": "Ich möchte mich im Bürgeramt anmelden."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-04-11",
+      "ordinal": 11,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.04"],
+      "item_ids": ["de:phrase:bitte-ziehen-sie-eine-nummer", "de:vocab:nummer", "de:vocab:warten"],
+      "instruction_en": "Listen to the instruction and type what you hear.",
+      "payload": { "text": "Bitte ziehen Sie eine Nummer und warten Sie." },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-04-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.SPI.01", "de:cando:A1.GRA.09"],
+      "item_ids": ["de:phrase:ich-moechte-mich-anmelden", "de:vocab:termin", "de:chunk:um-uhr"],
+      "instruction_en": "Translate into German. This is what you say when you arrive for your appointment.",
+      "payload": {
+        "source_text": "I would like to register. I have an appointment at ten.",
+        "direction": "to_target",
+        "reference": [
+          "Ich möchte mich anmelden. Ich habe einen Termin um zehn Uhr.",
+          "Ich möchte mich anmelden. Ich habe um zehn Uhr einen Termin.",
+          "Ich möchte mich anmelden. Ich habe einen Termin um 10 Uhr."
+        ],
+        "notes_en": "Termin is a der word, so after haben it is einen Termin."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-04-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.01", "de:cando:A1.GRA.09"],
+      "item_ids": ["de:phrase:ich-moechte-mich-anmelden", "de:phrase:wo-kann-ich-mich-anmelden", "de:phrase:was-muss-ich-mitbringen", "de:vocab:neu"],
+      "instruction_en": "Roleplay. You are at the information desk in the town hall. Record your part.",
+      "payload": {
+        "prompt_en": "The clerk says: Guten Tag! Kann ich Ihnen helfen? Greet the clerk. Say that you are new here and that you would like to register. Ask where you can register and what you have to bring. Say thank you.",
+        "prompt_native": "Guten Tag! Kann ich Ihnen helfen?",
+        "mode": "free",
+        "sample_answer": "Guten Tag! Ich bin neu hier und ich möchte mich anmelden. Wo kann ich mich anmelden? Und was muss ich mitbringen? Vielen Dank!",
+        "rubric_focus": [
+          "says what they want with ich möchte and the infinitive at the end",
+          "asks where with wo kann ich",
+          "asks what to bring with was muss ich",
+          "polite greeting and thanks"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

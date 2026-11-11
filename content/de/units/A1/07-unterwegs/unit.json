@@ -1,0 +1,22 @@
+{
+  "$schema": "https://stufen.app/schema/unit.json",
+  "key": "de:unit:a1-07-unterwegs",
+  "level": "A1",
+  "ordinal": 7,
+  "slug": "unterwegs",
+  "title": "In der Stadt und unterwegs",
+  "title_en": "In town and on the move",
+  "description": "Name the places in a town and ask where they are, ask the way and follow short directions, buy a ticket and read a departure board, register your address at the Bürgeramt, and tell a friend who does not read German what a sign, a notice or a timetable says.",
+  "theme": "places, travel and services",
+  "lessons": [
+    "lesson-01.json",
+    "lesson-02.json",
+    "lesson-03.json",
+    "lesson-04.json",
+    "lesson-05.json",
+    "lesson-06.json",
+    "lesson-07.json"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false
+}

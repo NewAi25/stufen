@@ -1,0 +1,320 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-06-02",
+  "unit_key": "de:unit:a1-06-alltag-und-arbeit",
+  "ordinal": 2,
+  "slug": "mein-tag",
+  "title": "Mein Tag",
+  "title_en": "My day",
+  "description": "Verbs for the daily routine, among them the separable verbs aufstehen, anfangen, aufhören, einkaufen, fernsehen and anrufen. In a statement the verb stays in second position and the prefix goes to the end: Ich stehe um sieben Uhr auf.",
+  "kind": "core",
+  "estimated_minutes": 22,
+  "cando_ids": [
+    "de:cando:A1.GRA.10",
+    "de:cando:A1.VOC.06",
+    "de:cando:A1.GRA.12",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.REA.01",
+    "de:cando:A1.SPP.03"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:aufstehen",
+    "de:vocab:fruehstuecken",
+    "de:vocab:duschen",
+    "de:vocab:arbeiten",
+    "de:vocab:einkaufen",
+    "de:vocab:fernsehen",
+    "de:vocab:anrufen",
+    "de:vocab:schlafen",
+    "de:vocab:anfangen",
+    "de:vocab:aufhoeren",
+    "de:vocab:machen",
+    "de:vocab:frueh",
+    "de:vocab:spaet",
+    "de:chunk:ich-stehe-um-auf",
+    "de:phrase:was-machst-du-heute-abend",
+    "de:grammar:trennbare-verben"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-06-02-01",
+      "ordinal": 1,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:um-uhr", "de:chunk:am-tag", "de:vocab:um", "de:vocab:kurs", "de:vocab:mittwoch"],
+      "instruction_en": "Warm up. Fill in am or um.",
+      "payload": {
+        "text": "Der Kurs beginnt ___ neun Uhr. ___ Mittwoch ist kein Kurs. Ich koche ___ Abend, ___ halb sieben.",
+        "blanks": [
+          { "answer": "um", "hint": "a clock time" },
+          { "answer": "Am", "hint": "a day" },
+          { "answer": "am", "hint": "a part of the day" },
+          { "answer": "um", "hint": "a clock time" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-02-02",
+      "ordinal": 2,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.06"],
+      "item_ids": ["de:vocab:morgen-nomen", "de:vocab:mittag", "de:vocab:nachmittag", "de:vocab:abend", "de:vocab:nacht", "de:chunk:am-tag"],
+      "instruction_en": "Warm up. Match the parts of the day. Only the night is different: in der Nacht.",
+      "payload": {
+        "pairs": [
+          { "left": "am Morgen", "right": "in the morning" },
+          { "left": "am Mittag", "right": "at midday" },
+          { "left": "am Nachmittag", "right": "in the afternoon" },
+          { "left": "am Abend", "right": "in the evening" },
+          { "left": "in der Nacht", "right": "at night" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-02-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02", "de:cando:A1.GRA.10"],
+      "item_ids": [
+        "de:vocab:aufstehen",
+        "de:vocab:duschen",
+        "de:vocab:fruehstuecken",
+        "de:vocab:arbeiten",
+        "de:vocab:einkaufen",
+        "de:vocab:schlafen",
+        "de:chunk:ich-stehe-um-auf"
+      ],
+      "instruction_en": "Ana talks about her day. Ich stehe auf means I get up, ich dusche means I shower, ich frühstücke means I have breakfast, ich kaufe ein means I go shopping and ich schlafe means I sleep. Listen and answer the questions.",
+      "payload": {
+        "transcript": "Ich bin Ana. Ich stehe um sechs Uhr auf. Ich dusche und um halb sieben frühstücke ich. Ich arbeite von acht bis vier Uhr. Am Abend kaufe ich ein und ich koche. Um elf Uhr schlafe ich.",
+        "questions": [
+          { "question": "Wann steht Ana auf?", "options": ["um 6.00 Uhr", "um 6.30 Uhr", "um 7.00 Uhr"], "answer_index": 0 },
+          { "question": "Wann frühstückt Ana?", "options": ["um 6.00 Uhr", "um 6.30 Uhr", "um 7.30 Uhr"], "answer_index": 1 },
+          { "question": "Was macht Ana am Abend?", "options": ["Sie arbeitet.", "Sie frühstückt.", "Sie kauft ein und kocht."], "answer_index": 2 }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-02-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.01", "de:cando:A1.GRA.10"],
+      "item_ids": [
+        "de:vocab:aufstehen",
+        "de:vocab:frueh",
+        "de:vocab:spaet",
+        "de:vocab:anfangen",
+        "de:vocab:arbeiten",
+        "de:vocab:einkaufen",
+        "de:vocab:anrufen",
+        "de:vocab:fernsehen"
+      ],
+      "instruction_en": "Read what Tarek writes about his day. Früh is early and spät is late. Ich fange an means I start, ich rufe an means I phone and ich sehe fern means I watch television. Look at the last word of each sentence. Then answer the questions.",
+      "payload": {
+        "title": "Mein Tag",
+        "text": "Ich heiße Tarek. Ich stehe früh auf, um halb sechs. Ich frühstücke nicht, aber ich trinke einen Kaffee. Ich fange um sieben Uhr an und ich arbeite bis drei Uhr. Am Nachmittag kaufe ich ein. Am Abend rufe ich meine Eltern an und ich sehe fern. Am Samstag arbeite ich nicht. Ich stehe spät auf.",
+        "questions": [
+          { "question": "Wann steht Tarek auf?", "options": ["um 5.30 Uhr", "um 6.00 Uhr", "um 6.30 Uhr"], "answer_index": 0 },
+          { "question": "Bis wann arbeitet Tarek?", "options": ["bis 7 Uhr", "bis 3 Uhr", "bis 6 Uhr"], "answer_index": 1 },
+          { "question": "Was macht Tarek am Abend?", "options": ["Er kauft ein.", "Er arbeitet.", "Er ruft seine Eltern an und sieht fern."], "answer_index": 2 },
+          { "question": "Wann steht Tarek spät auf?", "options": ["am Samstag", "am Montag", "am Nachmittag"], "answer_index": 0 }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-02-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.06"],
+      "item_ids": [
+        "de:vocab:aufstehen",
+        "de:vocab:fruehstuecken",
+        "de:vocab:duschen",
+        "de:vocab:arbeiten",
+        "de:vocab:einkaufen",
+        "de:vocab:fernsehen",
+        "de:vocab:anrufen",
+        "de:vocab:schlafen"
+      ],
+      "instruction_en": "Verbs for your day. Match the pairs.",
+      "payload": {
+        "pairs": [
+          { "left": "aufstehen", "right": "to get up" },
+          { "left": "frühstücken", "right": "to have breakfast" },
+          { "left": "duschen", "right": "to shower" },
+          { "left": "arbeiten", "right": "to work" },
+          { "left": "einkaufen", "right": "to go shopping" },
+          { "left": "fernsehen", "right": "to watch television" },
+          { "left": "anrufen", "right": "to phone" },
+          { "left": "schlafen", "right": "to sleep" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-02-06",
+      "ordinal": 6,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.06"],
+      "item_ids": ["de:vocab:anfangen", "de:vocab:aufhoeren", "de:vocab:machen", "de:vocab:frueh", "de:vocab:spaet"],
+      "instruction_en": "Five more words for talking about your day. Match the pairs.",
+      "payload": {
+        "pairs": [
+          { "left": "anfangen", "right": "to start" },
+          { "left": "aufhören", "right": "to stop, to end" },
+          { "left": "machen", "right": "to do, to make" },
+          { "left": "früh", "right": "early" },
+          { "left": "spät", "right": "late" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-02-07",
+      "ordinal": 7,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.10"],
+      "item_ids": ["de:grammar:trennbare-verben", "de:vocab:aufstehen", "de:chunk:ich-stehe-um-auf"],
+      "instruction_en": "Aufstehen is a separable verb: auf and stehen. Choose the right sentence.",
+      "payload": {
+        "question": "Which sentence is right?",
+        "options": ["Ich aufstehe um sieben Uhr.", "Ich stehe um sieben Uhr auf.", "Ich auf stehe um sieben Uhr."],
+        "answer_index": 1,
+        "explanation_en": "The verb stehe stays in second position. The prefix auf goes to the very end of the sentence."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-02-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.10"],
+      "item_ids": ["de:grammar:trennbare-verben", "de:vocab:aufstehen", "de:vocab:anfangen", "de:vocab:fernsehen", "de:vocab:einkaufen", "de:vocab:anrufen"],
+      "instruction_en": "Fill in the prefix at the end of each sentence. The verb is under the gap.",
+      "payload": {
+        "text": "Ich stehe um sechs Uhr ___. Der Kurs fängt um neun Uhr ___. Am Samstag kaufe ich ___. Am Abend sehe ich ___. Ich rufe meine Mutter ___.",
+        "blanks": [
+          { "answer": "auf", "hint": "aufstehen" },
+          { "answer": "an", "hint": "anfangen" },
+          { "answer": "ein", "hint": "einkaufen" },
+          { "answer": "fern", "hint": "fernsehen" },
+          { "answer": "an", "hint": "anrufen" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-02-09",
+      "ordinal": 9,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.10", "de:cando:A1.GRA.03"],
+      "item_ids": ["de:grammar:trennbare-verben", "de:vocab:aufstehen", "de:vocab:anfangen", "de:vocab:aufhoeren", "de:vocab:fernsehen", "de:vocab:anrufen"],
+      "instruction_en": "Fill in the right form of the verb. The prefix is already at the end.",
+      "payload": {
+        "text": "Wann ___ du auf? Der Kurs ___ um neun Uhr an und ___ um zwölf Uhr auf. Tarek ___ am Abend fern. Ich ___ meine Schwester an.",
+        "blanks": [
+          { "answer": "stehst", "hint": "aufstehen, du" },
+          { "answer": "fängt", "hint": "anfangen, der Kurs" },
+          { "answer": "hört", "hint": "aufhören, der Kurs" },
+          { "answer": "sieht", "hint": "fernsehen, er" },
+          { "answer": "rufe", "hint": "anrufen, ich" }
+        ],
+        "explanation_en": "Two of these verbs change their vowel with du and er: anfangen becomes er fängt an, fernsehen becomes er sieht fern."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-02-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.10", "de:cando:A1.GRA.03"],
+      "item_ids": ["de:grammar:trennbare-verben", "de:vocab:anfangen", "de:vocab:kurs", "de:vocab:wann"],
+      "instruction_en": "Put the words in the right order to ask when the course starts. The prefix goes to the end in a question too.",
+      "payload": { "words": ["der", "an?", "Wann", "Kurs", "fängt"], "answer": "Wann fängt der Kurs an?" },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-02-11",
+      "ordinal": 11,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.01"],
+      "item_ids": ["de:phrase:was-machst-du-heute-abend", "de:vocab:machen", "de:vocab:heute", "de:vocab:abend"],
+      "instruction_en": "A colleague asks what you are doing this evening. Listen and type what you hear.",
+      "payload": { "text": "Was machst du heute Abend?" },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-02-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.GRA.10", "de:cando:A1.GRA.12"],
+      "item_ids": ["de:vocab:einkaufen", "de:vocab:fernsehen", "de:chunk:am-tag", "de:vocab:samstag", "de:vocab:abend"],
+      "instruction_en": "Translate into German. Remember where the prefix goes.",
+      "payload": {
+        "source_text": "On Saturday I go shopping and in the evening I watch television.",
+        "direction": "to_target",
+        "reference": [
+          "Am Samstag kaufe ich ein und am Abend sehe ich fern.",
+          "Ich kaufe am Samstag ein und ich sehe am Abend fern.",
+          "Ich kaufe am Samstag ein und sehe am Abend fern."
+        ],
+        "notes_en": "When the sentence starts with Am Samstag, the verb comes next and ich follows it: Am Samstag kaufe ich ein."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-02-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": ["de:cando:A1.SPP.03", "de:cando:A1.GRA.10"],
+      "item_ids": ["de:chunk:ich-stehe-um-auf", "de:vocab:fruehstuecken", "de:vocab:anfangen", "de:vocab:arbeiten", "de:vocab:fernsehen", "de:vocab:einkaufen"],
+      "instruction_en": "Record yourself. Take a minute to prepare first.",
+      "payload": {
+        "prompt_en": "Talk about your day in four short sentences. Say when you get up, when you have breakfast, when your work or your course starts, and one thing you do in the evening.",
+        "mode": "free",
+        "sample_answer": "Ich stehe um halb sieben auf. Ich frühstücke um sieben Uhr. Der Kurs fängt um neun Uhr an. Am Abend koche ich und ich sehe fern.",
+        "rubric_focus": [
+          "a series of simple sentences",
+          "separable verbs with the prefix at the end",
+          "clock times with um",
+          "can be understood by a patient listener"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

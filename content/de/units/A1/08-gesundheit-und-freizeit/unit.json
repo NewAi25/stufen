@@ -1,0 +1,22 @@
+{
+  "$schema": "https://stufen.app/schema/unit.json",
+  "key": "de:unit:a1-08-gesundheit-und-freizeit",
+  "level": "A1",
+  "ordinal": 8,
+  "slug": "gesundheit-und-freizeit",
+  "title": "Gesundheit und Freizeit",
+  "title_en": "Health and free time",
+  "description": "Name the parts of the body, say that you are ill and what hurts, make an appointment and answer simple questions at the doctor's, talk about free time and the weather, invite someone, and say what you did yesterday and at the weekend. Grammar: the Perfekt with haben and sein, with the participle at the end of the sentence.",
+  "theme": "health and free time",
+  "lessons": [
+    "lesson-01.json",
+    "lesson-02.json",
+    "lesson-03.json",
+    "lesson-04.json",
+    "lesson-05.json",
+    "lesson-06.json",
+    "lesson-07.json"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false
+}

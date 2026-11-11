@@ -1,0 +1,275 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-06-07",
+  "unit_key": "de:unit:a1-06-alltag-und-arbeit",
+  "ordinal": 7,
+  "slug": "wiederholung-alltag-und-arbeit",
+  "title": "Wiederholung: Alltag und Arbeit",
+  "title_en": "Review: daily life and work",
+  "description": "Mixed review of the unit: clock times, days and parts of the day, the daily routine with separable verbs, work and course words, classroom phrases, müssen and wollen, how often, and appointments. No new words.",
+  "kind": "review",
+  "estimated_minutes": 20,
+  "cando_ids": [
+    "de:cando:A1.VOC.06",
+    "de:cando:A1.GRA.12",
+    "de:cando:A1.GRA.10",
+    "de:cando:A1.GRA.09",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.LIS.03",
+    "de:cando:A1.LIS.04",
+    "de:cando:A1.REA.04",
+    "de:cando:A1.SPI.01",
+    "de:cando:A1.WRI.03",
+    "de:cando:A1.SPP.03"
+  ],
+  "introduces_item_ids": [],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-06-07-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.06"],
+      "item_ids": [
+        "de:vocab:aufstehen",
+        "de:vocab:anfangen",
+        "de:vocab:aufhoeren",
+        "de:vocab:pause",
+        "de:vocab:chef",
+        "de:vocab:hausaufgabe",
+        "de:vocab:manchmal",
+        "de:vocab:nie"
+      ],
+      "instruction_en": "Match the words from this unit with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "aufstehen", "right": "to get up" },
+          { "left": "anfangen", "right": "to start" },
+          { "left": "aufhören", "right": "to stop, to end" },
+          { "left": "die Pause", "right": "break" },
+          { "left": "der Chef", "right": "boss" },
+          { "left": "die Hausaufgabe", "right": "homework" },
+          { "left": "manchmal", "right": "sometimes" },
+          { "left": "nie", "right": "never" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-07-02",
+      "ordinal": 2,
+      "type": "flashcard",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:es-ist-halb"],
+      "instruction_en": "Say the clock time to yourself, then turn the card and rate how well you knew it.",
+      "payload": { "front": "Es ist halb drei.", "back": "It is half past two (2.30).", "hint": "Halb looks forward to the hour that is coming." },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-07-03",
+      "ordinal": 3,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:am-tag", "de:chunk:um-uhr", "de:chunk:von-bis", "de:vocab:um", "de:vocab:kurs", "de:vocab:pause"],
+      "instruction_en": "Fill in am, um, von or bis.",
+      "payload": {
+        "text": "Der Kurs ist ___ Dienstag und ___ Donnerstag, ___ neun ___ zwölf Uhr. Die Pause fängt ___ halb elf an.",
+        "blanks": [
+          { "answer": "am", "hint": "a day" },
+          { "answer": "am", "hint": "a day" },
+          { "answer": "von", "hint": "from" },
+          { "answer": "bis", "hint": "until" },
+          { "answer": "um", "hint": "a clock time" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-07-04",
+      "ordinal": 4,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.10"],
+      "item_ids": ["de:grammar:trennbare-verben", "de:vocab:aufstehen", "de:vocab:anfangen", "de:vocab:anrufen", "de:vocab:fernsehen"],
+      "instruction_en": "Separable verbs. Fill in the verb form or the prefix. The verb is under each gap.",
+      "payload": {
+        "text": "Ich ___ um sechs Uhr auf. Der Kurs fängt um neun Uhr ___. Am Abend ___ ich meine Eltern an. Tarek sieht oft ___.",
+        "blanks": [
+          { "answer": "stehe", "hint": "aufstehen, ich" },
+          { "answer": "an", "hint": "anfangen" },
+          { "answer": "rufe", "hint": "anrufen, ich" },
+          { "answer": "fern", "hint": "fernsehen" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-07-05",
+      "ordinal": 5,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09", "de:cando:A1.GRA.12"],
+      "item_ids": ["de:vocab:muessen", "de:vocab:morgen", "de:vocab:arbeiten", "de:vocab:bis", "de:grammar:satzklammer-modalverben"],
+      "instruction_en": "Put the words in the right order. Start with Ich. The infinitive goes to the end.",
+      "payload": { "words": ["bis", "arbeiten.", "morgen", "Ich", "Uhr", "sechs", "muss"], "answer": "Ich muss morgen bis sechs Uhr arbeiten." },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-07-06",
+      "ordinal": 6,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:wollen", "de:vocab:lernen", "de:grammar:modalverben-praesens"],
+      "instruction_en": "Choose the right form of wollen.",
+      "payload": { "question": "Ana ... Deutsch lernen.", "options": ["wollen", "willst", "will"], "answer_index": 2, "explanation_en": "With er, sie, es the form is will, the same as with ich." },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-07-07",
+      "ordinal": 7,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.03"],
+      "item_ids": ["de:vocab:spaet", "de:vocab:muessen", "de:vocab:koennen", "de:chunk:um-uhr", "de:vocab:halb", "de:vocab:bis"],
+      "instruction_en": "Ana leaves a voice message for Jonas. Listen for the times. Then answer the questions.",
+      "payload": {
+        "transcript": "Hallo Jonas, hier ist Ana. Ich komme heute später. Ich muss bis halb fünf arbeiten. Ich kann um fünf Uhr im Café sein. Bis später!",
+        "questions": [
+          { "question": "Bis wann muss Ana arbeiten?", "options": ["bis 16.30 Uhr", "bis 17.00 Uhr", "bis 17.30 Uhr"], "answer_index": 0 },
+          { "question": "Wann kann Ana im Café sein?", "options": ["um 16.30 Uhr", "um 17.00 Uhr", "um 15.00 Uhr"], "answer_index": 1 },
+          { "question": "Kommt Ana heute?", "options": ["Nein, sie muss arbeiten.", "Ja, aber später.", "Nein, sie kommt morgen."], "answer_index": 1 }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-07-08",
+      "ordinal": 8,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.04"],
+      "item_ids": ["de:vocab:aufgabe", "de:vocab:hausaufgabe", "de:vocab:pause", "de:vocab:schreiben", "de:vocab:morgen", "de:vocab:kurs"],
+      "instruction_en": "The teacher speaks slowly and tells the class what to do. Listen and answer the questions.",
+      "payload": {
+        "transcript": "Guten Morgen! Heute machen wir Aufgabe sieben. Schreiben Sie bitte die Antworten. Um elf Uhr machen wir eine Pause. Morgen ist kein Kurs. Die Hausaufgabe ist Aufgabe acht.",
+        "questions": [
+          { "question": "Was machen Sie heute im Kurs?", "options": ["Aufgabe 7", "Aufgabe 8", "Aufgabe 11"], "answer_index": 0 },
+          { "question": "Wann ist die Pause?", "options": ["um 7 Uhr", "um 8 Uhr", "um 11 Uhr"], "answer_index": 2 },
+          { "question": "Wann ist kein Kurs?", "options": ["heute", "morgen", "am Abend"], "answer_index": 1 }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-07-09",
+      "ordinal": 9,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.04", "de:cando:A1.GRA.12"],
+      "item_ids": ["de:vocab:kurs", "de:vocab:pause", "de:vocab:lehrerin", "de:vocab:buero", "de:chunk:von-bis", "de:vocab:mittwoch", "de:vocab:donnerstag"],
+      "instruction_en": "Read the notice from a language school. Then answer the questions.",
+      "payload": {
+        "title": "Sprachschule am Markt",
+        "text": "Deutschkurs A1\nMontag, Mittwoch und Freitag, von 8.30 bis 12 Uhr\nPause: von 10 bis 10.30 Uhr\nLehrerin: Frau Lang\nBüro: Montag bis Donnerstag, von 9 bis 16 Uhr",
+        "questions": [
+          { "question": "Wann fängt der Kurs an?", "options": ["um halb acht", "um halb neun", "um neun Uhr"], "answer_index": 1 },
+          { "question": "Bis wann ist die Pause?", "options": ["bis halb elf", "bis zehn Uhr", "bis zwölf Uhr"], "answer_index": 0 },
+          { "question": "Ist am Donnerstag Kurs?", "options": ["Ja, am Vormittag.", "Ja, am Nachmittag.", "Nein."], "answer_index": 2 },
+          { "question": "Ist das Büro am Freitag geöffnet?", "options": ["Ja, von 9 bis 16 Uhr.", "Nein, am Freitag ist das Büro geschlossen.", "Ja, bis 12 Uhr."], "answer_index": 1 }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-07-10",
+      "ordinal": 10,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.SPI.01"],
+      "item_ids": ["de:phrase:koennen-sie-das-bitte-wiederholen", "de:phrase:ich-verstehe-das-nicht", "de:phrase:noch-einmal-bitte"],
+      "instruction_en": "Choose the right phrase.",
+      "payload": {
+        "question": "Your teacher gives an instruction and you did not catch it. What do you say?",
+        "options": ["Ich verstehe das nicht. Können Sie das bitte wiederholen?", "Ich habe leider keine Zeit.", "Wann fängt der Kurs an?"],
+        "answer_index": 0,
+        "explanation_en": "You can also say: Noch einmal, bitte."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-07-11",
+      "ordinal": 11,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.01", "de:cando:A1.GRA.10"],
+      "item_ids": ["de:chunk:ich-stehe-um-auf", "de:vocab:halb", "de:vocab:aufstehen"],
+      "instruction_en": "Listen and type what you hear.",
+      "payload": { "text": "Ich stehe um halb sieben auf." },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-07-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.03", "de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:koennen", "de:chunk:hast-du-am-zeit", "de:vocab:dienstag", "de:vocab:mittwoch"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "I cannot come on Tuesday. Do you have time on Wednesday?",
+        "direction": "to_target",
+        "reference": ["Ich kann am Dienstag nicht kommen. Hast du am Mittwoch Zeit?", "Am Dienstag kann ich nicht kommen. Hast du am Mittwoch Zeit?"],
+        "notes_en": "Kommen goes to the end after kann."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-07-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": ["de:cando:A1.SPP.03", "de:cando:A1.GRA.10", "de:cando:A1.GRA.09"],
+      "item_ids": [
+        "de:chunk:ich-stehe-um-auf",
+        "de:vocab:arbeiten",
+        "de:vocab:muessen",
+        "de:vocab:wollen",
+        "de:vocab:manchmal",
+        "de:vocab:nie",
+        "de:chunk:am-tag"
+      ],
+      "instruction_en": "Record yourself. Take a minute to prepare first.",
+      "payload": {
+        "prompt_en": "Talk about your week in five short sentences. Say when you get up, on which days you work or have your course, one thing you have to do this week, one thing you want to do, and one thing you sometimes or never do on Sunday.",
+        "mode": "free",
+        "sample_answer": "Ich stehe um halb sieben auf. Ich arbeite von Montag bis Freitag. Am Mittwoch muss ich einkaufen. Am Samstag will ich Deutsch lernen. Am Sonntag arbeite ich nie.",
+        "rubric_focus": [
+          "a series of simple sentences",
+          "a separable verb with the prefix at the end",
+          "muss and will with the infinitive at the end",
+          "days with am and a clock time with um",
+          "manchmal or nie"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

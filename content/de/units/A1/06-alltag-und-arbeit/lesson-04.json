@@ -1,0 +1,247 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-06-04",
+  "unit_key": "de:unit:a1-06-alltag-und-arbeit",
+  "ordinal": 4,
+  "slug": "muessen-und-wollen",
+  "title": "Ich muss, ich will",
+  "title_en": "I have to, I want to",
+  "description": "The modal verbs müssen and wollen beside können and möchten from unit 4. The modal verb is in second position and the other verb goes to the end as an infinitive: Ich muss heute arbeiten. Ich will Deutsch lernen.",
+  "kind": "core",
+  "estimated_minutes": 22,
+  "cando_ids": ["de:cando:A1.GRA.09", "de:cando:A1.GRA.03", "de:cando:A1.VOC.06", "de:cando:A1.LIS.02", "de:cando:A1.REA.02", "de:cando:A1.WRI.01"],
+  "introduces_item_ids": ["de:vocab:wollen", "de:vocab:lernen", "de:vocab:morgen", "de:vocab:pruefung", "de:vocab:urlaub"],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-06-04-01",
+      "ordinal": 1,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.06"],
+      "item_ids": ["de:chunk:ich-arbeite-als", "de:vocab:chef", "de:vocab:pause", "de:vocab:arbeit"],
+      "instruction_en": "Warm up with words from the last lesson. The English word is under each gap.",
+      "payload": {
+        "text": "Ich ___ als Verkäuferin. Mein ___ heißt Herr Kaya. Die ___ fängt um acht Uhr an. Um zwölf Uhr machen wir eine ___.",
+        "blanks": [
+          { "answer": "arbeite", "hint": "work" },
+          { "answer": "Chef", "hint": "boss" },
+          { "answer": "Arbeit", "hint": "work (noun)" },
+          { "answer": "Pause", "hint": "break" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-04-02",
+      "ordinal": 2,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09", "de:cando:A1.GRA.03"],
+      "item_ids": ["de:phrase:kann-ich-mit-karte-zahlen", "de:vocab:koennen", "de:grammar:satzklammer-modalverben"],
+      "instruction_en": "Warm up. You know this question from the shop. Put the words in the right order.",
+      "payload": { "words": ["Karte", "ich", "zahlen?", "Kann", "mit"], "answer": "Kann ich mit Karte zahlen?" },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-04-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02", "de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:muessen", "de:vocab:wollen", "de:vocab:lernen", "de:vocab:morgen", "de:vocab:arbeiten", "de:phrase:was-machst-du-heute-abend"],
+      "instruction_en": "Ana asks Tarek about his plans. Ich muss means I have to, ich will means I want to, morgen means tomorrow and lernen means to learn. Listen and answer the questions.",
+      "payload": {
+        "transcript": "Hallo Tarek! Was machst du heute Abend? Ich muss heute bis acht Uhr arbeiten. Und morgen? Morgen muss ich nicht arbeiten. Ich will am Vormittag Deutsch lernen. Am Abend möchte ich kochen.",
+        "questions": [
+          { "question": "Was muss Tarek heute machen?", "options": ["arbeiten", "kochen", "Deutsch lernen"], "answer_index": 0 },
+          { "question": "Muss Tarek morgen arbeiten?", "options": ["Ja, bis acht Uhr.", "Ja, am Vormittag.", "Nein."], "answer_index": 2 },
+          { "question": "Was will Tarek morgen am Vormittag machen?", "options": ["einkaufen", "Deutsch lernen", "fernsehen"], "answer_index": 1 }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-04-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.02", "de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:muessen", "de:vocab:wollen", "de:vocab:koennen", "de:vocab:lernen", "de:vocab:pruefung", "de:vocab:morgen", "de:vocab:zeit"],
+      "instruction_en": "Read the message from Ana. Die Prüfung is the exam. Look at where the second verb stands in each sentence. Then answer the questions.",
+      "payload": {
+        "text": "Hallo Jonas,\nich kann morgen nicht kommen. Ich muss bis sechs Uhr arbeiten und am Abend muss ich lernen. Am Freitag ist die Prüfung. Am Samstag habe ich Zeit. Wollen wir am Samstag zusammen kochen?\nAna",
+        "questions": [
+          { "question": "Kann Ana morgen kommen?", "options": ["Ja.", "Nein.", "Ja, am Abend."], "answer_index": 1 },
+          { "question": "Was muss Ana morgen am Abend machen?", "options": ["lernen", "kochen", "einkaufen"], "answer_index": 0 },
+          { "question": "Wann ist die Prüfung?", "options": ["morgen", "am Samstag", "am Freitag"], "answer_index": 2 },
+          { "question": "Was will Ana am Samstag machen?", "options": ["arbeiten", "kochen", "lernen"], "answer_index": 1 }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-04-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:muessen", "de:vocab:wollen", "de:vocab:koennen", "de:vocab:moechten", "de:grammar:modalverben-praesens"],
+      "instruction_en": "Four modal verbs. Match each sentence with its meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "Ich muss arbeiten.", "right": "I have to work." },
+          { "left": "Ich will arbeiten.", "right": "I want to work." },
+          { "left": "Ich kann arbeiten.", "right": "I can work." },
+          { "left": "Ich möchte arbeiten.", "right": "I would like to work." }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-04-06",
+      "ordinal": 6,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:muessen", "de:grammar:modalverben-praesens", "de:vocab:hausaufgabe", "de:vocab:morgen"],
+      "instruction_en": "Fill in the right form of müssen: muss, musst or müssen. Ich and er, sie, es have the same form.",
+      "payload": {
+        "text": "Ich ___ heute arbeiten. ___ du morgen arbeiten? Tarek ___ am Abend lernen. Wir ___ die Hausaufgaben machen.",
+        "blanks": [
+          { "answer": "muss", "hint": "ich" },
+          { "answer": "Musst", "hint": "du" },
+          { "answer": "muss", "hint": "er" },
+          { "answer": "müssen", "hint": "wir" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-04-07",
+      "ordinal": 7,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:wollen", "de:grammar:modalverben-praesens", "de:vocab:lernen", "de:vocab:urlaub", "de:vocab:einkaufen"],
+      "instruction_en": "Fill in the right form of wollen: will, willst or wollen. Urlaub machen means to go on holiday.",
+      "payload": {
+        "text": "Ich ___ Deutsch lernen. Was ___ du heute Abend machen? Ana ___ Urlaub machen. Wir ___ am Samstag einkaufen.",
+        "blanks": [
+          { "answer": "will", "hint": "ich" },
+          { "answer": "willst", "hint": "du" },
+          { "answer": "will", "hint": "sie" },
+          { "answer": "wollen", "hint": "wir" }
+        ],
+        "explanation_en": "Like kann and muss, will has no ending with ich and with er, sie, es."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-04-08",
+      "ordinal": 8,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09", "de:cando:A1.GRA.03"],
+      "item_ids": ["de:grammar:satzklammer-modalverben", "de:vocab:muessen", "de:vocab:heute"],
+      "instruction_en": "Where does the second verb go? Choose the right sentence.",
+      "payload": {
+        "question": "Which sentence is right?",
+        "options": ["Ich muss arbeiten heute.", "Ich heute muss arbeiten.", "Ich muss heute arbeiten."],
+        "answer_index": 2,
+        "explanation_en": "The modal verb muss is in second position. The infinitive arbeiten goes to the end."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-04-09",
+      "ordinal": 9,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:muessen", "de:vocab:wollen", "de:vocab:moechten", "de:vocab:samstag"],
+      "instruction_en": "Müssen or wollen? Choose the sentence that fits.",
+      "payload": {
+        "question": "Your boss says you are on the plan for Saturday. You have no choice. What do you tell your friend?",
+        "options": ["Ich will am Samstag arbeiten.", "Ich muss am Samstag arbeiten.", "Ich möchte am Samstag arbeiten."],
+        "answer_index": 1,
+        "explanation_en": "Müssen is for what you have to do. Wollen and möchten are for what you want. Ich möchte is more polite than ich will."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-04-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09", "de:cando:A1.GRA.03"],
+      "item_ids": ["de:vocab:wollen", "de:vocab:lernen", "de:grammar:satzklammer-modalverben", "de:vocab:abend"],
+      "instruction_en": "Put the words in the right order. Start with Ich. The infinitive goes to the end.",
+      "payload": { "words": ["Deutsch", "am", "lernen.", "Ich", "Abend", "will"], "answer": "Ich will am Abend Deutsch lernen." },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-04-11",
+      "ordinal": 11,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:muessen", "de:vocab:aufstehen", "de:vocab:morgen", "de:vocab:frueh", "de:grammar:satzklammer-modalverben"],
+      "instruction_en": "Put the words in the right order. After a modal verb a separable verb stays in one piece at the end. Morgen früh means tomorrow morning.",
+      "payload": { "words": ["früh", "aufstehen.", "Ich", "morgen", "muss"], "answer": "Ich muss morgen früh aufstehen." },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-04-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:wollen", "de:vocab:muessen", "de:vocab:lernen", "de:vocab:morgen", "de:vocab:arbeiten"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "I want to learn German, but tomorrow I have to work.",
+        "direction": "to_target",
+        "reference": ["Ich will Deutsch lernen, aber morgen muss ich arbeiten.", "Ich will Deutsch lernen, aber ich muss morgen arbeiten."],
+        "notes_en": "Both infinitives go to the end of their part of the sentence: lernen and arbeiten."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-04-13",
+      "ordinal": 13,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:muessen", "de:vocab:wollen", "de:vocab:moechten", "de:vocab:arbeiten", "de:vocab:lernen", "de:vocab:einkaufen"],
+      "instruction_en": "Write about your week in German.",
+      "payload": {
+        "prompt_en": "Write four short sentences about this week. Say two things you have to do with ich muss, and two things you want to do with ich will or ich möchte. Give a day or a part of the day in each sentence.",
+        "min_words": 16,
+        "max_words": 50,
+        "sample_answer": "Ich muss am Montag arbeiten. Am Dienstag muss ich einkaufen. Ich will am Abend Deutsch lernen. Am Samstag möchte ich spät aufstehen.",
+        "rubric_focus": [
+          "muss and will or möchte in second position",
+          "infinitive at the end of the sentence",
+          "a day or a part of the day with am",
+          "four simple sentences"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

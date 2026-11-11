@@ -1,0 +1,386 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-05-07",
+  "unit_key": "de:unit:a1-05-wohnen",
+  "ordinal": 7,
+  "slug": "wiederholung-wohnen",
+  "title": "Wiederholung: Wohnen",
+  "title_en": "Review: housing and home",
+  "description": "Mixed review of the unit: rooms and furniture, where things are, housing adverts and questions to the landlord, saying that something is broken, notices and notes. No new words.",
+  "kind": "review",
+  "estimated_minutes": 18,
+  "cando_ids": [
+    "de:cando:A1.VOC.05",
+    "de:cando:A1.GRA.12",
+    "de:cando:A1.GRA.07",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.REA.04",
+    "de:cando:A1.REA.03",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.WRI.04",
+    "de:cando:A1.SPI.01"
+  ],
+  "introduces_item_ids": [],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-05-07-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:schlafzimmer",
+        "de:vocab:kueche",
+        "de:vocab:schrank",
+        "de:vocab:stuhl",
+        "de:vocab:kuehlschrank",
+        "de:vocab:fenster",
+        "de:vocab:treppe",
+        "de:vocab:schluessel"
+      ],
+      "instruction_en": "Match the words with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "das Schlafzimmer", "right": "bedroom" },
+          { "left": "die Küche", "right": "kitchen" },
+          { "left": "der Schrank", "right": "wardrobe, cupboard" },
+          { "left": "der Stuhl", "right": "chair" },
+          { "left": "der Kühlschrank", "right": "fridge" },
+          { "left": "das Fenster", "right": "window" },
+          { "left": "die Treppe", "right": "stairs" },
+          { "left": "der Schlüssel", "right": "key" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-07-02",
+      "ordinal": 2,
+      "type": "flashcard",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.05"],
+      "item_ids": ["de:vocab:miete"],
+      "instruction_en": "Say the meaning to yourself, then turn the card and rate how well you knew it.",
+      "payload": {
+        "front": "die Miete",
+        "back": "the rent",
+        "hint": "Wie hoch ist die Miete?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-07-03",
+      "ordinal": 3,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.05"],
+      "item_ids": ["de:vocab:waschmaschine", "de:vocab:kuehlschrank", "de:vocab:herd"],
+      "instruction_en": "Choose the right word.",
+      "payload": {
+        "question": "You want to wash your clothes. What do you need?",
+        "options": ["der Kühlschrank", "der Herd", "die Waschmaschine"],
+        "answer_index": 2
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-07-04",
+      "ordinal": 4,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.12"],
+      "item_ids": [
+        "de:chunk:ich-bin-in",
+        "de:chunk:liegt-auf",
+        "de:chunk:ist-zwischen",
+        "de:vocab:tisch",
+        "de:vocab:bett",
+        "de:vocab:schluessel",
+        "de:vocab:stuhl"
+      ],
+      "instruction_en": "Say where the things are. Fill in der, dem or im.",
+      "payload": {
+        "text": "Der Tisch steht in ___ Küche. Das Bett steht ___ Schlafzimmer. Der Schlüssel liegt auf ___ Schrank. Der Stuhl steht zwischen ___ Tisch und ___ Tür.",
+        "blanks": [
+          { "answer": "der", "hint": "die Küche" },
+          { "answer": "im", "hint": "in dem" },
+          { "answer": "dem", "hint": "der Schrank" },
+          { "answer": "dem", "hint": "der Tisch" },
+          { "answer": "der", "hint": "die Tür" }
+        ],
+        "explanation_en": "When you say where something is, die becomes der, and der and das become dem."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-07-05",
+      "ordinal": 5,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.07"],
+      "item_ids": [
+        "de:grammar:negation-nicht",
+        "de:grammar:negation-kein",
+        "de:vocab:heizung",
+        "de:vocab:aufzug",
+        "de:vocab:laut",
+        "de:vocab:waschmaschine"
+      ],
+      "instruction_en": "Fill in nicht or the right form of kein.",
+      "payload": {
+        "text": "Die Heizung funktioniert ___. Das Haus hat ___ Aufzug. Die Wohnung ist ___ laut. Wir haben ___ Waschmaschine.",
+        "blanks": [
+          { "answer": "nicht", "hint": "after the verb" },
+          { "answer": "keinen", "hint": "der Aufzug" },
+          { "answer": "nicht", "hint": "before laut" },
+          { "answer": "keine", "hint": "die Waschmaschine" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-07-06",
+      "ordinal": 6,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03"],
+      "item_ids": ["de:phrase:wann-kann-ich-einziehen"],
+      "instruction_en": "Put the words in the right order to make a question.",
+      "payload": {
+        "words": ["ich", "einziehen?", "Wann", "kann"],
+        "answer": "Wann kann ich einziehen?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-07-07",
+      "ordinal": 7,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02", "de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:wohnzimmer",
+        "de:vocab:kueche",
+        "de:vocab:hell",
+        "de:phrase:wie-hoch-ist-die-miete",
+        "de:phrase:wann-kann-ich-einziehen",
+        "de:vocab:miete"
+      ],
+      "instruction_en": "Listen. Frau Okafor looks at a flat with the landlord. Then answer the questions.",
+      "payload": {
+        "transcript": "Guten Tag, Frau Okafor. Das ist die Wohnung. Hier ist das Wohnzimmer. Das Wohnzimmer ist groß und hell. Die Küche ist klein, aber neu. Wie hoch ist die Miete? Die Miete ist siebenhundert Euro. Wann kann ich einziehen? Ab Montag.",
+        "questions": [
+          {
+            "question": "Wie ist die Küche?",
+            "options": ["groß und hell", "klein und neu", "alt und klein"],
+            "answer_index": 1
+          },
+          {
+            "question": "Wie hoch ist die Miete?",
+            "options": ["700 Euro", "600 Euro", "170 Euro"],
+            "answer_index": 0
+          },
+          {
+            "question": "Wann kann Frau Okafor einziehen?",
+            "options": ["ab Samstag", "ab Montag"],
+            "answer_index": 1
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-07-08",
+      "ordinal": 8,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02", "de:cando:A1.GRA.07"],
+      "item_ids": [
+        "de:vocab:waschmaschine",
+        "de:vocab:licht",
+        "de:chunk:ist-kaputt",
+        "de:vocab:kaputt",
+        "de:grammar:negation-nicht",
+        "de:vocab:freitag"
+      ],
+      "instruction_en": "Listen to the voice message for the landlord. Then answer the questions.",
+      "payload": {
+        "transcript": "Guten Tag, Herr Krause. Hier ist Tom Berger. Die Waschmaschine ist kaputt und das Licht in der Küche funktioniert nicht. Können Sie am Freitag kommen? Danke!",
+        "questions": [
+          {
+            "question": "Was ist kaputt?",
+            "options": ["der Herd", "die Waschmaschine", "die Dusche"],
+            "answer_index": 1
+          },
+          {
+            "question": "Wo funktioniert das Licht nicht?",
+            "options": ["in der Küche", "im Bad", "im Schlafzimmer"],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-07-09",
+      "ordinal": 9,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.04", "de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:miete",
+        "de:vocab:vermieter",
+        "de:vocab:stock",
+        "de:vocab:aufzug",
+        "de:vocab:balkon",
+        "de:chunk:die-wohnung-hat-zimmer"
+      ],
+      "instruction_en": "Read the housing advert. Then answer the questions.",
+      "payload": {
+        "title": "Wohnung frei",
+        "text": "3-Zimmer-Wohnung in Hamburg\n70 m², Küche, Bad und Balkon\n1. Stock, kein Aufzug\nMiete: 900 Euro\nFrei ab sofort\nVermieter: Frau Lang, Telefon 040 555 01 77",
+        "questions": [
+          {
+            "question": "Wie hoch ist die Miete?",
+            "options": ["700 Euro", "900 Euro", "1000 Euro"],
+            "answer_index": 1
+          },
+          {
+            "question": "Wie groß ist die Wohnung?",
+            "options": ["70 m²", "90 m²", "3 m²"],
+            "answer_index": 0
+          },
+          {
+            "question": "Gibt es einen Aufzug?",
+            "options": ["Ja.", "Nein."],
+            "answer_index": 1
+          },
+          {
+            "question": "Wann ist die Wohnung frei?",
+            "options": ["ab sofort", "ab 1. Mai"],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-07-10",
+      "ordinal": 10,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.03", "de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:heizung",
+        "de:vocab:kaputt",
+        "de:vocab:reparatur",
+        "de:vocab:nachbar",
+        "de:vocab:vermieter",
+        "de:vocab:wasser"
+      ],
+      "instruction_en": "Read the notice in the stairwell. Then answer the questions.",
+      "payload": {
+        "title": "Ein Zettel im Haus",
+        "text": "Liebe Nachbarn,\ndie Heizung im Haus ist kaputt. Die Reparatur ist am Freitag von 8 bis 12 Uhr. Am Freitag gibt es bis 12 Uhr kein Wasser.\nDanke!\nJ. Krause, Vermieter",
+        "questions": [
+          {
+            "question": "Was ist kaputt?",
+            "options": ["der Aufzug", "das Licht", "die Heizung"],
+            "answer_index": 2
+          },
+          {
+            "question": "Wann ist die Reparatur?",
+            "options": ["am Freitag", "am Samstag", "am Montag"],
+            "answer_index": 0
+          },
+          {
+            "question": "Was gibt es am Freitag bis 12 Uhr nicht?",
+            "options": ["Licht", "Wasser", "Müll"],
+            "answer_index": 1
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-07-11",
+      "ordinal": 11,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.01", "de:cando:A1.GRA.07"],
+      "item_ids": ["de:vocab:licht", "de:vocab:bad", "de:grammar:negation-nicht"],
+      "instruction_en": "Listen and type what you hear.",
+      "payload": {
+        "text": "Das Licht im Bad funktioniert nicht."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-07-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.04", "de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:ich-bin-in", "de:chunk:liegt-auf", "de:vocab:schluessel", "de:vocab:tisch"],
+      "instruction_en": "Translate into German. This is a note for your flatmate.",
+      "payload": {
+        "source_text": "I am at the supermarket. The key is on the table.",
+        "direction": "to_target",
+        "reference": [
+          "Ich bin im Supermarkt. Der Schlüssel liegt auf dem Tisch.",
+          "Ich bin im Supermarkt. Der Schlüssel ist auf dem Tisch."
+        ],
+        "notes_en": "im Supermarkt and auf dem Tisch are fixed chunks."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-07-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.01", "de:cando:A1.VOC.05", "de:cando:A1.GRA.07"],
+      "item_ids": [
+        "de:chunk:ich-wohne-im-stock",
+        "de:chunk:die-wohnung-hat-zimmer",
+        "de:vocab:oben",
+        "de:vocab:unten",
+        "de:chunk:ist-kaputt",
+        "de:vocab:nachbar",
+        "de:vocab:hell",
+        "de:vocab:ruhig"
+      ],
+      "instruction_en": "Roleplay. You meet a new neighbour on the stairs. Record your part.",
+      "payload": {
+        "prompt_en": "A new neighbour says: Hallo! Ich bin Ihr Nachbar. Wo wohnen Sie? Und wie ist Ihre Wohnung? Greet him, say which floor you live on, say how many rooms your flat has and what it is like, and say one thing that is broken or does not work.",
+        "prompt_native": "Hallo! Ich bin Ihr Nachbar. Wo wohnen Sie? Und wie ist Ihre Wohnung?",
+        "mode": "free",
+        "sample_answer": "Hallo! Ich wohne oben, im dritten Stock. Meine Wohnung hat zwei Zimmer. Die Wohnung ist klein, aber hell und ruhig. Der Aufzug ist kaputt und das Licht im Bad funktioniert nicht.",
+        "rubric_focus": [
+          "answers both questions",
+          "im ... Stock, oben or unten",
+          "Die Wohnung hat ... Zimmer and two describing words",
+          "ist kaputt or funktioniert nicht",
+          "can be understood by a patient listener"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

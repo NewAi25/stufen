@@ -1,0 +1,567 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-08-02",
+  "unit_key": "de:unit:a1-08-gesundheit-und-freizeit",
+  "ordinal": 2,
+  "slug": "beim-arzt",
+  "title": "Beim Arzt",
+  "title_en": "At the doctor's",
+  "description": "Make an appointment in very simple words, tell the doctor what the problem is and answer simple questions such as Was fehlt Ihnen?, Wo tut es weh? and Tut das weh? Understand simple instructions at the practice. Words: Arzt, Ärztin, Praxis, Termin, Medikament, Rezept, Krankenkasse and Apotheke.",
+  "kind": "core",
+  "estimated_minutes": 22,
+  "cando_ids": [
+    "de:cando:A1.SPI.05",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.LIS.04",
+    "de:cando:A1.VOC.08",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.REA.01",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.GRA.09",
+    "de:cando:A1.WRI.01"
+  ],
+  "introduces_item_ids": ["de:vocab:arzt", "de:vocab:aerztin", "de:vocab:doktor", "de:vocab:praxis", "de:vocab:medikament", "de:vocab:rezept", "de:vocab:krankenkasse", "de:vocab:platz", "de:vocab:oeffnen", "de:phrase:ich-brauche-einen-termin", "de:phrase:ich-habe-einen-termin", "de:phrase:ich-muss-zum-arzt", "de:phrase:was-fehlt-ihnen", "de:phrase:wo-tut-es-weh", "de:phrase:tut-das-weh"],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-08-02-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:phrase:ich-bin-krank",
+        "de:chunk:mein-tut-weh",
+        "de:vocab:fieber",
+        "de:phrase:mir-geht-es-nicht-gut",
+        "de:phrase:gute-besserung"
+      ],
+      "instruction_en": "Warm up. Match the sentences from the last lesson with their English meaning.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "Ich bin krank.",
+            "right": "I am ill."
+          },
+          {
+            "left": "Mein Rücken tut weh.",
+            "right": "My back hurts."
+          },
+          {
+            "left": "Ich habe Fieber.",
+            "right": "I have a fever."
+          },
+          {
+            "left": "Mir geht es nicht gut.",
+            "right": "I am not feeling well."
+          },
+          {
+            "left": "Gute Besserung!",
+            "right": "Get well soon!"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-02-02",
+      "ordinal": 2,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.09"
+      ],
+      "item_ids": [
+        "de:grammar:modalverben-praesens",
+        "de:vocab:koennen",
+        "de:vocab:muessen",
+        "de:phrase:ich-muss-zum-arzt"
+      ],
+      "instruction_en": "Warm up. Fill in kann or muss.",
+      "payload": {
+        "text": "Ich bin krank. Ich ___ heute nicht arbeiten. Ich ___ zum Arzt.",
+        "blanks": [
+          {
+            "answer": "kann",
+            "hint": "können: I cannot"
+          },
+          {
+            "answer": "muss",
+            "hint": "müssen: I have to"
+          }
+        ],
+        "explanation_en": "Ich muss zum Arzt is short for Ich muss zum Arzt gehen. People often leave gehen out."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-02-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.02",
+        "de:cando:A1.SPI.05"
+      ],
+      "item_ids": [
+        "de:vocab:praxis",
+        "de:vocab:doktor",
+        "de:phrase:ich-brauche-einen-termin",
+        "de:phrase:was-fehlt-ihnen",
+        "de:vocab:fieber",
+        "de:vocab:termin",
+        "de:vocab:krankenkasse",
+        "de:vocab:karte"
+      ],
+      "instruction_en": "Samir Haddad phones the doctor's practice. Listen for his problem and for the time. On the phone people say Auf Wiederhören for goodbye. Then answer the questions.",
+      "payload": {
+        "transcript": "Praxis Doktor Weber, guten Morgen. Guten Morgen, mein Name ist Samir Haddad. Ich bin krank. Ich brauche einen Termin. Was fehlt Ihnen, Herr Haddad? Ich habe Fieber und mein Hals tut weh. Können Sie heute um elf Uhr kommen? Ja, um elf Uhr ist gut. Gut. Bringen Sie bitte Ihre Karte von der Krankenkasse mit. Ja, danke. Auf Wiederhören.",
+        "questions": [
+          {
+            "question": "Was braucht Herr Haddad?",
+            "options": [
+              "einen Termin",
+              "ein Formular",
+              "eine Fahrkarte"
+            ],
+            "answer_index": 0
+          },
+          {
+            "question": "Was hat Herr Haddad?",
+            "options": [
+              "Er hat Kopfschmerzen.",
+              "Er hat Fieber und sein Hals tut weh.",
+              "Sein Rücken tut weh."
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Wann ist der Termin?",
+            "options": [
+              "heute um zehn Uhr",
+              "morgen um elf Uhr",
+              "heute um elf Uhr"
+            ],
+            "answer_index": 2
+          },
+          {
+            "question": "Was muss Herr Haddad mitbringen?",
+            "options": [
+              "die Karte von der Krankenkasse",
+              "ein Medikament"
+            ],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-02-04",
+      "ordinal": 4,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.04"
+      ],
+      "item_ids": [
+        "de:phrase:ich-habe-einen-termin",
+        "de:vocab:karte",
+        "de:vocab:platz",
+        "de:vocab:warten",
+        "de:vocab:zimmer"
+      ],
+      "instruction_en": "Now Samir is at the practice. Listen to what the receptionist tells him to do. Then answer the questions.",
+      "payload": {
+        "transcript": "Guten Tag. Ich habe einen Termin um elf Uhr. Mein Name ist Haddad. Guten Tag, Herr Haddad. Ihre Karte, bitte. Danke. Nehmen Sie bitte Platz und warten Sie hier. Herr Haddad? Gehen Sie bitte in Zimmer zwei.",
+        "questions": [
+          {
+            "question": "What does the receptionist ask for first?",
+            "options": [
+              "his card",
+              "his prescription",
+              "his telephone number"
+            ],
+            "answer_index": 0
+          },
+          {
+            "question": "What should Samir do then?",
+            "options": [
+              "go to the pharmacy",
+              "sit down and wait",
+              "come back tomorrow"
+            ],
+            "answer_index": 1,
+            "explanation_en": "Nehmen Sie bitte Platz means please take a seat."
+          },
+          {
+            "question": "Which room does he go to?",
+            "options": [
+              "Zimmer zwölf",
+              "Zimmer drei",
+              "Zimmer zwei"
+            ],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-02-05",
+      "ordinal": 5,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": [
+        "de:cando:A1.REA.01",
+        "de:cando:A1.SPI.05"
+      ],
+      "item_ids": [
+        "de:vocab:aerztin",
+        "de:phrase:was-fehlt-ihnen",
+        "de:phrase:wo-tut-es-weh",
+        "de:phrase:tut-das-weh",
+        "de:vocab:medikament",
+        "de:vocab:rezept",
+        "de:vocab:apotheke",
+        "de:vocab:oeffnen",
+        "de:vocab:mund"
+      ],
+      "instruction_en": "Read the conversation in the doctor's room. Then answer the questions.",
+      "payload": {
+        "title": "Bei der Ärztin",
+        "text": "Ärztin: Guten Tag, Herr Haddad. Was fehlt Ihnen?\nSamir: Guten Tag, Frau Doktor. Ich habe Fieber und Schmerzen.\nÄrztin: Wo tut es weh?\nSamir: Hier. Mein Hals tut weh.\nÄrztin: Öffnen Sie bitte den Mund. Tut das weh?\nSamir: Ja, das tut sehr weh.\nÄrztin: Sie brauchen ein Medikament. Hier ist das Rezept. Gehen Sie bitte zur Apotheke. Trinken Sie viel Tee und schlafen Sie viel.\nSamir: Vielen Dank.\nÄrztin: Gute Besserung!",
+        "questions": [
+          {
+            "question": "Wo tut es weh?",
+            "options": [
+              "Der Bauch tut weh.",
+              "Der Hals tut weh.",
+              "Der Kopf tut weh."
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Was muss Samir öffnen?",
+            "options": [
+              "den Mund",
+              "die Tür",
+              "das Fenster"
+            ],
+            "answer_index": 0
+          },
+          {
+            "question": "Was braucht Samir?",
+            "options": [
+              "einen Termin",
+              "ein Medikament"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Wo kauft Samir das Medikament?",
+            "options": [
+              "in der Praxis",
+              "im Supermarkt",
+              "in der Apotheke"
+            ],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-02-06",
+      "ordinal": 6,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:vocab:arzt",
+        "de:vocab:aerztin",
+        "de:vocab:praxis",
+        "de:vocab:termin",
+        "de:vocab:medikament",
+        "de:vocab:rezept",
+        "de:vocab:krankenkasse",
+        "de:vocab:apotheke"
+      ],
+      "instruction_en": "Match the words with their English meaning.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "der Arzt",
+            "right": "doctor (man)"
+          },
+          {
+            "left": "die Ärztin",
+            "right": "doctor (woman)"
+          },
+          {
+            "left": "die Praxis",
+            "right": "doctor's practice"
+          },
+          {
+            "left": "der Termin",
+            "right": "appointment"
+          },
+          {
+            "left": "das Medikament",
+            "right": "medicine"
+          },
+          {
+            "left": "das Rezept",
+            "right": "prescription"
+          },
+          {
+            "left": "die Krankenkasse",
+            "right": "health insurance fund"
+          },
+          {
+            "left": "die Apotheke",
+            "right": "pharmacy"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-02-07",
+      "ordinal": 7,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.SPI.05",
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:phrase:was-fehlt-ihnen",
+        "de:phrase:wo-tut-es-weh",
+        "de:phrase:tut-das-weh",
+        "de:phrase:ich-habe-einen-termin",
+        "de:vocab:krankenkasse"
+      ],
+      "instruction_en": "Match each question with a fitting answer.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "Was fehlt Ihnen?",
+            "right": "Ich habe Fieber und Kopfschmerzen."
+          },
+          {
+            "left": "Wo tut es weh?",
+            "right": "Hier. Mein Rücken tut weh."
+          },
+          {
+            "left": "Tut das weh?",
+            "right": "Ja, das tut sehr weh."
+          },
+          {
+            "left": "Haben Sie einen Termin?",
+            "right": "Ja, um zehn Uhr."
+          },
+          {
+            "left": "Haben Sie Ihre Karte von der Krankenkasse?",
+            "right": "Ja, hier ist die Karte."
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-02-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:vocab:termin",
+        "de:vocab:medikament",
+        "de:vocab:rezept",
+        "de:vocab:apotheke",
+        "de:vocab:praxis"
+      ],
+      "instruction_en": "Fill in Termin, Medikament, Rezept or Apotheke.",
+      "payload": {
+        "text": "Ich bin krank. Ich brauche einen ___ bei der Ärztin. Die Ärztin sagt: Sie brauchen ein ___. Hier ist das ___. Die ___ ist neben der Praxis.",
+        "blanks": [
+          {
+            "answer": "Termin",
+            "hint": "appointment"
+          },
+          {
+            "answer": "Medikament",
+            "hint": "medicine"
+          },
+          {
+            "answer": "Rezept",
+            "hint": "prescription"
+          },
+          {
+            "answer": "Apotheke",
+            "hint": "pharmacy"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-02-09",
+      "ordinal": 9,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.SPI.05",
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:phrase:wo-tut-es-weh",
+        "de:chunk:mein-tut-weh",
+        "de:phrase:ich-brauche-einen-termin"
+      ],
+      "instruction_en": "Choose the answer that fits the doctor's question.",
+      "payload": {
+        "question": "Die Ärztin fragt: Wo tut es weh?",
+        "options": [
+          "Ich brauche einen Termin.",
+          "Um elf Uhr.",
+          "Mein Bauch tut weh.",
+          "Nein, danke."
+        ],
+        "answer_index": 2,
+        "explanation_en": "Wo tut es weh? asks where it hurts, so you name the part of the body. You can also point and say Hier."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-02-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.09",
+        "de:cando:A1.GRA.03"
+      ],
+      "item_ids": [
+        "de:grammar:satzklammer-modalverben",
+        "de:vocab:koennen",
+        "de:vocab:kommen",
+        "de:vocab:morgen"
+      ],
+      "instruction_en": "Put the words in the right order. The receptionist offers you a time.",
+      "payload": {
+        "words": [
+          "Sie",
+          "Uhr",
+          "morgen",
+          "um",
+          "neun",
+          "Können",
+          "kommen?"
+        ],
+        "answer": "Können Sie morgen um neun Uhr kommen?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-02-11",
+      "ordinal": 11,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.01",
+        "de:cando:A1.SPI.05"
+      ],
+      "item_ids": [
+        "de:phrase:wo-tut-es-weh",
+        "de:chunk:mein-tut-weh",
+        "de:vocab:bauch"
+      ],
+      "instruction_en": "Listen and type what you hear.",
+      "payload": {
+        "text": "Wo tut es weh? Mein Bauch tut weh."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-02-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.01",
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:phrase:ich-brauche-einen-termin",
+        "de:phrase:ich-bin-krank",
+        "de:vocab:termin"
+      ],
+      "instruction_en": "Translate into German. This is how you ask for an appointment.",
+      "payload": {
+        "source_text": "Good morning. I am ill. I need an appointment.",
+        "direction": "to_target",
+        "reference": [
+          "Guten Morgen. Ich bin krank. Ich brauche einen Termin.",
+          "Guten Morgen! Ich bin krank. Ich brauche einen Termin."
+        ],
+        "notes_en": "Termin is a der word, so after brauchen it is einen Termin."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-02-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": [
+        "de:cando:A1.SPI.05",
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:phrase:was-fehlt-ihnen",
+        "de:phrase:wo-tut-es-weh",
+        "de:chunk:mein-tut-weh",
+        "de:chunk:ich-habe-schmerzen",
+        "de:vocab:fieber",
+        "de:vocab:medikament"
+      ],
+      "instruction_en": "Roleplay. You are the patient in the doctor's room. Record your part. You may point while you speak.",
+      "payload": {
+        "prompt_en": "The doctor says: Guten Tag. Was fehlt Ihnen? Wo tut es weh? Haben Sie Fieber? Greet the doctor, say what the problem is, say where it hurts and say whether you have a fever. At the end say thank you.",
+        "prompt_native": "Guten Tag. Was fehlt Ihnen? Wo tut es weh? Haben Sie Fieber?",
+        "mode": "free",
+        "sample_answer": "Guten Tag, Frau Doktor. Mir geht es nicht gut. Ich habe Bauchschmerzen. Hier tut es weh. Ich habe kein Fieber. Vielen Dank.",
+        "rubric_focus": [
+          "says what the problem is in simple words",
+          "answers where it hurts with a part of the body or with hier",
+          "answers the question about fever with ja or nein or kein",
+          "polite greeting and thanks",
+          "can be understood by a patient listener"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

@@ -1,0 +1,388 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-05-02",
+  "unit_key": "de:unit:a1-05-wohnen",
+  "ordinal": 2,
+  "slug": "moebel-und-wo-sie-stehen",
+  "title": "Wo ist der Schlüssel?",
+  "title_en": "Where is the key?",
+  "description": "Furniture and things at home, and where they are. The words in, an, auf, neben, vor, hinter and zwischen are learned as fixed chunks with the form that follows them: in der Küche, im Bad, am Fenster, auf dem Tisch, neben dem Bett, vor der Tür, hinter dem Sofa, zwischen dem Bett und dem Schrank.",
+  "kind": "core",
+  "estimated_minutes": 22,
+  "cando_ids": [
+    "de:cando:A1.VOC.05",
+    "de:cando:A1.GRA.12",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.REA.01",
+    "de:cando:A1.WRI.01",
+    "de:cando:A1.SPP.01"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:moebel",
+    "de:vocab:tisch",
+    "de:vocab:stuhl",
+    "de:vocab:bett",
+    "de:vocab:schrank",
+    "de:vocab:sofa",
+    "de:vocab:lampe",
+    "de:vocab:kuehlschrank",
+    "de:vocab:schluessel",
+    "de:vocab:tuer",
+    "de:chunk:ich-bin-in",
+    "de:chunk:liegt-auf",
+    "de:chunk:ist-neben",
+    "de:chunk:steht-vor",
+    "de:chunk:ist-hinter",
+    "de:chunk:ist-zwischen"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-05-02-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:wohnzimmer",
+        "de:vocab:schlafzimmer",
+        "de:vocab:kueche",
+        "de:vocab:bad",
+        "de:vocab:balkon",
+        "de:vocab:fenster"
+      ],
+      "instruction_en": "Warm up. Match the words from the last lesson with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "das Wohnzimmer", "right": "living room" },
+          { "left": "das Schlafzimmer", "right": "bedroom" },
+          { "left": "die Küche", "right": "kitchen" },
+          { "left": "das Bad", "right": "bathroom" },
+          { "left": "der Balkon", "right": "balcony" },
+          { "left": "das Fenster", "right": "window" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-02-02",
+      "ordinal": 2,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.05"],
+      "item_ids": ["de:chunk:die-wohnung-hat-zimmer", "de:vocab:hell", "de:vocab:ruhig"],
+      "instruction_en": "Warm up. Fill in the German word for the English hint.",
+      "payload": {
+        "text": "Meine Wohnung ___ zwei Zimmer. Das Wohnzimmer ist groß und ___. Das Schlafzimmer ist ___.",
+        "blanks": [
+          { "answer": "hat", "hint": "has" },
+          { "answer": "hell", "hint": "bright" },
+          { "answer": "ruhig", "hint": "quiet" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-02-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02", "de:cando:A1.GRA.12"],
+      "item_ids": [
+        "de:vocab:schluessel",
+        "de:vocab:tisch",
+        "de:vocab:sofa",
+        "de:vocab:kueche",
+        "de:vocab:wohnzimmer",
+        "de:chunk:ich-bin-in",
+        "de:chunk:liegt-auf"
+      ],
+      "instruction_en": "Listen to Tom and Sara at home. Tom is looking for his key. Der Schlüssel is the key, der Tisch is the table and das Sofa is the sofa. Then answer the questions.",
+      "payload": {
+        "transcript": "Sara, wo bist du? Ich bin in der Küche, Tom. Wo ist mein Schlüssel? Liegt der Schlüssel auf dem Tisch? Nein. Dein Schlüssel liegt im Wohnzimmer, auf dem Sofa.",
+        "questions": [
+          {
+            "question": "Wo ist Sara?",
+            "options": ["im Wohnzimmer", "in der Küche", "im Bad"],
+            "answer_index": 1
+          },
+          {
+            "question": "Wo liegt der Schlüssel?",
+            "options": ["auf dem Sofa", "auf dem Tisch", "in der Küche"],
+            "answer_index": 0,
+            "explanation_en": "auf dem Sofa means on the sofa. im Wohnzimmer means in the living room."
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-02-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.01", "de:cando:A1.GRA.12"],
+      "item_ids": [
+        "de:vocab:moebel",
+        "de:vocab:bett",
+        "de:vocab:schrank",
+        "de:vocab:tisch",
+        "de:vocab:stuhl",
+        "de:vocab:lampe",
+        "de:vocab:tuer",
+        "de:vocab:fenster",
+        "de:chunk:ist-neben",
+        "de:chunk:steht-vor",
+        "de:chunk:ist-zwischen",
+        "de:chunk:liegt-auf"
+      ],
+      "instruction_en": "Read how Lena describes her room. Steht is used for things that stand, such as furniture. Das Bett is the bed, der Schrank is the wardrobe, der Stuhl is the chair, die Lampe is the lamp and die Tür is the door. Then answer the questions.",
+      "payload": {
+        "title": "Mein Zimmer",
+        "text": "Das ist mein Zimmer. Die Möbel sind alt, aber schön. Das Bett steht neben der Tür. Der Schrank steht zwischen dem Bett und dem Fenster. Der Tisch steht vor dem Fenster. Auf dem Tisch steht eine Lampe. Der Stuhl steht vor dem Tisch.",
+        "questions": [
+          {
+            "question": "Wo steht das Bett?",
+            "options": ["vor dem Fenster", "neben der Tür", "auf dem Tisch"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was steht auf dem Tisch?",
+            "options": ["eine Lampe", "ein Stuhl", "ein Schrank"],
+            "answer_index": 0
+          },
+          {
+            "question": "Wo steht der Schrank?",
+            "options": ["vor dem Tisch", "neben dem Stuhl", "zwischen dem Bett und dem Fenster"],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-02-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:moebel",
+        "de:vocab:tisch",
+        "de:vocab:stuhl",
+        "de:vocab:bett",
+        "de:vocab:schrank",
+        "de:vocab:sofa",
+        "de:vocab:lampe",
+        "de:vocab:kuehlschrank",
+        "de:vocab:tuer",
+        "de:vocab:schluessel"
+      ],
+      "instruction_en": "Match the words for furniture and things at home with their English meaning. Die Möbel is always plural.",
+      "payload": {
+        "pairs": [
+          { "left": "die Möbel", "right": "furniture" },
+          { "left": "der Tisch", "right": "table" },
+          { "left": "der Stuhl", "right": "chair" },
+          { "left": "das Bett", "right": "bed" },
+          { "left": "der Schrank", "right": "wardrobe, cupboard" },
+          { "left": "das Sofa", "right": "sofa" },
+          { "left": "die Lampe", "right": "lamp" },
+          { "left": "der Kühlschrank", "right": "fridge" },
+          { "left": "die Tür", "right": "door" },
+          { "left": "der Schlüssel", "right": "key" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-02-06",
+      "ordinal": 6,
+      "type": "match_pairs",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.12"],
+      "item_ids": [
+        "de:chunk:ich-bin-in",
+        "de:chunk:liegt-auf",
+        "de:chunk:ist-neben",
+        "de:chunk:steht-vor",
+        "de:chunk:ist-hinter",
+        "de:chunk:ist-zwischen"
+      ],
+      "instruction_en": "These small words say where something is. Learn each one together with the words after it. Match the German with the English.",
+      "payload": {
+        "pairs": [
+          { "left": "in der Küche", "right": "in the kitchen" },
+          { "left": "am Fenster", "right": "at the window" },
+          { "left": "auf dem Tisch", "right": "on the table" },
+          { "left": "neben dem Bett", "right": "next to the bed" },
+          { "left": "vor der Tür", "right": "in front of the door" },
+          { "left": "hinter dem Sofa", "right": "behind the sofa" },
+          { "left": "zwischen dem Bett und dem Schrank", "right": "between the bed and the wardrobe" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-02-07",
+      "ordinal": 7,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:ich-bin-in", "de:vocab:tisch", "de:vocab:kueche"],
+      "instruction_en": "Choose the right word. Küche is a die word.",
+      "payload": {
+        "question": "Der Tisch steht in ___ Küche.",
+        "options": ["die", "der", "dem"],
+        "answer_index": 1,
+        "explanation_en": "After in, an, auf, neben, vor, hinter and zwischen, when you say where something is, die becomes der, and der and das become dem. So: in der Küche, auf dem Tisch, neben dem Bett. Two short forms: in dem is im and an dem is am."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-02-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.12"],
+      "item_ids": [
+        "de:chunk:liegt-auf",
+        "de:chunk:ist-neben",
+        "de:chunk:ist-hinter",
+        "de:chunk:steht-vor",
+        "de:vocab:tisch",
+        "de:vocab:tuer",
+        "de:vocab:sofa",
+        "de:vocab:fenster"
+      ],
+      "instruction_en": "Say where the things are. Fill in dem or der. The hint gives you the noun with its article.",
+      "payload": {
+        "text": "Der Schlüssel liegt auf ___ Tisch. Das Sofa steht neben ___ Tür. Die Lampe steht hinter ___ Sofa. Der Stuhl steht vor ___ Fenster.",
+        "blanks": [
+          { "answer": "dem", "hint": "der Tisch" },
+          { "answer": "der", "hint": "die Tür" },
+          { "answer": "dem", "hint": "das Sofa" },
+          { "answer": "dem", "hint": "das Fenster" }
+        ],
+        "explanation_en": "der and das words: dem. die words: der."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-02-09",
+      "ordinal": 9,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.12", "de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:chunk:ich-bin-in",
+        "de:vocab:kuehlschrank",
+        "de:vocab:bett",
+        "de:vocab:tisch",
+        "de:vocab:sofa"
+      ],
+      "instruction_en": "Fill in der, im or am.",
+      "payload": {
+        "text": "Der Kühlschrank steht in ___ Küche. Das Bett steht ___ Schlafzimmer. Der Tisch steht ___ Fenster. Das Sofa steht ___ Wohnzimmer.",
+        "blanks": [
+          { "answer": "der", "hint": "die Küche" },
+          { "answer": "im", "hint": "in dem" },
+          { "answer": "am", "hint": "an dem" },
+          { "answer": "im", "hint": "in dem" }
+        ],
+        "explanation_en": "in der Küche, but im Schlafzimmer, im Wohnzimmer and im Bad. am Fenster means at the window."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-02-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03", "de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:ich-bin-in", "de:vocab:tisch", "de:vocab:kueche"],
+      "instruction_en": "Put the words in the right order. Start with the word that has a capital letter.",
+      "payload": {
+        "words": ["steht", "Küche.", "in", "Tisch", "der", "Der"],
+        "answer": "Der Tisch steht in der Küche."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-02-11",
+      "ordinal": 11,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.01", "de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:liegt-auf", "de:vocab:schluessel", "de:vocab:tisch"],
+      "instruction_en": "Listen and type what you hear.",
+      "payload": {
+        "text": "Der Schlüssel liegt auf dem Tisch.",
+        "accept": ["Der Schluessel liegt auf dem Tisch."]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-02-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:ist-neben", "de:vocab:lampe", "de:vocab:bett"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "The lamp is next to the bed.",
+        "direction": "to_target",
+        "reference": ["Die Lampe steht neben dem Bett.", "Die Lampe ist neben dem Bett."],
+        "notes_en": "Bett is a das word, so after neben it is dem Bett."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-02-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": ["de:cando:A1.SPP.01", "de:cando:A1.GRA.12", "de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:chunk:liegt-auf",
+        "de:chunk:ist-neben",
+        "de:chunk:steht-vor",
+        "de:chunk:ich-bin-in",
+        "de:vocab:bett",
+        "de:vocab:tisch",
+        "de:vocab:schrank",
+        "de:vocab:schluessel"
+      ],
+      "instruction_en": "Record yourself. Look around your room first.",
+      "payload": {
+        "prompt_en": "Say where four things are in your room or flat. Use one short sentence for each thing, for example for your bed, your table, your wardrobe and your key. Use chunks such as im Schlafzimmer, in der Küche, auf dem Tisch, neben dem Bett or vor dem Fenster.",
+        "mode": "free",
+        "sample_answer": "Mein Bett steht im Schlafzimmer. Der Schrank steht neben dem Bett. Der Tisch steht am Fenster. Mein Schlüssel liegt auf dem Tisch.",
+        "rubric_focus": [
+          "four things named with the right article",
+          "a place chunk in each sentence: in der, im, am, auf dem, neben dem",
+          "verb in second position",
+          "can be understood by a patient listener"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

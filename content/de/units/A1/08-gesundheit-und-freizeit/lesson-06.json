@@ -1,0 +1,382 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-08-06",
+  "unit_key": "de:unit:a1-08-gesundheit-und-freizeit",
+  "ordinal": 6,
+  "slug": "krank-und-wochenende",
+  "title": "Jetzt du: krank sein und vom Wochenende erzählen",
+  "title_en": "Your turn: being ill and talking about the weekend",
+  "description": "Production lesson. Tell a doctor's receptionist what the problem is and get an appointment, say what you did last weekend, show an object and say its colour, and write a short message to say that you are ill and cannot come.",
+  "kind": "production",
+  "estimated_minutes": 28,
+  "cando_ids": [
+    "de:cando:A1.SPI.05",
+    "de:cando:A1.SPP.03",
+    "de:cando:A1.SPP.04",
+    "de:cando:A1.WRI.03",
+    "de:cando:A1.WRI.01",
+    "de:cando:A1.GRA.11",
+    "de:cando:A1.GRA.01",
+    "de:cando:A1.VOC.08"
+  ],
+  "introduces_item_ids": [],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-08-06-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.SPI.05",
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:phrase:was-fehlt-ihnen",
+        "de:phrase:wo-tut-es-weh",
+        "de:vocab:termin",
+        "de:vocab:krankenkasse",
+        "de:vocab:karte",
+        "de:chunk:mein-tut-weh"
+      ],
+      "instruction_en": "Warm up. You are at the doctor's reception. Match each question with a fitting answer.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "Was fehlt Ihnen?",
+            "right": "Ich habe Fieber und Halsschmerzen."
+          },
+          {
+            "left": "Wo tut es weh?",
+            "right": "Mein Rücken tut weh."
+          },
+          {
+            "left": "Wann können Sie kommen?",
+            "right": "Heute um drei Uhr."
+          },
+          {
+            "left": "Wie ist Ihr Name?",
+            "right": "Mein Name ist Samir Haddad."
+          },
+          {
+            "left": "Haben Sie Ihre Karte von der Krankenkasse?",
+            "right": "Ja, hier ist die Karte."
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-06-02",
+      "ordinal": 2,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-haben",
+        "de:grammar:perfekt-mit-sein",
+        "de:vocab:wochenende",
+        "de:vocab:fahren",
+        "de:vocab:treffen",
+        "de:vocab:gehen",
+        "de:vocab:essen"
+      ],
+      "instruction_en": "Warm up. haben or sein? Fill in bin, habe, sind or haben.",
+      "payload": {
+        "text": "Am Wochenende ___ ich nach Köln gefahren. Ich ___ Freunde getroffen. Wir ___ ins Kino gegangen und wir ___ Pizza gegessen.",
+        "blanks": [
+          {
+            "answer": "bin",
+            "hint": "ich, fahren"
+          },
+          {
+            "answer": "habe",
+            "hint": "ich, treffen"
+          },
+          {
+            "answer": "sind",
+            "hint": "wir, gehen"
+          },
+          {
+            "answer": "haben",
+            "hint": "wir, essen"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-06-03",
+      "ordinal": 3,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.01",
+        "de:cando:A1.SPP.04"
+      ],
+      "item_ids": [
+        "de:vocab:buch",
+        "de:vocab:jacke",
+        "de:vocab:pullover",
+        "de:vocab:blau",
+        "de:vocab:rot",
+        "de:vocab:gruen"
+      ],
+      "instruction_en": "Warm up. Fill in er, sie or es. A der word is er, a die word is sie and a das word is es.",
+      "payload": {
+        "text": "Das ist mein Buch. ___ ist blau. Das ist meine Jacke. ___ ist rot. Das ist mein Pullover. ___ ist grün.",
+        "blanks": [
+          {
+            "answer": "Es",
+            "hint": "das Buch"
+          },
+          {
+            "answer": "Sie",
+            "hint": "die Jacke"
+          },
+          {
+            "answer": "Er",
+            "hint": "der Pullover"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-06-04",
+      "ordinal": 4,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.01",
+        "de:cando:A1.SPI.05"
+      ],
+      "item_ids": [
+        "de:phrase:ich-bin-krank",
+        "de:phrase:ich-brauche-einen-termin",
+        "de:vocab:termin"
+      ],
+      "instruction_en": "Translate into German. This is how you start at the reception or on the phone.",
+      "payload": {
+        "source_text": "Good morning. I am ill and I need an appointment today.",
+        "direction": "to_target",
+        "reference": [
+          "Guten Morgen. Ich bin krank und ich brauche heute einen Termin.",
+          "Guten Morgen. Ich bin krank und brauche heute einen Termin.",
+          "Guten Morgen! Ich bin krank und ich brauche heute einen Termin."
+        ],
+        "notes_en": "heute comes straight after the verb: ich brauche heute einen Termin."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-06-05",
+      "ordinal": 5,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.03",
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:phrase:ich-bin-krank",
+        "de:vocab:leider",
+        "de:vocab:koennen",
+        "de:vocab:kommen",
+        "de:grammar:satzklammer-modalverben"
+      ],
+      "instruction_en": "Translate into German. This is how you tell someone that you cannot come.",
+      "payload": {
+        "source_text": "Unfortunately I am ill. I cannot come today.",
+        "direction": "to_target",
+        "reference": [
+          "Ich bin leider krank. Ich kann heute nicht kommen.",
+          "Leider bin ich krank. Ich kann heute nicht kommen."
+        ],
+        "notes_en": "kann stands in second position and kommen goes to the end."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-06-06",
+      "ordinal": 6,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.01",
+        "de:cando:A1.GRA.01",
+        "de:cando:A1.SPP.04"
+      ],
+      "item_ids": [
+        "de:grammar:possessivartikel-nominativ",
+        "de:vocab:jacke",
+        "de:vocab:neu",
+        "de:vocab:schwarz"
+      ],
+      "instruction_en": "Translate into German. This is how you show something and describe it.",
+      "payload": {
+        "source_text": "This is my jacket. It is new and it is black.",
+        "direction": "to_target",
+        "reference": [
+          "Das ist meine Jacke. Sie ist neu und sie ist schwarz.",
+          "Das ist meine Jacke. Sie ist neu und schwarz."
+        ],
+        "notes_en": "Jacke is a die word, so it is sie."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-06-07",
+      "ordinal": 7,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": [
+        "de:cando:A1.SPI.05",
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:phrase:ich-brauche-einen-termin",
+        "de:phrase:ich-bin-krank",
+        "de:phrase:mir-geht-es-nicht-gut",
+        "de:chunk:mein-tut-weh",
+        "de:chunk:ich-habe-schmerzen",
+        "de:vocab:fieber",
+        "de:vocab:termin",
+        "de:vocab:krankenkasse"
+      ],
+      "instruction_en": "Roleplay. You are at the reception of a doctor's practice. Record your part. You may point while you speak.",
+      "payload": {
+        "prompt_en": "The receptionist says: Guten Morgen. Was kann ich für Sie tun? Was fehlt Ihnen? Können Sie um elf Uhr kommen? Greet the receptionist and give your name. Say that you are ill and need an appointment. Say what the problem is: what hurts and whether you have a fever. Say yes to the time and say thank you.",
+        "prompt_native": "Guten Morgen. Was kann ich für Sie tun? Was fehlt Ihnen? Können Sie um elf Uhr kommen?",
+        "mode": "free",
+        "sample_answer": "Guten Morgen. Mein Name ist Samir Haddad. Ich bin krank. Ich brauche einen Termin. Ich habe Fieber und mein Hals tut weh. Ja, um elf Uhr ist gut. Vielen Dank.",
+        "rubric_focus": [
+          "greets and gives a name",
+          "asks for an appointment",
+          "says what the problem is in simple words: Mein ... tut weh or Ich habe ...",
+          "answers the question about the time",
+          "can be understood by a patient listener, gestures are fine"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-06-08",
+      "ordinal": 8,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": [
+        "de:cando:A1.SPP.03",
+        "de:cando:A1.GRA.11"
+      ],
+      "item_ids": [
+        "de:grammar:perfekt-mit-haben",
+        "de:grammar:perfekt-mit-sein",
+        "de:grammar:partizip-perfekt",
+        "de:vocab:wochenende",
+        "de:vocab:samstag",
+        "de:vocab:sonntag",
+        "de:vocab:aufstehen",
+        "de:vocab:fahren",
+        "de:vocab:treffen"
+      ],
+      "instruction_en": "Record yourself. Take a minute to prepare first.",
+      "payload": {
+        "prompt_en": "Say what you did last weekend in five or six short sentences. Say when you got up, where you went, who you met, what you ate or bought, and what you did on Sunday. Use sein with verbs like gehen, fahren, kommen, bleiben and aufstehen, and haben with the other verbs.",
+        "mode": "free",
+        "sample_answer": "Am Samstag bin ich um neun Uhr aufgestanden. Ich habe eingekauft. Dann bin ich in die Stadt gefahren. Ich habe Freunde getroffen und wir haben Pizza gegessen. Am Sonntag bin ich zu Hause geblieben. Ich habe ein Buch gelesen und Deutsch gelernt.",
+        "rubric_focus": [
+          "a series of five or six simple sentences about the weekend",
+          "haben or sein chosen correctly",
+          "participle at the end of the sentence",
+          "time words such as am Samstag, am Sonntag, dann",
+          "can be understood by a patient listener"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-06-09",
+      "ordinal": 9,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": [
+        "de:cando:A1.SPP.04"
+      ],
+      "item_ids": [
+        "de:vocab:farbe",
+        "de:vocab:rot",
+        "de:vocab:blau",
+        "de:vocab:gruen",
+        "de:vocab:gelb",
+        "de:vocab:schwarz",
+        "de:vocab:weiss",
+        "de:vocab:gross",
+        "de:vocab:klein",
+        "de:vocab:neu"
+      ],
+      "instruction_en": "Record yourself. Pick up two things near you, for example a book, a jacket, a cup or your phone. Take a minute to prepare first.",
+      "payload": {
+        "prompt_en": "Hold up two things one after the other, as if you were showing them to someone. For each one say what it is, say its colour and say one more thing about it, for example big, small, new or old. Start with Das ist ...",
+        "mode": "free",
+        "sample_answer": "Das ist mein Buch. Es ist blau. Es ist klein und neu. Das ist meine Jacke. Sie ist schwarz. Sie ist groß und alt.",
+        "rubric_focus": [
+          "names each object with Das ist and an article or mein, meine",
+          "says the colour",
+          "one more describing word such as groß, klein, neu or alt",
+          "er, sie or es fits the noun",
+          "can be understood by a patient listener"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-08-06-10",
+      "ordinal": 10,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.03",
+        "de:cando:A1.VOC.08"
+      ],
+      "item_ids": [
+        "de:phrase:ich-bin-krank",
+        "de:vocab:krank",
+        "de:vocab:leider",
+        "de:vocab:fieber",
+        "de:chunk:ich-habe-schmerzen",
+        "de:phrase:ich-muss-zum-arzt",
+        "de:vocab:arbeit",
+        "de:vocab:kurs",
+        "de:vocab:koennen"
+      ],
+      "instruction_en": "Write a short message in German. End it with Viele Grüße, which means best wishes, and your name.",
+      "payload": {
+        "prompt_en": "You are ill. Write a short message to your boss or to your German teacher. Greet the person, say that you are ill, say what you have (for example a fever or a headache), say that you cannot come to work or to the course today, and say that you are going to the doctor.",
+        "min_words": 15,
+        "max_words": 50,
+        "sample_answer": "Guten Morgen, Frau Weber, ich bin leider krank. Ich habe Fieber und Kopfschmerzen. Ich kann heute nicht zur Arbeit kommen. Ich muss zum Arzt. Viele Grüße, Samir Haddad",
+        "rubric_focus": [
+          "a greeting and a name at the end",
+          "says that they are ill and names one problem",
+          "ich kann heute nicht ... kommen with the infinitive at the end",
+          "reads like a short polite message to a boss or teacher"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

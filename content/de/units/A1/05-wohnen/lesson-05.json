@@ -1,0 +1,383 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-05-05",
+  "unit_key": "de:unit:a1-05-wohnen",
+  "ordinal": 5,
+  "slug": "nachbarn-und-zettel",
+  "title": "Nachbarn im Haus",
+  "title_en": "Neighbours in the house",
+  "description": "Neighbours and notes. Read a short notice in the stairwell and a simple message from a neighbour, understand oben, unten, laut and leise, and leave a short note that says where you are and when you are back: Ich bin im Supermarkt. Ich bin um 18 Uhr zurück.",
+  "kind": "core",
+  "estimated_minutes": 20,
+  "cando_ids": [
+    "de:cando:A1.REA.02",
+    "de:cando:A1.REA.03",
+    "de:cando:A1.WRI.04",
+    "de:cando:A1.VOC.05",
+    "de:cando:A1.VOC.07",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.GRA.12"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:treppe",
+    "de:vocab:muell",
+    "de:vocab:putzen",
+    "de:vocab:laut",
+    "de:vocab:leise",
+    "de:vocab:oben",
+    "de:vocab:unten",
+    "de:vocab:zurueck"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-05-05-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:heizung",
+        "de:vocab:licht",
+        "de:vocab:dusche",
+        "de:vocab:herd",
+        "de:vocab:kaputt",
+        "de:vocab:reparieren"
+      ],
+      "instruction_en": "Warm up. Match the words from the last lesson with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "die Heizung", "right": "heating" },
+          { "left": "das Licht", "right": "light" },
+          { "left": "die Dusche", "right": "shower" },
+          { "left": "der Herd", "right": "cooker" },
+          { "left": "kaputt", "right": "broken" },
+          { "left": "reparieren", "right": "to repair" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-05-02",
+      "ordinal": 2,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07"],
+      "item_ids": ["de:chunk:von-bis", "de:vocab:bis", "de:vocab:uhr", "de:vocab:geschlossen"],
+      "instruction_en": "Warm up. You know times from the shop signs. Fill in the missing words.",
+      "payload": {
+        "text": "Der Supermarkt ist von 8 ___ 20 Uhr geöffnet. Am Sonntag ist der Supermarkt ___.",
+        "blanks": [
+          { "answer": "bis", "hint": "until" },
+          { "answer": "geschlossen", "hint": "closed" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-05-03",
+      "ordinal": 3,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.03", "de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:treppe",
+        "de:vocab:muell",
+        "de:vocab:putzen",
+        "de:vocab:unten",
+        "de:vocab:aufzug",
+        "de:vocab:kaputt",
+        "de:vocab:reparatur",
+        "de:vocab:nachbar",
+        "de:chunk:ist-hinter"
+      ],
+      "instruction_en": "Read the notice from the landlord in the stairwell. Liebe Nachbarn means dear neighbours. Die Treppe is the stairs, der Müll is the rubbish, putzen means to clean and die Tonnen are the bins. Then answer the questions.",
+      "payload": {
+        "title": "Ein Zettel im Haus",
+        "text": "Liebe Nachbarn,\nder Aufzug ist kaputt. Die Reparatur ist am Montag. Bitte nehmen Sie die Treppe.\nAm Samstag putzen wir die Treppe.\nDer Müll kommt nach unten. Die Tonnen stehen hinter dem Haus.\nDanke!\nJ. Krause, Vermieter",
+        "questions": [
+          {
+            "question": "Was ist kaputt?",
+            "options": ["die Treppe", "der Aufzug", "die Heizung"],
+            "answer_index": 1
+          },
+          {
+            "question": "Wann ist die Reparatur?",
+            "options": ["am Montag", "am Samstag", "am Sonntag"],
+            "answer_index": 0
+          },
+          {
+            "question": "Wo stehen die Tonnen?",
+            "options": ["vor der Tür", "im Aufzug", "hinter dem Haus"],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-05-04",
+      "ordinal": 4,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02", "de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:oben",
+        "de:vocab:nachbar",
+        "de:chunk:ich-wohne-im-stock",
+        "de:vocab:paket",
+        "de:vocab:bis",
+        "de:vocab:uhr"
+      ],
+      "instruction_en": "Listen to the voice message from a neighbour. Oben means upstairs, für dich means for you and zu Hause means at home. Then answer the questions.",
+      "payload": {
+        "transcript": "Hallo Tom, hier ist Maria Demir. Ich wohne oben, im dritten Stock. Ich habe ein Paket für dich. Ich bin bis zwanzig Uhr zu Hause. Tschüss!",
+        "questions": [
+          {
+            "question": "Wo wohnt Maria?",
+            "options": ["unten, im ersten Stock", "oben, im dritten Stock"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was hat Maria?",
+            "options": ["ein Paket", "einen Schlüssel", "einen Brief"],
+            "answer_index": 0
+          },
+          {
+            "question": "Bis wann ist Maria zu Hause?",
+            "options": ["bis 12 Uhr", "bis 18 Uhr", "bis 20 Uhr"],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-05-05",
+      "ordinal": 5,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.02", "de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:unten",
+        "de:vocab:laut",
+        "de:vocab:leise",
+        "de:chunk:ich-wohne-im-stock",
+        "de:vocab:nachbar",
+        "de:vocab:sonntag"
+      ],
+      "instruction_en": "Read the message from a neighbour. Unten means downstairs, laut means loud and leise means quiet. Ab 20 Uhr means from 8 pm. Then answer the questions.",
+      "payload": {
+        "title": "Eine Nachricht von Herrn Braun",
+        "text": "Hallo Frau Okafor,\nich bin Ihr Nachbar. Ich wohne unten, im ersten Stock. Am Sonntag ist meine Familie hier. Bis 20 Uhr ist es laut. Ab 20 Uhr sind wir leise.\nViele Grüße\nPaul Braun",
+        "questions": [
+          {
+            "question": "Wo wohnt Herr Braun?",
+            "options": ["unten", "oben"],
+            "answer_index": 0
+          },
+          {
+            "question": "Wer kommt am Sonntag?",
+            "options": ["der Vermieter", "die Familie von Herrn Braun", "Frau Okafor"],
+            "answer_index": 1
+          },
+          {
+            "question": "Wann ist es leise?",
+            "options": ["bis 20 Uhr", "ab 20 Uhr"],
+            "answer_index": 1
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-05-06",
+      "ordinal": 6,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.05"],
+      "item_ids": [
+        "de:vocab:treppe",
+        "de:vocab:muell",
+        "de:vocab:putzen",
+        "de:vocab:laut",
+        "de:vocab:leise",
+        "de:vocab:oben",
+        "de:vocab:unten",
+        "de:vocab:zurueck"
+      ],
+      "instruction_en": "Match the words with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "die Treppe", "right": "stairs" },
+          { "left": "der Müll", "right": "rubbish" },
+          { "left": "putzen", "right": "to clean" },
+          { "left": "laut", "right": "loud" },
+          { "left": "leise", "right": "quiet, not loud" },
+          { "left": "oben", "right": "upstairs" },
+          { "left": "unten", "right": "downstairs" },
+          { "left": "zurück", "right": "back" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-05-07",
+      "ordinal": 7,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.05"],
+      "item_ids": ["de:vocab:treppe", "de:vocab:putzen", "de:vocab:laut", "de:vocab:oben", "de:vocab:aufzug"],
+      "instruction_en": "Fill in the German word for the English hint.",
+      "payload": {
+        "text": "Der Aufzug ist kaputt. Bitte nehmen Sie die ___. Am Samstag ___ wir das Bad. Die Kinder sind ___. Herr Braun wohnt unten und Frau Demir wohnt ___.",
+        "blanks": [
+          { "answer": "Treppe", "hint": "stairs" },
+          { "answer": "putzen", "hint": "clean" },
+          { "answer": "laut", "hint": "loud" },
+          { "answer": "oben", "hint": "upstairs" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-05-08",
+      "ordinal": 8,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.02"],
+      "item_ids": ["de:vocab:zurueck", "de:vocab:supermarkt", "de:vocab:uhr", "de:vocab:haus"],
+      "instruction_en": "Read the note on the kitchen table. Um 18 Uhr means at 6 pm and zurück means back. Nicht zu Hause means not at home. Then answer the questions.",
+      "payload": {
+        "title": "Ein Zettel von Tom",
+        "text": "Hallo Maria,\nich bin nicht zu Hause. Ich bin im Supermarkt. Ich bin um 18 Uhr zurück.\nTom",
+        "questions": [
+          {
+            "question": "Wo ist Tom?",
+            "options": ["zu Hause", "im Supermarkt", "im Café"],
+            "answer_index": 1
+          },
+          {
+            "question": "Wann ist Tom zurück?",
+            "options": ["um 8 Uhr", "um 16 Uhr", "um 18 Uhr"],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-05-09",
+      "ordinal": 9,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:ich-bin-in", "de:chunk:liegt-auf", "de:vocab:zurueck", "de:vocab:schluessel"],
+      "instruction_en": "Finish the note. Fill in the missing words.",
+      "payload": {
+        "text": "Hallo Sara, ich bin ___ Supermarkt. Ich bin um 19 Uhr ___. Dein Schlüssel liegt ___ dem Tisch. Tom",
+        "blanks": [
+          { "answer": "im", "hint": "in dem" },
+          {
+            "answer": "zurück",
+            "accept": ["zurueck"],
+            "hint": "back"
+          },
+          { "answer": "auf", "hint": "on" }
+        ],
+        "explanation_en": "A note needs only two things: where you are and when you are back. For the time say um and the hour: um 19 Uhr."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-05-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03"],
+      "item_ids": ["de:vocab:zurueck", "de:vocab:uhr"],
+      "instruction_en": "Put the words in the right order.",
+      "payload": {
+        "words": ["um", "zurück.", "bin", "18", "Uhr", "Ich"],
+        "answer": "Ich bin um 18 Uhr zurück."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-05-11",
+      "ordinal": 11,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.01", "de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:ich-bin-in", "de:vocab:supermarkt"],
+      "instruction_en": "Listen and type what you hear.",
+      "payload": {
+        "text": "Ich bin im Supermarkt."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-05-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.04"],
+      "item_ids": ["de:vocab:zurueck", "de:vocab:uhr", "de:vocab:haus"],
+      "instruction_en": "Translate into German. This is how you write a note.",
+      "payload": {
+        "source_text": "I am not at home. I am back at 8 pm.",
+        "direction": "to_target",
+        "reference": [
+          "Ich bin nicht zu Hause. Ich bin um 20 Uhr zurück.",
+          "Ich bin nicht zu Hause. Um 20 Uhr bin ich zurück."
+        ],
+        "notes_en": "At home is zu Hause. In a note 8 pm is 20 Uhr."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-05-05-13",
+      "ordinal": 13,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.04", "de:cando:A1.GRA.12"],
+      "item_ids": [
+        "de:vocab:zurueck",
+        "de:chunk:ich-bin-in",
+        "de:vocab:uhr",
+        "de:vocab:nachbar",
+        "de:vocab:schluessel"
+      ],
+      "instruction_en": "Write a note in German.",
+      "payload": {
+        "prompt_en": "You are going out. Leave a short note for your flatmate or your neighbour. Start with Hallo and a name. Say where you are, say when you are back, and add one more piece of information, for example where the key is. End with your name.",
+        "min_words": 10,
+        "max_words": 35,
+        "sample_answer": "Hallo Maria, ich bin im Supermarkt. Ich bin um 18 Uhr zurück. Der Schlüssel liegt auf dem Tisch in der Küche. Tom",
+        "rubric_focus": [
+          "says where the writer is",
+          "says when the writer is back with um ... Uhr and zurück",
+          "verb in second position",
+          "reads like a note: Hallo and a name at the start, a name at the end"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

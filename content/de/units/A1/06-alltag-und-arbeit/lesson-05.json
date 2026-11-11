@@ -1,0 +1,284 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-06-05",
+  "unit_key": "de:unit:a1-06-alltag-und-arbeit",
+  "ordinal": 5,
+  "slug": "termine-und-die-woche",
+  "title": "Termine und die Woche",
+  "title_en": "Appointments and the week",
+  "description": "Making and changing a simple appointment with Hast du am ... Zeit? and Ich kann leider nicht, saying how often you do something with immer, oft, manchmal and nie, reading a weekly plan, and writing a short message about a time.",
+  "kind": "core",
+  "estimated_minutes": 22,
+  "cando_ids": [
+    "de:cando:A1.REA.04",
+    "de:cando:A1.WRI.03",
+    "de:cando:A1.SPI.03",
+    "de:cando:A1.VOC.06",
+    "de:cando:A1.GRA.12",
+    "de:cando:A1.GRA.09",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.LIS.02"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:immer",
+    "de:vocab:oft",
+    "de:vocab:manchmal",
+    "de:vocab:nie",
+    "de:vocab:leider",
+    "de:vocab:stunde",
+    "de:vocab:minute",
+    "de:chunk:hast-du-am-zeit"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-06-05-01",
+      "ordinal": 1,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:muessen", "de:vocab:wollen", "de:vocab:koennen", "de:grammar:modalverben-praesens"],
+      "instruction_en": "Warm up. Fill in the right modal verb. The English meaning is under each gap.",
+      "payload": {
+        "text": "Ich ___ heute bis sechs Uhr arbeiten. Ich ___ am Abend Deutsch lernen. ___ du morgen kommen?",
+        "blanks": [
+          { "answer": "muss", "hint": "have to" },
+          { "answer": "will", "hint": "want to" },
+          { "answer": "Kannst", "hint": "can" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-05-02",
+      "ordinal": 2,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.06"],
+      "item_ids": ["de:vocab:montag", "de:vocab:dienstag", "de:vocab:mittwoch", "de:vocab:donnerstag", "de:vocab:freitag", "de:vocab:samstag", "de:vocab:sonntag"],
+      "instruction_en": "Warm up. Plans and timetables use short forms for the days. Match each day with its short form.",
+      "payload": {
+        "pairs": [
+          { "left": "Montag", "right": "Mo" },
+          { "left": "Dienstag", "right": "Di" },
+          { "left": "Mittwoch", "right": "Mi" },
+          { "left": "Donnerstag", "right": "Do" },
+          { "left": "Freitag", "right": "Fr" },
+          { "left": "Samstag", "right": "Sa" },
+          { "left": "Sonntag", "right": "So" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-05-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02"],
+      "item_ids": ["de:chunk:hast-du-am-zeit", "de:vocab:leider", "de:vocab:muessen", "de:vocab:zeit", "de:vocab:dienstag", "de:vocab:mittwoch", "de:vocab:cafe"],
+      "instruction_en": "Jonas phones Ana. Hast du am Dienstag Zeit? means do you have time on Tuesday. Leider nicht means unfortunately not. Listen and answer the questions.",
+      "payload": {
+        "transcript": "Hallo Ana, hier ist Jonas. Hast du am Dienstag Zeit? Am Dienstag leider nicht. Ich muss bis sieben Uhr arbeiten. Und am Mittwoch? Ja, am Mittwoch habe ich Zeit. Gut! Um halb sechs im Café? Ja, gern. Bis Mittwoch!",
+        "questions": [
+          { "question": "Hat Ana am Dienstag Zeit?", "options": ["Ja, am Abend.", "Nein, sie muss arbeiten.", "Nein, sie hat Deutschkurs."], "answer_index": 1 },
+          { "question": "Wann hat Ana Zeit?", "options": ["am Mittwoch", "am Donnerstag", "am Montag"], "answer_index": 0 },
+          { "question": "Wann kommt Ana ins Café?", "options": ["um 18.30 Uhr", "um 19.00 Uhr", "um 17.30 Uhr"], "answer_index": 2 }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-05-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.04", "de:cando:A1.VOC.06"],
+      "item_ids": ["de:vocab:woche", "de:vocab:arbeit", "de:vocab:kurs", "de:chunk:von-bis", "de:vocab:einkaufen", "de:vocab:anrufen", "de:vocab:bank"],
+      "instruction_en": "Read Tarek's plan for the week. Frei means free: no work. Der Termin is the appointment. Then answer the questions.",
+      "payload": {
+        "title": "Meine Woche",
+        "text": "Mo: Arbeit, 7 bis 15 Uhr\nDi: Arbeit, 7 bis 15 Uhr. Deutschkurs, 18 bis 20 Uhr\nMi: Arbeit, 7 bis 15 Uhr\nDo: frei. Deutschkurs, 18 bis 20 Uhr\nFr: Arbeit, 7 bis 13 Uhr. Termin bei der Bank, 14.30 Uhr\nSa: einkaufen, Eltern anrufen\nSo: frei",
+        "questions": [
+          { "question": "Wann hat Tarek Deutschkurs?", "options": ["am Montag und am Mittwoch", "am Dienstag und am Donnerstag", "am Freitag"], "answer_index": 1 },
+          { "question": "Wann ist der Termin bei der Bank?", "options": ["am Freitag um halb drei", "am Freitag um halb zwei", "am Donnerstag um halb drei"], "answer_index": 0 },
+          { "question": "Bis wann arbeitet Tarek am Freitag?", "options": ["bis 15 Uhr", "bis 20 Uhr", "bis 13 Uhr"], "answer_index": 2 },
+          { "question": "Was macht Tarek am Samstag?", "options": ["Er arbeitet.", "Er kauft ein und ruft seine Eltern an.", "Er hat Deutschkurs."], "answer_index": 1 }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-05-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.06"],
+      "item_ids": ["de:vocab:immer", "de:vocab:oft", "de:vocab:manchmal", "de:vocab:nie", "de:vocab:leider", "de:vocab:stunde", "de:vocab:minute"],
+      "instruction_en": "How often? And three more words for plans. Match the pairs.",
+      "payload": {
+        "pairs": [
+          { "left": "immer", "right": "always" },
+          { "left": "oft", "right": "often" },
+          { "left": "manchmal", "right": "sometimes" },
+          { "left": "nie", "right": "never" },
+          { "left": "leider", "right": "unfortunately" },
+          { "left": "die Stunde", "right": "hour" },
+          { "left": "die Minute", "right": "minute" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-05-06",
+      "ordinal": 6,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.06"],
+      "item_ids": ["de:vocab:immer", "de:vocab:oft", "de:vocab:manchmal", "de:vocab:nie"],
+      "instruction_en": "Say how often. The English word is under each gap.",
+      "payload": {
+        "text": "Ich stehe ___ früh auf. Am Abend sehe ich ___ fern. ___ koche ich am Sonntag. Am Samstag arbeite ich ___.",
+        "blanks": [
+          { "answer": "immer", "hint": "always" },
+          { "answer": "oft", "hint": "often" },
+          { "answer": "Manchmal", "hint": "sometimes" },
+          { "answer": "nie", "hint": "never" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-05-07",
+      "ordinal": 7,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03", "de:cando:A1.GRA.12"],
+      "item_ids": ["de:vocab:nie", "de:chunk:am-tag", "de:vocab:sonntag", "de:vocab:arbeiten"],
+      "instruction_en": "Put the words in the right order. Start with Am Sonntag. The verb comes second.",
+      "payload": { "words": ["ich", "nie.", "Am", "arbeite", "Sonntag"], "answer": "Am Sonntag arbeite ich nie." },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-05-08",
+      "ordinal": 8,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.SPI.03"],
+      "item_ids": ["de:chunk:hast-du-am-zeit", "de:vocab:leider", "de:vocab:koennen", "de:vocab:muessen", "de:vocab:zeit"],
+      "instruction_en": "Making an appointment. Match each question with the answer that fits.",
+      "payload": {
+        "pairs": [
+          { "left": "Hast du am Freitag Zeit?", "right": "Ja, am Freitag habe ich Zeit." },
+          { "left": "Wann kannst du kommen?", "right": "Um halb vier." },
+          { "left": "Kannst du am Montag kommen?", "right": "Leider nicht. Am Montag muss ich arbeiten." },
+          { "left": "Bis wann musst du arbeiten?", "right": "Bis sechs Uhr." }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-05-09",
+      "ordinal": 9,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.SPI.03", "de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:leider", "de:vocab:koennen", "de:vocab:kommen"],
+      "instruction_en": "Changing an appointment. Choose what you say.",
+      "payload": {
+        "question": "You have an appointment on Monday at ten, but now you have to work on Monday. You phone the office. What do you say?",
+        "options": ["Ich habe am Montag Zeit.", "Ich komme immer am Montag.", "Ich kann am Montag leider nicht kommen. Kann ich am Dienstag kommen?"],
+        "answer_index": 2,
+        "explanation_en": "Say that you cannot come, then ask for a new day: Kann ich am Dienstag kommen?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-05-10",
+      "ordinal": 10,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.12", "de:cando:A1.WRI.03"],
+      "item_ids": ["de:vocab:minute", "de:vocab:spaet", "de:vocab:bis", "de:chunk:um-uhr", "de:vocab:muessen"],
+      "instruction_en": "Complete the text message. Später means later. The English word is under each gap.",
+      "payload": {
+        "text": "Hallo Ana, ich komme heute zehn ___ später. Ich muss ___ vier Uhr arbeiten. Ich kann ___ halb fünf im Café sein. Jonas",
+        "blanks": [
+          { "answer": "Minuten", "hint": "minutes" },
+          { "answer": "bis", "hint": "until" },
+          { "answer": "um", "hint": "at" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-05-11",
+      "ordinal": 11,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.03", "de:cando:A1.GRA.12"],
+      "item_ids": ["de:chunk:hast-du-am-zeit", "de:vocab:donnerstag", "de:vocab:koennen", "de:chunk:um-uhr", "de:vocab:halb"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "Do you have time on Thursday? I can come at half past four.",
+        "direction": "to_target",
+        "reference": ["Hast du am Donnerstag Zeit? Ich kann um halb fünf kommen."],
+        "notes_en": "Half past four is halb fünf. Kommen goes to the end after kann."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-05-12",
+      "ordinal": 12,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.03", "de:cando:A1.GRA.09"],
+      "item_ids": ["de:chunk:hast-du-am-zeit", "de:vocab:leider", "de:vocab:muessen", "de:vocab:koennen", "de:chunk:um-uhr"],
+      "instruction_en": "Roleplay. A colleague asks you a question. Record your answer.",
+      "payload": {
+        "prompt_en": "A colleague asks: Hast du am Mittwoch Zeit? You have no time on Wednesday. Say so politely, give a reason with ich muss, and then ask if your colleague has time on another day and name a clock time.",
+        "prompt_native": "Hast du am Mittwoch Zeit?",
+        "mode": "free",
+        "sample_answer": "Am Mittwoch habe ich leider keine Zeit. Ich muss bis sieben Uhr arbeiten. Hast du am Donnerstag Zeit? Ich kann um fünf Uhr kommen.",
+        "rubric_focus": ["says no politely with leider", "a reason with muss and the infinitive at the end", "asks about another day with am", "a clock time with um"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-06-05-13",
+      "ordinal": 13,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.03", "de:cando:A1.GRA.12"],
+      "item_ids": ["de:vocab:leider", "de:vocab:koennen", "de:vocab:muessen", "de:chunk:hast-du-am-zeit", "de:chunk:um-uhr", "de:chunk:am-tag"],
+      "instruction_en": "Write a text message in German.",
+      "payload": {
+        "prompt_en": "A friend wants to see you on Friday at six. You cannot come then. Write a short text message: say that you cannot come on Friday at six, say why, and ask if your friend has time on another day at a time you name.",
+        "min_words": 15,
+        "max_words": 50,
+        "sample_answer": "Hallo Jonas, ich kann am Freitag um sechs Uhr leider nicht kommen. Ich muss bis sieben Uhr arbeiten. Hast du am Samstag Zeit? Ich kann um drei Uhr kommen. Ana",
+        "rubric_focus": [
+          "says clearly that they cannot come",
+          "a day with am and a clock time with um",
+          "modal verb with the infinitive at the end",
+          "reads like a message: a greeting and a name"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

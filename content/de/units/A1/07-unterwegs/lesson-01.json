@@ -1,0 +1,312 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-07-01",
+  "unit_key": "de:unit:a1-07-unterwegs",
+  "ordinal": 1,
+  "slug": "orte-in-der-stadt",
+  "title": "Wo ist der Bahnhof?",
+  "title_en": "Where is the station?",
+  "description": "The places in a town: station, bus stop, town hall, pharmacy, hospital, school and park. Ask where a place is with Wo ist ...? and whether there is one nearby with Gibt es hier ...?, and read the words on street signs.",
+  "kind": "core",
+  "estimated_minutes": 20,
+  "cando_ids": [
+    "de:cando:A1.SPI.01",
+    "de:cando:A1.REA.03",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.VOC.05",
+    "de:cando:A1.GRA.04",
+    "de:cando:A1.GRA.06",
+    "de:cando:A1.GRA.03"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:bahnhof",
+    "de:vocab:haltestelle",
+    "de:vocab:rathaus",
+    "de:vocab:apotheke",
+    "de:vocab:krankenhaus",
+    "de:vocab:schule",
+    "de:vocab:park",
+    "de:vocab:zentrum",
+    "de:vocab:schild",
+    "de:vocab:eingang",
+    "de:vocab:ausgang",
+    "de:chunk:wo-ist"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-07-01-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.05"],
+      "item_ids": ["de:vocab:wohnung", "de:vocab:kueche", "de:vocab:bad", "de:vocab:schluessel", "de:vocab:miete", "de:vocab:vermieter"],
+      "instruction_en": "Warm up. Match the words for your home with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "die Wohnung", "right": "flat" },
+          { "left": "die Küche", "right": "kitchen" },
+          { "left": "das Bad", "right": "bathroom" },
+          { "left": "der Schlüssel", "right": "key" },
+          { "left": "die Miete", "right": "rent" },
+          { "left": "der Vermieter", "right": "landlord" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-01-02",
+      "ordinal": 2,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.06"],
+      "item_ids": ["de:chunk:gibt-es-hier", "de:grammar:es-gibt", "de:vocab:supermarkt", "de:vocab:baeckerei", "de:vocab:restaurant"],
+      "instruction_en": "Warm up. You know this question from the food unit. Fill in einen, eine or ein.",
+      "payload": {
+        "text": "Gibt es hier ___ Supermarkt? Gibt es hier ___ Bäckerei? Gibt es hier ___ Restaurant?",
+        "blanks": [
+          { "answer": "einen", "hint": "der Supermarkt" },
+          { "answer": "eine", "hint": "die Bäckerei" },
+          { "answer": "ein", "hint": "das Restaurant" }
+        ],
+        "explanation_en": "After es gibt the noun is in the accusative. Only der words change: ein becomes einen."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-01-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02", "de:cando:A1.SPI.01"],
+      "item_ids": ["de:chunk:wo-ist", "de:chunk:gibt-es-hier", "de:vocab:bahnhof", "de:vocab:zentrum", "de:vocab:apotheke", "de:vocab:rathaus", "de:chunk:ist-neben"],
+      "instruction_en": "A woman is new in town and asks a man in the street. Entschuldigung means excuse me. Listen, then answer the questions.",
+      "payload": {
+        "transcript": "Entschuldigung, wo ist der Bahnhof? Der Bahnhof ist im Zentrum. Danke. Und gibt es hier eine Apotheke? Ja, die Apotheke ist neben dem Rathaus. Vielen Dank! Bitte.",
+        "questions": [
+          {
+            "question": "Wo ist der Bahnhof?",
+            "options": ["im Park", "im Zentrum", "neben der Schule"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was sucht die Frau auch?",
+            "options": ["eine Apotheke", "ein Krankenhaus", "eine Schule"],
+            "answer_index": 0
+          },
+          {
+            "question": "Wo ist die Apotheke?",
+            "options": ["neben dem Bahnhof", "im Krankenhaus", "neben dem Rathaus"],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-01-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.03"],
+      "item_ids": ["de:vocab:schild", "de:vocab:bahnhof", "de:vocab:krankenhaus", "de:vocab:eingang", "de:vocab:ausgang", "de:vocab:park", "de:vocab:haltestelle", "de:vocab:geoeffnet"],
+      "instruction_en": "Read five signs you see in a German town. Das Schild means the sign. Then answer the questions.",
+      "payload": {
+        "title": "Schilder in der Stadt",
+        "text": "Schild 1: Bahnhof 300 m\nSchild 2: Krankenhaus. Eingang B\nSchild 3: Ausgang\nSchild 4: Stadtpark. Geöffnet von 6 bis 22 Uhr\nSchild 5: Haltestelle Rathaus. Bus 12 und Bus 40",
+        "questions": [
+          {
+            "question": "You want to take the train. Which sign helps you?",
+            "options": ["Schild 1", "Schild 3", "Schild 4"],
+            "answer_index": 0
+          },
+          {
+            "question": "You want to leave the building. Which word do you look for?",
+            "options": ["Eingang", "Ausgang", "Haltestelle"],
+            "answer_index": 1
+          },
+          {
+            "question": "Wann ist der Park geöffnet?",
+            "options": ["von 8 bis 20 Uhr", "von 6 bis 12 Uhr", "von 6 bis 22 Uhr"],
+            "answer_index": 2
+          },
+          {
+            "question": "Which bus stops at the stop called Rathaus?",
+            "options": ["Bus 14", "Bus 40", "Bus 22"],
+            "answer_index": 1
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-01-05",
+      "ordinal": 5,
+      "type": "flashcard",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.REA.03"],
+      "item_ids": ["de:vocab:haltestelle"],
+      "instruction_en": "Say the meaning to yourself, then turn the card and rate how well you knew it.",
+      "payload": {
+        "front": "die Haltestelle",
+        "back": "the stop, for a bus or a tram",
+        "hint": "Plural: die Haltestellen. The bus stops here: Der Bus hält an der Haltestelle."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-01-06",
+      "ordinal": 6,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.REA.03"],
+      "item_ids": ["de:vocab:bahnhof", "de:vocab:rathaus", "de:vocab:apotheke", "de:vocab:krankenhaus", "de:vocab:schule", "de:vocab:park", "de:vocab:zentrum"],
+      "instruction_en": "Match the places in a town with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "der Bahnhof", "right": "railway station" },
+          { "left": "das Rathaus", "right": "town hall" },
+          { "left": "die Apotheke", "right": "pharmacy" },
+          { "left": "das Krankenhaus", "right": "hospital" },
+          { "left": "die Schule", "right": "school" },
+          { "left": "der Park", "right": "park" },
+          { "left": "das Zentrum", "right": "town centre" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-01-07",
+      "ordinal": 7,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.REA.03"],
+      "item_ids": ["de:vocab:apotheke", "de:vocab:krankenhaus", "de:vocab:rathaus", "de:vocab:schule"],
+      "instruction_en": "Choose the right place.",
+      "payload": {
+        "question": "You have a headache and want to buy tablets. Which place do you need?",
+        "options": ["das Rathaus", "die Schule", "die Apotheke", "der Park"],
+        "answer_index": 2,
+        "explanation_en": "Medicine is sold in the Apotheke. The Krankenhaus is the hospital, and the Rathaus is the town hall."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-01-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.04"],
+      "item_ids": ["de:chunk:wo-ist", "de:vocab:bahnhof", "de:vocab:haltestelle", "de:vocab:krankenhaus", "de:vocab:eingang"],
+      "instruction_en": "Ask where the place is. Fill in der, die or das.",
+      "payload": {
+        "text": "Wo ist ___ Bahnhof? Wo ist ___ Haltestelle? Wo ist ___ Krankenhaus? Wo ist ___ Eingang?",
+        "blanks": [
+          { "answer": "der" },
+          { "answer": "die" },
+          { "answer": "das" },
+          { "answer": "der" }
+        ],
+        "explanation_en": "After Wo ist the place is in the nominative: der Bahnhof, die Haltestelle, das Krankenhaus, der Eingang. Words that end in e, like Haltestelle, Apotheke and Schule, are nearly always die words."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-01-09",
+      "ordinal": 9,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.06"],
+      "item_ids": ["de:chunk:gibt-es-hier", "de:grammar:es-gibt", "de:vocab:park", "de:vocab:schule", "de:vocab:krankenhaus", "de:vocab:bahnhof"],
+      "instruction_en": "Ask whether the town has this place. Fill in einen, eine or ein.",
+      "payload": {
+        "text": "Gibt es hier ___ Park? Gibt es hier ___ Schule? Gibt es hier ___ Krankenhaus? Gibt es hier ___ Bahnhof?",
+        "blanks": [
+          { "answer": "einen", "hint": "der Park" },
+          { "answer": "eine", "hint": "die Schule" },
+          { "answer": "ein", "hint": "das Krankenhaus" },
+          { "answer": "einen", "hint": "der Bahnhof" }
+        ],
+        "explanation_en": "Wo ist asks for one place you know exists, so it takes der, die or das. Gibt es hier asks whether there is one at all, so it takes einen, eine or ein."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-01-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03", "de:cando:A1.SPI.01"],
+      "item_ids": ["de:chunk:wo-ist", "de:vocab:haltestelle"],
+      "instruction_en": "Put the words in the right order to ask a stranger politely.",
+      "payload": {
+        "words": ["ist", "Haltestelle?", "Entschuldigung,", "die", "wo"],
+        "answer": "Entschuldigung, wo ist die Haltestelle?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-01-11",
+      "ordinal": 11,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.GRA.06", "de:cando:A1.SPI.01"],
+      "item_ids": ["de:chunk:gibt-es-hier", "de:vocab:apotheke"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "Excuse me, is there a pharmacy here?",
+        "direction": "to_target",
+        "reference": ["Entschuldigung, gibt es hier eine Apotheke?"],
+        "notes_en": "Start with Entschuldigung when you stop a stranger. Apotheke is a die word."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-01-12",
+      "ordinal": 12,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.01"],
+      "item_ids": ["de:chunk:wo-ist", "de:vocab:rathaus"],
+      "instruction_en": "Listen and type what you hear.",
+      "payload": { "text": "Wo ist das Rathaus, bitte?" },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-07-01-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.01", "de:cando:A1.GRA.06"],
+      "item_ids": ["de:chunk:wo-ist", "de:chunk:gibt-es-hier", "de:vocab:bahnhof", "de:vocab:apotheke", "de:vocab:park"],
+      "instruction_en": "Record yourself. You are new in town and stop someone in the street.",
+      "payload": {
+        "prompt_en": "You have just arrived in a German town. Stop a person politely. Ask where the station is. Then ask whether there is a pharmacy here and whether there is a park here. Say thank you at the end.",
+        "mode": "free",
+        "sample_answer": "Entschuldigung, wo ist der Bahnhof? Gibt es hier eine Apotheke? Und gibt es hier einen Park? Vielen Dank!",
+        "rubric_focus": [
+          "opens with Entschuldigung and ends with a thank you",
+          "Wo ist with der, die or das",
+          "Gibt es hier with einen, eine or ein",
+          "can be understood by a patient listener"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}
