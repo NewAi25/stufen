@@ -1,7 +1,7 @@
 {
   "name": "@stufen/core-curriculum",
   "kind": "core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [
@@ -17,9 +17,14 @@
     "listLessons",
     "getLesson",
     "lessonPath",
+    "nextLessonFor",
+    "CurriculumService",
+    "LessonPathEntry",
     "CurriculumStore",
-    "CurriculumWriter",
+    "CurriculumWriter (alias of the contracts SnapshotWriter)",
     "createInMemoryCurriculumStore",
-    "CurriculumNotFoundError"
+    "createPostgresCurriculumStore (CurriculumStore and SnapshotWriter on PostgreSQL through db)",
+    "CurriculumNotFoundError",
+    "InvalidSnapshotError"
   ]
 }

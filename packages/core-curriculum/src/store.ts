@@ -3,8 +3,8 @@
 // `lessons`, `exercises` and `items` in docs/03-data-schema.md. The write port
 // is what core-content calls when it installs a pack. The two boxes never
 // import each other: the app hands the same store object to both. The
-// Postgres adapter (a later row) implements the same interfaces.
-import { CEFR_LEVELS } from '@stufen/contracts';
+// Postgres adapter in postgres-store.ts implements the same interfaces, and
+// tests/store-contract.ts holds the behaviour both adapters must show.
 import type {
   Cando,
   CefrLevel,
@@ -15,8 +15,10 @@ import type {
   Lesson,
   LessonSummary,
   Skill,
+  SnapshotWriter,
   Unit,
 } from '@stufen/contracts';
+import { byLevelThenCode, byLevelThenKey, byLevelThenOrdinal, byOrdinal } from './order';
 
 /** Narrows listCandos. Omitted or undefined keys do not filter. */
 export interface CandoFilter {
@@ -53,26 +55,77 @@ export interface CurriculumStore {
   activeVersion(language: LanguageCode): Promise<string | null>;
 }
 
-/** Write side, used by core-content when a pack is installed. */
-export interface CurriculumWriter {
-  /**
-   * Replaces everything stored for `snapshot.language` with the snapshot, in
-   * one step: readers see the old content or the new content, never a mix.
-   * Other languages are left as they are.
-   */
-  replaceLanguage(snapshot: CurriculumSnapshot): Promise<void>;
+/**
+ * Write side, used by core-content when a pack is installed. The same type as
+ * `SnapshotWriter` in contracts, kept under its first name here.
+ *
+ * `replaceLanguage(snapshot)` replaces everything stored for
+ * `snapshot.language` with the snapshot, in one step: readers see the old
+ * content or the new content, never a mix. Other languages are left as they
+ * are. Common descriptors (`languageCode` null) belong to no language: a
+ * replace adds or updates the ones in the snapshot and never removes one.
+ * A snapshot that holds a row of another language or a lesson or exercise that names the
+ * wrong parent, is rejected with InvalidSnapshotError before anything is written.
+ */
+export type CurriculumWriter = SnapshotWriter;
+
+/** Thrown by replaceLanguage, before anything is written, when the snapshot does not hold together. */
+export class InvalidSnapshotError extends Error {
+  constructor(language: LanguageCode, problem: string) {
+    super(`Snapshot for "${language}" is not valid: ${problem}`);
+    this.name = 'InvalidSnapshotError';
+  }
 }
 
-const LEVEL_RANK: Record<CefrLevel, number> = Object.fromEntries(
-  CEFR_LEVELS.map((level, index) => [level, index]),
-) as Record<CefrLevel, number>;
-
-function byText(a: string, b: string): number {
-  return a < b ? -1 : a > b ? 1 : 0;
-}
-
-function byOrdinal<T extends { ordinal: number; id: string }>(a: T, b: T): number {
-  return a.ordinal - b.ordinal || byText(a.id, b.id);
+/**
+ * Both adapters call this first. Every unit and item must carry
+ * `snapshot.language`, every cando must carry it or null, every lesson must
+ * name the unit it sits in and every exercise the lesson it sits in, and no
+ * id may appear twice among rows of one kind. So a wrong snapshot can never
+ * reach the rows of another language.
+ */
+export function assertValidSnapshot(snapshot: CurriculumSnapshot): void {
+  const { language } = snapshot;
+  const fail = (problem: string): never => {
+    throw new InvalidSnapshotError(language, problem);
+  };
+  const lessons = snapshot.units.flatMap((unit) => unit.lessons);
+  const kinds = {
+    cando: snapshot.candos,
+    item: snapshot.items,
+    unit: snapshot.units,
+    lesson: lessons,
+    exercise: lessons.flatMap((lesson) => lesson.exercises),
+  };
+  for (const [kind, rows] of Object.entries(kinds)) {
+    const seen = new Set<string>();
+    for (const { id } of rows) {
+      if (seen.has(id)) fail(`${kind} ${id} appears twice`);
+      seen.add(id);
+    }
+  }
+  for (const cando of snapshot.candos) {
+    if (cando.languageCode !== null && cando.languageCode !== language) {
+      fail(`cando ${cando.id} belongs to "${cando.languageCode}"`);
+    }
+  }
+  for (const item of snapshot.items) {
+    if (item.languageCode !== language) fail(`item ${item.id} belongs to "${item.languageCode}"`);
+  }
+  for (const unit of snapshot.units) {
+    if (unit.languageCode !== language) fail(`unit ${unit.id} belongs to "${unit.languageCode}"`);
+    for (const lesson of unit.lessons) {
+      if (lesson.unitId !== unit.id)
+        fail(`lesson ${lesson.id} sits in unit ${unit.id} but names ${lesson.unitId}`);
+      for (const exercise of lesson.exercises) {
+        if (exercise.lessonId !== lesson.id) {
+          fail(
+            `exercise ${exercise.id} sits in lesson ${lesson.id} but names ${exercise.lessonId}`,
+          );
+        }
+      }
+    }
+  }
 }
 
 function toUnit(unit: Unit): Unit {
@@ -107,12 +160,15 @@ function sortedExercises(exercises: readonly Exercise[]): Exercise[] {
 }
 
 /**
- * Keeps one snapshot per language in a map, for unit tests and local runs.
- * Snapshots are copied on the way in and rows are copied on the way out, so
- * callers cannot change stored data by mutating what they hold.
+ * Keeps one snapshot per language in a map and the common descriptors in a
+ * second map, for unit tests and local runs. Snapshots are copied on the way
+ * in and rows are copied on the way out, so callers cannot change stored data
+ * by mutating what they hold.
  */
-export function createInMemoryCurriculumStore(): CurriculumStore & CurriculumWriter {
+export function createInMemoryCurriculumStore(): CurriculumStore & SnapshotWriter {
   const byLanguage = new Map<LanguageCode, CurriculumSnapshot>();
+  /** Common descriptors by id. A replace adds to this map and never removes from it. */
+  const common = new Map<string, Cando>();
 
   /** Every stored lesson with the unit that holds it. */
   function* lessonsWithUnits(): Generator<{ lesson: Lesson; unit: Unit }> {
@@ -132,8 +188,14 @@ export function createInMemoryCurriculumStore(): CurriculumStore & CurriculumWri
 
   return {
     async replaceLanguage(snapshot: CurriculumSnapshot): Promise<void> {
+      assertValidSnapshot(snapshot);
+      const copy = structuredClone(snapshot);
+      for (const cando of copy.candos) {
+        if (cando.languageCode === null) common.set(cando.id, cando);
+      }
+      copy.candos = copy.candos.filter((cando) => cando.languageCode !== null);
       // One map write: the old snapshot is swapped for the new one in a single step.
-      byLanguage.set(snapshot.language, structuredClone(snapshot));
+      byLanguage.set(copy.language, copy);
     },
 
     async activeVersion(language: LanguageCode): Promise<string | null> {
@@ -141,30 +203,18 @@ export function createInMemoryCurriculumStore(): CurriculumStore & CurriculumWri
     },
 
     async listCandos(language: LanguageCode, filter: CandoFilter = {}): Promise<Cando[]> {
-      // The asked language goes first, so its copy of a common descriptor wins
-      // when two packs carry the same id.
-      const own = byLanguage.get(language);
-      const snapshots = [...(own ? [own] : []), ...byLanguage.values()];
-      const found = new Map<string, Cando>();
-      for (const snapshot of snapshots) {
-        for (const cando of snapshot.candos) {
-          if (cando.languageCode !== null && cando.languageCode !== language) continue;
-          if (filter.level !== undefined && cando.level !== filter.level) continue;
-          if (filter.skill !== undefined && cando.skill !== filter.skill) continue;
-          if (!found.has(cando.id)) found.set(cando.id, cando);
-        }
-      }
-      return structuredClone(
-        [...found.values()].sort(
-          (a, b) =>
-            LEVEL_RANK[a.level] - LEVEL_RANK[b.level] ||
-            byText(a.code, b.code) ||
-            byText(a.id, b.id),
-        ),
+      const own = byLanguage.get(language)?.candos ?? [];
+      const found = [...own, ...common.values()].filter(
+        (cando) =>
+          (filter.level === undefined || cando.level === filter.level) &&
+          (filter.skill === undefined || cando.skill === filter.skill),
       );
+      return structuredClone(found.sort(byLevelThenCode));
     },
 
     async getCando(id: string): Promise<Cando | null> {
+      const shared = common.get(id);
+      if (shared) return structuredClone(shared);
       for (const snapshot of byLanguage.values()) {
         const cando = snapshot.candos.find((candidate) => candidate.id === id);
         if (cando) return structuredClone(cando);
@@ -176,7 +226,7 @@ export function createInMemoryCurriculumStore(): CurriculumStore & CurriculumWri
       const units = byLanguage.get(language)?.units ?? [];
       return units
         .filter((unit) => level === undefined || unit.level === level)
-        .sort((a, b) => LEVEL_RANK[a.level] - LEVEL_RANK[b.level] || byOrdinal(a, b))
+        .sort(byLevelThenOrdinal)
         .map(toUnit);
     },
 
@@ -215,14 +265,7 @@ export function createInMemoryCurriculumStore(): CurriculumStore & CurriculumWri
     async listItems(language: LanguageCode, level?: CefrLevel): Promise<Item[]> {
       const items = byLanguage.get(language)?.items ?? [];
       return structuredClone(
-        items
-          .filter((item) => level === undefined || item.level === level)
-          .sort(
-            (a, b) =>
-              LEVEL_RANK[a.level] - LEVEL_RANK[b.level] ||
-              byText(a.key, b.key) ||
-              byText(a.id, b.id),
-          ),
+        items.filter((item) => level === undefined || item.level === level).sort(byLevelThenKey),
       );
     },
   };

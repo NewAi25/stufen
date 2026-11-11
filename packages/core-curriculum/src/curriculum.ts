@@ -11,6 +11,7 @@ import type {
   Skill,
   Unit,
 } from '@stufen/contracts';
+import { byLevelThenCode, byLevelThenOrdinal, byOrdinal } from './order';
 import type { CurriculumStore } from './store';
 
 /** What a CurriculumNotFoundError was looking for. */
@@ -36,8 +37,17 @@ export interface LessonPathEntry {
   level: CefrLevel;
 }
 
+/**
+ * The ids of the lessons a learner has completed, in any order. The
+ * composition root passes core-lesson-engine's function, because boxes do not
+ * import each other.
+ */
+export type CompletedLessonIds = (userId: string) => Promise<readonly string[]>;
+
 export interface CreateCurriculumOptions {
   store: CurriculumStore;
+  /** Used by nextLessonFor. Without it no lesson counts as completed. */
+  completedLessonIds?: CompletedLessonIds | undefined;
 }
 
 export interface CurriculumService {
@@ -61,31 +71,29 @@ export interface CurriculumService {
   getLesson(lessonId: string): Promise<Lesson>;
   /**
    * Every lesson of the language in learning order: by level, then unit
-   * `ordinal`, then lesson `ordinal`. A later row walks this list to find the
-   * next lesson for a learner.
+   * `ordinal`, then lesson `ordinal`.
    */
   lessonPath(language: LanguageCode): Promise<LessonPathEntry[]>;
-}
-
-const LEVEL_RANK: Record<CefrLevel, number> = Object.fromEntries(
-  CEFR_LEVELS.map((level, index) => [level, index]),
-) as Record<CefrLevel, number>;
-
-function byText(a: string, b: string): number {
-  return a < b ? -1 : a > b ? 1 : 0;
-}
-
-// Ties on `ordinal` fall back to the id, so the order is the same on every call.
-function byOrdinal<T extends { ordinal: number; id: string }>(a: T, b: T): number {
-  return a.ordinal - b.ordinal || byText(a.id, b.id);
-}
-
-function byLevelThenOrdinal(a: Unit, b: Unit): number {
-  return LEVEL_RANK[a.level] - LEVEL_RANK[b.level] || byOrdinal(a, b);
+  /**
+   * The first lesson of lessonPath the learner has not completed. Null when
+   * every lesson is completed or the language has no lessons. Without an
+   * injected `completedLessonIds` it is the first lesson of the path.
+   */
+  nextLessonFor(userId: string, language: LanguageCode): Promise<LessonSummary | null>;
 }
 
 export function createCurriculum(options: CreateCurriculumOptions): CurriculumService {
-  const { store } = options;
+  const { store, completedLessonIds } = options;
+
+  async function lessonPath(language: LanguageCode): Promise<LessonPathEntry[]> {
+    const units = [...(await store.listUnits(language))].sort(byLevelThenOrdinal);
+    const path: LessonPathEntry[] = [];
+    for (const unit of units) {
+      const lessons = [...(await store.listLessonSummaries(unit.id))].sort(byOrdinal);
+      for (const lesson of lessons) path.push({ lesson, unit, level: unit.level });
+    }
+    return path;
+  }
 
   return {
     listLevels(): CefrLevel[] {
@@ -94,10 +102,7 @@ export function createCurriculum(options: CreateCurriculumOptions): CurriculumSe
 
     async listCandos(language: LanguageCode, level?: CefrLevel, skill?: Skill): Promise<Cando[]> {
       const candos = await store.listCandos(language, { level, skill });
-      return [...candos].sort(
-        (a, b) =>
-          LEVEL_RANK[a.level] - LEVEL_RANK[b.level] || byText(a.code, b.code) || byText(a.id, b.id),
-      );
+      return [...candos].sort(byLevelThenCode);
     },
 
     async getCando(candoId: string): Promise<Cando> {
@@ -122,14 +127,12 @@ export function createCurriculum(options: CreateCurriculumOptions): CurriculumSe
       return { ...lesson, exercises: [...lesson.exercises].sort(byOrdinal) };
     },
 
-    async lessonPath(language: LanguageCode): Promise<LessonPathEntry[]> {
-      const units = [...(await store.listUnits(language))].sort(byLevelThenOrdinal);
-      const path: LessonPathEntry[] = [];
-      for (const unit of units) {
-        const lessons = [...(await store.listLessonSummaries(unit.id))].sort(byOrdinal);
-        for (const lesson of lessons) path.push({ lesson, unit, level: unit.level });
-      }
-      return path;
+    lessonPath,
+
+    async nextLessonFor(userId: string, language: LanguageCode): Promise<LessonSummary | null> {
+      const path = await lessonPath(language);
+      const completed = new Set(completedLessonIds ? await completedLessonIds(userId) : []);
+      return path.find((entry) => !completed.has(entry.lesson.id))?.lesson ?? null;
     },
   };
 }
