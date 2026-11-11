@@ -1,7 +1,7 @@
 {
   "name": "@stufen/core-entitlements",
   "kind": "core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [
@@ -12,6 +12,8 @@
     "createEntitlements (plan, can, remaining, consume, flag, setPlan)",
     "EntitlementStore interface",
     "createInMemoryEntitlementStore",
+    "createPostgresEntitlementStore",
+    "postgresDayKeyFor",
     "PLANS",
     "DEFAULT_PLAN",
     "LimitExceededError"

@@ -1,9 +1,9 @@
 // Storage port for core-entitlements: the reads and writes the box needs and
 // nothing more. The in memory adapter below is what unit tests use.
 //
-// The Postgres adapter (P1-33) will read usage from the `daily_usage` view,
-// which counts today's rows in the tables that record the real thing, and its
-// `recordUse` will be a no op because the calling route writes that row. See
+// The Postgres adapter in postgres-store.ts reads usage from the `daily_usage`
+// view, which counts today's rows in the tables that record the real thing,
+// and its `recordUse` is a no op because the calling route writes that row. See
 // docs/12-entitlements-and-payments.md, "How a daily count works".
 import type { CefrLevel, Entitlement, LimitKey, PlanId } from '@stufen/contracts';
 

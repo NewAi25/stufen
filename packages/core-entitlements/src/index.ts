@@ -7,5 +7,6 @@ export { createEntitlements, LimitExceededError } from './entitlements';
 export type { Entitlements, EntitlementsDeps, FlagContext } from './entitlements';
 export { createInMemoryEntitlementStore } from './store';
 export type { EntitlementStore, FeatureFlag, FlagRules } from './store';
+export { createPostgresEntitlementStore, postgresDayKeyFor } from './postgres-store';
 export { DEFAULT_PLAN, PLANS } from './plans';
 export type { PlanDefinition } from './plans';

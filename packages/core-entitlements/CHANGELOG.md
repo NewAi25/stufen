@@ -2,6 +2,31 @@
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-06
+
+### Added
+- `src/postgres-store.ts`: `createPostgresEntitlementStore(db)`, the Postgres adapter for the `EntitlementStore` port (P1-33).
+  - `getEntitlement` reads the own row inside `withUser(db, userId)`, as role `stufen_app`, so row level security applies.
+  - `upsertEntitlement` is owner work on `db`: an insert that turns into an update on conflict, because `ensure_profile` has usually created the row at sign up. It returns the stored row.
+  - `getFlag` reads inside `withUser(db, null)`. Flags are content and need no user.
+  - `setFlag` is owner work on `db`, insert or update on conflict.
+  - `usedToday` reads the matching column of the view `daily_usage` for that user and day inside `withUser`, and returns 0 when there is no row.
+  - `recordUse` does nothing. Usage is counted from the tutor messages, writing submissions and speech recordings themselves.
+  - One mapping between the snake_case row and the `Entitlement` shape from `contracts`. `features` and `limits` come back as plain objects, timestamps as ISO strings.
+- `postgresDayKeyFor(db)`: the `dayKeyFor` option of `createEntitlements` for the Postgres store. It asks Postgres for the user's current local day in `profiles.timezone`, the same day the view files usage under. A user without a profile gets the UTC date.
+- `tests/store-contract.ts`: `runEntitlementStoreContract(name, makeStore, hooks)`, the behaviour both adapters share: a missing row reads as null, upsert then get, a second upsert replaces the row, two users do not mix, flags get and set.
+- `tests/in-memory-store.test.ts`: the contract for the in memory store, plus its own usage counting.
+- `tests/postgres-store.integration.test.ts`: the contract for Postgres, the default row from `ensure_profile`, `setPlan` through the service, row security between two users, usage counted from real rows, `remaining` and `consume` with a per user override, the local day helper, and flags compared with the in memory store. Skipped unless `DATABASE_URL` is set.
+
+### Changed
+- `src/index.ts` also exports `createPostgresEntitlementStore` and `postgresDayKeyFor`.
+- README: the adapter, the access model, the day key helper and how to run the integration test.
+
+### Notes
+- With the Postgres store, `updatedAt` on a row that already existed is the database time of the write. The trigger `entitlements_updated` sets it and the value passed in is ignored.
+- The port has no "who is asking" argument. The store always reads as the user whose row is asked for, so the box that calls it must pass the signed in user's id.
+- No migration and no change to `contracts` or `db`.
+
 ## [0.1.0] - 2026-11-05
 
 ### Added
