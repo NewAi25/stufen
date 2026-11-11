@@ -1,18 +1,29 @@
 {
   "name": "@stufen/core-lesson-engine",
   "kind": "core",
-  "version": "0.0.0",
-  "status": "planned",
+  "version": "0.1.0",
+  "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [
     "contracts",
     "db"
   ],
   "provides": [
+    "createLessonEngine",
     "startSession",
     "currentExercise",
     "submitAnswer",
     "completeSession",
-    "recordStandaloneAttempt"
+    "recordStandaloneAttempt",
+    "completedLessonIds",
+    "SessionStore",
+    "createInMemorySessionStore",
+    "createPostgresSessionStore",
+    "LessonNotFoundError",
+    "SessionAccessError",
+    "OutOfOrderError",
+    "SessionIncompleteError",
+    "AttemptValidationError",
+    "DuplicateAttemptError"
   ]
 }

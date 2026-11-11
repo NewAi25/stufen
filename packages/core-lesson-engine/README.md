@@ -2,21 +2,85 @@
 
 ## Purpose
 
-Runs a lesson session: orders exercises, grades answers through the exercise type registry, records attempts.
-The single writer of attempts. Other boxes learn about attempts through events.
+Runs a lesson session: fixes the order of the exercises, grades each answer through an injected grader, records the attempt and tells the rest of the app through events.
+The single writer of `attempts`. Other boxes learn about attempts through events.
+It knows nothing about where lessons come from or how an exercise type is graded. Both arrive as functions.
 
-Kind: `core`. May import: `contracts`.
+Kind: `core`. May import: `contracts`, `db`.
 
 ## Public API
 
 ```ts
-startSession(userId, lessonId): Promise<LessonSession>
-currentExercise(sessionId): Promise<Exercise | null>
-submitAnswer(sessionId, exerciseId, response): Promise<{ grade: GradeResult; next: Exercise | null }>
-                                                          // emits attempt.recorded
-completeSession(sessionId): Promise<SessionResult>       // emits lesson.completed
-recordStandaloneAttempt(userId, input: StandaloneAttempt): Promise<void>  // used by srs, tutor, assessment
+createLessonEngine({ store, bus, getLesson, grade, now?, newId? }) => {
+  startSession(userId, lessonId): Promise<LessonSession>
+  currentExercise(userId, sessionId): Promise<Exercise | null>
+  submitAnswer(userId, sessionId, exerciseId, response, durationMs?):
+    Promise<{ grade: GradeResult; next: Exercise | null }>              // emits attempt.recorded
+  completeSession(userId, sessionId): Promise<SessionResult>           // emits lesson.completed
+  recordStandaloneAttempt(userId, input: StandaloneAttempt): Promise<void>   // emits attempt.recorded
+  completedLessonIds(userId): Promise<string[]>
+}
+
+// injected by the composition root
+getLesson(lessonId): Promise<{ lesson: Lesson; language: LanguageCode } | null>    // from core-curriculum
+grade(exercise: Exercise, response: unknown, language: LanguageCode): Promise<GradeResult>   // from core-exercise-types
+
+createInMemorySessionStore(): SessionStore
+createPostgresSessionStore(db): SessionStore
+
+// errors
+LessonNotFoundError, SessionAccessError, OutOfOrderError, SessionIncompleteError,
+AttemptValidationError, DuplicateAttemptError
 ```
+
+`now` defaults to the system clock and `newId` to `crypto.randomUUID()`. On the Postgres store ids must be uuids.
+
+Every method that takes a `sessionId` takes the acting `userId` first. This differs from the signatures in `docs/04-module-contracts.md`, which do not show the user id yet.
+
+### Session rules
+
+1. **Starting.** `startSession` asks `getLesson` for the lesson. If there is none it throws `LessonNotFoundError`. If the user already has an unfinished session for that lesson, that session is returned and no new one is created. Otherwise a session is created whose exercise order is the lesson's exercises sorted by ordinal. A completed session is never resumed; starting the lesson again creates a fresh one.
+2. **Whose session.** A session belongs to the user who started it. `currentExercise`, `submitAnswer` and `completeSession` throw `SessionAccessError` when the acting user has no session with that id. An unknown id and somebody else's session give the same error, because the store shows a user only the own rows.
+3. **Current exercise.** The current exercise is the first one in the session order that has no attempt in this session. When all are answered it is null. An exercise that the lesson no longer contains is skipped.
+4. **Answering.** `submitAnswer` accepts only the current exercise. Anything else throws `OutOfOrderError` with a `reason`: `not_in_session`, `already_answered` or `not_current`, and with `expectedExerciseId`. An exercise is answered once per session. There is no retry inside a session.
+5. **Grading.** The answer goes to `grade`. If `grade` throws, the error is passed on, nothing is stored, nothing is emitted, and the exercise stays current. A result that breaks the `GradeResult` contract (no boolean `correct`, a score outside 0 to 1, no feedback) is refused with `AttemptValidationError`.
+6. **Recording.** The attempt is stored with the response and the feedback, then `attempt.recorded` is emitted with `userId`, `attemptId`, `exerciseType`, `correct`, `score`, the `candoIds` and `itemIds` of the exercise, and the `language`. The call returns the grade and the next exercise, or `next: null` after the last one.
+7. **Completing.** `completeSession` throws `SessionIncompleteError` (with `remainingExerciseIds`) while any exercise is unanswered. Otherwise it sets `completedAt` and the score, which is the mean of the attempt scores, and emits `lesson.completed` with `userId`, `lessonId` and `score`. Calling it again returns the same result and emits nothing. A lesson without exercises completes with score 0.
+8. **Standalone attempts.** `recordStandaloneAttempt` is for reviews, tutor tasks and assessments. It stores an attempt with no session and emits `attempt.recorded`. The input is checked first: `language` is a `LanguageCode`, `exerciseType` is an `ExerciseTypeId`, `correct` is a boolean, `score` is a number from 0 to 1, `candoIds` and `itemIds` are lists of strings, `durationMs` is a whole number of 0 or more. A broken rule throws `AttemptValidationError` with the `field`, and nothing is stored.
+9. **Scores.** Scores are rounded to three decimals before they are stored, emitted or returned, because the columns are `numeric(4,3)`.
+10. **Responses.** A response must be a JSON value. It is stored as its JSON round trip; a missing response is stored as null.
+
+### Storage port
+
+```ts
+interface SessionStore {
+  insertSession(session: StoredSession): Promise<StoredSession>
+  getSession(userId, id): Promise<StoredSession | null>
+  updateSession(userId, id, patch: { completedAt?; score? }): Promise<StoredSession | null>
+  listSessionsByUser(userId): Promise<StoredSession[]>            // oldest first
+  insertAttempt(attempt: StoredAttempt): Promise<StoredAttempt>
+  listAttemptsBySession(userId, sessionId): Promise<StoredAttempt[]>   // oldest first
+  listAttemptsByUser(userId, limit?): Promise<StoredAttempt[]>         // newest first
+  completedLessonIds(userId): Promise<string[]>                   // distinct, ascending
+}
+```
+
+`StoredSession` is the contracts `LessonSession` plus `language`. `StoredAttempt` is one row of `attempts`. Both adapters keep the caller's ids and timestamps, never show one user another user's rows, refuse an attempt that points at a session of another user, and refuse a second attempt for the same session and exercise with `DuplicateAttemptError`.
+
+### The Postgres store
+
+Every method runs inside `withUser(db, userId, fn)` as the restricted role `stufen_app`, so the row level security policies decide which rows a call can see or change. The owner connection is never used for learner data. One mapping in `src/postgres-store.ts` knows the column names: timestamps become ISO strings, numeric scores become numbers, and a feedback of `{}` (the column default) reads as null.
+
+`lesson_sessions` has no language column. The language of a session is read from `units.language_code` through the lesson on every read, and the `language` handed to `insertSession` is not stored. `attempts` has no language column either, so the language of a standalone attempt travels only in the event.
+
+The user needs a `profiles` row (core-auth calls `ensure_profile` at sign up), and the lesson, exercise and item ids must exist in the content tables, because the tables reference them.
+
+### Known limits
+
+- Two `startSession` calls for the same user and lesson at the same moment can create two unfinished sessions. Later calls resume the older one.
+- Two `completeSession` calls at the same moment can both emit `lesson.completed`.
+- A double submit of the same exercise is safe: one attempt is stored and one event is emitted, the other call gets `OutOfOrderError`.
+- `GradeResult.errorTypes` is returned to the caller but not stored. The `attempts` table has no column for it.
 
 Source of truth: `docs/04-module-contracts.md`. If a signature is not there, it is not public.
 
@@ -47,6 +111,26 @@ Columns and policies are in `docs/03-data-schema.md` and `packages/db/migrations
 ```
 pnpm --filter @stufen/core-lesson-engine test
 ```
+
+That runs the unit tests. They need no database, and the integration test is reported as skipped.
+
+| File | What it checks |
+|------|----------------|
+| `tests/fixtures.ts` | Not a test file. A lesson of four exercises and a fake grader |
+| `tests/engine.test.ts` | Every session rule above on the in memory store, with the real bus and exact event payloads |
+| `tests/store-contract.ts` | Not a test file. `runSessionStoreContract(name, makeHarness)` holds the behaviour every `SessionStore` adapter must show |
+| `tests/store-contract.memory.test.ts` | Runs the contract for the in memory store |
+| `tests/postgres-store.integration.test.ts` | Runs the contract and the whole engine on Postgres and proves the row security. Skipped unless `DATABASE_URL` is set |
+
+### The integration test
+
+It needs a PostgreSQL 16 or later with the migrations applied, and a `DATABASE_URL` for the user that ran them. `packages/db/README.md` says how to start one. Then:
+
+```
+DATABASE_URL=postgres://stufen:stufen@localhost:5432/stufen pnpm --filter @stufen/core-lesson-engine test
+```
+
+As the owner it creates its own users (a `users` row, then `ensure_profile`) and its own content with random ids and slugs: one unit in `nl`, two lessons and four exercises. It deletes exactly those rows at the end.
 
 ## Status
 
