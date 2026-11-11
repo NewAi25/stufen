@@ -1,0 +1,323 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-04-05",
+  "unit_key": "de:unit:a1-04-einkaufen",
+  "ordinal": 5,
+  "slug": "post-und-bank",
+  "title": "Auf der Post und auf der Bank",
+  "title_en": "At the post office and the bank",
+  "description": "Errands at a counter: collecting a parcel, sending a letter, asking for an account, showing your ID, and understanding simple instructions such as fill in the form and sign here.",
+  "kind": "core",
+  "estimated_minutes": 20,
+  "cando_ids": [
+    "de:cando:A1.LIS.04",
+    "de:cando:A1.SPI.04",
+    "de:cando:A1.VOC.07",
+    "de:cando:A1.GRA.09",
+    "de:cando:A1.REA.03"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:post",
+    "de:vocab:brief",
+    "de:vocab:briefmarke",
+    "de:vocab:paket",
+    "de:vocab:schalter",
+    "de:vocab:bank",
+    "de:vocab:konto",
+    "de:vocab:geldautomat",
+    "de:vocab:ausweis",
+    "de:vocab:unterschrift",
+    "de:vocab:schicken",
+    "de:vocab:abholen",
+    "de:vocab:ausfuellen",
+    "de:vocab:unterschreiben",
+    "de:vocab:muessen",
+    "de:phrase:wo-ist-die-post-bitte",
+    "de:phrase:hier-ist-mein-ausweis",
+    "de:phrase:wo-muss-ich-unterschreiben",
+    "de:phrase:fuellen-sie-bitte-das-formular-aus"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-04-05-01",
+      "ordinal": 1,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.03"],
+      "item_ids": ["de:vocab:geoeffnet", "de:vocab:geschlossen", "de:chunk:von-bis", "de:vocab:samstag"],
+      "instruction_en": "Warm up with a shop sign from the last lesson.",
+      "payload": {
+        "question": "The sign says: Montag bis Freitag von 9 bis 18 Uhr. Samstag geschlossen. Today is Saturday. The shop is ...",
+        "options": ["geöffnet", "geschlossen"],
+        "answer_index": 1,
+        "explanation_en": "Geschlossen means closed. Geöffnet means open."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-05-02",
+      "ordinal": 2,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:koennen", "de:vocab:helfen", "de:grammar:satzklammer-modalverben"],
+      "instruction_en": "Warm up. Put the words in the right order to ask for help.",
+      "payload": {
+        "words": ["mir", "Können", "helfen?", "Sie"],
+        "answer": "Können Sie mir helfen?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-05-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.04"],
+      "item_ids": ["de:vocab:paket", "de:vocab:abholen", "de:vocab:ausweis", "de:phrase:hier-ist-mein-ausweis", "de:vocab:unterschreiben"],
+      "instruction_en": "Listen to a customer at the post office. Das Paket is the parcel, abholen means to collect, der Ausweis is the ID card and unterschreiben means to sign. Then answer the questions.",
+      "payload": {
+        "transcript": "Guten Tag! Ich möchte ein Paket abholen. Haben Sie einen Ausweis? Ja, hier ist mein Ausweis. Danke. Bitte unterschreiben Sie hier. Hier ist Ihr Paket.",
+        "questions": [
+          {
+            "question": "Was möchte der Kunde?",
+            "options": ["einen Brief schicken", "ein Paket abholen", "eine Jacke kaufen"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was hat der Kunde?",
+            "options": ["einen Ausweis", "eine Quittung", "eine Kreditkarte"],
+            "answer_index": 0
+          },
+          {
+            "question": "Was muss der Kunde machen?",
+            "options": ["bezahlen", "ein Formular ausfüllen", "unterschreiben"],
+            "answer_index": 2,
+            "explanation_en": "Bitte unterschreiben Sie hier means please sign here."
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-05-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.03"],
+      "item_ids": ["de:vocab:bank", "de:vocab:schalter", "de:vocab:geldautomat", "de:vocab:konto", "de:vocab:ausweis", "de:vocab:formular", "de:vocab:ausfuellen", "de:vocab:muessen"],
+      "instruction_en": "Read the notice at a bank. Der Schalter is the counter, der Geldautomat is the cash machine and das Konto is the account. Müssen means must. Then answer the questions.",
+      "payload": {
+        "title": "Bank am Markt",
+        "text": "Schalter: Montag bis Freitag von 9 bis 16 Uhr geöffnet.\nGeldautomat: Montag bis Sonntag von 6 bis 24 Uhr.\nSie möchten ein Konto? Sie müssen einen Ausweis haben und ein Formular ausfüllen.",
+        "questions": [
+          {
+            "question": "Wann ist der Schalter geöffnet?",
+            "options": ["von Montag bis Freitag", "von Montag bis Sonntag", "am Samstag und Sonntag"],
+            "answer_index": 0
+          },
+          {
+            "question": "Es ist Sonntag. Was ist geöffnet?",
+            "options": ["der Schalter", "die Post", "der Geldautomat"],
+            "answer_index": 2
+          },
+          {
+            "question": "Sie möchten ein Konto. Was müssen Sie ausfüllen?",
+            "options": ["einen Brief", "ein Formular", "eine Quittung"],
+            "answer_index": 1
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-05-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07"],
+      "item_ids": ["de:vocab:post", "de:vocab:brief", "de:vocab:briefmarke", "de:vocab:paket", "de:vocab:schalter", "de:vocab:schicken", "de:vocab:abholen"],
+      "instruction_en": "Words for the post office. Match the pairs.",
+      "payload": {
+        "pairs": [
+          { "left": "die Post", "right": "post office" },
+          { "left": "der Brief", "right": "letter" },
+          { "left": "die Briefmarke", "right": "stamp" },
+          { "left": "das Paket", "right": "parcel" },
+          { "left": "der Schalter", "right": "counter" },
+          { "left": "schicken", "right": "to send" },
+          { "left": "abholen", "right": "to collect" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-05-06",
+      "ordinal": 6,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07", "de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:schicken", "de:vocab:abholen", "de:vocab:briefmarke", "de:vocab:moechten"],
+      "instruction_en": "What would you like to do at the post office? The English word is under each gap.",
+      "payload": {
+        "text": "Ich möchte einen Brief ___. Ich möchte ein Paket ___. Ich möchte eine ___ kaufen.",
+        "blanks": [
+          { "answer": "schicken", "hint": "to send" },
+          { "answer": "abholen", "hint": "to collect" },
+          { "answer": "Briefmarke", "hint": "stamp" }
+        ],
+        "explanation_en": "After möchte the second verb stands at the end in the infinitive."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-05-07",
+      "ordinal": 7,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07"],
+      "item_ids": ["de:vocab:bank", "de:vocab:konto", "de:vocab:geldautomat", "de:vocab:ausweis", "de:vocab:formular", "de:vocab:unterschrift", "de:vocab:ausfuellen", "de:vocab:unterschreiben"],
+      "instruction_en": "Words for the bank and for any office. Match the pairs.",
+      "payload": {
+        "pairs": [
+          { "left": "die Bank", "right": "bank" },
+          { "left": "das Konto", "right": "account" },
+          { "left": "der Geldautomat", "right": "cash machine" },
+          { "left": "der Ausweis", "right": "ID card" },
+          { "left": "das Formular", "right": "form" },
+          { "left": "die Unterschrift", "right": "signature" },
+          { "left": "ausfüllen", "right": "to fill in" },
+          { "left": "unterschreiben", "right": "to sign" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-05-08",
+      "ordinal": 8,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.04"],
+      "item_ids": ["de:phrase:fuellen-sie-bitte-das-formular-aus", "de:vocab:formular", "de:vocab:unterschreiben", "de:vocab:schalter"],
+      "instruction_en": "The clerk at the bank tells you what to do. Listen and answer the questions.",
+      "payload": {
+        "transcript": "Füllen Sie bitte das Formular aus. Bitte unterschreiben Sie hier. Gehen Sie bitte zum Schalter drei.",
+        "questions": [
+          {
+            "question": "Was müssen Sie ausfüllen?",
+            "options": ["den Brief", "das Formular", "den Ausweis"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was müssen Sie auch machen?",
+            "options": ["unterschreiben", "bezahlen", "ein Paket abholen"],
+            "answer_index": 0
+          },
+          {
+            "question": "Welcher Schalter?",
+            "options": ["Schalter 2", "Schalter 3", "Schalter 13"],
+            "answer_index": 1,
+            "explanation_en": "An instruction with Sie starts with the verb: Gehen Sie bitte zum Schalter drei."
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-05-09",
+      "ordinal": 9,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:muessen", "de:phrase:wo-muss-ich-unterschreiben", "de:grammar:modalverben-praesens"],
+      "instruction_en": "Fill in the right form of müssen.",
+      "payload": {
+        "text": "Wo ___ ich unterschreiben? Sie ___ hier unterschreiben. ___ ich auch das Formular ausfüllen?",
+        "blanks": [
+          { "answer": "muss", "hint": "ich" },
+          { "answer": "müssen", "accept": ["muessen"], "hint": "Sie" },
+          { "answer": "Muss", "accept": ["muss"], "hint": "ich" }
+        ],
+        "explanation_en": "ich muss, du musst, er muss, wir müssen, Sie müssen. Müssen works like können: no ending with ich, and the second verb stands at the end."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-05-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:moechten", "de:vocab:paket", "de:vocab:abholen", "de:grammar:satzklammer-modalverben"],
+      "instruction_en": "Put the words in the right order. The infinitive goes to the end.",
+      "payload": {
+        "words": ["abholen.", "ein", "Ich", "Paket", "möchte"],
+        "answer": "Ich möchte ein Paket abholen."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-05-11",
+      "ordinal": 11,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.04"],
+      "item_ids": ["de:phrase:hier-ist-mein-ausweis", "de:vocab:ausweis", "de:phrase:wo-ist-die-post-bitte"],
+      "instruction_en": "Choose what you say at the counter.",
+      "payload": {
+        "question": "The clerk at the bank asks: Haben Sie einen Ausweis? You hand it over. What do you say?",
+        "options": ["Wo ist die Post, bitte?", "Hier ist meine Quittung.", "Hier ist mein Ausweis."],
+        "answer_index": 2,
+        "explanation_en": "Hier ist ... is what you say when you give something to someone."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-05-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.GRA.09", "de:cando:A1.VOC.07"],
+      "item_ids": ["de:vocab:moechten", "de:vocab:brief", "de:vocab:schicken"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "I would like to send a letter.",
+        "direction": "to_target",
+        "reference": ["Ich möchte einen Brief schicken."],
+        "notes_en": "Der Brief is masculine, so the accusative is einen Brief."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-05-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.04", "de:cando:A1.GRA.09"],
+      "item_ids": ["de:phrase:wo-ist-die-post-bitte", "de:vocab:paket", "de:vocab:abholen", "de:phrase:hier-ist-mein-ausweis", "de:phrase:wo-muss-ich-unterschreiben"],
+      "instruction_en": "Record yourself.",
+      "payload": {
+        "prompt_en": "First ask someone in the street where the post office is. Then you are at the counter: say that you would like to collect a parcel, hand over your ID card and ask where you have to sign.",
+        "mode": "free",
+        "sample_answer": "Entschuldigung, wo ist die Post, bitte? Guten Tag! Ich möchte ein Paket abholen. Hier ist mein Ausweis. Wo muss ich unterschreiben?",
+        "rubric_focus": ["Wo ist die Post, bitte?", "möchte with the infinitive at the end", "Hier ist mein Ausweis", "Wo muss ich unterschreiben?"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

@@ -1,0 +1,323 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-01-04",
+  "unit_key": "de:unit:a1-01-hallo",
+  "ordinal": 4,
+  "slug": "anmeldung-und-formular",
+  "title": "Die Anmeldung: Name und Adresse",
+  "title_en": "Registering your address: name and address",
+  "description": "The words on a registration form, giving your address and telephone number, spelling your name aloud, reading a simple form and filling one in at the Bürgeramt.",
+  "kind": "core",
+  "estimated_minutes": 16,
+  "cando_ids": [
+    "de:cando:A1.WRI.02",
+    "de:cando:A1.REA.03",
+    "de:cando:A1.VOC.01",
+    "de:cando:A1.VOC.02",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.LIS.03",
+    "de:cando:A1.SPI.01",
+    "de:cando:A1.SPI.03",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.WRI.01"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:vorname",
+    "de:vocab:nachname",
+    "de:vocab:familienname",
+    "de:vocab:adresse",
+    "de:vocab:hausnummer",
+    "de:vocab:postleitzahl",
+    "de:vocab:geburtsdatum",
+    "de:vocab:geburtsort",
+    "de:vocab:staatsangehoerigkeit",
+    "de:vocab:anmeldung",
+    "de:vocab:formular",
+    "de:vocab:buergeramt",
+    "de:vocab:buchstabieren",
+    "de:vocab:null",
+    "de:chunk:wie-ist-ihre",
+    "de:chunk:meine-telefonnummer-ist",
+    "de:chunk:ich-bin-in-geboren",
+    "de:phrase:wie-schreibt-man-das"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-01-04-01",
+      "ordinal": 1,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.01"],
+      "item_ids": ["de:phrase:sprechen-sie-englisch", "de:vocab:ja", "de:vocab:sprechen"],
+      "instruction_en": "Warm up. Choose the answer that fits the question.",
+      "payload": {
+        "question": "Someone asks you: Sprechen Sie Englisch? Which answer fits?",
+        "options": ["Aus Indien.", "Ja, ein bisschen.", "In Berlin."],
+        "answer_index": 1,
+        "explanation_en": "A question that starts with the verb is a yes or no question. You answer with ja or nein."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-04-02",
+      "ordinal": 2,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.02"],
+      "item_ids": ["de:vocab:null", "de:vocab:zwei", "de:vocab:vier", "de:vocab:sechs", "de:vocab:acht", "de:vocab:neun"],
+      "instruction_en": "Warm up. Match the number word with the digit. One word is new: null is zero.",
+      "payload": {
+        "pairs": [
+          { "left": "null", "right": "0" },
+          { "left": "zwei", "right": "2" },
+          { "left": "vier", "right": "4" },
+          { "left": "sechs", "right": "6" },
+          { "left": "acht", "right": "8" },
+          { "left": "neun", "right": "9" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-04-03",
+      "ordinal": 3,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.03"],
+      "item_ids": ["de:vocab:anmeldung", "de:vocab:buergeramt", "de:vocab:formular", "de:vocab:familienname", "de:vocab:vorname", "de:vocab:geburtsdatum", "de:vocab:geburtsort", "de:vocab:staatsangehoerigkeit", "de:vocab:hausnummer", "de:vocab:postleitzahl"],
+      "instruction_en": "Priya has moved to Köln and registers her address at the Bürgeramt. Read her form and answer the questions.",
+      "payload": {
+        "title": "Bürgeramt Köln: Anmeldung",
+        "text": "Familienname: Sharma\nVorname: Priya\nGeburtsdatum: 05.03.1994\nGeburtsort: Kolkata\nStaatsangehörigkeit: indisch\nStraße: Bergstraße\nHausnummer: 7\nPostleitzahl: 50667\nStadt: Köln\nTelefonnummer: 0221 345678",
+        "questions": [
+          {
+            "question": "Wie ist der Vorname?",
+            "options": ["Sharma", "Priya", "Kolkata"],
+            "answer_index": 1,
+            "explanation_en": "der Vorname is the first name. der Familienname is the surname."
+          },
+          {
+            "question": "Wie ist die Postleitzahl?",
+            "options": ["05.03.1994", "0221 345678", "50667"],
+            "answer_index": 2,
+            "explanation_en": "A German postcode has five digits. 05.03.1994 is the date of birth, written day, month, year."
+          },
+          {
+            "question": "Wie ist die Hausnummer?",
+            "options": ["7", "5", "3"],
+            "answer_index": 0
+          },
+          {
+            "question": "Der Geburtsort ist ...",
+            "options": ["Köln", "Kolkata", "indisch"],
+            "answer_index": 1,
+            "explanation_en": "der Geburtsort is the place of birth."
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-04-04",
+      "ordinal": 4,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.03", "de:cando:A1.LIS.02"],
+      "item_ids": ["de:chunk:wie-ist-ihre", "de:chunk:meine-telefonnummer-ist", "de:vocab:adresse", "de:vocab:telefonnummer", "de:vocab:null", "de:vocab:neun"],
+      "instruction_en": "Listen to the conversation at the Bürgeramt. Then answer the questions.",
+      "payload": {
+        "transcript": "Guten Tag. Wie ist Ihre Adresse, bitte? Meine Adresse ist Bergstraße neun in Köln. Und wie ist Ihre Telefonnummer? Meine Telefonnummer ist null, eins, sieben, sechs, vier, zwei, neun.",
+        "questions": [
+          {
+            "question": "Wie ist die Hausnummer?",
+            "options": ["7", "9", "10"],
+            "answer_index": 1
+          },
+          {
+            "question": "Wie ist die Telefonnummer?",
+            "options": ["0176429", "0167429", "0176492"],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-04-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.01", "de:cando:A1.REA.03"],
+      "item_ids": ["de:vocab:vorname", "de:vocab:nachname", "de:vocab:adresse", "de:vocab:geburtsdatum", "de:vocab:geburtsort", "de:vocab:postleitzahl", "de:vocab:hausnummer", "de:vocab:staatsangehoerigkeit"],
+      "instruction_en": "Match the word on the form with its English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "der Vorname", "right": "first name" },
+          { "left": "der Nachname", "right": "surname" },
+          { "left": "die Adresse", "right": "address" },
+          { "left": "das Geburtsdatum", "right": "date of birth" },
+          { "left": "der Geburtsort", "right": "place of birth" },
+          { "left": "die Postleitzahl", "right": "postcode" },
+          { "left": "die Hausnummer", "right": "house number" },
+          { "left": "die Staatsangehörigkeit", "right": "nationality" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-04-06",
+      "ordinal": 6,
+      "type": "flashcard",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.01"],
+      "item_ids": ["de:vocab:familienname"],
+      "instruction_en": "Read the card, say the word, then turn it over.",
+      "payload": {
+        "front": "der Familienname",
+        "back": "the family name, the surname",
+        "hint": "This is the word on official forms. In speech people say der Nachname."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-04-07",
+      "ordinal": 7,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.01", "de:cando:A1.SPI.03"],
+      "item_ids": ["de:chunk:wie-ist-ihre", "de:vocab:adresse", "de:vocab:telefonnummer", "de:vocab:geburtsort", "de:chunk:ich-bin-in-geboren"],
+      "instruction_en": "The clerk asks three questions. Fill in the word from the form that fits each answer.",
+      "payload": {
+        "text": "Wie ist Ihre ___? Bergstraße 7, 50667 Köln. Und wie ist Ihre ___? 0221 345678. Und der ___? Ich bin in Kolkata geboren.",
+        "blanks": [
+          { "answer": "Adresse", "accept": ["adresse"], "hint": "address" },
+          { "answer": "Telefonnummer", "accept": ["telefonnummer"], "hint": "telephone number" },
+          { "answer": "Geburtsort", "accept": ["geburtsort"], "hint": "place of birth" }
+        ],
+        "explanation_en": "German asks Wie ist Ihre Adresse? with wie, not with was. Ich bin in Kolkata geboren means I was born in Kolkata."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-04-08",
+      "ordinal": 8,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.01"],
+      "item_ids": ["de:phrase:wie-schreibt-man-das", "de:vocab:buchstabieren"],
+      "instruction_en": "Choose the answer that fits.",
+      "payload": {
+        "question": "You say your surname. The clerk asks: Wie schreibt man das? What do you answer?",
+        "options": ["Ich komme aus Indien.", "Danke, gut.", "Ich buchstabiere: S, H, A, R, M, A."],
+        "answer_index": 2,
+        "explanation_en": "Wie schreibt man das? means how do you spell that. buchstabieren means to spell. You say the letters one by one."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-04-09",
+      "ordinal": 9,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02"],
+      "item_ids": ["de:vocab:buchstabieren", "de:vocab:nachname", "de:vocab:vorname"],
+      "instruction_en": "A man spells his surname. Listen to the letters and choose the right spelling.",
+      "payload": {
+        "transcript": "Mein Vorname ist Peter. Mein Nachname ist Meier. Ich buchstabiere: M, E, I, E, R.",
+        "questions": [
+          {
+            "question": "Wie ist der Nachname?",
+            "options": ["Mayer", "Maier", "Meier"],
+            "answer_index": 2,
+            "explanation_en": "The German letter E sounds like the English letter A, and the German letter I sounds like the English letter E. Listen for each letter."
+          },
+          {
+            "question": "Wie ist der Vorname?",
+            "options": ["Peter", "Dieter", "Meier"],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-04-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03", "de:cando:A1.SPI.03"],
+      "item_ids": ["de:chunk:wie-ist-ihre", "de:vocab:adresse", "de:vocab:wie"],
+      "instruction_en": "Put the words in order to ask for someone's address politely.",
+      "payload": {
+        "words": ["Ihre", "Adresse?", "ist", "Wie"],
+        "answer": "Wie ist Ihre Adresse?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-04-11",
+      "ordinal": 11,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.VOC.02"],
+      "item_ids": ["de:chunk:meine-telefonnummer-ist", "de:vocab:telefonnummer", "de:vocab:null"],
+      "instruction_en": "Translate into German. Write the digits as words.",
+      "payload": {
+        "source_text": "My telephone number is 0 3 5 8.",
+        "direction": "to_target",
+        "reference": ["Meine Telefonnummer ist null, drei, fünf, acht.", "Meine Telefonnummer ist null drei fünf acht."],
+        "notes_en": "Germans often say a telephone number digit by digit. Telefonnummer is feminine, so it is meine, not mein."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-04-12",
+      "ordinal": 12,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.03", "de:cando:A1.VOC.01"],
+      "item_ids": ["de:vocab:nachname", "de:vocab:buchstabieren", "de:phrase:wie-schreibt-man-das"],
+      "instruction_en": "Record yourself.",
+      "payload": {
+        "prompt_en": "The clerk at the Bürgeramt asks: Wie ist Ihr Nachname? Wie schreibt man das? Say your surname in a full sentence, then spell it letter by letter in German.",
+        "mode": "free",
+        "sample_answer": "Mein Nachname ist Sharma. Ich buchstabiere: S, H, A, R, M, A.",
+        "rubric_focus": ["Mein Nachname ist", "German letter names, one letter at a time", "clear and slow"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-04-13",
+      "ordinal": 13,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.02"],
+      "item_ids": ["de:vocab:formular", "de:vocab:familienname", "de:vocab:vorname", "de:vocab:geburtsdatum", "de:vocab:geburtsort", "de:vocab:staatsangehoerigkeit", "de:vocab:adresse", "de:vocab:postleitzahl", "de:vocab:telefonnummer"],
+      "instruction_en": "Fill in the form.",
+      "payload": {
+        "prompt_en": "You are at the Bürgeramt to register your address. Fill in the form below. Copy each word from the form, then write your detail after it, one line for each. You can use your real details or invent them. Write the date of birth as day, month, year, for example 05.03.1994.",
+        "prompt_native": "Anmeldung\nFamilienname:\nVorname:\nGeburtsdatum:\nGeburtsort:\nStaatsangehörigkeit:\nStraße und Hausnummer:\nPostleitzahl und Stadt:\nTelefonnummer:",
+        "min_words": 10,
+        "max_words": 50,
+        "sample_answer": "Familienname: Sharma\nVorname: Priya\nGeburtsdatum: 05.03.1994\nGeburtsort: Kolkata\nStaatsangehörigkeit: indisch\nStraße und Hausnummer: Bergstraße 7\nPostleitzahl und Stadt: 50667 Köln\nTelefonnummer: 0221 345678",
+        "rubric_focus": ["every line of the form is filled in", "the right kind of detail on each line", "date of birth as day, month, year", "five digit postcode before the city"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

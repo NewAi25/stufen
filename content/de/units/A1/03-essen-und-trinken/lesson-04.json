@@ -1,0 +1,370 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-03-04",
+  "unit_key": "de:unit:a1-03-essen-und-trinken",
+  "ordinal": 4,
+  "slug": "im-cafe-und-im-restaurant",
+  "title": "Im Café und im Restaurant",
+  "title_en": "In the café and the restaurant",
+  "description": "Ordering food and drink politely, understanding the waiter, reading a simple menu with prices, asking for the bill and paying.",
+  "kind": "core",
+  "estimated_minutes": 20,
+  "cando_ids": [
+    "de:cando:A1.SPI.04",
+    "de:cando:A1.REA.04",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.LIS.03",
+    "de:cando:A1.VOC.04",
+    "de:cando:A1.GRA.06",
+    "de:cando:A1.GRA.07",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.WRI.01"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:restaurant",
+    "de:vocab:kellner",
+    "de:vocab:gast",
+    "de:vocab:speisekarte",
+    "de:vocab:rechnung",
+    "de:vocab:getraenk",
+    "de:vocab:essen-nomen",
+    "de:vocab:bestellen",
+    "de:vocab:zahlen",
+    "de:vocab:kosten",
+    "de:vocab:euro",
+    "de:vocab:kartoffel",
+    "de:vocab:haehnchen",
+    "de:chunk:ich-haette-gern",
+    "de:chunk:das-macht-euro",
+    "de:phrase:was-moechten-sie-trinken",
+    "de:phrase:wir-moechten-bestellen",
+    "de:phrase:die-rechnung-bitte",
+    "de:phrase:zahlen-bitte",
+    "de:phrase:zusammen-oder-getrennt",
+    "de:phrase:stimmt-so",
+    "de:phrase:guten-appetit"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-03-04-01",
+      "ordinal": 1,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.06"],
+      "item_ids": ["de:grammar:akkusativ-artikel", "de:chunk:ich-nehme", "de:vocab:fisch", "de:vocab:suppe"],
+      "instruction_en": "Warm up. Fill in den, die or das.",
+      "payload": {
+        "text": "Ich nehme ___ Fisch und ___ Suppe.",
+        "blanks": [
+          { "answer": "den", "hint": "der Fisch" },
+          { "answer": "die", "hint": "die Suppe" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-04-02",
+      "ordinal": 2,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.07", "de:cando:A1.GRA.03"],
+      "item_ids": ["de:vocab:kein", "de:vocab:trinken", "de:vocab:kaffee"],
+      "instruction_en": "Warm up. Put the words in the right order.",
+      "payload": {
+        "words": ["keinen", "Ich", "Kaffee.", "trinke"],
+        "answer": "Ich trinke keinen Kaffee."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-04-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02", "de:cando:A1.SPI.04"],
+      "item_ids": [
+        "de:phrase:was-moechten-sie-trinken",
+        "de:chunk:ich-haette-gern",
+        "de:chunk:ich-nehme",
+        "de:vocab:wasser",
+        "de:vocab:suppe",
+        "de:vocab:salat"
+      ],
+      "instruction_en": "Listen to a waiter and a guest in a restaurant. Then answer the questions.",
+      "payload": {
+        "transcript": "Guten Tag! Was möchten Sie trinken? Ich hätte gern ein Wasser, bitte. Gern. Und was möchten Sie essen? Ich nehme die Suppe und einen Salat. Gern.",
+        "questions": [
+          {
+            "question": "Was möchte der Gast trinken?",
+            "options": ["einen Kaffee", "ein Wasser", "einen Saft"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was isst der Gast?",
+            "options": ["den Fisch", "ein Brötchen", "die Suppe und einen Salat"],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-04-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.04", "de:cando:A1.VOC.04"],
+      "item_ids": [
+        "de:vocab:speisekarte",
+        "de:vocab:getraenk",
+        "de:vocab:essen-nomen",
+        "de:vocab:kosten",
+        "de:vocab:euro",
+        "de:vocab:kartoffel",
+        "de:vocab:haehnchen"
+      ],
+      "instruction_en": "Read the menu. Then answer the questions about the prices.",
+      "payload": {
+        "title": "Café am Markt: Speisekarte",
+        "text": "Getränke\nKaffee 2,80 Euro\nTee 2,50 Euro\nSaft 3,00 Euro\nWasser 2,20 Euro\n\nEssen\nSuppe 4,50 Euro\nSalat mit Käse 6,90 Euro\nHähnchen mit Reis 9,80 Euro\nFisch mit Kartoffeln 11,50 Euro\nKuchen 3,20 Euro",
+        "questions": [
+          {
+            "question": "Was kostet der Kaffee?",
+            "options": ["2,50 Euro", "2,80 Euro", "3,00 Euro"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was kostet 2,20 Euro?",
+            "options": ["der Tee", "der Saft", "das Wasser"],
+            "answer_index": 2
+          },
+          {
+            "question": "Was kostet 9,80 Euro?",
+            "options": ["Hähnchen mit Reis", "Fisch mit Kartoffeln", "Salat mit Käse"],
+            "answer_index": 0
+          },
+          {
+            "question": "Was kosten eine Suppe und ein Kuchen zusammen?",
+            "options": ["6,70 Euro", "8,20 Euro", "7,70 Euro"],
+            "answer_index": 2,
+            "explanation_en": "Suppe 4,50 Euro and Kuchen 3,20 Euro make 7,70 Euro. German prices use a comma, not a point."
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-04-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.04"],
+      "item_ids": [
+        "de:vocab:restaurant",
+        "de:vocab:kellner",
+        "de:vocab:gast",
+        "de:vocab:speisekarte",
+        "de:vocab:rechnung",
+        "de:vocab:getraenk",
+        "de:vocab:essen-nomen",
+        "de:vocab:bestellen"
+      ],
+      "instruction_en": "Match the restaurant words with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "das Restaurant", "right": "restaurant" },
+          { "left": "der Kellner", "right": "waiter" },
+          { "left": "der Gast", "right": "guest" },
+          { "left": "die Speisekarte", "right": "menu" },
+          { "left": "die Rechnung", "right": "bill" },
+          { "left": "das Getränk", "right": "drink" },
+          { "left": "das Essen", "right": "food, meal" },
+          { "left": "bestellen", "right": "to order" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-04-06",
+      "ordinal": 6,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.04", "de:cando:A1.SPI.04"],
+      "item_ids": [
+        "de:phrase:wir-moechten-bestellen",
+        "de:phrase:die-rechnung-bitte",
+        "de:phrase:zahlen-bitte",
+        "de:phrase:zusammen-oder-getrennt",
+        "de:phrase:stimmt-so",
+        "de:phrase:guten-appetit"
+      ],
+      "instruction_en": "Match the restaurant phrases with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "Wir möchten bestellen, bitte.", "right": "We would like to order, please." },
+          { "left": "Die Rechnung, bitte.", "right": "The bill, please." },
+          { "left": "Zahlen, bitte!", "right": "I would like to pay, please." },
+          { "left": "Zusammen oder getrennt?", "right": "Together or separately?" },
+          { "left": "Stimmt so.", "right": "Keep the change." },
+          { "left": "Guten Appetit!", "right": "Enjoy your meal!" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-04-07",
+      "ordinal": 7,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.04"],
+      "item_ids": ["de:phrase:was-moechten-sie-trinken", "de:chunk:ich-haette-gern", "de:vocab:kellner"],
+      "instruction_en": "Choose the natural reply.",
+      "payload": {
+        "question": "Der Kellner fragt: Was möchten Sie trinken? What do you answer?",
+        "options": ["Die Rechnung, bitte.", "Guten Appetit!", "Ich hätte gern einen Tee."],
+        "answer_index": 2,
+        "explanation_en": "Ich hätte gern ... is a polite way to order. It means the same as Ich möchte ... and also takes the accusative."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-04-08",
+      "ordinal": 8,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.04"],
+      "item_ids": ["de:phrase:zahlen-bitte", "de:phrase:die-rechnung-bitte", "de:vocab:zahlen", "de:vocab:rechnung"],
+      "instruction_en": "Choose the right phrase.",
+      "payload": {
+        "question": "You have finished your meal and want to pay. What do you say to the waiter?",
+        "options": ["Zahlen, bitte!", "Wir möchten bestellen, bitte.", "Stimmt so."],
+        "answer_index": 0,
+        "explanation_en": "Zahlen, bitte! and Die Rechnung, bitte. both ask for the bill. Stimmt so. comes later, when you hand over the money and leave a tip."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-04-09",
+      "ordinal": 9,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.06", "de:cando:A1.SPI.04"],
+      "item_ids": [
+        "de:chunk:ich-haette-gern",
+        "de:grammar:akkusativ-artikel",
+        "de:vocab:salat",
+        "de:vocab:wasser",
+        "de:vocab:kuchen"
+      ],
+      "instruction_en": "Order politely. Fill in einen, eine or ein.",
+      "payload": {
+        "text": "Ich hätte gern ___ Salat und ___ Wasser. Und ich möchte ___ Kuchen.",
+        "blanks": [
+          { "answer": "einen", "hint": "der Salat" },
+          { "answer": "ein", "hint": "das Wasser" },
+          { "answer": "einen", "hint": "der Kuchen" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-04-10",
+      "ordinal": 10,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.03", "de:cando:A1.LIS.02"],
+      "item_ids": [
+        "de:phrase:zahlen-bitte",
+        "de:phrase:zusammen-oder-getrennt",
+        "de:chunk:das-macht-euro",
+        "de:phrase:stimmt-so",
+        "de:vocab:euro"
+      ],
+      "instruction_en": "Listen to two guests paying in a café. Then answer the questions.",
+      "payload": {
+        "transcript": "Zahlen, bitte! Gern. Zusammen oder getrennt? Zusammen, bitte. Ein Kaffee, ein Wasser und zwei Suppen. Das macht vierzehn Euro. Fünfzehn Euro. Stimmt so. Danke!",
+        "questions": [
+          {
+            "question": "Was kostet alles zusammen?",
+            "options": ["40 Euro", "14 Euro", "15 Euro"],
+            "answer_index": 1,
+            "explanation_en": "vierzehn is 14. vierzig is 40."
+          },
+          {
+            "question": "Zahlen die Gäste zusammen oder getrennt?",
+            "options": ["zusammen", "getrennt"],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-04-11",
+      "ordinal": 11,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.SPI.04", "de:cando:A1.GRA.03"],
+      "item_ids": ["de:phrase:wir-moechten-bestellen", "de:vocab:bestellen"],
+      "instruction_en": "Put the words in the right order to call the waiter.",
+      "payload": {
+        "words": ["bestellen,", "Wir", "bitte.", "möchten"],
+        "answer": "Wir möchten bestellen, bitte."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-04-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.GRA.06", "de:cando:A1.SPI.04"],
+      "item_ids": ["de:chunk:ich-nehme", "de:vocab:suppe", "de:vocab:wasser"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "I will have the soup and a water, please.",
+        "direction": "to_target",
+        "reference": ["Ich nehme die Suppe und ein Wasser, bitte."],
+        "notes_en": "In a restaurant Ich nehme ... is the normal way to say I will have ..."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-04-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.04"],
+      "item_ids": ["de:chunk:ich-haette-gern", "de:chunk:ich-nehme", "de:phrase:die-rechnung-bitte", "de:vocab:restaurant"],
+      "instruction_en": "Record yourself. You are the guest.",
+      "payload": {
+        "prompt_en": "You are in a restaurant. The waiter comes to your table and asks: Was möchten Sie? Greet the waiter, order one drink and one thing to eat politely, and then ask for the bill.",
+        "prompt_native": "Guten Tag! Was möchten Sie?",
+        "mode": "free",
+        "sample_answer": "Guten Tag! Ich hätte gern ein Wasser. Und ich nehme das Hähnchen mit Reis. Die Rechnung, bitte.",
+        "rubric_focus": [
+          "polite order with ich hätte gern, ich möchte or ich nehme",
+          "accusative article",
+          "asks for the bill",
+          "bitte and a greeting"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

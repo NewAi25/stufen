@@ -1,0 +1,269 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-03-06",
+  "unit_key": "de:unit:a1-03-essen-und-trinken",
+  "ordinal": 6,
+  "slug": "bestellen-und-einkaufszettel",
+  "title": "Jetzt du: bestellen und einkaufen",
+  "title_en": "Your turn: ordering and shopping",
+  "description": "Production lesson. Order a meal in a restaurant roleplay, say what you like and do not like, and write a shopping note and a short message about food.",
+  "kind": "production",
+  "estimated_minutes": 25,
+  "cando_ids": [
+    "de:cando:A1.SPI.04",
+    "de:cando:A1.SPP.03",
+    "de:cando:A1.WRI.03",
+    "de:cando:A1.WRI.04",
+    "de:cando:A1.WRI.01",
+    "de:cando:A1.GRA.06",
+    "de:cando:A1.GRA.07",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.VOC.04"
+  ],
+  "introduces_item_ids": [],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-03-06-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.SPI.04"],
+      "item_ids": [
+        "de:phrase:was-moechten-sie-trinken",
+        "de:phrase:sonst-noch-etwas",
+        "de:phrase:zusammen-oder-getrennt",
+        "de:chunk:gibt-es-hier",
+        "de:vocab:moegen"
+      ],
+      "instruction_en": "Warm up. Match each question with a fitting answer.",
+      "payload": {
+        "pairs": [
+          { "left": "Was möchten Sie trinken?", "right": "Ich hätte gern einen Saft." },
+          { "left": "Sonst noch etwas?", "right": "Nein, danke. Das ist alles." },
+          { "left": "Zusammen oder getrennt?", "right": "Zusammen, bitte." },
+          { "left": "Gibt es hier einen Supermarkt?", "right": "Nein, aber es gibt einen Markt." },
+          { "left": "Magst du Käse?", "right": "Ja, ich esse gern Käse." }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-06-02",
+      "ordinal": 2,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.06", "de:cando:A1.GRA.07"],
+      "item_ids": [
+        "de:grammar:akkusativ-artikel",
+        "de:grammar:negation-kein",
+        "de:vocab:salat",
+        "de:vocab:fleisch",
+        "de:vocab:nicht"
+      ],
+      "instruction_en": "Warm up. Fill in einen, kein or nicht.",
+      "payload": {
+        "text": "Ich möchte ___ Salat. Ich esse ___ Fleisch und ich trinke ___ gern Kaffee.",
+        "blanks": [
+          { "answer": "einen", "hint": "a, der Salat" },
+          { "answer": "kein", "hint": "no, das Fleisch" },
+          { "answer": "nicht", "hint": "before gern" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-06-03",
+      "ordinal": 3,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03", "de:cando:A1.SPI.04"],
+      "item_ids": ["de:chunk:ich-haette-gern", "de:vocab:flasche", "de:vocab:wasser"],
+      "instruction_en": "Warm up. Put the words in the right order.",
+      "payload": {
+        "words": ["gern", "Wasser.", "eine", "Ich", "Flasche", "hätte"],
+        "answer": "Ich hätte gern eine Flasche Wasser."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-06-04",
+      "ordinal": 4,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.GRA.06", "de:cando:A1.SPI.04"],
+      "item_ids": ["de:chunk:ich-moechte", "de:vocab:suppe", "de:vocab:salat"],
+      "instruction_en": "Translate into German. This is how you order.",
+      "payload": {
+        "source_text": "I would like a soup and a salad, please.",
+        "direction": "to_target",
+        "reference": ["Ich möchte eine Suppe und einen Salat, bitte.", "Ich hätte gern eine Suppe und einen Salat, bitte."],
+        "notes_en": "Suppe is a die word and Salat is a der word."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-06-05",
+      "ordinal": 5,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.GRA.07"],
+      "item_ids": ["de:vocab:gern", "de:vocab:fisch", "de:vocab:kein", "de:vocab:fleisch"],
+      "instruction_en": "Translate into German. This is how you say what you like and do not eat.",
+      "payload": {
+        "source_text": "I like eating fish, but I do not eat meat.",
+        "direction": "to_target",
+        "reference": ["Ich esse gern Fisch, aber ich esse kein Fleisch.", "Ich esse gerne Fisch, aber ich esse kein Fleisch."],
+        "notes_en": "gern after the verb, kein before the noun."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-06-06",
+      "ordinal": 6,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.04", "de:cando:A1.GRA.07", "de:cando:A1.GRA.06"],
+      "item_ids": ["de:vocab:kein", "de:vocab:brot", "de:vocab:liter", "de:vocab:milch", "de:vocab:kaufen"],
+      "instruction_en": "Translate into German. This is how you write a shopping note.",
+      "payload": {
+        "source_text": "We have no bread. I am buying a loaf of bread and a litre of milk.",
+        "direction": "to_target",
+        "reference": ["Wir haben kein Brot. Ich kaufe ein Brot und einen Liter Milch."],
+        "notes_en": "Liter is a der word, so after kaufen it is einen Liter."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-06-07",
+      "ordinal": 7,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.04", "de:cando:A1.GRA.06"],
+      "item_ids": [
+        "de:chunk:ich-haette-gern",
+        "de:chunk:ich-nehme",
+        "de:chunk:ich-moechte",
+        "de:phrase:die-rechnung-bitte",
+        "de:phrase:zahlen-bitte",
+        "de:vocab:restaurant",
+        "de:vocab:kellner"
+      ],
+      "instruction_en": "Roleplay. You are the guest in a restaurant. Record your part.",
+      "payload": {
+        "prompt_en": "You are in a restaurant in the evening. The waiter says: Guten Abend! Was möchten Sie trinken? Und was möchten Sie essen? Greet the waiter, order one drink and a meal, say one thing you do not want (for example no meat or no sugar), and at the end ask for the bill.",
+        "prompt_native": "Guten Abend! Was möchten Sie trinken? Und was möchten Sie essen?",
+        "mode": "free",
+        "sample_answer": "Guten Abend! Ich hätte gern ein Wasser. Ich nehme die Suppe und den Fisch mit Kartoffeln. Ich möchte keinen Salat. Danke. Zahlen, bitte!",
+        "rubric_focus": [
+          "polite order with ich hätte gern, ich möchte or ich nehme",
+          "accusative article after the verb",
+          "one negative with kein",
+          "asks for the bill",
+          "can be understood by a patient listener"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-06-08",
+      "ordinal": 8,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": ["de:cando:A1.SPP.03", "de:cando:A1.GRA.07", "de:cando:A1.VOC.04"],
+      "item_ids": [
+        "de:vocab:gern",
+        "de:vocab:moegen",
+        "de:vocab:nicht",
+        "de:vocab:kein",
+        "de:vocab:fruehstueck",
+        "de:vocab:essen",
+        "de:vocab:trinken"
+      ],
+      "instruction_en": "Record yourself. Take a minute to prepare first.",
+      "payload": {
+        "prompt_en": "Talk about what you eat and drink. Use four or five short sentences. Say what you have for breakfast, two things you like, and two things you do not eat, do not drink or do not like.",
+        "mode": "free",
+        "sample_answer": "Zum Frühstück esse ich Brot mit Käse und ich trinke Tee. Ich esse gern Reis und Gemüse. Ich mag Obst. Ich esse kein Fleisch. Ich trinke nicht gern Milch.",
+        "rubric_focus": [
+          "a series of simple sentences",
+          "gern after the verb or ich mag",
+          "kein before a noun and nicht before gern",
+          "food and drink words"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-06-09",
+      "ordinal": 9,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.04", "de:cando:A1.GRA.07", "de:cando:A1.GRA.06"],
+      "item_ids": [
+        "de:vocab:kein",
+        "de:vocab:kaufen",
+        "de:vocab:brauchen",
+        "de:vocab:kilo",
+        "de:vocab:flasche",
+        "de:vocab:packung",
+        "de:vocab:supermarkt"
+      ],
+      "instruction_en": "Write a note in German.",
+      "payload": {
+        "prompt_en": "You are going to the supermarket. Leave a short note for your flatmate. Say two things you have none of at home, say three things you are buying with quantities, and ask if your flatmate needs anything.",
+        "min_words": 15,
+        "max_words": 50,
+        "sample_answer": "Hallo Kim, wir haben kein Brot und keine Milch. Ich kaufe ein Brot, einen Liter Milch, ein Kilo Äpfel und eine Packung Nudeln. Brauchst du auch etwas? Alex",
+        "rubric_focus": [
+          "kein, keine or keinen with the right ending",
+          "quantities: Kilo, Liter, Flasche, Packung, Stück",
+          "accusative after kaufen",
+          "reads like a note: a name at the start or the end"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-06-10",
+      "ordinal": 10,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.03", "de:cando:A1.VOC.04", "de:cando:A1.GRA.03"],
+      "item_ids": [
+        "de:vocab:abendessen",
+        "de:vocab:kochen",
+        "de:vocab:haehnchen",
+        "de:vocab:reis",
+        "de:vocab:gern",
+        "de:vocab:essen",
+        "de:vocab:trinken"
+      ],
+      "instruction_en": "Write a text message in German.",
+      "payload": {
+        "prompt_en": "Write a short text message to a friend. Invite your friend to dinner, say what you are cooking, and ask two questions: whether your friend eats meat, and what your friend likes to drink.",
+        "min_words": 12,
+        "max_words": 45,
+        "sample_answer": "Hallo Tom, kommst du zum Abendessen? Ich koche Hähnchen mit Reis und Salat. Isst du Fleisch? Was trinkst du gern?",
+        "rubric_focus": [
+          "says what is cooked",
+          "questions with the verb in the right position",
+          "du forms: isst du, trinkst du",
+          "a greeting at the start"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

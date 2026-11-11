@@ -1,0 +1,559 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-02-05",
+  "unit_key": "de:unit:a1-02-familie",
+  "ordinal": 5,
+  "slug": "eins-und-viele",
+  "title": "Ein Kind, zwei Kinder",
+  "title_en": "One and many",
+  "description": "Plural forms in the main patterns, saying how many children, brothers and sisters you have, and the marital status words on a form.",
+  "kind": "core",
+  "estimated_minutes": 20,
+  "cando_ids": [
+    "de:cando:A1.GRA.05",
+    "de:cando:A1.VOC.03",
+    "de:cando:A1.WRI.02",
+    "de:cando:A1.GRA.08",
+    "de:cando:A1.VOC.02",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.SPI.03",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.REA.01",
+    "de:cando:A1.WRI.01",
+    "de:cando:A1.SPP.01"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:verheiratet",
+    "de:vocab:ledig",
+    "de:vocab:familienstand",
+    "de:vocab:alter",
+    "de:vocab:ehemann",
+    "de:vocab:ehefrau",
+    "de:phrase:sind-sie-verheiratet",
+    "de:phrase:wie-viele-kinder-haben-sie",
+    "de:phrase:ich-habe-keine-geschwister"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-02-05-01",
+      "ordinal": 1,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.08"
+      ],
+      "item_ids": [
+        "de:vocab:sein-possessiv",
+        "de:vocab:ihr-possessiv",
+        "de:vocab:mann",
+        "de:vocab:frau"
+      ],
+      "instruction_en": "Warm up. Fill in sein, seine, ihr or ihre.",
+      "payload": {
+        "text": "Das ist Olga. ___ Mann heißt Pavel. Das ist Tarek. ___ Frau heißt Rima.",
+        "blanks": [
+          {
+            "answer": "Ihr",
+            "accept": [
+              "ihr"
+            ],
+            "hint": "Olga, der Mann"
+          },
+          {
+            "answer": "Seine",
+            "accept": [
+              "seine"
+            ],
+            "hint": "Tarek, die Frau"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-05-02",
+      "ordinal": 2,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.02"
+      ],
+      "item_ids": [
+        "de:vocab:sechzig",
+        "de:vocab:alt",
+        "de:vocab:jahr",
+        "de:grammar:zahlen-bilden"
+      ],
+      "instruction_en": "Warm up. Choose the right age.",
+      "payload": {
+        "question": "Mein Vater ist dreiundsechzig Jahre alt. How old is he?",
+        "options": [
+          "36",
+          "63",
+          "73"
+        ],
+        "answer_index": 1
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-05-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.02",
+        "de:cando:A1.VOC.03",
+        "de:cando:A1.GRA.05"
+      ],
+      "item_ids": [
+        "de:vocab:ledig",
+        "de:vocab:verheiratet",
+        "de:phrase:ich-habe-keine-geschwister",
+        "de:vocab:kind",
+        "de:vocab:bruder",
+        "de:vocab:schwester",
+        "de:vocab:geschwister"
+      ],
+      "instruction_en": "Jonas talks about himself and about his colleague Elena. Listen, then answer. Wie viele means how many.",
+      "payload": {
+        "transcript": "Ich heiße Jonas und ich bin neunundzwanzig Jahre alt. Ich bin ledig. Ich habe keine Kinder und ich habe keine Geschwister. Meine Kollegin Elena ist verheiratet. Sie hat zwei Kinder, zwei Brüder und drei Schwestern.",
+        "questions": [
+          {
+            "question": "Jonas ist ...",
+            "options": [
+              "verheiratet",
+              "ledig"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Wie viele Geschwister hat Jonas?",
+            "options": [
+              "zwei",
+              "drei",
+              "keine"
+            ],
+            "answer_index": 2
+          },
+          {
+            "question": "Wie viele Schwestern hat Elena?",
+            "options": [
+              "zwei",
+              "drei",
+              "fünf"
+            ],
+            "answer_index": 1
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-05-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": [
+        "de:cando:A1.REA.01",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:familienstand",
+        "de:vocab:alter",
+        "de:vocab:verheiratet",
+        "de:vocab:ledig",
+        "de:vocab:ehefrau",
+        "de:vocab:formular"
+      ],
+      "instruction_en": "Read the two forms. Then answer the questions.",
+      "payload": {
+        "title": "Zwei Formulare",
+        "text": "Vorname: Tarek\nFamilienname: Haddad\nAlter: 38\nFamilienstand: verheiratet\nEhefrau: Rima Haddad\nKinder: 2\n\nVorname: Jonas\nFamilienname: Weber\nAlter: 29\nFamilienstand: ledig\nKinder: keine",
+        "questions": [
+          {
+            "question": "Wer ist verheiratet?",
+            "options": [
+              "Tarek",
+              "Jonas"
+            ],
+            "answer_index": 0
+          },
+          {
+            "question": "Wie alt ist Jonas?",
+            "options": [
+              "38",
+              "29",
+              "92"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Wie viele Kinder hat Tarek?",
+            "options": [
+              "keine",
+              "zwei",
+              "drei"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Wie heißt die Ehefrau von Tarek?",
+            "options": [
+              "Rima",
+              "Elena",
+              "Olga"
+            ],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-05-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.05",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:kind",
+        "de:vocab:bruder",
+        "de:vocab:schwester",
+        "de:vocab:sohn",
+        "de:vocab:tochter",
+        "de:vocab:baby"
+      ],
+      "instruction_en": "One and many. Match each noun with its plural. In the plural the article is always die. Learn the plural with the noun, because German has several patterns.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "das Kind",
+            "right": "die Kinder"
+          },
+          {
+            "left": "der Bruder",
+            "right": "die Brüder"
+          },
+          {
+            "left": "die Schwester",
+            "right": "die Schwestern"
+          },
+          {
+            "left": "der Sohn",
+            "right": "die Söhne"
+          },
+          {
+            "left": "die Tochter",
+            "right": "die Töchter"
+          },
+          {
+            "left": "das Baby",
+            "right": "die Babys"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-05-06",
+      "ordinal": 6,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.05"
+      ],
+      "item_ids": [
+        "de:vocab:kind",
+        "de:vocab:schwester",
+        "de:vocab:bruder",
+        "de:vocab:foto"
+      ],
+      "instruction_en": "Fill in the plural.",
+      "payload": {
+        "text": "ein Kind, zwei ___\neine Schwester, zwei ___\nein Bruder, drei ___\nein Foto, vier ___",
+        "blanks": [
+          {
+            "answer": "Kinder"
+          },
+          {
+            "answer": "Schwestern"
+          },
+          {
+            "answer": "Brüder",
+            "accept": [
+              "Brueder"
+            ]
+          },
+          {
+            "answer": "Fotos"
+          }
+        ],
+        "explanation_en": "Four patterns: Kind adds er, Schwester adds n, Bruder changes u to ü, Foto adds s."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-05-07",
+      "ordinal": 7,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.05"
+      ],
+      "item_ids": [
+        "de:vocab:freund",
+        "de:vocab:frau",
+        "de:vocab:maedchen",
+        "de:vocab:familie"
+      ],
+      "instruction_en": "Fill in the plural of the noun in the hint.",
+      "payload": {
+        "text": "Meine ___ kommen aus Polen. Die zwei ___ heißen Anna und Eva. Die ___ sind zehn und zwölf Jahre alt. Das sind drei ___.",
+        "blanks": [
+          {
+            "answer": "Freunde",
+            "hint": "der Freund"
+          },
+          {
+            "answer": "Frauen",
+            "hint": "die Frau"
+          },
+          {
+            "answer": "Mädchen",
+            "accept": [
+              "Maedchen"
+            ],
+            "hint": "das Mädchen"
+          },
+          {
+            "answer": "Familien",
+            "hint": "die Familie"
+          }
+        ],
+        "explanation_en": "Freund adds e, Frau adds en, Familie adds n, and Mädchen does not change at all."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-05-08",
+      "ordinal": 8,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:verheiratet",
+        "de:vocab:ledig",
+        "de:vocab:familienstand",
+        "de:vocab:alter",
+        "de:vocab:ehemann",
+        "de:vocab:ehefrau"
+      ],
+      "instruction_en": "Words from a form. Match the German word with its English meaning.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "verheiratet",
+            "right": "married"
+          },
+          {
+            "left": "ledig",
+            "right": "single, never married"
+          },
+          {
+            "left": "der Familienstand",
+            "right": "marital status"
+          },
+          {
+            "left": "das Alter",
+            "right": "age"
+          },
+          {
+            "left": "der Ehemann",
+            "right": "husband (the word on forms)"
+          },
+          {
+            "left": "die Ehefrau",
+            "right": "wife (the word on forms)"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-05-09",
+      "ordinal": 9,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.WRI.02",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:alter",
+        "de:vocab:familienstand",
+        "de:vocab:verheiratet",
+        "de:vocab:formular"
+      ],
+      "instruction_en": "Fill in the form for Elena. She is 34 years old, she is married and she has two children.",
+      "payload": {
+        "text": "Vorname: Elena\nAlter: ___\nFamilienstand: ___\nKinder: ___",
+        "blanks": [
+          {
+            "answer": "34",
+            "accept": [
+              "vierunddreißig",
+              "vierunddreissig",
+              "34 Jahre"
+            ]
+          },
+          {
+            "answer": "verheiratet"
+          },
+          {
+            "answer": "2",
+            "accept": [
+              "zwei"
+            ]
+          }
+        ],
+        "explanation_en": "On a form you write only the word or the number, not a whole sentence."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-05-10",
+      "ordinal": 10,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": [
+        "de:cando:A1.SPI.03",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:phrase:sind-sie-verheiratet",
+        "de:vocab:ledig",
+        "de:vocab:verheiratet"
+      ],
+      "instruction_en": "Choose the natural reply.",
+      "payload": {
+        "question": "At the Bürgeramt the woman at the desk asks: Sind Sie verheiratet? You are not married. What do you answer?",
+        "options": [
+          "Nein, ich komme aus Indien.",
+          "Ja, ich bin dreißig Jahre alt.",
+          "Nein, ich bin ledig."
+        ],
+        "answer_index": 2,
+        "explanation_en": "Sind Sie verheiratet? means Are you married? The usual answers are Ja, ich bin verheiratet. and Nein, ich bin ledig."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-05-11",
+      "ordinal": 11,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.03",
+        "de:cando:A1.GRA.05",
+        "de:cando:A1.SPI.03"
+      ],
+      "item_ids": [
+        "de:phrase:wie-viele-kinder-haben-sie",
+        "de:vocab:kind"
+      ],
+      "instruction_en": "Put the words in the right order to ask politely how many children someone has.",
+      "payload": {
+        "words": [
+          "Kinder",
+          "Sie?",
+          "Wie",
+          "haben",
+          "viele"
+        ],
+        "answer": "Wie viele Kinder haben Sie?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-05-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.01",
+        "de:cando:A1.GRA.05",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:verheiratet",
+        "de:vocab:kind",
+        "de:vocab:haben"
+      ],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "I am married and I have two children.",
+        "direction": "to_target",
+        "reference": [
+          "Ich bin verheiratet und ich habe zwei Kinder.",
+          "Ich bin verheiratet und habe zwei Kinder."
+        ],
+        "notes_en": "The plural of Kind is Kinder."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-05-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": [
+        "de:cando:A1.SPP.01",
+        "de:cando:A1.GRA.05",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:verheiratet",
+        "de:vocab:ledig",
+        "de:vocab:kind",
+        "de:vocab:geschwister",
+        "de:vocab:bruder",
+        "de:vocab:schwester",
+        "de:phrase:ich-habe-keine-geschwister"
+      ],
+      "instruction_en": "Record yourself.",
+      "payload": {
+        "prompt_en": "Say whether you are married or single. Say how many children you have, and how many brothers and sisters. Give the names of two of them. If you have none, say so.",
+        "mode": "free",
+        "sample_answer": "Ich bin ledig. Ich habe keine Kinder. Ich habe zwei Brüder und eine Schwester. Meine Brüder heißen Arun und Dev.",
+        "rubric_focus": [
+          "verheiratet or ledig",
+          "correct plural forms after a number",
+          "Ich habe ...",
+          "heißen for more than one person"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

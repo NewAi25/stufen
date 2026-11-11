@@ -1,0 +1,196 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-01-06",
+  "unit_key": "de:unit:a1-01-hallo",
+  "ordinal": 6,
+  "slug": "ich-stelle-mich-vor",
+  "title": "Ich stelle mich vor",
+  "title_en": "I introduce myself",
+  "description": "Production lesson. Introduce yourself to a new colleague in speech, ask the colleague questions, and write a short profile text about yourself.",
+  "kind": "production",
+  "estimated_minutes": 20,
+  "cando_ids": [
+    "de:cando:A1.SPP.02",
+    "de:cando:A1.SPI.02",
+    "de:cando:A1.SPI.03",
+    "de:cando:A1.WRI.01",
+    "de:cando:A1.GRA.03"
+  ],
+  "introduces_item_ids": [],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-01-06-01",
+      "ordinal": 1,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.02"],
+      "item_ids": ["de:phrase:wie-heisst-du", "de:chunk:ich-heisse", "de:phrase:freut-mich"],
+      "instruction_en": "Warm up. Choose the reply that fits.",
+      "payload": {
+        "question": "A colleague of your age says: Hallo, ich bin Jonas. Wir sagen du, okay? Wie heißt du? What do you answer?",
+        "options": ["Ich heiße Priya. Und wie heißen Sie?", "Ich heiße Priya. Freut mich!", "Auf Wiedersehen, Herr Jonas."],
+        "answer_index": 1,
+        "explanation_en": "Jonas offers du, so you stay with du. Freut mich means pleased to meet you."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-06-02",
+      "ordinal": 2,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.SPI.03"],
+      "item_ids": ["de:phrase:wie-heissen-sie", "de:phrase:woher-kommen-sie", "de:phrase:wo-wohnen-sie", "de:chunk:ich-heisse", "de:chunk:ich-komme-aus", "de:chunk:ich-wohne-in", "de:chunk:ich-spreche", "de:phrase:danke-gut"],
+      "instruction_en": "Warm up. Match each question with its answer.",
+      "payload": {
+        "pairs": [
+          { "left": "Wie heißen Sie?", "right": "Ich heiße Priya Sharma." },
+          { "left": "Woher kommen Sie?", "right": "Ich komme aus Indien." },
+          { "left": "Wo wohnen Sie?", "right": "Ich wohne in Köln." },
+          { "left": "Welche Sprachen sprechen Sie?", "right": "Ich spreche Hindi und Englisch." },
+          { "left": "Wie geht es Ihnen?", "right": "Danke, gut." }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-06-03",
+      "ordinal": 3,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03", "de:cando:A1.WRI.01"],
+      "item_ids": ["de:chunk:ich-komme-aus", "de:chunk:ich-spreche", "de:vocab:und"],
+      "instruction_en": "Warm up. Put the words in order to make one sentence about yourself.",
+      "payload": {
+        "words": ["aus", "spreche", "Ich", "Englisch.", "und", "komme", "Indien"],
+        "answer": "Ich komme aus Indien und spreche Englisch."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-06-04",
+      "ordinal": 4,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": ["de:cando:A1.SPP.02"],
+      "item_ids": ["de:vocab:guten-tag", "de:chunk:ich-heisse", "de:chunk:ich-komme-aus", "de:chunk:ich-wohne-in"],
+      "instruction_en": "Read the model introduction aloud, slowly and clearly.",
+      "payload": {
+        "prompt_en": "Read this introduction aloud. It is the model for your own introduction in the next tasks.",
+        "mode": "read_aloud",
+        "target_text": "Guten Tag! Ich heiße Priya Sharma. Ich komme aus Indien und ich wohne in Köln."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-06-05",
+      "ordinal": 5,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.SPI.02"],
+      "item_ids": ["de:vocab:kollege", "de:vocab:kollegin", "de:vocab:neu", "de:vocab:sein"],
+      "instruction_en": "Translate into German. Write the sentence that is true for you: Kollege for a man, Kollegin for a woman.",
+      "payload": {
+        "source_text": "Good morning, I am the new colleague.",
+        "direction": "to_target",
+        "reference": ["Guten Morgen, ich bin der neue Kollege.", "Guten Morgen, ich bin die neue Kollegin."],
+        "notes_en": "der neue Kollege is a man, die neue Kollegin is a woman."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-06-06",
+      "ordinal": 6,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.SPI.03"],
+      "item_ids": ["de:phrase:woher-kommen-sie", "de:phrase:wo-wohnen-sie", "de:vocab:und"],
+      "instruction_en": "Translate into German. You are talking to a colleague you do not know yet, so use Sie.",
+      "payload": {
+        "source_text": "Where do you come from and where do you live?",
+        "direction": "to_target",
+        "reference": ["Woher kommen Sie und wo wohnen Sie?", "Woher kommen Sie? Und wo wohnen Sie?", "Woher kommen Sie? Wo wohnen Sie?"],
+        "notes_en": "woher asks where from, wo asks where. In both questions the verb comes second."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-06-07",
+      "ordinal": 7,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": ["de:cando:A1.SPP.02", "de:cando:A1.SPI.02"],
+      "item_ids": ["de:chunk:ich-heisse", "de:chunk:ich-komme-aus", "de:chunk:ich-wohne-in", "de:chunk:ich-spreche", "de:vocab:neu", "de:vocab:hier"],
+      "instruction_en": "Record yourself. Speak for about twenty seconds.",
+      "payload": {
+        "prompt_en": "It is your first day at work. A colleague you have not met comes to your desk and says: Guten Morgen! Introduce yourself in German. Greet the colleague, say your name, say that you are new here, say which country you come from, where you live now and which languages you speak.",
+        "mode": "free",
+        "sample_answer": "Guten Morgen! Ich heiße Priya Sharma. Ich bin neu hier. Ich komme aus Indien und ich wohne in Köln. Ich spreche Hindi, Englisch und ein bisschen Deutsch.",
+        "rubric_focus": ["a greeting that fits the time of day", "name, country, city and languages are all given", "verb in second position with the ending for ich", "aus for the country and in for the city", "can be understood by a patient listener"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-06-08",
+      "ordinal": 8,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.03", "de:cando:A1.SPI.02"],
+      "item_ids": ["de:phrase:wie-heissen-sie", "de:phrase:woher-kommen-sie", "de:phrase:wo-wohnen-sie", "de:phrase:sprechen-sie-englisch", "de:vocab:auf-wiedersehen"],
+      "instruction_en": "Record yourself. Now you ask the questions.",
+      "payload": {
+        "prompt_en": "Now it is your turn to ask. Ask your new colleague four questions in German, with Sie: the name, the country he or she comes from, where he or she lives, and whether he or she speaks English. Then say that you are pleased to meet the colleague and say goodbye.",
+        "mode": "free",
+        "sample_answer": "Wie heißen Sie? Woher kommen Sie? Wo wohnen Sie? Sprechen Sie Englisch? Freut mich. Auf Wiedersehen!",
+        "rubric_focus": ["four questions are asked", "question word first and verb second in the W questions", "verb first in the yes or no question", "Sie with the verb ending in en", "a polite goodbye"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-06-09",
+      "ordinal": 9,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.SPP.02"],
+      "item_ids": ["de:chunk:ich-heisse", "de:chunk:ich-komme-aus", "de:chunk:ich-wohne-in", "de:chunk:ich-spreche", "de:vocab:sein"],
+      "instruction_en": "Write in German.",
+      "payload": {
+        "prompt_en": "Your German course has a page where every learner writes a short profile. Write five or six short sentences about yourself: a greeting, your name, the country you come from, the city you live in now, the languages you speak, and one more sentence with ich bin.",
+        "min_words": 18,
+        "max_words": 60,
+        "sample_answer": "Hallo! Ich heiße Priya Sharma. Ich komme aus Indien. Ich wohne in Köln. Ich spreche Hindi, Englisch und ein bisschen Deutsch. Ich bin neu hier.",
+        "rubric_focus": ["name, country, city and languages are all given", "verb in second position with the ending for ich", "aus for the country and in for the city", "capital letters on names, countries, cities and languages", "one full stop after each sentence"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-06-10",
+      "ordinal": 10,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.SPI.03"],
+      "item_ids": ["de:vocab:nachbar", "de:vocab:neu", "de:vocab:hier", "de:vocab:du", "de:vocab:haben"],
+      "instruction_en": "Write in German. This time use du.",
+      "payload": {
+        "prompt_en": "You have moved into a new flat. Write a short note to the neighbour next door, who is about your age. Say hello, give your name, say that you are new here and where you come from. End with one question to the neighbour, with du.",
+        "min_words": 12,
+        "max_words": 50,
+        "sample_answer": "Hallo! Ich bin Priya. Ich bin neu hier. Ich wohne in Nummer sieben. Ich komme aus Indien. Und woher kommst du?",
+        "rubric_focus": ["informal greeting", "ich bin and ich komme aus are correct", "one question with du and the verb ending in st", "question mark at the end of the question"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

@@ -1,0 +1,592 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-02-03",
+  "unit_key": "de:unit:a1-02-familie",
+  "ordinal": 3,
+  "slug": "zahlen-und-alter",
+  "title": "Wie alt bist du?",
+  "title_en": "Numbers to a hundred, age and telephone numbers",
+  "description": "The numbers from eleven to a hundred, saying how old you and your family are, and giving a telephone number digit by digit.",
+  "kind": "core",
+  "estimated_minutes": 25,
+  "cando_ids": [
+    "de:cando:A1.VOC.02",
+    "de:cando:A1.LIS.03",
+    "de:cando:A1.SPI.03",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.GRA.04",
+    "de:cando:A1.REA.01",
+    "de:cando:A1.WRI.01",
+    "de:cando:A1.SPP.02"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:elf",
+    "de:vocab:zwoelf",
+    "de:vocab:dreizehn",
+    "de:vocab:vierzehn",
+    "de:vocab:fuenfzehn",
+    "de:vocab:sechzehn",
+    "de:vocab:siebzehn",
+    "de:vocab:achtzehn",
+    "de:vocab:neunzehn",
+    "de:vocab:zwanzig",
+    "de:vocab:einundzwanzig",
+    "de:vocab:dreissig",
+    "de:vocab:vierzig",
+    "de:vocab:fuenfzig",
+    "de:vocab:sechzig",
+    "de:vocab:siebzig",
+    "de:vocab:achtzig",
+    "de:vocab:neunzig",
+    "de:vocab:hundert",
+    "de:grammar:zahlen-bilden",
+    "de:vocab:alt",
+    "de:vocab:jahr",
+    "de:chunk:ich-bin-jahre-alt",
+    "de:phrase:wie-alt-sind-sie"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-02-03-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.02"
+      ],
+      "item_ids": [
+        "de:vocab:drei",
+        "de:vocab:sechs",
+        "de:vocab:sieben",
+        "de:vocab:acht",
+        "de:vocab:zehn"
+      ],
+      "instruction_en": "Warm up. Match the number word with the number.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "drei",
+            "right": "3"
+          },
+          {
+            "left": "sechs",
+            "right": "6"
+          },
+          {
+            "left": "sieben",
+            "right": "7"
+          },
+          {
+            "left": "acht",
+            "right": "8"
+          },
+          {
+            "left": "zehn",
+            "right": "10"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-03-02",
+      "ordinal": 2,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.04"
+      ],
+      "item_ids": [
+        "de:vocab:mutter",
+        "de:vocab:junge",
+        "de:vocab:baby"
+      ],
+      "instruction_en": "Warm up. Fill in der, die or das.",
+      "payload": {
+        "text": "___ Mutter heißt Eva. ___ Junge heißt Paul. ___ Baby heißt Leo.",
+        "blanks": [
+          {
+            "answer": "Die",
+            "accept": [
+              "die"
+            ]
+          },
+          {
+            "answer": "Der",
+            "accept": [
+              "der"
+            ]
+          },
+          {
+            "answer": "Das",
+            "accept": [
+              "das"
+            ]
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-03-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.03",
+        "de:cando:A1.VOC.02"
+      ],
+      "item_ids": [
+        "de:vocab:null",
+        "de:chunk:meine-telefonnummer-ist",
+        "de:vocab:telefonnummer"
+      ],
+      "instruction_en": "Jonas gives his telephone number, one digit at a time. Listen and choose.",
+      "payload": {
+        "transcript": "Hallo, ich bin Jonas. Meine Telefonnummer ist null, eins, sieben, sechs, vier, zwei, neun, drei.",
+        "questions": [
+          {
+            "question": "Wie ist die Telefonnummer?",
+            "options": [
+              "0176 4293",
+              "0167 4293",
+              "0176 4239"
+            ],
+            "answer_index": 0
+          },
+          {
+            "question": "Null ist ...",
+            "options": [
+              "9",
+              "0",
+              "10"
+            ],
+            "answer_index": 1
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-03-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": [
+        "de:cando:A1.REA.01",
+        "de:cando:A1.VOC.02"
+      ],
+      "item_ids": [
+        "de:chunk:ich-bin-jahre-alt",
+        "de:vocab:alt",
+        "de:vocab:jahr",
+        "de:vocab:elf",
+        "de:vocab:zwoelf",
+        "de:vocab:vierzig",
+        "de:vocab:siebzig",
+        "de:grammar:zahlen-bilden"
+      ],
+      "instruction_en": "Read the text and work out the ages. From 21 on German says the small number first: vierunddreißig is four and thirty, so 34.",
+      "payload": {
+        "title": "Elenas Familie",
+        "text": "Ich heiße Elena und ich bin vierunddreißig Jahre alt. Mein Mann heißt Dan. Er ist vierzig Jahre alt. Wir haben zwei Kinder. Meine Tochter Ana ist zwölf und mein Sohn Luca ist elf Jahre alt. Meine Mutter ist siebzig.",
+        "questions": [
+          {
+            "question": "Wie alt ist Elena?",
+            "options": [
+              "43",
+              "34",
+              "24"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Wie alt ist Dan?",
+            "options": [
+              "40",
+              "14",
+              "44"
+            ],
+            "answer_index": 0
+          },
+          {
+            "question": "Wie alt ist Ana?",
+            "options": [
+              "11",
+              "20",
+              "12"
+            ],
+            "answer_index": 2
+          },
+          {
+            "question": "Wie alt ist die Mutter von Elena?",
+            "options": [
+              "17",
+              "70",
+              "60"
+            ],
+            "answer_index": 1
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-03-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.02"
+      ],
+      "item_ids": [
+        "de:vocab:elf",
+        "de:vocab:zwoelf",
+        "de:vocab:dreizehn",
+        "de:vocab:vierzehn",
+        "de:vocab:fuenfzehn",
+        "de:vocab:sechzehn",
+        "de:vocab:siebzehn",
+        "de:vocab:achtzehn",
+        "de:vocab:neunzehn",
+        "de:vocab:zwanzig"
+      ],
+      "instruction_en": "The numbers from 11 to 20. Match the word with the number.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "elf",
+            "right": "11"
+          },
+          {
+            "left": "zwölf",
+            "right": "12"
+          },
+          {
+            "left": "dreizehn",
+            "right": "13"
+          },
+          {
+            "left": "vierzehn",
+            "right": "14"
+          },
+          {
+            "left": "fünfzehn",
+            "right": "15"
+          },
+          {
+            "left": "sechzehn",
+            "right": "16"
+          },
+          {
+            "left": "siebzehn",
+            "right": "17"
+          },
+          {
+            "left": "achtzehn",
+            "right": "18"
+          },
+          {
+            "left": "neunzehn",
+            "right": "19"
+          },
+          {
+            "left": "zwanzig",
+            "right": "20"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-03-06",
+      "ordinal": 6,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.02"
+      ],
+      "item_ids": [
+        "de:vocab:dreissig",
+        "de:vocab:vierzig",
+        "de:vocab:fuenfzig",
+        "de:vocab:sechzig",
+        "de:vocab:siebzig",
+        "de:vocab:achtzig",
+        "de:vocab:neunzig",
+        "de:vocab:hundert"
+      ],
+      "instruction_en": "The tens. Match the word with the number.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "dreißig",
+            "right": "30"
+          },
+          {
+            "left": "vierzig",
+            "right": "40"
+          },
+          {
+            "left": "fünfzig",
+            "right": "50"
+          },
+          {
+            "left": "sechzig",
+            "right": "60"
+          },
+          {
+            "left": "siebzig",
+            "right": "70"
+          },
+          {
+            "left": "achtzig",
+            "right": "80"
+          },
+          {
+            "left": "neunzig",
+            "right": "90"
+          },
+          {
+            "left": "hundert",
+            "right": "100"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-03-07",
+      "ordinal": 7,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.02"
+      ],
+      "item_ids": [
+        "de:vocab:einundzwanzig",
+        "de:grammar:zahlen-bilden"
+      ],
+      "instruction_en": "Choose the right number.",
+      "payload": {
+        "question": "Which number is einundzwanzig?",
+        "options": [
+          "12",
+          "21",
+          "120"
+        ],
+        "answer_index": 1,
+        "explanation_en": "From 21 to 99 the small number comes first, joined with und: ein und zwanzig, one and twenty. It is written as one word and eins loses its s."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-03-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.02"
+      ],
+      "item_ids": [
+        "de:grammar:zahlen-bilden",
+        "de:vocab:sechzehn",
+        "de:vocab:dreissig",
+        "de:vocab:vierzig",
+        "de:vocab:sechzig"
+      ],
+      "instruction_en": "Write each number as one word.",
+      "payload": {
+        "text": "16 ist ___. 32 ist ___. 45 ist ___. 67 ist ___.",
+        "blanks": [
+          {
+            "answer": "sechzehn"
+          },
+          {
+            "answer": "zweiunddreißig",
+            "accept": [
+              "zweiunddreissig"
+            ]
+          },
+          {
+            "answer": "fünfundvierzig",
+            "accept": [
+              "fuenfundvierzig"
+            ]
+          },
+          {
+            "answer": "siebenundsechzig"
+          }
+        ],
+        "explanation_en": "sechs loses its s in sechzehn and sechzig. sieben loses en in siebzehn and siebzig. dreißig is written with ß."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-03-09",
+      "ordinal": 9,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.03",
+        "de:cando:A1.VOC.02"
+      ],
+      "item_ids": [
+        "de:vocab:alt",
+        "de:vocab:jahr",
+        "de:vocab:achtzig",
+        "de:vocab:siebzig",
+        "de:vocab:grossvater",
+        "de:vocab:grossmutter"
+      ],
+      "instruction_en": "Listen for the two ages.",
+      "payload": {
+        "transcript": "Das ist mein Großvater. Er ist siebenundachtzig Jahre alt. Und das ist meine Großmutter. Sie ist neunundsiebzig Jahre alt.",
+        "questions": [
+          {
+            "question": "Wie alt ist der Großvater?",
+            "options": [
+              "78",
+              "87",
+              "97"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Wie alt ist die Großmutter?",
+            "options": [
+              "79",
+              "97",
+              "69"
+            ],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-03-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.03",
+        "de:cando:A1.SPI.03"
+      ],
+      "item_ids": [
+        "de:phrase:wie-alt-sind-sie",
+        "de:vocab:alt"
+      ],
+      "instruction_en": "Put the words in the right order to ask a friend how old he or she is.",
+      "payload": {
+        "words": [
+          "alt",
+          "du?",
+          "Wie",
+          "bist"
+        ],
+        "answer": "Wie alt bist du?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-03-11",
+      "ordinal": 11,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": [
+        "de:cando:A1.SPI.03",
+        "de:cando:A1.VOC.02"
+      ],
+      "item_ids": [
+        "de:chunk:wie-ist-ihre",
+        "de:chunk:meine-telefonnummer-ist",
+        "de:vocab:telefonnummer"
+      ],
+      "instruction_en": "Choose the natural reply.",
+      "payload": {
+        "question": "At the office a woman asks you: Wie ist Ihre Telefonnummer? What do you answer?",
+        "options": [
+          "Ich bin dreißig Jahre alt.",
+          "Ich wohne in Berlin.",
+          "Meine Telefonnummer ist 030 12345."
+        ],
+        "answer_index": 2,
+        "explanation_en": "Wie ist Ihre Telefonnummer? asks for your telephone number in the formal way. German asks with wie here, not with was."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-03-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.01",
+        "de:cando:A1.SPI.03",
+        "de:cando:A1.VOC.02"
+      ],
+      "item_ids": [
+        "de:phrase:wie-alt-sind-sie",
+        "de:chunk:ich-bin-jahre-alt",
+        "de:vocab:alt",
+        "de:vocab:jahr"
+      ],
+      "instruction_en": "Translate into German. Use the formal Sie.",
+      "payload": {
+        "source_text": "How old are you? I am 34 years old.",
+        "direction": "to_target",
+        "reference": [
+          "Wie alt sind Sie? Ich bin 34 Jahre alt.",
+          "Wie alt sind Sie? Ich bin vierunddreißig Jahre alt."
+        ],
+        "notes_en": "German uses sein for age, like English: Ich bin 34 Jahre alt. The short answer Ich bin 34. is also fine."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-03-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": [
+        "de:cando:A1.SPP.02",
+        "de:cando:A1.VOC.02"
+      ],
+      "item_ids": [
+        "de:chunk:ich-bin-jahre-alt",
+        "de:chunk:meine-telefonnummer-ist",
+        "de:vocab:alt",
+        "de:vocab:jahr"
+      ],
+      "instruction_en": "Record yourself.",
+      "payload": {
+        "prompt_en": "Say how old you are. Say how old one person in your family is. Then give a telephone number, one digit at a time. You may make the number up.",
+        "mode": "free",
+        "sample_answer": "Ich bin vierunddreißig Jahre alt. Meine Mutter ist sechzig Jahre alt. Meine Telefonnummer ist null, eins, sieben, sechs, vier, zwei, neun, drei.",
+        "rubric_focus": [
+          "Ich bin ... Jahre alt",
+          "numbers above ten said correctly, small number first",
+          "telephone number digit by digit"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

@@ -1,0 +1,204 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-04-06",
+  "unit_key": "de:unit:a1-04-einkaufen",
+  "ordinal": 6,
+  "slug": "ich-moechte-das-kaufen",
+  "title": "Ich möchte das kaufen",
+  "title_en": "I would like to buy that",
+  "description": "Production lesson. Buy something in a shop from start to finish, ask about the price and about paying, talk about your own shopping, and write a short text message to a friend.",
+  "kind": "production",
+  "estimated_minutes": 20,
+  "cando_ids": [
+    "de:cando:A1.SPI.04",
+    "de:cando:A1.SPP.03",
+    "de:cando:A1.WRI.03",
+    "de:cando:A1.VOC.07",
+    "de:cando:A1.GRA.09"
+  ],
+  "introduces_item_ids": [],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-04-06-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.SPI.04"],
+      "item_ids": ["de:chunk:was-kostet", "de:phrase:kann-ich-mit-karte-zahlen", "de:chunk:haben-sie-das-in-groesse", "de:phrase:wann-haben-sie-geoeffnet", "de:phrase:das-ist-alles"],
+      "instruction_en": "Warm up. Match each sentence with what it does.",
+      "payload": {
+        "pairs": [
+          { "left": "Was kostet das?", "right": "ask for the price" },
+          { "left": "Kann ich mit Karte zahlen?", "right": "ask about paying by card" },
+          { "left": "Haben Sie das auch in Größe 40?", "right": "ask for another size" },
+          { "left": "Wann haben Sie geöffnet?", "right": "ask about the opening hours" },
+          { "left": "Das ist alles.", "right": "say that you need nothing more" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-06-02",
+      "ordinal": 2,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:moechten", "de:vocab:kaufen", "de:vocab:jacke", "de:grammar:satzklammer-modalverben"],
+      "instruction_en": "Warm up. Put the words in the right order.",
+      "payload": {
+        "words": ["kaufen.", "Jacke", "Ich", "eine", "möchte"],
+        "answer": "Ich möchte eine Jacke kaufen."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-06-03",
+      "ordinal": 3,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07", "de:cando:A1.WRI.03"],
+      "item_ids": ["de:vocab:geoeffnet", "de:vocab:kaufen", "de:vocab:koennen", "de:vocab:supermarkt"],
+      "instruction_en": "Warm up. Complete the text message to a friend. The English word is under each gap.",
+      "payload": {
+        "text": "Hallo Tom! Der Supermarkt ist bis 20 Uhr ___. Kannst du bitte Brot und Milch ___? Danke!",
+        "blanks": [
+          { "answer": "geöffnet", "accept": ["geoeffnet"], "hint": "open" },
+          { "answer": "kaufen", "hint": "to buy" }
+        ],
+        "explanation_en": "Kannst du bitte ... kaufen? is a friendly way to ask someone to buy something for you."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-06-04",
+      "ordinal": 4,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.04"],
+      "item_ids": ["de:chunk:ich-suche", "de:vocab:groesse", "de:vocab:farbe", "de:chunk:was-kostet"],
+      "instruction_en": "Roleplay, part one. Record yourself.",
+      "payload": {
+        "prompt_en": "You are in a clothes shop. The shop assistant says: Guten Tag! Kann ich Ihnen helfen? (Can I help you?) Answer the greeting. Say which piece of clothing you are looking for, in which colour and in which size. Then ask what it costs.",
+        "mode": "free",
+        "sample_answer": "Guten Tag! Ja, bitte. Ich suche eine Jacke in Größe 40. Haben Sie die Jacke in Schwarz? Was kostet die Jacke?",
+        "rubric_focus": ["Ich suche with the accusative", "colour and size", "asking for the price", "polite Sie form"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-06-05",
+      "ordinal": 5,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.04", "de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:moechten", "de:vocab:kaufen", "de:phrase:kann-ich-mit-karte-zahlen", "de:vocab:quittung"],
+      "instruction_en": "Roleplay, part two. Record yourself.",
+      "payload": {
+        "prompt_en": "The shop assistant says: Die Jacke kostet 59 Euro. Say that you would like to buy the jacket. Ask whether you can pay by card. Ask for the receipt and say goodbye.",
+        "mode": "free",
+        "sample_answer": "Gut, ich möchte die Jacke kaufen. Kann ich mit Karte zahlen? Die Quittung, bitte. Danke und auf Wiedersehen!",
+        "rubric_focus": ["möchte with the infinitive at the end", "Kann ich mit Karte zahlen?", "asking for the receipt", "leave taking"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-06-06",
+      "ordinal": 6,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.03", "de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:koennen", "de:vocab:kaufen", "de:grammar:satzklammer-modalverben"],
+      "instruction_en": "A line for a text message to a friend. Translate into German.",
+      "payload": {
+        "source_text": "Can you buy bread, please?",
+        "direction": "to_target",
+        "reference": ["Kannst du bitte Brot kaufen?", "Kannst du Brot kaufen, bitte?"],
+        "notes_en": "To a friend you say du: Kannst du ...? The infinitive kaufen goes to the end."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-06-07",
+      "ordinal": 7,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.03", "de:cando:A1.VOC.07"],
+      "item_ids": ["de:vocab:geschaeft", "de:vocab:geoeffnet", "de:vocab:uhr"],
+      "instruction_en": "Another line for a text message. Translate into German.",
+      "payload": {
+        "source_text": "The shop is open until 8 pm.",
+        "direction": "to_target",
+        "reference": [
+          "Das Geschäft ist bis 20 Uhr geöffnet.",
+          "Das Geschäft hat bis 20 Uhr geöffnet.",
+          "Das Geschäft ist bis acht Uhr geöffnet.",
+          "Der Laden ist bis 20 Uhr geöffnet."
+        ],
+        "notes_en": "Shop signs use the 24 hour clock: 8 pm is 20 Uhr. Geöffnet stands at the end."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-06-08",
+      "ordinal": 8,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.03"],
+      "item_ids": ["de:vocab:koennen", "de:vocab:kaufen", "de:vocab:supermarkt"],
+      "instruction_en": "Write a text message in German.",
+      "payload": {
+        "prompt_en": "Your friend is at the supermarket. Write a short text message. Say hello, ask your friend to buy two or three things for you, and say thank you.",
+        "min_words": 8,
+        "max_words": 40,
+        "sample_answer": "Hallo Maria! Bist du im Supermarkt? Kannst du bitte Brot, Käse und Milch kaufen? Danke!",
+        "rubric_focus": ["greeting and thanks", "Kannst du bitte ... kaufen? with the infinitive at the end", "food words spelled with capital letters"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-06-09",
+      "ordinal": 9,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.03"],
+      "item_ids": ["de:vocab:geoeffnet", "de:vocab:geschlossen", "de:chunk:von-bis", "de:vocab:uhr", "de:vocab:kosten"],
+      "instruction_en": "Write a text message in German.",
+      "payload": {
+        "prompt_en": "Your friend asks when the bakery near you is open. Write a short text message. Say on which days and at what times it is open, say when it is closed, and give the price of one thing.",
+        "min_words": 12,
+        "max_words": 50,
+        "sample_answer": "Hallo Tom! Die Bäckerei ist von Montag bis Samstag von 7 bis 18 Uhr geöffnet. Am Sonntag ist die Bäckerei geschlossen. Das Brot kostet 3 Euro.",
+        "rubric_focus": ["von ... bis ... with days and times", "geöffnet and geschlossen", "a price with Euro", "verb in second position"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-06-10",
+      "ordinal": 10,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": ["de:cando:A1.SPP.03"],
+      "item_ids": ["de:vocab:kaufen", "de:vocab:supermarkt", "de:vocab:teuer", "de:vocab:karte", "de:vocab:geoeffnet"],
+      "instruction_en": "Take a minute to prepare. Then record yourself.",
+      "payload": {
+        "prompt_en": "Talk about your own shopping in four or five simple sentences. Say what you buy and where, when the shop is open, whether it is expensive or cheap, and how you pay.",
+        "mode": "free",
+        "sample_answer": "Ich kaufe Brot, Obst und Gemüse im Supermarkt. Der Supermarkt ist von Montag bis Samstag geöffnet. Der Supermarkt ist nicht teuer. Ich zahle mit Karte. Kleidung kaufe ich im Kaufhaus.",
+        "rubric_focus": ["a series of simple sentences", "shop and food words", "teuer, billig or günstig", "bar or mit Karte"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

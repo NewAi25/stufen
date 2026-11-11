@@ -1,0 +1,517 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-02-01",
+  "unit_key": "de:unit:a1-02-familie",
+  "ordinal": 1,
+  "slug": "das-ist-meine-familie",
+  "title": "Das ist meine Familie",
+  "title_en": "This is my family",
+  "description": "The words for family members, the question Wer ist das? and the answer Das ist mein ... or Das ist meine ...",
+  "kind": "core",
+  "estimated_minutes": 20,
+  "cando_ids": [
+    "de:cando:A1.VOC.03",
+    "de:cando:A1.GRA.08",
+    "de:cando:A1.GRA.01",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.REA.01",
+    "de:cando:A1.SPI.03",
+    "de:cando:A1.SPP.01",
+    "de:cando:A1.WRI.01"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:familie",
+    "de:vocab:mutter",
+    "de:vocab:vater",
+    "de:vocab:eltern",
+    "de:vocab:bruder",
+    "de:vocab:schwester",
+    "de:vocab:geschwister",
+    "de:vocab:kind",
+    "de:vocab:sohn",
+    "de:vocab:tochter",
+    "de:vocab:mann",
+    "de:vocab:grossmutter",
+    "de:vocab:grossvater",
+    "de:vocab:grosseltern",
+    "de:vocab:oma",
+    "de:vocab:opa",
+    "de:vocab:mein",
+    "de:chunk:das-ist-mein",
+    "de:chunk:das-ist-meine",
+    "de:phrase:wer-ist-das"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-02-01-01",
+      "ordinal": 1,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.01"
+      ],
+      "item_ids": [
+        "de:vocab:sein",
+        "de:grammar:sein-praesens"
+      ],
+      "instruction_en": "Warm up. Fill in the correct form of sein.",
+      "payload": {
+        "text": "Ich ___ Priya. Das ___ Herr Braun. Wir ___ aus Indien.",
+        "blanks": [
+          {
+            "answer": "bin",
+            "hint": "sein, ich"
+          },
+          {
+            "answer": "ist",
+            "hint": "sein, das"
+          },
+          {
+            "answer": "sind",
+            "hint": "sein, wir"
+          }
+        ],
+        "explanation_en": "ich bin, er sie es ist, wir sind."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-01-02",
+      "ordinal": 2,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.03"
+      ],
+      "item_ids": [
+        "de:vocab:kommen",
+        "de:vocab:aus"
+      ],
+      "instruction_en": "Warm up. Put the words in the right order.",
+      "payload": {
+        "words": [
+          "kommt",
+          "Polen.",
+          "Sie",
+          "aus"
+        ],
+        "answer": "Sie kommt aus Polen."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-01-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.02",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:familie",
+        "de:vocab:vater",
+        "de:vocab:mutter",
+        "de:vocab:bruder",
+        "de:chunk:das-ist-mein",
+        "de:chunk:das-ist-meine"
+      ],
+      "instruction_en": "Priya shows a photo of her family. Listen, then answer the questions.",
+      "payload": {
+        "transcript": "Hallo! Ich heiße Priya. Das ist meine Familie. Das ist mein Vater. Er heißt Raj. Das ist meine Mutter. Sie heißt Anita. Und das ist mein Bruder. Er heißt Arun.",
+        "questions": [
+          {
+            "question": "Wie heißt der Vater?",
+            "options": [
+              "Arun",
+              "Raj",
+              "Anita"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Anita ist ...",
+            "options": [
+              "die Schwester",
+              "die Mutter",
+              "die Tochter"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Arun ist ...",
+            "options": [
+              "der Bruder",
+              "der Vater",
+              "der Sohn"
+            ],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-01-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": [
+        "de:cando:A1.REA.01",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:familie",
+        "de:vocab:eltern",
+        "de:vocab:geschwister",
+        "de:vocab:bruder",
+        "de:vocab:schwester",
+        "de:vocab:grosseltern"
+      ],
+      "instruction_en": "Read what Omar writes about his family. Then answer the questions.",
+      "payload": {
+        "title": "Meine Familie",
+        "text": "Ich heiße Omar. Das ist meine Familie. Mein Vater heißt Karim und meine Mutter heißt Samira. Das sind meine Eltern. Sie wohnen in Syrien. Ich habe zwei Geschwister. Mein Bruder heißt Sami und meine Schwester heißt Lina. Meine Großeltern wohnen auch in Syrien.",
+        "questions": [
+          {
+            "question": "Wie heißt die Mutter?",
+            "options": [
+              "Lina",
+              "Samira",
+              "Karim"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Sami ist ...",
+            "options": [
+              "der Vater",
+              "der Bruder",
+              "der Großvater"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Wo wohnen die Großeltern?",
+            "options": [
+              "in Deutschland",
+              "in Österreich",
+              "in Syrien"
+            ],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-01-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:mutter",
+        "de:vocab:vater",
+        "de:vocab:eltern",
+        "de:vocab:bruder",
+        "de:vocab:schwester",
+        "de:vocab:geschwister"
+      ],
+      "instruction_en": "Match the German word with its English meaning.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "die Mutter",
+            "right": "mother"
+          },
+          {
+            "left": "der Vater",
+            "right": "father"
+          },
+          {
+            "left": "die Eltern",
+            "right": "parents"
+          },
+          {
+            "left": "der Bruder",
+            "right": "brother"
+          },
+          {
+            "left": "die Schwester",
+            "right": "sister"
+          },
+          {
+            "left": "die Geschwister",
+            "right": "brothers and sisters"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-01-06",
+      "ordinal": 6,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:kind",
+        "de:vocab:sohn",
+        "de:vocab:tochter",
+        "de:vocab:mann",
+        "de:vocab:grossmutter",
+        "de:vocab:grossvater",
+        "de:vocab:grosseltern"
+      ],
+      "instruction_en": "Match the German word with its English meaning.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "das Kind",
+            "right": "child"
+          },
+          {
+            "left": "der Sohn",
+            "right": "son"
+          },
+          {
+            "left": "die Tochter",
+            "right": "daughter"
+          },
+          {
+            "left": "der Mann",
+            "right": "husband, man"
+          },
+          {
+            "left": "die Großmutter",
+            "right": "grandmother"
+          },
+          {
+            "left": "der Großvater",
+            "right": "grandfather"
+          },
+          {
+            "left": "die Großeltern",
+            "right": "grandparents"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-01-07",
+      "ordinal": 7,
+      "type": "flashcard",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:oma",
+        "de:vocab:opa"
+      ],
+      "instruction_en": "Read the card, say the words, then turn it over.",
+      "payload": {
+        "front": "die Oma, der Opa",
+        "back": "grandma, grandpa",
+        "hint": "The everyday words for die Großmutter and der Großvater."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-01-08",
+      "ordinal": 8,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.08",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:mein",
+        "de:vocab:schwester",
+        "de:chunk:das-ist-meine"
+      ],
+      "instruction_en": "Choose mein or meine.",
+      "payload": {
+        "question": "Das ist ___ Schwester.",
+        "options": [
+          "mein",
+          "meine"
+        ],
+        "answer_index": 1,
+        "explanation_en": "Schwester is a die word, so it is meine Schwester. Bruder is a der word, so it is mein Bruder."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-01-09",
+      "ordinal": 9,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.08",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:mein",
+        "de:chunk:das-ist-mein",
+        "de:chunk:das-ist-meine",
+        "de:vocab:vater",
+        "de:vocab:mutter",
+        "de:vocab:kind",
+        "de:vocab:eltern"
+      ],
+      "instruction_en": "Fill in mein or meine. The article in the hint tells you which one.",
+      "payload": {
+        "text": "Das ist ___ Vater. Das ist ___ Mutter. Das ist ___ Kind. Das sind ___ Eltern.",
+        "blanks": [
+          {
+            "answer": "mein",
+            "hint": "der Vater"
+          },
+          {
+            "answer": "meine",
+            "hint": "die Mutter"
+          },
+          {
+            "answer": "mein",
+            "hint": "das Kind"
+          },
+          {
+            "answer": "meine",
+            "hint": "die Eltern, more than one person"
+          }
+        ],
+        "explanation_en": "mein before der and das words, meine before die words and before more than one person. For more than one person say Das sind."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-01-10",
+      "ordinal": 10,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": [
+        "de:cando:A1.SPI.03",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:phrase:wer-ist-das",
+        "de:chunk:das-ist-mein",
+        "de:vocab:bruder"
+      ],
+      "instruction_en": "Choose the natural reply.",
+      "payload": {
+        "question": "A colleague looks at the photo on your desk and asks: Wer ist das? What do you answer?",
+        "options": [
+          "Danke, gut.",
+          "Das ist mein Bruder.",
+          "Ich komme aus Indien."
+        ],
+        "answer_index": 1,
+        "explanation_en": "Wer ist das? means Who is that? You answer with Das ist and the person."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-01-11",
+      "ordinal": 11,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.01",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:chunk:das-ist-mein",
+        "de:vocab:sohn",
+        "de:vocab:heissen"
+      ],
+      "instruction_en": "Listen and type what you hear.",
+      "payload": {
+        "text": "Das ist mein Sohn. Er heißt Max.",
+        "accept": [
+          "Das ist mein Sohn. Er heisst Max."
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-01-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.01",
+        "de:cando:A1.VOC.03",
+        "de:cando:A1.GRA.08"
+      ],
+      "item_ids": [
+        "de:chunk:das-ist-meine",
+        "de:vocab:tochter"
+      ],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "This is my daughter.",
+        "direction": "to_target",
+        "reference": [
+          "Das ist meine Tochter."
+        ],
+        "notes_en": "Tochter is a die word."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-01-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": [
+        "de:cando:A1.SPP.01",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:familie",
+        "de:chunk:das-ist-mein",
+        "de:chunk:das-ist-meine",
+        "de:vocab:mein"
+      ],
+      "instruction_en": "Record yourself.",
+      "payload": {
+        "prompt_en": "Imagine you show a family photo to a new neighbour. Introduce three people in your family. For each one say who it is and give the name.",
+        "mode": "free",
+        "sample_answer": "Das ist meine Familie. Das ist meine Mutter. Sie heißt Anita. Das ist mein Vater. Er heißt Raj. Und das ist mein Bruder. Er heißt Arun.",
+        "rubric_focus": [
+          "family words",
+          "mein or meine matches the noun",
+          "Das ist ...",
+          "names with heißen"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

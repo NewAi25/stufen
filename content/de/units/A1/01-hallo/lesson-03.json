@@ -1,0 +1,312 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-01-03",
+  "unit_key": "de:unit:a1-01-hallo",
+  "ordinal": 3,
+  "slug": "woher-kommen-sie",
+  "title": "Woher kommen Sie?",
+  "title_en": "Where do you come from?",
+  "description": "Countries and languages, saying where you come from and which languages you speak, the verbs kommen and sprechen, W questions and yes or no questions.",
+  "kind": "core",
+  "estimated_minutes": 15,
+  "cando_ids": [
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.GRA.02",
+    "de:cando:A1.VOC.01",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.REA.01",
+    "de:cando:A1.SPI.01",
+    "de:cando:A1.SPI.02",
+    "de:cando:A1.SPI.03",
+    "de:cando:A1.SPP.02",
+    "de:cando:A1.WRI.01"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:sprechen",
+    "de:vocab:sprache",
+    "de:vocab:deutsch-sprache",
+    "de:vocab:englisch",
+    "de:vocab:oesterreich",
+    "de:vocab:schweiz",
+    "de:vocab:tuerkei",
+    "de:vocab:indien",
+    "de:vocab:polen",
+    "de:vocab:ukraine",
+    "de:vocab:usa",
+    "de:vocab:deutsche",
+    "de:vocab:er",
+    "de:vocab:sie",
+    "de:vocab:wer",
+    "de:chunk:ich-spreche",
+    "de:chunk:ich-komme-aus-der",
+    "de:phrase:woher-kommen-sie",
+    "de:phrase:sprechen-sie-englisch",
+    "de:phrase:welche-sprachen-sprichst-du"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-01-03-01",
+      "ordinal": 1,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.02"],
+      "item_ids": ["de:vocab:guten-tag", "de:vocab:gute-nacht", "de:vocab:tschuess"],
+      "instruction_en": "Warm up. Choose the right greeting.",
+      "payload": {
+        "question": "It is 3 pm. You walk into an office and meet a woman you do not know. What do you say?",
+        "options": ["Gute Nacht!", "Guten Tag!", "Tschüss!"],
+        "answer_index": 1,
+        "explanation_en": "Guten Tag is the polite greeting during the day. Tschüss is an informal goodbye."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-03-02",
+      "ordinal": 2,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.02"],
+      "item_ids": ["de:vocab:heissen", "de:vocab:kommen", "de:vocab:wohnen"],
+      "instruction_en": "Warm up. Fill in the verb with the ending for ich.",
+      "payload": {
+        "text": "Ich ___ Lena. Ich ___ aus Deutschland und ich ___ in Köln.",
+        "blanks": [
+          { "answer": "heiße", "accept": ["heisse"], "hint": "heißen" },
+          { "answer": "komme", "hint": "kommen" },
+          { "answer": "wohne", "hint": "wohnen" }
+        ],
+        "explanation_en": "With ich the verb ends in e: ich heiße, ich komme, ich wohne."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-03-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02"],
+      "item_ids": ["de:vocab:tuerkei", "de:chunk:ich-komme-aus-der", "de:chunk:ich-spreche", "de:vocab:sprache", "de:vocab:englisch", "de:vocab:deutsch-sprache"],
+      "instruction_en": "Listen to Emre introduce himself in his German course. Then answer the questions.",
+      "payload": {
+        "transcript": "Guten Tag! Ich heiße Emre Kaya. Ich komme aus der Türkei und ich wohne in Köln. Ich spreche Türkisch, Englisch und ein bisschen Deutsch.",
+        "questions": [
+          {
+            "question": "Woher kommt Emre?",
+            "options": ["aus der Schweiz", "aus der Türkei", "aus Polen"],
+            "answer_index": 1
+          },
+          {
+            "question": "Wo wohnt Emre?",
+            "options": ["in Köln", "in Berlin", "in Wien"],
+            "answer_index": 0
+          },
+          {
+            "question": "Welche Sprachen spricht Emre?",
+            "options": ["Türkisch und Polnisch", "Englisch und Polnisch", "Türkisch, Englisch und ein bisschen Deutsch"],
+            "answer_index": 2,
+            "explanation_en": "ein bisschen means a little."
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-03-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.01"],
+      "item_ids": ["de:phrase:woher-kommen-sie", "de:vocab:indien", "de:vocab:polen", "de:vocab:deutsche", "de:vocab:wer", "de:vocab:sprechen"],
+      "instruction_en": "Read the conversation on the first day of a German course. Then answer the questions.",
+      "payload": {
+        "title": "Im Deutschkurs",
+        "text": "Frau Schmidt: Guten Morgen! Ich heiße Karin Schmidt. Ich bin Deutsche und ich komme aus Hamburg. Woher kommen Sie?\nPriya: Ich komme aus Indien.\nFrau Schmidt: Und Sie, Herr Kowalski?\nHerr Kowalski: Ich komme aus Polen. Ich spreche Polnisch und Englisch.\nFrau Schmidt: Sprechen Sie auch Deutsch?\nHerr Kowalski: Ja, ein bisschen.",
+        "questions": [
+          {
+            "question": "Woher kommt Priya?",
+            "options": ["aus Polen", "aus Indien", "aus Hamburg"],
+            "answer_index": 1
+          },
+          {
+            "question": "Wer kommt aus Polen?",
+            "options": ["Frau Schmidt", "Priya", "Herr Kowalski"],
+            "answer_index": 2
+          },
+          {
+            "question": "Spricht Herr Kowalski Englisch?",
+            "options": ["Ja.", "Nein."],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-03-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.01"],
+      "item_ids": ["de:vocab:oesterreich", "de:vocab:schweiz", "de:vocab:tuerkei", "de:vocab:indien", "de:vocab:polen", "de:vocab:ukraine", "de:vocab:usa"],
+      "instruction_en": "Match the German name of the country with the English name.",
+      "payload": {
+        "pairs": [
+          { "left": "Österreich", "right": "Austria" },
+          { "left": "die Schweiz", "right": "Switzerland" },
+          { "left": "die Türkei", "right": "Turkey" },
+          { "left": "Indien", "right": "India" },
+          { "left": "Polen", "right": "Poland" },
+          { "left": "die Ukraine", "right": "Ukraine" },
+          { "left": "die USA", "right": "the USA" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-03-06",
+      "ordinal": 6,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.01"],
+      "item_ids": ["de:chunk:ich-komme-aus-der", "de:chunk:ich-komme-aus", "de:vocab:schweiz", "de:vocab:aus"],
+      "instruction_en": "Choose the words that complete the sentence.",
+      "payload": {
+        "question": "Ich komme ... Schweiz.",
+        "options": ["aus", "aus der", "aus den"],
+        "answer_index": 1,
+        "explanation_en": "Most countries have no article: aus Indien, aus Polen. A few have die and take der after aus: aus der Schweiz, aus der Türkei, aus der Ukraine. The USA are plural: aus den USA."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-03-07",
+      "ordinal": 7,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.02"],
+      "item_ids": ["de:vocab:kommen", "de:vocab:er", "de:vocab:usa", "de:grammar:praesens-regelmaessig"],
+      "instruction_en": "Fill in the correct form of kommen.",
+      "payload": {
+        "text": "Woher ___ Sie? Ich ___ aus Indien. Und woher ___ du? Das ist Tom. Er ___ aus den USA.",
+        "blanks": [
+          { "answer": "kommen", "hint": "kommen, Sie" },
+          { "answer": "komme", "hint": "kommen, ich" },
+          { "answer": "kommst", "hint": "kommen, du" },
+          { "answer": "kommt", "hint": "kommen, er" }
+        ],
+        "explanation_en": "ich komme, du kommst, er kommt, Sie kommen. The form for Sie is the same as the infinitive."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-03-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.02"],
+      "item_ids": ["de:vocab:sprechen", "de:vocab:sie", "de:chunk:ich-spreche"],
+      "instruction_en": "Fill in the correct form of sprechen. Watch the vowel with du and with sie.",
+      "payload": {
+        "text": "Ich ___ Englisch. ___ du auch Deutsch? Das ist Maria. Sie ___ Polnisch.",
+        "blanks": [
+          { "answer": "spreche", "hint": "sprechen, ich" },
+          { "answer": "Sprichst", "accept": ["sprichst"], "hint": "sprechen, du" },
+          { "answer": "spricht", "hint": "sprechen, sie" }
+        ],
+        "explanation_en": "sprechen changes e to i with du and with er, sie, es: ich spreche, du sprichst, er spricht, sie spricht."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-03-09",
+      "ordinal": 9,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03", "de:cando:A1.SPI.01"],
+      "item_ids": ["de:vocab:wer", "de:vocab:wo", "de:vocab:woher"],
+      "instruction_en": "Choose the question word that fits the answer.",
+      "payload": {
+        "question": "... ist das? Das ist Frau Schmidt.",
+        "options": ["Wo", "Woher", "Wer"],
+        "answer_index": 2,
+        "explanation_en": "wer asks who, wo asks where, woher asks where from. In a W question the question word comes first and the verb comes second."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-03-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03", "de:cando:A1.SPI.03"],
+      "item_ids": ["de:phrase:woher-kommen-sie", "de:vocab:woher", "de:vocab:kommen"],
+      "instruction_en": "Put the words in order to make a W question. The question word comes first, then the verb.",
+      "payload": {
+        "words": ["kommen", "Sie?", "Woher"],
+        "answer": "Woher kommen Sie?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-03-11",
+      "ordinal": 11,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03", "de:cando:A1.SPI.01"],
+      "item_ids": ["de:phrase:sprechen-sie-englisch", "de:vocab:sprechen", "de:vocab:englisch"],
+      "instruction_en": "Put the words in order to make a yes or no question. The verb comes first.",
+      "payload": {
+        "words": ["Sie", "Englisch?", "Sprechen"],
+        "answer": "Sprechen Sie Englisch?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-03-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.GRA.03"],
+      "item_ids": ["de:phrase:welche-sprachen-sprichst-du", "de:vocab:sprache", "de:vocab:sprechen"],
+      "instruction_en": "Translate into German. You are talking to a friend, so use du.",
+      "payload": {
+        "source_text": "Which languages do you speak?",
+        "direction": "to_target",
+        "reference": ["Welche Sprachen sprichst du?"],
+        "notes_en": "The verb is in second position, after Welche Sprachen. With du the form is sprichst."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-03-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.03", "de:cando:A1.SPP.02"],
+      "item_ids": ["de:chunk:ich-komme-aus", "de:chunk:ich-spreche", "de:phrase:woher-kommen-sie"],
+      "instruction_en": "Record yourself.",
+      "payload": {
+        "prompt_en": "A new colleague asks you: Woher kommen Sie? Welche Sprachen sprechen Sie? Answer both questions in German. Then ask the colleague where he or she comes from.",
+        "mode": "free",
+        "sample_answer": "Ich komme aus Indien. Ich spreche Bengalisch, Englisch und ein bisschen Deutsch. Und woher kommen Sie?",
+        "rubric_focus": ["ich komme aus with a country", "ich spreche with one or more languages", "a question with the verb in second position"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

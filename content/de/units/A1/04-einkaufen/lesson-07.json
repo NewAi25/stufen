@@ -1,0 +1,295 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-04-07",
+  "unit_key": "de:unit:a1-04-einkaufen",
+  "ordinal": 7,
+  "slug": "wiederholung-einkaufen",
+  "title": "Wiederholung: Einkaufen und Erledigungen",
+  "title_en": "Review: shopping and errands",
+  "description": "Mixed review of the unit: prices and big numbers, clothes and colours, möchten, können and müssen, the checkout, shop signs and leaflets, the post office and the bank. No new words.",
+  "kind": "review",
+  "estimated_minutes": 18,
+  "cando_ids": [
+    "de:cando:A1.VOC.07",
+    "de:cando:A1.LIS.03",
+    "de:cando:A1.LIS.04",
+    "de:cando:A1.REA.04",
+    "de:cando:A1.SPI.04",
+    "de:cando:A1.WRI.03",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.GRA.06",
+    "de:cando:A1.GRA.09"
+  ],
+  "introduces_item_ids": [],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-04-07-01",
+      "ordinal": 1,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.03"],
+      "item_ids": ["de:vocab:kosten", "de:vocab:euro", "de:chunk:das-macht-euro", "de:vocab:hose", "de:vocab:hemd"],
+      "instruction_en": "Listen to the prices at the checkout. Then answer the questions.",
+      "payload": {
+        "transcript": "Die Hose kostet neununddreißig Euro neunzig. Das Hemd kostet neunzehn Euro fünfzig. Das macht neunundfünfzig Euro vierzig.",
+        "questions": [
+          {
+            "question": "Was kostet die Hose?",
+            "options": ["29,90 Euro", "39,90 Euro", "93,90 Euro"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was kostet das Hemd?",
+            "options": ["19,50 Euro", "19,15 Euro", "90,50 Euro"],
+            "answer_index": 0
+          },
+          {
+            "question": "Das macht ...",
+            "options": ["95,40 Euro", "59,14 Euro", "59,40 Euro"],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-07-02",
+      "ordinal": 2,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07"],
+      "item_ids": ["de:vocab:quittung", "de:vocab:ausweis", "de:vocab:angebot", "de:vocab:briefmarke", "de:vocab:groesse", "de:vocab:konto", "de:vocab:preis"],
+      "instruction_en": "Match the German word with its English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "die Quittung", "right": "receipt" },
+          { "left": "der Ausweis", "right": "ID card" },
+          { "left": "das Angebot", "right": "special offer" },
+          { "left": "die Briefmarke", "right": "stamp" },
+          { "left": "die Größe", "right": "size" },
+          { "left": "das Konto", "right": "account" },
+          { "left": "der Preis", "right": "price" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-07-03",
+      "ordinal": 3,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.06"],
+      "item_ids": ["de:grammar:akkusativ-artikel", "de:chunk:ich-suche", "de:vocab:pullover", "de:vocab:jacke", "de:vocab:brief", "de:vocab:paket"],
+      "instruction_en": "Fill in einen, eine or ein.",
+      "payload": {
+        "text": "Ich suche ___ Pullover und ___ Jacke. Ich möchte ___ Brief schicken und ___ Paket abholen.",
+        "blanks": [
+          { "answer": "einen", "hint": "der Pullover" },
+          { "answer": "eine", "hint": "die Jacke" },
+          { "answer": "einen", "hint": "der Brief" },
+          { "answer": "ein", "hint": "das Paket" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-07-04",
+      "ordinal": 4,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:koennen", "de:vocab:moechten", "de:vocab:muessen", "de:grammar:modalverben-praesens"],
+      "instruction_en": "Fill in the right form of the modal verb.",
+      "payload": {
+        "text": "___ Sie mir helfen? Ich ___ ein Paket abholen. Wo ___ ich unterschreiben?",
+        "blanks": [
+          { "answer": "Können", "accept": ["können", "Koennen", "koennen"], "hint": "können, Sie" },
+          { "answer": "möchte", "accept": ["moechte"], "hint": "möchten, ich" },
+          { "answer": "muss", "hint": "müssen, ich" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-07-05",
+      "ordinal": 5,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:moechten", "de:vocab:bezahlen", "de:vocab:karte", "de:grammar:satzklammer-modalverben"],
+      "instruction_en": "Put the words in the right order.",
+      "payload": {
+        "words": ["bezahlen.", "mit", "Ich", "Karte", "möchte"],
+        "answer": "Ich möchte mit Karte bezahlen."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-07-06",
+      "ordinal": 6,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.04"],
+      "item_ids": ["de:vocab:kaufhaus", "de:vocab:angebot", "de:chunk:ist-im-angebot", "de:vocab:oeffnungszeiten", "de:chunk:von-bis", "de:vocab:schuh"],
+      "instruction_en": "Read the leaflet from a department store. Then answer the questions.",
+      "payload": {
+        "title": "Kaufhaus Becker: Angebote",
+        "text": "Im Angebot am Freitag und Samstag:\nJacken: 49 Euro.\nSchuhe: 39 Euro.\nPullover: 19,90 Euro.\nÖffnungszeiten: Montag bis Samstag von 9 bis 20 Uhr.",
+        "questions": [
+          {
+            "question": "Was kosten die Schuhe?",
+            "options": ["19,90 Euro", "39 Euro", "49 Euro"],
+            "answer_index": 1
+          },
+          {
+            "question": "Wann sind die Jacken im Angebot?",
+            "options": ["am Montag", "am Freitag und Samstag", "am Sonntag"],
+            "answer_index": 1
+          },
+          {
+            "question": "Bis wann ist das Kaufhaus geöffnet?",
+            "options": ["bis 9 Uhr", "bis 19 Uhr", "bis 20 Uhr"],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-07-07",
+      "ordinal": 7,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.04"],
+      "item_ids": ["de:phrase:fuellen-sie-bitte-das-formular-aus", "de:vocab:schalter", "de:vocab:paket", "de:vocab:schicken", "de:vocab:bar", "de:vocab:karte"],
+      "instruction_en": "The clerk at the post office tells you what to do. Listen and answer the questions.",
+      "payload": {
+        "transcript": "Sie möchten ein Paket schicken? Füllen Sie bitte das Formular aus. Gehen Sie bitte zum Schalter zwei. Sie können bar oder mit Karte bezahlen.",
+        "questions": [
+          {
+            "question": "Was müssen Sie ausfüllen?",
+            "options": ["das Formular", "die Quittung", "den Brief"],
+            "answer_index": 0
+          },
+          {
+            "question": "Welcher Schalter?",
+            "options": ["Schalter 12", "Schalter 3", "Schalter 2"],
+            "answer_index": 2
+          },
+          {
+            "question": "Wie können Sie bezahlen?",
+            "options": ["bar", "mit Karte", "bar oder mit Karte"],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-07-08",
+      "ordinal": 8,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.04"],
+      "item_ids": ["de:phrase:sonst-noch-etwas", "de:phrase:das-ist-alles", "de:phrase:das-ist-zu-teuer"],
+      "instruction_en": "Choose the right answer at the checkout.",
+      "payload": {
+        "question": "The cashier asks: Sonst noch etwas? You have everything you need. What do you say?",
+        "options": ["Bar, bitte.", "Nein danke, das ist alles.", "Das ist zu teuer."],
+        "answer_index": 1
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-07-09",
+      "ordinal": 9,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07"],
+      "item_ids": ["de:vocab:klein", "de:vocab:gross", "de:vocab:teuer", "de:vocab:groesse", "de:vocab:schuh"],
+      "instruction_en": "Choose the right word.",
+      "payload": {
+        "question": "Sie haben Größe 41. Die Schuhe haben Größe 38. Die Schuhe sind ...",
+        "options": ["zu groß", "zu klein", "zu teuer"],
+        "answer_index": 1,
+        "explanation_en": "Size 38 is smaller than size 41, so the shoes are too small: zu klein."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-07-10",
+      "ordinal": 10,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.03"],
+      "item_ids": ["de:vocab:jacke", "de:vocab:kosten", "de:vocab:euro"],
+      "instruction_en": "Listen and type what you hear. You may write the price in words or in figures.",
+      "payload": {
+        "text": "Die Jacke kostet neunundvierzig Euro.",
+        "accept": ["Die Jacke kostet 49 Euro."]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-07-11",
+      "ordinal": 11,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03", "de:cando:A1.SPI.04"],
+      "item_ids": ["de:chunk:was-kostet", "de:vocab:kosten", "de:vocab:schuh"],
+      "instruction_en": "Put the words in the right order to ask for the price.",
+      "payload": {
+        "words": ["die", "kosten", "Schuhe?", "Was"],
+        "answer": "Was kosten die Schuhe?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-07-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.SPI.04", "de:cando:A1.GRA.09"],
+      "item_ids": ["de:phrase:wo-ist-die-post-bitte", "de:vocab:moechten", "de:vocab:brief", "de:vocab:schicken"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "Where is the post office, please? I would like to send a letter.",
+        "direction": "to_target",
+        "reference": ["Wo ist die Post, bitte? Ich möchte einen Brief schicken."]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-07-13",
+      "ordinal": 13,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.03"],
+      "item_ids": ["de:vocab:kaufhaus", "de:chunk:ist-im-angebot", "de:vocab:kosten", "de:vocab:guenstig", "de:vocab:geoeffnet", "de:vocab:moechten"],
+      "instruction_en": "Write a text message in German.",
+      "payload": {
+        "prompt_en": "You are in a department store and you see a good offer. Write a short text message to a friend. Say where you are, what is on offer and what it costs, say until what time the shop is open, and ask whether your friend would like to buy one too.",
+        "min_words": 15,
+        "max_words": 60,
+        "sample_answer": "Hallo Anna! Ich bin im Kaufhaus. Die Jacken sind im Angebot. Eine Jacke kostet 49 Euro. Das ist günstig! Das Kaufhaus ist bis 20 Uhr geöffnet. Möchtest du auch eine Jacke kaufen?",
+        "rubric_focus": ["a price with Euro", "im Angebot, günstig or teuer", "opening time with bis ... Uhr", "a question with möchtest and the infinitive at the end"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

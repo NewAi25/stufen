@@ -1,0 +1,490 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-02-04",
+  "unit_key": "de:unit:a1-02-familie",
+  "ordinal": 4,
+  "slug": "mein-dein-sein-ihr",
+  "title": "Mein, dein, sein, ihr",
+  "title_en": "My, your, his, her",
+  "description": "The possessive articles mein, dein, sein and ihr in the nominative. Talking about your own family and about the family of a friend or colleague.",
+  "kind": "core",
+  "estimated_minutes": 20,
+  "cando_ids": [
+    "de:cando:A1.GRA.08",
+    "de:cando:A1.VOC.03",
+    "de:cando:A1.VOC.02",
+    "de:cando:A1.GRA.04",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.SPI.03",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.REA.01",
+    "de:cando:A1.WRI.01"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:dein",
+    "de:vocab:sein-possessiv",
+    "de:vocab:ihr-possessiv",
+    "de:grammar:possessivartikel-nominativ",
+    "de:vocab:leben"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-02-04-01",
+      "ordinal": 1,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.02"
+      ],
+      "item_ids": [
+        "de:vocab:vierzig",
+        "de:vocab:achtzig",
+        "de:grammar:zahlen-bilden"
+      ],
+      "instruction_en": "Warm up. Choose the right number.",
+      "payload": {
+        "question": "Which number is achtundvierzig?",
+        "options": [
+          "84",
+          "48",
+          "18"
+        ],
+        "answer_index": 1,
+        "explanation_en": "The small number comes first: acht und vierzig, eight and forty."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-04-02",
+      "ordinal": 2,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.04"
+      ],
+      "item_ids": [
+        "de:vocab:foto",
+        "de:vocab:freundin"
+      ],
+      "instruction_en": "Warm up. Fill in ein or eine, then der, die or das.",
+      "payload": {
+        "text": "Das ist ___ Foto. ___ Foto ist aus Polen. Das ist ___ Freundin. ___ Freundin heißt Marta.",
+        "blanks": [
+          {
+            "answer": "ein",
+            "hint": "das Foto"
+          },
+          {
+            "answer": "Das",
+            "accept": [
+              "das"
+            ]
+          },
+          {
+            "answer": "eine",
+            "hint": "die Freundin"
+          },
+          {
+            "answer": "Die",
+            "accept": [
+              "die"
+            ]
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-04-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.02",
+        "de:cando:A1.GRA.08"
+      ],
+      "item_ids": [
+        "de:vocab:dein",
+        "de:vocab:sein-possessiv",
+        "de:vocab:ihr-possessiv",
+        "de:vocab:mein",
+        "de:vocab:bruder",
+        "de:vocab:schwester",
+        "de:vocab:mann",
+        "de:vocab:frau"
+      ],
+      "instruction_en": "Jonas asks Priya about a photo. Listen, then answer the questions.",
+      "payload": {
+        "transcript": "Priya, ist das deine Familie? Ja. Das ist mein Bruder Arun und das ist seine Frau. Sie heißt Meera. Und wer ist das? Das ist meine Schwester Kavita. Ihr Mann heißt Dev.",
+        "questions": [
+          {
+            "question": "Wer ist Meera?",
+            "options": [
+              "die Schwester von Priya",
+              "die Frau von Arun",
+              "die Mutter von Priya"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Wie heißt der Mann von Kavita?",
+            "options": [
+              "Dev",
+              "Arun",
+              "Jonas"
+            ],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-04-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": [
+        "de:cando:A1.REA.01",
+        "de:cando:A1.GRA.08"
+      ],
+      "item_ids": [
+        "de:vocab:kollege",
+        "de:vocab:kollegin",
+        "de:vocab:sein-possessiv",
+        "de:vocab:ihr-possessiv",
+        "de:vocab:leben",
+        "de:vocab:eltern"
+      ],
+      "instruction_en": "Read about two colleagues. Then answer the questions.",
+      "payload": {
+        "title": "Mein Kollege und meine Kollegin",
+        "text": "Das ist mein Kollege Tarek. Er kommt aus Syrien. Seine Frau heißt Rima und sein Sohn heißt Adam. Seine Eltern leben in Syrien. Das ist meine Kollegin Olga. Sie kommt aus Polen. Ihr Mann heißt Pavel und ihre Tochter heißt Mila. Ihre Eltern leben in Polen.",
+        "questions": [
+          {
+            "question": "Wie heißt die Frau von Tarek?",
+            "options": [
+              "Olga",
+              "Mila",
+              "Rima"
+            ],
+            "answer_index": 2
+          },
+          {
+            "question": "Mila ist ...",
+            "options": [
+              "die Tochter von Olga",
+              "die Tochter von Tarek",
+              "die Kollegin von Olga"
+            ],
+            "answer_index": 0
+          },
+          {
+            "question": "Wo leben die Eltern von Olga?",
+            "options": [
+              "in Syrien",
+              "in Polen",
+              "in Deutschland"
+            ],
+            "answer_index": 1
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-04-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.08"
+      ],
+      "item_ids": [
+        "de:vocab:mein",
+        "de:vocab:dein",
+        "de:vocab:sein-possessiv",
+        "de:vocab:ihr-possessiv",
+        "de:grammar:possessivartikel-nominativ"
+      ],
+      "instruction_en": "Each person has its own word for my, your, his and her. Match them.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "ich",
+            "right": "mein"
+          },
+          {
+            "left": "du",
+            "right": "dein"
+          },
+          {
+            "left": "er",
+            "right": "sein"
+          },
+          {
+            "left": "sie",
+            "right": "ihr"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-04-06",
+      "ordinal": 6,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.08"
+      ],
+      "item_ids": [
+        "de:vocab:ihr-possessiv",
+        "de:vocab:sein-possessiv",
+        "de:grammar:possessivartikel-nominativ"
+      ],
+      "instruction_en": "Choose the right word.",
+      "payload": {
+        "question": "Das ist Anna. ___ Mann heißt Peter.",
+        "options": [
+          "Sein",
+          "Ihr",
+          "Ihre"
+        ],
+        "answer_index": 1,
+        "explanation_en": "Two things decide the word. The owner picks the word: Anna is sie, so ihr. The noun after it picks the ending: Mann is a der word, so no ending. With a die word it is ihre: ihre Tochter."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-04-07",
+      "ordinal": 7,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.08",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:dein",
+        "de:vocab:bruder",
+        "de:vocab:mutter",
+        "de:vocab:eltern"
+      ],
+      "instruction_en": "Ask a friend about the family. Fill in dein or deine.",
+      "payload": {
+        "text": "Ist das ___ Bruder? Wie heißt ___ Mutter? Wo wohnen ___ Eltern?",
+        "blanks": [
+          {
+            "answer": "dein",
+            "hint": "der Bruder"
+          },
+          {
+            "answer": "deine",
+            "hint": "die Mutter"
+          },
+          {
+            "answer": "deine",
+            "hint": "die Eltern, more than one person"
+          }
+        ],
+        "explanation_en": "dein works like mein: dein before der and das words, deine before die words and before more than one person."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-04-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.08",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:sein-possessiv",
+        "de:vocab:ihr-possessiv",
+        "de:vocab:schwester",
+        "de:vocab:bruder",
+        "de:vocab:kind"
+      ],
+      "instruction_en": "His or her? Fill in sein, seine, ihr or ihre.",
+      "payload": {
+        "text": "Das ist Tom. ___ Schwester heißt Mia. Das ist Lena. ___ Bruder heißt Paul. Das ist Herr Braun. ___ Kinder heißen Max und Emma.",
+        "blanks": [
+          {
+            "answer": "Seine",
+            "accept": [
+              "seine"
+            ],
+            "hint": "Tom, die Schwester"
+          },
+          {
+            "answer": "Ihr",
+            "accept": [
+              "ihr"
+            ],
+            "hint": "Lena, der Bruder"
+          },
+          {
+            "answer": "Seine",
+            "accept": [
+              "seine"
+            ],
+            "hint": "Herr Braun, die Kinder"
+          }
+        ],
+        "explanation_en": "For a man use sein, for a woman use ihr. Add e before a die word and before more than one person."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-04-09",
+      "ordinal": 9,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": [
+        "de:cando:A1.SPI.03",
+        "de:cando:A1.GRA.08"
+      ],
+      "item_ids": [
+        "de:vocab:dein",
+        "de:vocab:mein",
+        "de:vocab:tochter"
+      ],
+      "instruction_en": "Choose the natural reply.",
+      "payload": {
+        "question": "A colleague asks you: Wie heißt deine Tochter? What do you answer?",
+        "options": [
+          "Deine Tochter heißt Mila.",
+          "Meine Tochter heißt Mila.",
+          "Ihre Tochter heißt Mila."
+        ],
+        "answer_index": 1,
+        "explanation_en": "The question has deine, your. In your answer it becomes meine, my."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-04-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.03",
+        "de:cando:A1.GRA.08"
+      ],
+      "item_ids": [
+        "de:vocab:dein",
+        "de:vocab:schwester",
+        "de:vocab:heissen"
+      ],
+      "instruction_en": "Put the words in the right order to ask a question.",
+      "payload": {
+        "words": [
+          "deine",
+          "Wie",
+          "Schwester?",
+          "heißt"
+        ],
+        "answer": "Wie heißt deine Schwester?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-04-11",
+      "ordinal": 11,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.01",
+        "de:cando:A1.GRA.08"
+      ],
+      "item_ids": [
+        "de:vocab:sein-possessiv",
+        "de:vocab:eltern",
+        "de:vocab:leben"
+      ],
+      "instruction_en": "Listen and type what you hear.",
+      "payload": {
+        "text": "Seine Eltern leben in Indien."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-04-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.01",
+        "de:cando:A1.GRA.08"
+      ],
+      "item_ids": [
+        "de:vocab:ihr-possessiv",
+        "de:vocab:vater",
+        "de:vocab:leben"
+      ],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "Her father lives in Poland.",
+        "direction": "to_target",
+        "reference": [
+          "Ihr Vater lebt in Polen.",
+          "Ihr Vater wohnt in Polen."
+        ],
+        "notes_en": "Vater is a der word, so ihr has no ending. leben is the usual verb for the country someone lives in."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-04-13",
+      "ordinal": 13,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.01",
+        "de:cando:A1.GRA.08",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:sein-possessiv",
+        "de:vocab:ihr-possessiv",
+        "de:vocab:mein",
+        "de:vocab:kollege",
+        "de:vocab:kollegin",
+        "de:vocab:leben"
+      ],
+      "instruction_en": "Write in German.",
+      "payload": {
+        "prompt_en": "Write four or five short sentences. Introduce a friend or a colleague and say three things about his or her family with sein or ihr. Then add one sentence about your own family with mein.",
+        "min_words": 15,
+        "max_words": 60,
+        "sample_answer": "Das ist meine Kollegin Olga. Ihr Mann heißt Pavel. Ihre Tochter ist zwölf Jahre alt. Ihre Eltern leben in Polen. Meine Eltern leben in Indien.",
+        "rubric_focus": [
+          "sein for a man, ihr for a woman",
+          "ending e before die words and plurals",
+          "family words",
+          "verb in second position"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

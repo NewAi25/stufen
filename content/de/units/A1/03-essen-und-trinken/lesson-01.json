@@ -1,0 +1,346 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-03-01",
+  "unit_key": "de:unit:a1-03-essen-und-trinken",
+  "ordinal": 1,
+  "slug": "essen-trinken-mahlzeiten",
+  "title": "Was isst du gern?",
+  "title_en": "What do you like to eat?",
+  "description": "Words for common foods and drinks, the three meals of the day, essen and trinken in the present tense, and saying what you like with gern.",
+  "kind": "core",
+  "estimated_minutes": 18,
+  "cando_ids": [
+    "de:cando:A1.VOC.04",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.REA.01",
+    "de:cando:A1.SPI.01",
+    "de:cando:A1.SPP.03",
+    "de:cando:A1.WRI.01",
+    "de:cando:A1.GRA.01",
+    "de:cando:A1.GRA.02",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.GRA.04"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:brot",
+    "de:vocab:broetchen",
+    "de:vocab:butter",
+    "de:vocab:kaese",
+    "de:vocab:ei",
+    "de:vocab:fleisch",
+    "de:vocab:gemuese",
+    "de:vocab:obst",
+    "de:vocab:apfel",
+    "de:vocab:banane",
+    "de:vocab:wasser",
+    "de:vocab:kaffee",
+    "de:vocab:tee",
+    "de:vocab:milch",
+    "de:vocab:saft",
+    "de:vocab:fruehstueck",
+    "de:vocab:mittagessen",
+    "de:vocab:abendessen",
+    "de:vocab:essen",
+    "de:vocab:trinken",
+    "de:vocab:gern",
+    "de:vocab:mit",
+    "de:vocab:hunger",
+    "de:vocab:durst",
+    "de:phrase:ich-habe-hunger",
+    "de:phrase:ich-habe-durst"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-03-01-01",
+      "ordinal": 1,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.01"],
+      "item_ids": ["de:vocab:haben"],
+      "instruction_en": "Warm up. Fill in the correct form of haben.",
+      "payload": {
+        "text": "Ich ___ eine Schwester. Du ___ zwei Kinder. Meine Mutter ___ drei Geschwister.",
+        "blanks": [
+          { "answer": "habe", "hint": "haben, ich" },
+          { "answer": "hast", "hint": "haben, du" },
+          { "answer": "hat", "hint": "haben, sie" }
+        ],
+        "explanation_en": "ich habe, du hast, er sie es hat."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-01-02",
+      "ordinal": 2,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03"],
+      "item_ids": ["de:vocab:heissen", "de:vocab:dein", "de:vocab:mutter"],
+      "instruction_en": "Warm up. Put the words in the right order to make a question.",
+      "payload": {
+        "words": ["deine", "heißt", "Mutter?", "Wie"],
+        "answer": "Wie heißt deine Mutter?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-01-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02", "de:cando:A1.VOC.04"],
+      "item_ids": [
+        "de:vocab:fruehstueck",
+        "de:vocab:essen",
+        "de:vocab:trinken",
+        "de:vocab:broetchen",
+        "de:vocab:butter",
+        "de:vocab:kaese",
+        "de:vocab:kaffee",
+        "de:vocab:milch",
+        "de:vocab:mit"
+      ],
+      "instruction_en": "Listen to Lena talk about her breakfast. Zum Frühstück means for breakfast. Then answer the questions.",
+      "payload": {
+        "transcript": "Guten Morgen! Ich heiße Lena. Zum Frühstück esse ich ein Brötchen mit Butter und Käse. Ich trinke Kaffee mit Milch.",
+        "questions": [
+          {
+            "question": "Was isst Lena zum Frühstück?",
+            "options": ["ein Ei", "ein Brötchen mit Butter und Käse", "Obst"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was trinkt Lena?",
+            "options": ["Tee", "Saft", "Kaffee mit Milch"],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-01-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.01", "de:cando:A1.VOC.04"],
+      "item_ids": [
+        "de:vocab:fruehstueck",
+        "de:vocab:mittagessen",
+        "de:vocab:abendessen",
+        "de:vocab:brot",
+        "de:vocab:fleisch",
+        "de:vocab:gemuese",
+        "de:vocab:obst",
+        "de:vocab:tee",
+        "de:vocab:kaffee"
+      ],
+      "instruction_en": "Read the short text about three meals. Then answer the questions.",
+      "payload": {
+        "title": "Emre und Selin",
+        "text": "Emre und Selin wohnen in Köln. Zum Frühstück essen sie Brot mit Butter und Käse. Emre trinkt Kaffee und Selin trinkt Tee. Zum Mittagessen essen sie Fleisch und Gemüse. Zum Abendessen essen sie Brot, Käse und Obst.",
+        "questions": [
+          {
+            "question": "Was trinkt Selin zum Frühstück?",
+            "options": ["Kaffee", "Tee", "Milch"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was essen Emre und Selin zum Mittagessen?",
+            "options": ["Brot und Käse", "Obst", "Fleisch und Gemüse"],
+            "answer_index": 2
+          },
+          {
+            "question": "Wann essen sie Obst?",
+            "options": ["zum Abendessen", "zum Frühstück", "zum Mittagessen"],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-01-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.04"],
+      "item_ids": ["de:vocab:brot", "de:vocab:kaese", "de:vocab:ei", "de:vocab:fleisch", "de:vocab:gemuese", "de:vocab:obst"],
+      "instruction_en": "Match the food with its English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "das Brot", "right": "bread" },
+          { "left": "der Käse", "right": "cheese" },
+          { "left": "das Ei", "right": "egg" },
+          { "left": "das Fleisch", "right": "meat" },
+          { "left": "das Gemüse", "right": "vegetables" },
+          { "left": "das Obst", "right": "fruit" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-01-06",
+      "ordinal": 6,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.04"],
+      "item_ids": [
+        "de:vocab:wasser",
+        "de:vocab:milch",
+        "de:vocab:saft",
+        "de:vocab:fruehstueck",
+        "de:vocab:mittagessen",
+        "de:vocab:abendessen"
+      ],
+      "instruction_en": "Match the drinks and the meals of the day with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "das Wasser", "right": "water" },
+          { "left": "die Milch", "right": "milk" },
+          { "left": "der Saft", "right": "juice" },
+          { "left": "das Frühstück", "right": "breakfast" },
+          { "left": "das Mittagessen", "right": "lunch" },
+          { "left": "das Abendessen", "right": "dinner" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-01-07",
+      "ordinal": 7,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.04", "de:cando:A1.VOC.04"],
+      "item_ids": ["de:vocab:kaffee", "de:vocab:milch", "de:vocab:brot", "de:vocab:apfel", "de:vocab:banane", "de:vocab:ei"],
+      "instruction_en": "Fill in der, die or das.",
+      "payload": {
+        "text": "___ Kaffee, ___ Milch, ___ Brot, ___ Apfel, ___ Banane, ___ Ei",
+        "blanks": [
+          { "answer": "der" },
+          { "answer": "die" },
+          { "answer": "das" },
+          { "answer": "der" },
+          { "answer": "die" },
+          { "answer": "das" }
+        ],
+        "explanation_en": "Learn every food word together with its article: der Kaffee, die Milch, das Brot."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-01-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.02"],
+      "item_ids": ["de:vocab:essen", "de:vocab:trinken", "de:vocab:tee", "de:vocab:saft", "de:vocab:wasser"],
+      "instruction_en": "Fill in the correct form of essen or trinken.",
+      "payload": {
+        "text": "Ich ___ Brot. Du ___ Obst. Emre ___ Fleisch. Ich ___ Tee. Du ___ Saft. Wir ___ Wasser.",
+        "blanks": [
+          { "answer": "esse", "hint": "essen, ich" },
+          { "answer": "isst", "hint": "essen, du" },
+          { "answer": "isst", "hint": "essen, er" },
+          { "answer": "trinke", "hint": "trinken, ich" },
+          { "answer": "trinkst", "hint": "trinken, du" },
+          { "answer": "trinken", "hint": "trinken, wir" }
+        ],
+        "explanation_en": "trinken is regular. essen changes e to i with du and with er, sie, es: du isst, er isst."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-01-09",
+      "ordinal": 9,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.04", "de:cando:A1.SPI.01"],
+      "item_ids": ["de:phrase:ich-habe-durst", "de:phrase:ich-habe-hunger", "de:vocab:durst", "de:vocab:hunger"],
+      "instruction_en": "Choose the right sentence.",
+      "payload": {
+        "question": "You are thirsty and would like something to drink. What do you say?",
+        "options": ["Ich habe Hunger.", "Ich habe Durst.", "Ich esse gern Brot."],
+        "answer_index": 1,
+        "explanation_en": "Ich habe Durst means I am thirsty. Ich habe Hunger means I am hungry. German uses haben here, not sein."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-01-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03", "de:cando:A1.VOC.04"],
+      "item_ids": ["de:vocab:gern", "de:vocab:essen", "de:vocab:obst"],
+      "instruction_en": "Put the words in the right order to say that you like eating fruit.",
+      "payload": {
+        "words": ["gern", "Ich", "Obst.", "esse"],
+        "answer": "Ich esse gern Obst."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-01-11",
+      "ordinal": 11,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.VOC.04"],
+      "item_ids": ["de:vocab:gern", "de:vocab:trinken", "de:vocab:tee"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "I like drinking tea.",
+        "direction": "to_target",
+        "reference": ["Ich trinke gern Tee.", "Ich trinke gerne Tee."],
+        "notes_en": "German has no separate word for like here. Put gern after the verb."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-01-12",
+      "ordinal": 12,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.01", "de:cando:A1.WRI.01"],
+      "item_ids": ["de:vocab:gern", "de:vocab:essen", "de:vocab:brot", "de:vocab:kaese", "de:vocab:mit"],
+      "instruction_en": "Listen and type what you hear.",
+      "payload": {
+        "text": "Ich esse gern Brot mit Käse.",
+        "accept": ["Ich esse gern Brot mit Kaese.", "Ich esse gerne Brot mit Käse."]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-01-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": ["de:cando:A1.SPP.03", "de:cando:A1.VOC.04"],
+      "item_ids": ["de:vocab:fruehstueck", "de:vocab:essen", "de:vocab:trinken", "de:vocab:gern"],
+      "instruction_en": "Record yourself.",
+      "payload": {
+        "prompt_en": "Talk about your breakfast in three short sentences. Say what you eat, what you drink and one thing you like to eat or drink.",
+        "mode": "free",
+        "sample_answer": "Zum Frühstück esse ich Brot mit Butter. Ich trinke Kaffee. Ich esse gern Obst.",
+        "rubric_focus": ["food and drink words", "ich esse and ich trinke", "gern after the verb"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

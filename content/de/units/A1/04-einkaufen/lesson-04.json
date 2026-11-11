@@ -1,0 +1,330 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-04-04",
+  "unit_key": "de:unit:a1-04-einkaufen",
+  "ordinal": 4,
+  "slug": "an-der-kasse",
+  "title": "An der Kasse",
+  "title_en": "At the checkout",
+  "description": "Paying in cash or by card, the receipt, special offers, and reading a shop leaflet and an opening hours sign for prices, days and times.",
+  "kind": "core",
+  "estimated_minutes": 20,
+  "cando_ids": [
+    "de:cando:A1.REA.04",
+    "de:cando:A1.REA.03",
+    "de:cando:A1.SPI.04",
+    "de:cando:A1.VOC.07",
+    "de:cando:A1.LIS.03",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.GRA.09"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:kasse",
+    "de:vocab:quittung",
+    "de:vocab:angebot",
+    "de:vocab:bar",
+    "de:vocab:kreditkarte",
+    "de:vocab:geschaeft",
+    "de:vocab:oeffnungszeiten",
+    "de:vocab:geoeffnet",
+    "de:vocab:geschlossen",
+    "de:vocab:uhr",
+    "de:vocab:montag",
+    "de:vocab:freitag",
+    "de:vocab:samstag",
+    "de:vocab:sonntag",
+    "de:vocab:wann",
+    "de:vocab:bis",
+    "de:chunk:von-bis",
+    "de:chunk:ist-im-angebot",
+    "de:phrase:bar-oder-mit-karte",
+    "de:phrase:wann-haben-sie-geoeffnet"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-04-04-01",
+      "ordinal": 1,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:moechten", "de:vocab:koennen", "de:grammar:satzklammer-modalverben"],
+      "instruction_en": "Warm up with möchten and können from the last lesson.",
+      "payload": {
+        "text": "Ich ___ bitte bezahlen. ___ ich mit Karte zahlen?",
+        "blanks": [
+          { "answer": "möchte", "accept": ["moechte"], "hint": "möchten, ich" },
+          { "answer": "Kann", "accept": ["kann"], "hint": "können, ich" }
+        ],
+        "explanation_en": "Both verbs have no ending with ich: ich möchte, ich kann. The second verb stands at the end."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-04-02",
+      "ordinal": 2,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07"],
+      "item_ids": ["de:chunk:das-macht-euro", "de:vocab:euro"],
+      "instruction_en": "Warm up with a price. Choose the right figure.",
+      "payload": {
+        "question": "The cashier says: Das macht acht Euro fünfzehn. Which price is it?",
+        "options": ["8,50 Euro", "8,15 Euro", "5,80 Euro"],
+        "answer_index": 1,
+        "explanation_en": "Fünfzehn is 15. Fünfzig is 50."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-04-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.03"],
+      "item_ids": ["de:phrase:sonst-noch-etwas", "de:phrase:das-ist-alles", "de:phrase:bar-oder-mit-karte", "de:vocab:quittung", "de:chunk:das-macht-euro"],
+      "instruction_en": "Listen to a customer at the checkout. Bar means in cash and die Quittung is the receipt. Then answer the questions.",
+      "payload": {
+        "transcript": "Guten Tag! Sonst noch etwas? Nein danke, das ist alles. Das macht vierzehn Euro neunzig. Bar oder mit Karte? Mit Karte, bitte. Möchten Sie die Quittung? Ja, bitte. Hier ist die Quittung. Danke, auf Wiedersehen!",
+        "questions": [
+          {
+            "question": "Das macht ...",
+            "options": ["14,19 Euro", "40,90 Euro", "14,90 Euro"],
+            "answer_index": 2
+          },
+          {
+            "question": "Wie zahlt die Kundin?",
+            "options": ["bar", "mit Karte"],
+            "answer_index": 1
+          },
+          {
+            "question": "Möchte die Kundin die Quittung?",
+            "options": ["Ja.", "Nein."],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-04-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.04"],
+      "item_ids": ["de:vocab:supermarkt", "de:vocab:angebot", "de:chunk:ist-im-angebot", "de:vocab:oeffnungszeiten", "de:vocab:geschlossen", "de:chunk:von-bis"],
+      "instruction_en": "Read the supermarket leaflet. Das Angebot is the special offer and geschlossen means closed. Wann means when. Then answer the questions.",
+      "payload": {
+        "title": "Supermarkt Frisch: Angebote",
+        "text": "Im Angebot von Montag bis Samstag:\nÄpfel, 1 Kilo: 1,99 Euro.\nKäse, 200 Gramm: 2,49 Euro.\nKaffee, 500 Gramm: 4,99 Euro.\nÖffnungszeiten: Montag bis Samstag von 7 bis 21 Uhr. Sonntag geschlossen.",
+        "questions": [
+          {
+            "question": "Was kostet der Kaffee im Angebot?",
+            "options": ["1,99 Euro", "2,49 Euro", "4,99 Euro"],
+            "answer_index": 2
+          },
+          {
+            "question": "Was ist im Angebot?",
+            "options": ["Äpfel, Käse und Kaffee", "Brot, Milch und Tee", "Jacken und Schuhe"],
+            "answer_index": 0
+          },
+          {
+            "question": "Wann ist der Supermarkt geschlossen?",
+            "options": ["am Montag", "am Samstag", "am Sonntag"],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-04-05",
+      "ordinal": 5,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.03", "de:cando:A1.REA.04"],
+      "item_ids": ["de:vocab:baeckerei", "de:vocab:oeffnungszeiten", "de:vocab:geoeffnet", "de:vocab:geschlossen", "de:vocab:uhr", "de:vocab:montag", "de:vocab:freitag", "de:vocab:samstag", "de:vocab:sonntag", "de:vocab:wann", "de:vocab:bis"],
+      "instruction_en": "Read the sign on the door of a bakery. Geöffnet means open and wann means when. Then answer the questions.",
+      "payload": {
+        "title": "Bäckerei Schmidt: Öffnungszeiten",
+        "text": "Montag bis Freitag: 6 bis 18 Uhr.\nSamstag: 6 bis 13 Uhr.\nSonntag: geschlossen.",
+        "questions": [
+          {
+            "question": "Es ist Montag, 7 Uhr. Die Bäckerei ist ...",
+            "options": ["geöffnet", "geschlossen"],
+            "answer_index": 0
+          },
+          {
+            "question": "Es ist Samstag, 15 Uhr. Die Bäckerei ist ...",
+            "options": ["geöffnet", "geschlossen"],
+            "answer_index": 1
+          },
+          {
+            "question": "Bis wann ist die Bäckerei am Freitag geöffnet?",
+            "options": ["bis 6 Uhr", "bis 13 Uhr", "bis 18 Uhr"],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-04-06",
+      "ordinal": 6,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07"],
+      "item_ids": ["de:vocab:kasse", "de:vocab:quittung", "de:vocab:angebot", "de:vocab:bar", "de:vocab:kreditkarte", "de:vocab:geschaeft", "de:vocab:geoeffnet", "de:vocab:geschlossen"],
+      "instruction_en": "Match the German word with its English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "die Kasse", "right": "checkout, till" },
+          { "left": "die Quittung", "right": "receipt" },
+          { "left": "das Angebot", "right": "special offer" },
+          { "left": "bar", "right": "in cash" },
+          { "left": "die Kreditkarte", "right": "credit card" },
+          { "left": "das Geschäft", "right": "shop" },
+          { "left": "geöffnet", "right": "open" },
+          { "left": "geschlossen", "right": "closed" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-04-07",
+      "ordinal": 7,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.04"],
+      "item_ids": ["de:phrase:bar-oder-mit-karte", "de:vocab:bar", "de:vocab:karte"],
+      "instruction_en": "Choose the right answer at the checkout.",
+      "payload": {
+        "question": "The cashier asks: Bar oder mit Karte? You have no card with you, only coins and notes. What do you say?",
+        "options": ["Mit Karte, bitte.", "Bar, bitte.", "Das ist alles."],
+        "answer_index": 1,
+        "explanation_en": "Bar means in cash. Mit Karte means by card."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-04-08",
+      "ordinal": 8,
+      "type": "match_pairs",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.03"],
+      "item_ids": ["de:chunk:von-bis", "de:vocab:uhr", "de:vocab:montag", "de:vocab:freitag", "de:vocab:samstag", "de:vocab:sonntag", "de:vocab:geschlossen"],
+      "instruction_en": "These words are on shop signs. Match each one with its meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "Montag bis Freitag", "right": "Monday to Friday" },
+          { "left": "Samstag", "right": "Saturday" },
+          { "left": "Sonntag geschlossen", "right": "closed on Sunday" },
+          { "left": "von 8 bis 20 Uhr", "right": "from 8 am to 8 pm" },
+          { "left": "im Angebot", "right": "on offer" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-04-09",
+      "ordinal": 9,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07", "de:cando:A1.SPI.04"],
+      "item_ids": ["de:phrase:sonst-noch-etwas", "de:phrase:das-ist-alles", "de:chunk:das-macht-euro", "de:phrase:bar-oder-mit-karte"],
+      "instruction_en": "Complete the talk at the checkout. The English word is under each gap.",
+      "payload": {
+        "text": "Sonst noch ___? Nein danke, das ist ___. Das ___ zwölf Euro. Bar oder mit ___?",
+        "blanks": [
+          { "answer": "etwas", "hint": "anything" },
+          { "answer": "alles", "hint": "all, everything" },
+          { "answer": "macht", "hint": "comes to" },
+          { "answer": "Karte", "hint": "card" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-04-10",
+      "ordinal": 10,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07", "de:cando:A1.REA.03"],
+      "item_ids": ["de:chunk:von-bis", "de:vocab:bis", "de:vocab:geoeffnet", "de:vocab:geschlossen", "de:chunk:ist-im-angebot", "de:vocab:angebot"],
+      "instruction_en": "Fill in the German word. The English word is under each gap.",
+      "payload": {
+        "text": "Das Geschäft ist von Montag ___ Samstag geöffnet. Am Sonntag ist das Geschäft ___. Der Käse ist im ___.",
+        "blanks": [
+          { "answer": "bis", "hint": "to, until" },
+          { "answer": "geschlossen", "hint": "closed" },
+          { "answer": "Angebot", "hint": "offer" }
+        ],
+        "explanation_en": "Von ... bis ... gives the start and the end. Im Angebot means on offer."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-04-11",
+      "ordinal": 11,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03", "de:cando:A1.SPI.04"],
+      "item_ids": ["de:phrase:wann-haben-sie-geoeffnet", "de:vocab:wann", "de:vocab:geoeffnet"],
+      "instruction_en": "Put the words in the right order to ask about the opening hours.",
+      "payload": {
+        "words": ["Sie", "geöffnet?", "Wann", "haben"],
+        "answer": "Wann haben Sie geöffnet?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-04-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.VOC.07", "de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:quittung", "de:vocab:moechten", "de:vocab:bar", "de:vocab:zahlen"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "I would like to pay in cash. The receipt, please.",
+        "direction": "to_target",
+        "reference": [
+          "Ich möchte bar zahlen. Die Quittung, bitte.",
+          "Ich möchte bar bezahlen. Die Quittung, bitte."
+        ],
+        "notes_en": "Bar stands before the infinitive: bar zahlen."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-04-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.04"],
+      "item_ids": ["de:phrase:das-ist-alles", "de:vocab:bar", "de:vocab:karte", "de:vocab:quittung", "de:phrase:wann-haben-sie-geoeffnet"],
+      "instruction_en": "Record yourself.",
+      "payload": {
+        "prompt_en": "You are at the checkout. The cashier asks: Sonst noch etwas? Then: Bar oder mit Karte? Say that this is all, say how you pay and ask for the receipt. Before you leave, ask when the shop is open.",
+        "mode": "free",
+        "sample_answer": "Nein danke, das ist alles. Ich zahle mit Karte. Die Quittung, bitte. Wann haben Sie geöffnet?",
+        "rubric_focus": ["das ist alles", "bar or mit Karte", "asking for the receipt politely", "Wann haben Sie geöffnet?"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

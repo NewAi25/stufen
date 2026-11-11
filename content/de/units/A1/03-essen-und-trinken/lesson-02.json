@@ -1,0 +1,321 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-03-02",
+  "unit_key": "de:unit:a1-03-essen-und-trinken",
+  "ordinal": 2,
+  "slug": "akkusativ-ich-moechte",
+  "title": "Ich möchte einen Kaffee",
+  "title_en": "I would like a coffee",
+  "description": "The accusative of the articles after essen, trinken, nehmen, möchten and haben: den and einen for masculine nouns, no change for die, eine, das and ein.",
+  "kind": "core",
+  "estimated_minutes": 20,
+  "cando_ids": [
+    "de:cando:A1.GRA.06",
+    "de:cando:A1.GRA.04",
+    "de:cando:A1.GRA.02",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.VOC.04",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.REA.01",
+    "de:cando:A1.WRI.01",
+    "de:cando:A1.SPI.04"
+  ],
+  "introduces_item_ids": [
+    "de:grammar:akkusativ-artikel",
+    "de:vocab:moechten",
+    "de:vocab:nehmen",
+    "de:chunk:ich-moechte",
+    "de:chunk:ich-nehme",
+    "de:vocab:salat",
+    "de:vocab:suppe",
+    "de:vocab:kuchen",
+    "de:vocab:fisch",
+    "de:vocab:cafe"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-03-02-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.04"],
+      "item_ids": [
+        "de:vocab:broetchen",
+        "de:vocab:butter",
+        "de:vocab:saft",
+        "de:vocab:fruehstueck",
+        "de:vocab:abendessen",
+        "de:vocab:gemuese"
+      ],
+      "instruction_en": "Warm up. Match the words from the last lesson with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "das Brötchen", "right": "bread roll" },
+          { "left": "die Butter", "right": "butter" },
+          { "left": "der Saft", "right": "juice" },
+          { "left": "das Frühstück", "right": "breakfast" },
+          { "left": "das Abendessen", "right": "dinner" },
+          { "left": "das Gemüse", "right": "vegetables" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-02-02",
+      "ordinal": 2,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.04"],
+      "item_ids": ["de:vocab:tee", "de:vocab:butter", "de:vocab:wasser"],
+      "instruction_en": "Warm up. Fill in der, die or das.",
+      "payload": {
+        "text": "Das ist ___ Tee. Das ist ___ Butter. Das ist ___ Wasser.",
+        "blanks": [
+          { "answer": "der" },
+          { "answer": "die" },
+          { "answer": "das" }
+        ],
+        "explanation_en": "After sein the noun stays in the nominative: der Tee, die Butter, das Wasser."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-02-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02", "de:cando:A1.GRA.06"],
+      "item_ids": [
+        "de:vocab:moechten",
+        "de:vocab:nehmen",
+        "de:chunk:ich-moechte",
+        "de:chunk:ich-nehme",
+        "de:vocab:kaffee",
+        "de:vocab:tee",
+        "de:vocab:apfel",
+        "de:vocab:broetchen"
+      ],
+      "instruction_en": "Listen to Tom and Sara at breakfast. Then answer the questions.",
+      "payload": {
+        "transcript": "Was möchtest du, Tom? Ich möchte einen Kaffee und ein Brötchen. Und du, Sara? Ich nehme einen Tee und einen Apfel.",
+        "questions": [
+          {
+            "question": "Was möchte Tom trinken?",
+            "options": ["einen Tee", "einen Kaffee", "ein Wasser"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was nimmt Sara?",
+            "options": ["einen Tee und einen Apfel", "einen Kaffee und ein Brötchen", "eine Milch und ein Ei"],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-02-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.01", "de:cando:A1.GRA.06"],
+      "item_ids": [
+        "de:vocab:cafe",
+        "de:vocab:suppe",
+        "de:vocab:salat",
+        "de:vocab:kuchen",
+        "de:vocab:moechten",
+        "de:vocab:nehmen",
+        "de:phrase:ich-habe-hunger"
+      ],
+      "instruction_en": "Read the short text. Im Café means in the café. Look at the words before each food and drink. Then answer the questions.",
+      "payload": {
+        "title": "Im Café",
+        "text": "Maria und Jonas sind im Café. Maria hat Hunger. Sie möchte die Suppe und einen Salat. Sie trinkt ein Wasser. Jonas nimmt den Kuchen und einen Kaffee.",
+        "questions": [
+          {
+            "question": "Was möchte Maria essen?",
+            "options": ["den Kuchen", "einen Fisch", "die Suppe und einen Salat"],
+            "answer_index": 2
+          },
+          {
+            "question": "Was trinkt Jonas?",
+            "options": ["einen Kaffee", "ein Wasser", "einen Tee"],
+            "answer_index": 0
+          },
+          {
+            "question": "Wer hat Hunger?",
+            "options": ["Jonas", "Maria"],
+            "answer_index": 1
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-02-05",
+      "ordinal": 5,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.06"],
+      "item_ids": ["de:grammar:akkusativ-artikel", "de:chunk:ich-moechte", "de:vocab:kaffee"],
+      "instruction_en": "Choose the right word. Kaffee is a der word.",
+      "payload": {
+        "question": "Ich möchte ___ Kaffee.",
+        "options": ["ein", "einen", "eine"],
+        "answer_index": 1,
+        "explanation_en": "The thing you want, eat, drink, take or have is the direct object. It stands in the accusative. Only der words change: der becomes den and ein becomes einen."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-02-06",
+      "ordinal": 6,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.06"],
+      "item_ids": ["de:grammar:akkusativ-artikel", "de:vocab:tee", "de:vocab:suppe", "de:vocab:broetchen"],
+      "instruction_en": "Fill in einen, eine or ein.",
+      "payload": {
+        "text": "Ich möchte ___ Tee. Ich nehme ___ Suppe. Ich esse ___ Brötchen.",
+        "blanks": [
+          { "answer": "einen", "hint": "der Tee" },
+          { "answer": "eine", "hint": "die Suppe" },
+          { "answer": "ein", "hint": "das Brötchen" }
+        ],
+        "explanation_en": "der word: einen. die word: eine. das word: ein."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-02-07",
+      "ordinal": 7,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.06"],
+      "item_ids": ["de:grammar:akkusativ-artikel", "de:vocab:salat", "de:vocab:banane", "de:vocab:brot", "de:vocab:fisch"],
+      "instruction_en": "Fill in den, die or das.",
+      "payload": {
+        "text": "Ich nehme ___ Salat. Sie isst ___ Banane. Wir nehmen ___ Brot. Er isst ___ Fisch.",
+        "blanks": [
+          { "answer": "den", "hint": "der Salat" },
+          { "answer": "die", "hint": "die Banane" },
+          { "answer": "das", "hint": "das Brot" },
+          { "answer": "den", "hint": "der Fisch" }
+        ],
+        "explanation_en": "der becomes den. die and das do not change."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-02-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.06"],
+      "item_ids": ["de:grammar:akkusativ-artikel", "de:vocab:haben", "de:vocab:apfel", "de:vocab:banane", "de:vocab:ei"],
+      "instruction_en": "Fill in einen, eine or ein after haben.",
+      "payload": {
+        "text": "Hast du ___ Apfel? Ja, ich habe ___ Apfel, ___ Banane und ___ Ei.",
+        "blanks": [
+          { "answer": "einen", "hint": "der Apfel" },
+          { "answer": "einen", "hint": "der Apfel" },
+          { "answer": "eine", "hint": "die Banane" },
+          { "answer": "ein", "hint": "das Ei" }
+        ],
+        "explanation_en": "haben also takes the accusative: Ich habe einen Apfel."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-02-09",
+      "ordinal": 9,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.06", "de:cando:A1.GRA.03"],
+      "item_ids": ["de:chunk:ich-moechte", "de:vocab:salat"],
+      "instruction_en": "Put the words in the right order.",
+      "payload": {
+        "words": ["einen", "bitte.", "möchte", "Salat,", "Ich"],
+        "answer": "Ich möchte einen Salat, bitte."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-02-10",
+      "ordinal": 10,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.02"],
+      "item_ids": ["de:vocab:nehmen"],
+      "instruction_en": "Choose the right form of nehmen.",
+      "payload": {
+        "question": "Was ___ du?",
+        "options": ["nehme", "nimmst", "nimmt"],
+        "answer_index": 1,
+        "explanation_en": "nehmen changes its vowel with du and with er, sie, es: ich nehme, du nimmst, er nimmt."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-02-11",
+      "ordinal": 11,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.GRA.06"],
+      "item_ids": ["de:chunk:ich-moechte", "de:vocab:kaffee", "de:vocab:kuchen"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "I would like a coffee and the cake.",
+        "direction": "to_target",
+        "reference": ["Ich möchte einen Kaffee und den Kuchen."],
+        "notes_en": "Kaffee and Kuchen are both der words, so you need einen and den."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-02-12",
+      "ordinal": 12,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.01", "de:cando:A1.GRA.06"],
+      "item_ids": ["de:chunk:ich-nehme", "de:vocab:fisch", "de:vocab:wasser"],
+      "instruction_en": "Listen and type what you hear.",
+      "payload": { "text": "Ich nehme den Fisch und ein Wasser." },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-02-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.04", "de:cando:A1.GRA.06"],
+      "item_ids": ["de:chunk:ich-moechte", "de:chunk:ich-nehme", "de:vocab:cafe"],
+      "instruction_en": "Record yourself.",
+      "payload": {
+        "prompt_en": "You are in a café with a friend. Your friend asks: Was möchtest du? Say what you would like to eat and drink. Name three things, use Ich möchte and Ich nehme, and take care with einen, eine and ein.",
+        "prompt_native": "Was möchtest du?",
+        "mode": "free",
+        "sample_answer": "Ich möchte einen Kaffee und ein Wasser. Ich nehme den Kuchen.",
+        "rubric_focus": ["ich möchte and ich nehme", "accusative article: einen or den for der words", "food and drink words"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

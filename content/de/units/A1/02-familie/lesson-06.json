@@ -1,0 +1,389 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-02-06",
+  "unit_key": "de:unit:a1-02-familie",
+  "ordinal": 6,
+  "slug": "meine-familie-sprechen-und-schreiben",
+  "title": "Ich stelle meine Familie vor",
+  "title_en": "I introduce my family",
+  "description": "Production lesson. Describe your family in speech, write a short text about it, and answer a colleague who asks about your family in a break.",
+  "kind": "production",
+  "estimated_minutes": 25,
+  "cando_ids": [
+    "de:cando:A1.SPP.01",
+    "de:cando:A1.SPP.02",
+    "de:cando:A1.SPI.03",
+    "de:cando:A1.WRI.01",
+    "de:cando:A1.VOC.03",
+    "de:cando:A1.GRA.08",
+    "de:cando:A1.GRA.05"
+  ],
+  "introduces_item_ids": [],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-02-06-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.SPI.03",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:verheiratet",
+        "de:vocab:geschwister",
+        "de:vocab:dein",
+        "de:vocab:alt",
+        "de:vocab:leben",
+        "de:vocab:eltern"
+      ],
+      "instruction_en": "Warm up. A colleague asks about your family. Match each question with a fitting answer.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "Bist du verheiratet?",
+            "right": "Ja, mein Mann heißt Dan."
+          },
+          {
+            "left": "Hast du Geschwister?",
+            "right": "Ja, zwei Brüder."
+          },
+          {
+            "left": "Wie alt ist deine Tochter?",
+            "right": "Sie ist zwölf."
+          },
+          {
+            "left": "Wo leben deine Eltern?",
+            "right": "In Indien."
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-06-02",
+      "ordinal": 2,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.05",
+        "de:cando:A1.GRA.08"
+      ],
+      "item_ids": [
+        "de:vocab:kind",
+        "de:vocab:mein",
+        "de:vocab:tochter",
+        "de:vocab:sohn"
+      ],
+      "instruction_en": "Warm up. Fill in the plural of Kind, then mein or meine.",
+      "payload": {
+        "text": "Ich habe zwei ___. ___ Tochter heißt Ana und ___ Sohn heißt Luca.",
+        "blanks": [
+          {
+            "answer": "Kinder",
+            "hint": "das Kind"
+          },
+          {
+            "answer": "Meine",
+            "accept": [
+              "meine"
+            ],
+            "hint": "die Tochter"
+          },
+          {
+            "answer": "mein",
+            "hint": "der Sohn"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-06-03",
+      "ordinal": 3,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.08",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:mein",
+        "de:vocab:eltern",
+        "de:vocab:leben"
+      ],
+      "instruction_en": "Warm up. Put the words in the right order.",
+      "payload": {
+        "words": [
+          "leben",
+          "Indien.",
+          "Meine",
+          "in",
+          "Eltern"
+        ],
+        "answer": "Meine Eltern leben in Indien."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-06-04",
+      "ordinal": 4,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.01",
+        "de:cando:A1.GRA.08"
+      ],
+      "item_ids": [
+        "de:vocab:mein",
+        "de:vocab:mutter",
+        "de:chunk:ich-bin-jahre-alt",
+        "de:vocab:alt",
+        "de:vocab:leben"
+      ],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "My mother is 60 years old. She lives in India.",
+        "direction": "to_target",
+        "reference": [
+          "Meine Mutter ist 60 Jahre alt. Sie lebt in Indien.",
+          "Meine Mutter ist sechzig Jahre alt. Sie lebt in Indien.",
+          "Meine Mutter ist 60 Jahre alt. Sie wohnt in Indien."
+        ],
+        "notes_en": "Mutter is a die word, so meine. Graded on meine, the age with ist ... Jahre alt, and the verb ending for sie."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-06-05",
+      "ordinal": 5,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.01",
+        "de:cando:A1.SPI.03",
+        "de:cando:A1.GRA.05"
+      ],
+      "item_ids": [
+        "de:vocab:geschwister",
+        "de:vocab:schwester",
+        "de:vocab:haben"
+      ],
+      "instruction_en": "Translate into German. Use du.",
+      "payload": {
+        "source_text": "Do you have brothers and sisters? Yes, I have two sisters.",
+        "direction": "to_target",
+        "reference": [
+          "Hast du Geschwister? Ja, ich habe zwei Schwestern.",
+          "Hast du Geschwister? Ja, zwei Schwestern."
+        ],
+        "notes_en": "Geschwister is one word for brothers and sisters. Graded on the verb first in the question, hast with du, and the plural Schwestern."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-06-06",
+      "ordinal": 6,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": [
+        "de:cando:A1.SPP.01"
+      ],
+      "item_ids": [
+        "de:vocab:familie",
+        "de:vocab:mann",
+        "de:vocab:kind",
+        "de:vocab:mein"
+      ],
+      "instruction_en": "Read the sentences aloud, slowly and clearly.",
+      "payload": {
+        "prompt_en": "Read these three sentences aloud. They are a model for the next task.",
+        "mode": "read_aloud",
+        "target_text": "Das ist meine Familie. Mein Mann heißt Dan. Wir haben zwei Kinder."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-06-07",
+      "ordinal": 7,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": [
+        "de:cando:A1.SPP.01",
+        "de:cando:A1.SPP.02",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:familie",
+        "de:vocab:mein",
+        "de:chunk:das-ist-mein",
+        "de:chunk:das-ist-meine",
+        "de:chunk:ich-bin-jahre-alt",
+        "de:vocab:leben",
+        "de:vocab:verheiratet",
+        "de:vocab:ledig"
+      ],
+      "instruction_en": "Record yourself. Speak for about half a minute.",
+      "payload": {
+        "prompt_en": "Describe your family. Say whether you are married or single. Name at least three people in your family. For each one say who it is, the name, and either the age or where the person lives.",
+        "mode": "free",
+        "sample_answer": "Ich bin verheiratet. Mein Mann heißt Dan. Er ist vierzig Jahre alt. Wir haben zwei Kinder. Meine Tochter heißt Ana und mein Sohn heißt Luca. Meine Eltern leben in Rumänien. Mein Bruder wohnt in Berlin.",
+        "rubric_focus": [
+          "at least three family members named",
+          "mein or meine matches the noun",
+          "ages with ist ... Jahre alt",
+          "verb in second position",
+          "can be understood by a patient listener"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-06-08",
+      "ordinal": 8,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": [
+        "de:cando:A1.SPI.03",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:verheiratet",
+        "de:vocab:ledig",
+        "de:vocab:kind",
+        "de:vocab:familie",
+        "de:vocab:leben",
+        "de:vocab:dein",
+        "de:phrase:ich-habe-keine-geschwister"
+      ],
+      "instruction_en": "Record your answers. Answer each question with a short full sentence.",
+      "payload": {
+        "prompt_en": "In the break your colleague Jonas asks you three questions about your family. Answer all three: Are you married? Do you have children? Where does your family live?",
+        "prompt_native": "Bist du verheiratet? Hast du Kinder? Wo lebt deine Familie?",
+        "mode": "free",
+        "sample_answer": "Nein, ich bin ledig. Ich habe keine Kinder. Meine Familie lebt in Indien.",
+        "rubric_focus": [
+          "all three questions answered",
+          "verheiratet or ledig",
+          "Ich habe ... with a correct plural",
+          "Meine Familie lebt in ..."
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-06-09",
+      "ordinal": 9,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": [
+        "de:cando:A1.SPI.03",
+        "de:cando:A1.GRA.08"
+      ],
+      "item_ids": [
+        "de:vocab:dein",
+        "de:vocab:geschwister",
+        "de:vocab:kind",
+        "de:vocab:eltern",
+        "de:vocab:verheiratet",
+        "de:vocab:alt"
+      ],
+      "instruction_en": "Record yourself. Now you ask the questions.",
+      "payload": {
+        "prompt_en": "Now it is your turn to keep the small talk going. Ask Jonas three questions about his family. Use du and use dein or deine at least once.",
+        "mode": "free",
+        "sample_answer": "Hast du Geschwister? Wie heißt deine Schwester? Wo wohnen deine Eltern?",
+        "rubric_focus": [
+          "three questions",
+          "verb first in a yes or no question, verb second after a question word",
+          "dein or deine matches the noun",
+          "du forms of the verb"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-06-10",
+      "ordinal": 10,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.01",
+        "de:cando:A1.VOC.03",
+        "de:cando:A1.GRA.08"
+      ],
+      "item_ids": [
+        "de:vocab:familie",
+        "de:vocab:mein",
+        "de:chunk:ich-bin-jahre-alt",
+        "de:vocab:leben",
+        "de:vocab:verheiratet",
+        "de:vocab:ledig",
+        "de:vocab:geschwister",
+        "de:vocab:kind"
+      ],
+      "instruction_en": "Write in German.",
+      "payload": {
+        "prompt_en": "Write a short text about your family, five to seven sentences. Say whether you are married or single, who is in your family, what they are called, how old two of them are and where they live.",
+        "min_words": 30,
+        "max_words": 80,
+        "sample_answer": "Ich heiße Priya und ich bin ledig. Meine Familie lebt in Indien. Mein Vater heißt Raj und meine Mutter heißt Anita. Mein Vater ist zweiundsechzig Jahre alt und meine Mutter ist achtundfünfzig. Ich habe zwei Geschwister. Mein Bruder Arun wohnt in Delhi. Meine Schwester Kavita ist verheiratet. Ihr Mann heißt Dev.",
+        "rubric_focus": [
+          "family words used correctly",
+          "mein, meine, sein or ihr matches the noun",
+          "ages and numbers",
+          "plural forms",
+          "capital letters on nouns",
+          "verb in second position"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-06-11",
+      "ordinal": 11,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.01",
+        "de:cando:A1.SPI.03"
+      ],
+      "item_ids": [
+        "de:vocab:kind",
+        "de:vocab:mein",
+        "de:vocab:alt",
+        "de:vocab:jahr",
+        "de:vocab:familie",
+        "de:vocab:dein"
+      ],
+      "instruction_en": "Write a short answer in German.",
+      "payload": {
+        "prompt_en": "A colleague sees the photo on your desk and writes to you in the team chat. Answer her three questions in two to four short sentences. You may write about your real family or make one up.",
+        "prompt_native": "Hallo! Ist das deine Familie? Wie heißen deine Kinder? Wie alt sind sie?",
+        "min_words": 12,
+        "max_words": 40,
+        "sample_answer": "Hallo Olga! Ja, das ist meine Familie. Meine Kinder heißen Ana und Luca. Ana ist zwölf und Luca ist elf Jahre alt.",
+        "rubric_focus": [
+          "all three questions answered",
+          "heißen and sein in the plural",
+          "meine before a plural",
+          "numbers written correctly"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

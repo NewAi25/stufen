@@ -1,0 +1,296 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-04-03",
+  "unit_key": "de:unit:a1-04-einkaufen",
+  "ordinal": 3,
+  "slug": "ich-moechte-bezahlen",
+  "title": "Ich möchte bezahlen",
+  "title_en": "I would like to pay",
+  "description": "The modal verbs möchten and können in the shop: saying what you would like, asking for help and asking whether you can pay by card. The modal verb stands in second position and the infinitive goes to the end.",
+  "kind": "core",
+  "estimated_minutes": 18,
+  "cando_ids": [
+    "de:cando:A1.GRA.09",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.VOC.07",
+    "de:cando:A1.SPI.04",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.REA.01"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:koennen",
+    "de:grammar:modalverben-praesens",
+    "de:grammar:satzklammer-modalverben",
+    "de:vocab:bezahlen",
+    "de:vocab:helfen",
+    "de:vocab:karte",
+    "de:vocab:kaufhaus",
+    "de:vocab:kunde",
+    "de:vocab:verkaeufer",
+    "de:chunk:wo-finde-ich",
+    "de:chunk:haben-sie",
+    "de:phrase:kann-ich-mit-karte-zahlen"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-04-03-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07"],
+      "item_ids": ["de:vocab:teuer", "de:vocab:billig", "de:vocab:gross", "de:vocab:klein", "de:vocab:groesse", "de:vocab:farbe"],
+      "instruction_en": "Warm up with words from the last lesson. Match the pairs.",
+      "payload": {
+        "pairs": [
+          { "left": "teuer", "right": "expensive" },
+          { "left": "billig", "right": "cheap" },
+          { "left": "groß", "right": "big" },
+          { "left": "klein", "right": "small" },
+          { "left": "die Größe", "right": "size" },
+          { "left": "die Farbe", "right": "colour" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-03-02",
+      "ordinal": 2,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.04"],
+      "item_ids": ["de:chunk:haben-sie-das-in-groesse", "de:chunk:was-kostet", "de:phrase:das-ist-zu-teuer"],
+      "instruction_en": "Warm up. Choose what you say in the shop.",
+      "payload": {
+        "question": "The jacket is too small for you. What do you ask?",
+        "options": ["Was kostet das?", "Haben Sie das auch in Größe 42?", "Das ist zu teuer."],
+        "answer_index": 1,
+        "explanation_en": "Haben Sie das auch in Größe ...? asks for the same thing in another size."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-03-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02"],
+      "item_ids": ["de:vocab:koennen", "de:vocab:helfen", "de:vocab:moechten", "de:phrase:kann-ich-mit-karte-zahlen", "de:vocab:kunde"],
+      "instruction_en": "Listen to a customer and a shop assistant. Der Kunde is the customer. Then answer the questions.",
+      "payload": {
+        "transcript": "Entschuldigung, können Sie mir helfen? Ja, gern. Ich suche einen Pullover in Größe M. Hier ist ein Pullover in Größe M. Der Pullover ist grau. Gut, ich möchte den Pullover kaufen. Kann ich mit Karte zahlen? Ja, Sie können mit Karte zahlen.",
+        "questions": [
+          {
+            "question": "Was sucht der Kunde?",
+            "options": ["eine Jacke", "ein Hemd", "einen Pullover"],
+            "answer_index": 2
+          },
+          {
+            "question": "Was möchte der Kunde?",
+            "options": ["den Pullover kaufen", "eine Hose kaufen", "einen Kaffee trinken"],
+            "answer_index": 0
+          },
+          {
+            "question": "Kann der Kunde mit Karte zahlen?",
+            "options": ["Ja.", "Nein."],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-03-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.01"],
+      "item_ids": ["de:vocab:kaufhaus", "de:vocab:verkaeufer", "de:vocab:moechten", "de:vocab:koennen", "de:vocab:bezahlen", "de:vocab:karte"],
+      "instruction_en": "Read the short text. Das Kaufhaus is the department store and der Verkäufer is the shop assistant. Then answer the questions.",
+      "payload": {
+        "title": "Im Kaufhaus",
+        "text": "Lena ist im Kaufhaus. Sie möchte Schuhe kaufen. Der Verkäufer kann helfen. Die Schuhe sind schwarz und kosten 60 Euro. Lena möchte mit Karte bezahlen. Lena kann hier mit Karte bezahlen.",
+        "questions": [
+          {
+            "question": "Wo ist Lena?",
+            "options": ["im Café", "im Kaufhaus", "im Restaurant"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was möchte Lena kaufen?",
+            "options": ["Schuhe", "eine Jacke", "ein Kleid"],
+            "answer_index": 0
+          },
+          {
+            "question": "Wer kann helfen?",
+            "options": ["der Kellner", "die Schwester", "der Verkäufer"],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-03-05",
+      "ordinal": 5,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:moechten", "de:chunk:ich-moechte"],
+      "instruction_en": "Fill in the right form of möchten.",
+      "payload": {
+        "text": "Ich ___ eine Jacke kaufen. ___ du auch eine Jacke kaufen? Wir ___ bitte bezahlen.",
+        "blanks": [
+          { "answer": "möchte", "accept": ["moechte"], "hint": "ich" },
+          { "answer": "Möchtest", "accept": ["möchtest", "Moechtest", "moechtest"], "hint": "du" },
+          { "answer": "möchten", "accept": ["moechten"], "hint": "wir" }
+        ],
+        "explanation_en": "ich möchte, du möchtest, er möchte, wir möchten, Sie möchten. Möchten is the polite way to say what you want."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-03-06",
+      "ordinal": 6,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:koennen", "de:grammar:modalverben-praesens", "de:vocab:helfen"],
+      "instruction_en": "Fill in the right form of können.",
+      "payload": {
+        "text": "Ich ___ mit Karte zahlen. ___ du mir helfen? ___ Sie mir helfen?",
+        "blanks": [
+          { "answer": "kann", "hint": "ich" },
+          { "answer": "Kannst", "accept": ["kannst"], "hint": "du" },
+          { "answer": "Können", "accept": ["können", "Koennen", "koennen"], "hint": "Sie" }
+        ],
+        "explanation_en": "ich kann, du kannst, er kann, wir können, Sie können. The ich form has no ending and the vowel changes in the singular."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-03-07",
+      "ordinal": 7,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": ["de:grammar:satzklammer-modalverben", "de:vocab:moechten", "de:vocab:bezahlen"],
+      "instruction_en": "Choose the sentence with the right word order.",
+      "payload": {
+        "question": "Which sentence is correct?",
+        "options": ["Ich möchte bezahlen die Jacke.", "Ich möchte die Jacke bezahlen.", "Ich bezahlen möchte die Jacke."],
+        "answer_index": 1,
+        "explanation_en": "The modal verb stands in second position. The other verb stays in the infinitive and goes to the very end."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-03-08",
+      "ordinal": 8,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09", "de:cando:A1.GRA.03"],
+      "item_ids": ["de:phrase:kann-ich-mit-karte-zahlen", "de:vocab:koennen", "de:vocab:karte", "de:grammar:satzklammer-modalverben"],
+      "instruction_en": "Put the words in the right order to ask about paying by card.",
+      "payload": {
+        "words": ["Karte", "ich", "zahlen?", "Kann", "mit"],
+        "answer": "Kann ich mit Karte zahlen?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-03-09",
+      "ordinal": 9,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:moechten", "de:vocab:kaufen", "de:grammar:satzklammer-modalverben"],
+      "instruction_en": "Put the words in the right order. The infinitive goes to the end.",
+      "payload": {
+        "words": ["Hose", "kaufen.", "Ich", "die", "möchte"],
+        "answer": "Ich möchte die Hose kaufen."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-03-10",
+      "ordinal": 10,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.01", "de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:koennen", "de:vocab:helfen"],
+      "instruction_en": "Listen and type what you hear.",
+      "payload": {
+        "text": "Können Sie mir helfen?",
+        "accept": ["Koennen Sie mir helfen?"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-03-11",
+      "ordinal": 11,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.GRA.09", "de:cando:A1.SPI.04"],
+      "item_ids": ["de:vocab:moechten", "de:vocab:bezahlen"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "I would like to pay.",
+        "direction": "to_target",
+        "reference": ["Ich möchte bezahlen.", "Ich möchte zahlen."],
+        "notes_en": "Bezahlen and zahlen both mean to pay. Would like is one word in German: möchte."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-03-12",
+      "ordinal": 12,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.SPI.04"],
+      "item_ids": ["de:chunk:wo-finde-ich", "de:chunk:haben-sie", "de:vocab:helfen", "de:vocab:bezahlen", "de:phrase:kann-ich-mit-karte-zahlen"],
+      "instruction_en": "What do you say in the shop? Match what you want to do with the German sentence.",
+      "payload": {
+        "pairs": [
+          { "left": "ask for help", "right": "Können Sie mir helfen?" },
+          { "left": "ask where the shoes are", "right": "Wo finde ich Schuhe?" },
+          { "left": "ask whether they sell jumpers", "right": "Haben Sie Pullover?" },
+          { "left": "say that you want to pay", "right": "Ich möchte bezahlen." },
+          { "left": "ask about paying by card", "right": "Kann ich mit Karte zahlen?" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-03-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.04", "de:cando:A1.GRA.09"],
+      "item_ids": ["de:vocab:koennen", "de:vocab:helfen", "de:vocab:moechten", "de:phrase:kann-ich-mit-karte-zahlen", "de:grammar:satzklammer-modalverben"],
+      "instruction_en": "Record yourself.",
+      "payload": {
+        "prompt_en": "You are in a department store. Ask the shop assistant for help. Say that you would like to buy a jumper. Then ask whether you can pay by card.",
+        "mode": "free",
+        "sample_answer": "Entschuldigung, können Sie mir helfen? Ich möchte einen Pullover kaufen. Kann ich mit Karte zahlen?",
+        "rubric_focus": ["möchte and kann in the right form", "infinitive at the end of the sentence", "polite Sie form"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

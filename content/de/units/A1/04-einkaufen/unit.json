@@ -1,0 +1,22 @@
+{
+  "$schema": "https://stufen.app/schema/unit.json",
+  "key": "de:unit:a1-04-einkaufen",
+  "level": "A1",
+  "ordinal": 4,
+  "slug": "einkaufen",
+  "title": "Einkaufen und Erledigungen",
+  "title_en": "Shopping and errands",
+  "description": "Ask for a price and understand it, buy clothes, say what you would like with möchten and können, pay at the checkout, read opening hours and offers, and get things done at the post office and the bank.",
+  "theme": "shopping and services",
+  "lessons": [
+    "lesson-01.json",
+    "lesson-02.json",
+    "lesson-03.json",
+    "lesson-04.json",
+    "lesson-05.json",
+    "lesson-06.json",
+    "lesson-07.json"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false
+}

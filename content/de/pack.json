@@ -118,8 +118,8 @@
       "note": "Chapter 1 Kurzbeschreibung der Prüfung: Prüfungsteile und Dauer table and Ergebnisse rule. Speaking length also from https://www.bamf.de/DE/Themen/Integration/ZugewanderteTeilnehmende/Integrationskurse/Abschlusspruefung/abschlusspruefung-node.html"
     }
   ],
-  "checksum": "sha256:dc819d7d2e2c0a640a15c56cad0d10fc9a59abfe04473247eb9fd66084b5d316",
-  "strictUnitEnding": false,
+  "checksum": "sha256:6de375a44b394c45b3a29962c3124f294bf15db302ee8c3a395a5bbafa2b448c",
+  "strictUnitEnding": true,
   "reviewed": false,
   "updated": "2026-09-09"
 }

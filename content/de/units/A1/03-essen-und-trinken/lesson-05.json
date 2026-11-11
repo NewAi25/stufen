@@ -1,0 +1,377 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-03-05",
+  "unit_key": "de:unit:a1-03-essen-und-trinken",
+  "ordinal": 5,
+  "slug": "es-gibt-und-einkaufen",
+  "title": "Auf dem Markt und in der Bäckerei",
+  "title_en": "At the market and in the bakery",
+  "description": "Saying what there is with es gibt and the accusative, and buying food by quantity: ein Kilo, 200 Gramm, zwei Stück, eine Flasche, eine Packung, ein Liter.",
+  "kind": "core",
+  "estimated_minutes": 20,
+  "cando_ids": [
+    "de:cando:A1.GRA.06",
+    "de:cando:A1.GRA.07",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.LIS.03",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.SPI.04",
+    "de:cando:A1.VOC.04",
+    "de:cando:A1.VOC.07",
+    "de:cando:A1.REA.01",
+    "de:cando:A1.REA.04",
+    "de:cando:A1.WRI.01",
+    "de:cando:A1.WRI.03"
+  ],
+  "introduces_item_ids": [
+    "de:grammar:es-gibt",
+    "de:chunk:gibt-es-hier",
+    "de:vocab:markt",
+    "de:vocab:baeckerei",
+    "de:vocab:supermarkt",
+    "de:vocab:kaufen",
+    "de:vocab:brauchen",
+    "de:chunk:ich-brauche",
+    "de:vocab:kilo",
+    "de:vocab:gramm",
+    "de:vocab:stueck",
+    "de:vocab:flasche",
+    "de:vocab:packung",
+    "de:vocab:liter",
+    "de:vocab:tomate",
+    "de:chunk:ein-kilo-bitte",
+    "de:chunk:was-kostet",
+    "de:phrase:sonst-noch-etwas",
+    "de:phrase:das-ist-alles"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-03-05-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.SPI.04"],
+      "item_ids": [
+        "de:phrase:was-moechten-sie-trinken",
+        "de:phrase:zusammen-oder-getrennt",
+        "de:vocab:speisekarte",
+        "de:vocab:kosten"
+      ],
+      "instruction_en": "Warm up. Match each question from the waiter with a fitting answer.",
+      "payload": {
+        "pairs": [
+          { "left": "Was möchten Sie trinken?", "right": "Einen Tee, bitte." },
+          { "left": "Zusammen oder getrennt?", "right": "Getrennt, bitte." },
+          { "left": "Möchten Sie die Speisekarte?", "right": "Ja, gern." },
+          { "left": "Was kostet der Kuchen?", "right": "3,20 Euro." }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-05-02",
+      "ordinal": 2,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.07"],
+      "item_ids": ["de:grammar:negation-kein", "de:vocab:kein", "de:vocab:fleisch", "de:vocab:milch"],
+      "instruction_en": "Warm up. Fill in the right form of kein.",
+      "payload": {
+        "text": "Ich esse ___ Fleisch und ich trinke ___ Milch.",
+        "blanks": [
+          { "answer": "kein", "hint": "das Fleisch" },
+          { "answer": "keine", "hint": "die Milch" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-05-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.03", "de:cando:A1.LIS.02"],
+      "item_ids": [
+        "de:vocab:markt",
+        "de:chunk:ich-brauche",
+        "de:vocab:brauchen",
+        "de:vocab:kilo",
+        "de:vocab:kartoffel",
+        "de:vocab:apfel",
+        "de:phrase:sonst-noch-etwas",
+        "de:phrase:das-ist-alles",
+        "de:chunk:das-macht-euro"
+      ],
+      "instruction_en": "Listen to Frau Kaya at the market. Then answer the questions.",
+      "payload": {
+        "transcript": "Guten Morgen, Frau Kaya! Was möchten Sie? Ich brauche ein Kilo Äpfel und zwei Kilo Kartoffeln. Gern. Sonst noch etwas? Nein, danke. Das ist alles. Das macht fünf Euro vierzig.",
+        "questions": [
+          {
+            "question": "Was kauft Frau Kaya?",
+            "options": ["Tomaten und Äpfel", "Äpfel und Kartoffeln", "Kartoffeln und Brot"],
+            "answer_index": 1
+          },
+          {
+            "question": "Wie viele Kilo Kartoffeln kauft sie?",
+            "options": ["ein Kilo", "fünf Kilo", "zwei Kilo"],
+            "answer_index": 2
+          },
+          {
+            "question": "Was kostet das?",
+            "options": ["5,40 Euro", "4,50 Euro", "5,14 Euro"],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-05-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.01", "de:cando:A1.GRA.06"],
+      "item_ids": [
+        "de:grammar:es-gibt",
+        "de:vocab:markt",
+        "de:vocab:baeckerei",
+        "de:vocab:supermarkt",
+        "de:vocab:kaufen",
+        "de:vocab:restaurant",
+        "de:vocab:cafe"
+      ],
+      "instruction_en": "Read what Nora writes about her part of town. Auf dem Markt means at the market and in der Bäckerei means in the bakery. Learn them as fixed phrases for now. Then answer the questions.",
+      "payload": {
+        "title": "Nora in Leipzig",
+        "text": "Ich heiße Nora und ich wohne in Leipzig. Hier gibt es einen Markt, eine Bäckerei und einen Supermarkt. Auf dem Markt kaufe ich Obst und Gemüse. In der Bäckerei kaufe ich Brot und Brötchen. Es gibt hier kein Restaurant, aber es gibt ein Café.",
+        "questions": [
+          {
+            "question": "Was kauft Nora auf dem Markt?",
+            "options": ["Obst und Gemüse", "Brot und Brötchen", "Fleisch"],
+            "answer_index": 0
+          },
+          {
+            "question": "Wo kauft Nora Brot?",
+            "options": ["im Supermarkt", "in der Bäckerei", "auf dem Markt"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was gibt es hier nicht?",
+            "options": ["ein Café", "einen Markt", "ein Restaurant"],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-05-05",
+      "ordinal": 5,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.06"],
+      "item_ids": ["de:grammar:es-gibt", "de:vocab:supermarkt"],
+      "instruction_en": "Choose the right word. Supermarkt is a der word.",
+      "payload": {
+        "question": "Hier gibt es ___ Supermarkt.",
+        "options": ["ein", "eine", "einen"],
+        "answer_index": 2,
+        "explanation_en": "es gibt means there is or there are. The thing that exists stands in the accusative, so a der word takes einen or keinen."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-05-06",
+      "ordinal": 6,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.06", "de:cando:A1.GRA.07"],
+      "item_ids": ["de:grammar:es-gibt", "de:chunk:gibt-es-hier", "de:vocab:baeckerei", "de:vocab:markt", "de:vocab:supermarkt"],
+      "instruction_en": "Fill in eine, einen or keinen.",
+      "payload": {
+        "text": "Gibt es hier ___ Bäckerei? Ja, und es gibt auch ___ Markt. Aber es gibt ___ Supermarkt.",
+        "blanks": [
+          { "answer": "eine", "hint": "die Bäckerei" },
+          { "answer": "einen", "hint": "der Markt" },
+          { "answer": "keinen", "hint": "no, der Supermarkt" }
+        ],
+        "explanation_en": "To ask whether something exists, put the verb first: Gibt es hier ...?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-05-07",
+      "ordinal": 7,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.04", "de:cando:A1.SPI.04"],
+      "item_ids": ["de:vocab:kilo", "de:vocab:flasche", "de:vocab:stueck", "de:vocab:packung", "de:vocab:liter", "de:vocab:gramm"],
+      "instruction_en": "Match the quantities with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "ein Kilo Äpfel", "right": "a kilo of apples" },
+          { "left": "eine Flasche Wasser", "right": "a bottle of water" },
+          { "left": "zwei Stück Kuchen", "right": "two pieces of cake" },
+          { "left": "eine Packung Nudeln", "right": "a packet of pasta" },
+          { "left": "ein Liter Milch", "right": "a litre of milk" },
+          { "left": "200 Gramm Käse", "right": "200 grams of cheese" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-05-08",
+      "ordinal": 8,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.04", "de:cando:A1.VOC.07"],
+      "item_ids": [
+        "de:vocab:supermarkt",
+        "de:chunk:was-kostet",
+        "de:vocab:kilo",
+        "de:vocab:gramm",
+        "de:vocab:liter",
+        "de:vocab:flasche",
+        "de:vocab:packung",
+        "de:vocab:stueck",
+        "de:vocab:tomate"
+      ],
+      "instruction_en": "Read the price list from a supermarket leaflet. Then answer the questions.",
+      "payload": {
+        "title": "Supermarkt am Park",
+        "text": "Äpfel, 1 Kilo: 1,99 Euro\nTomaten, 500 Gramm: 1,49 Euro\nMilch, 1 Liter: 0,99 Euro\nWasser, 1 Flasche: 0,49 Euro\nNudeln, 1 Packung: 0,89 Euro\nKuchen, 1 Stück: 1,50 Euro",
+        "questions": [
+          {
+            "question": "Was kostet ein Liter Milch?",
+            "options": ["0,89 Euro", "0,99 Euro", "1,99 Euro"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was kostet 1,99 Euro?",
+            "options": ["ein Kilo Äpfel", "500 Gramm Tomaten", "eine Packung Nudeln"],
+            "answer_index": 0
+          },
+          {
+            "question": "Sie kaufen zwei Flaschen Wasser. Was kostet das?",
+            "options": ["0,49 Euro", "1,49 Euro", "0,98 Euro"],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-05-09",
+      "ordinal": 9,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.SPI.04", "de:cando:A1.VOC.04"],
+      "item_ids": ["de:vocab:flasche", "de:vocab:kilo", "de:vocab:stueck"],
+      "instruction_en": "Fill in the right quantity word: Flasche, Kilo or Stück.",
+      "payload": {
+        "text": "Ich möchte eine ___ Wasser, ein ___ Tomaten und zwei ___ Kuchen.",
+        "blanks": [
+          { "answer": "Flasche", "hint": "bottle" },
+          { "answer": "Kilo", "hint": "kilo" },
+          {
+            "answer": "Stück",
+            "accept": ["Stueck"],
+            "hint": "pieces"
+          }
+        ],
+        "explanation_en": "After a number, Kilo, Gramm, Liter and Stück keep the singular form: zwei Kilo, zwei Stück. Flasche and Packung take the plural: zwei Flaschen, zwei Packungen. There is no word for of: ein Kilo Tomaten."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-05-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.SPI.04", "de:cando:A1.GRA.03"],
+      "item_ids": ["de:chunk:ein-kilo-bitte", "de:vocab:kilo", "de:vocab:tomate"],
+      "instruction_en": "Put the words in the right order to ask for a kilo of tomatoes.",
+      "payload": {
+        "words": ["Kilo", "bitte.", "Ein", "Tomaten,"],
+        "answer": "Ein Kilo Tomaten, bitte."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-05-11",
+      "ordinal": 11,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.04"],
+      "item_ids": ["de:phrase:sonst-noch-etwas", "de:phrase:das-ist-alles", "de:vocab:baeckerei"],
+      "instruction_en": "Choose the natural reply.",
+      "payload": {
+        "question": "In der Bäckerei: you have asked for a loaf of bread. The assistant asks: Sonst noch etwas? You do not want anything else. What do you say?",
+        "options": ["Guten Appetit!", "Nein, danke. Das ist alles.", "Zusammen, bitte."],
+        "answer_index": 1,
+        "explanation_en": "Sonst noch etwas? means Anything else? Das ist alles. means That is all."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-05-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.GRA.06"],
+      "item_ids": ["de:chunk:gibt-es-hier", "de:grammar:es-gibt", "de:vocab:baeckerei", "de:chunk:ich-brauche", "de:vocab:brot"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "Is there a bakery here? I need a loaf of bread.",
+        "direction": "to_target",
+        "reference": ["Gibt es hier eine Bäckerei? Ich brauche ein Brot."],
+        "notes_en": "A loaf of bread is simply ein Brot."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-05-13",
+      "ordinal": 13,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.03", "de:cando:A1.GRA.06", "de:cando:A1.VOC.07"],
+      "item_ids": [
+        "de:grammar:es-gibt",
+        "de:vocab:kaufen",
+        "de:vocab:markt",
+        "de:vocab:baeckerei",
+        "de:vocab:supermarkt",
+        "de:vocab:kilo",
+        "de:vocab:flasche"
+      ],
+      "instruction_en": "Write in German.",
+      "payload": {
+        "prompt_en": "A friend is new in your town. Write a short message. Say which food shops there are near you and which there are not (use es gibt), and say what you need, with quantities.",
+        "min_words": 15,
+        "max_words": 50,
+        "sample_answer": "Hallo Lina, hier gibt es einen Markt und eine Bäckerei. Es gibt keinen Supermarkt. Auf dem Markt kaufe ich Obst und Gemüse. Ich brauche ein Kilo Äpfel und zwei Flaschen Wasser.",
+        "rubric_focus": [
+          "es gibt with einen, eine, ein or kein",
+          "quantity plus food with no word for of",
+          "a greeting at the start of the message"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

@@ -1,0 +1,545 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-02-07",
+  "unit_key": "de:unit:a1-02-familie",
+  "ordinal": 7,
+  "slug": "wiederholung-familie",
+  "title": "Wiederholung: Meine Familie",
+  "title_en": "Review: my family",
+  "description": "Mixed review of the unit: family words, der, die, das, numbers to a hundred and ages, mein, dein, sein, ihr, plural forms and marital status. No new words.",
+  "kind": "review",
+  "estimated_minutes": 20,
+  "cando_ids": [
+    "de:cando:A1.VOC.03",
+    "de:cando:A1.VOC.02",
+    "de:cando:A1.GRA.04",
+    "de:cando:A1.GRA.05",
+    "de:cando:A1.GRA.08",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.LIS.03",
+    "de:cando:A1.REA.01",
+    "de:cando:A1.SPI.03",
+    "de:cando:A1.WRI.01"
+  ],
+  "introduces_item_ids": [],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-02-07-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:grosseltern",
+        "de:vocab:geschwister",
+        "de:vocab:sohn",
+        "de:vocab:tochter",
+        "de:vocab:ehemann",
+        "de:vocab:maedchen"
+      ],
+      "instruction_en": "Match the German word with its English meaning.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "die Großeltern",
+            "right": "grandparents"
+          },
+          {
+            "left": "die Geschwister",
+            "right": "brothers and sisters"
+          },
+          {
+            "left": "der Sohn",
+            "right": "son"
+          },
+          {
+            "left": "die Tochter",
+            "right": "daughter"
+          },
+          {
+            "left": "der Ehemann",
+            "right": "husband"
+          },
+          {
+            "left": "das Mädchen",
+            "right": "girl"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-07-02",
+      "ordinal": 2,
+      "type": "flashcard",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:familienstand"
+      ],
+      "instruction_en": "Read the card, say the word, then turn it over.",
+      "payload": {
+        "front": "der Familienstand",
+        "back": "marital status",
+        "hint": "On a form you answer with ledig or verheiratet."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-07-03",
+      "ordinal": 3,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.04"
+      ],
+      "item_ids": [
+        "de:vocab:baby"
+      ],
+      "instruction_en": "Choose the right article.",
+      "payload": {
+        "question": "___ Baby heißt Leo.",
+        "options": [
+          "Der",
+          "Die",
+          "Das"
+        ],
+        "answer_index": 2,
+        "explanation_en": "das Baby, like das Kind and das Mädchen."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-07-04",
+      "ordinal": 4,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.04"
+      ],
+      "item_ids": [
+        "de:vocab:junge",
+        "de:vocab:familie"
+      ],
+      "instruction_en": "Fill in ein or eine, then der, die or das.",
+      "payload": {
+        "text": "Das ist ___ Junge. ___ Junge heißt Paul. Das ist ___ Familie. ___ Familie wohnt in Köln.",
+        "blanks": [
+          {
+            "answer": "ein",
+            "hint": "der Junge"
+          },
+          {
+            "answer": "Der",
+            "accept": [
+              "der"
+            ]
+          },
+          {
+            "answer": "eine",
+            "hint": "die Familie"
+          },
+          {
+            "answer": "Die",
+            "accept": [
+              "die"
+            ]
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-07-05",
+      "ordinal": 5,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.03",
+        "de:cando:A1.VOC.02"
+      ],
+      "item_ids": [
+        "de:vocab:grossmutter",
+        "de:vocab:alt",
+        "de:vocab:jahr",
+        "de:vocab:achtzig",
+        "de:vocab:null",
+        "de:vocab:telefonnummer",
+        "de:vocab:ihr-possessiv"
+      ],
+      "instruction_en": "Listen for the age and for the telephone number.",
+      "payload": {
+        "transcript": "Meine Großmutter ist sechsundachtzig Jahre alt. Ihre Telefonnummer ist null, drei, null, fünf, sieben, eins, neun.",
+        "questions": [
+          {
+            "question": "Wie alt ist die Großmutter?",
+            "options": [
+              "68",
+              "86",
+              "96"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Wie ist ihre Telefonnummer?",
+            "options": [
+              "030 5719",
+              "030 5791",
+              "030 7519"
+            ],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-07-06",
+      "ordinal": 6,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.02"
+      ],
+      "item_ids": [
+        "de:vocab:dreizehn",
+        "de:vocab:dreissig",
+        "de:vocab:siebzehn",
+        "de:vocab:siebzig",
+        "de:vocab:zwanzig",
+        "de:vocab:fuenfzig",
+        "de:grammar:zahlen-bilden"
+      ],
+      "instruction_en": "Match the number word with the number. Watch the pairs that sound alike.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "dreizehn",
+            "right": "13"
+          },
+          {
+            "left": "dreißig",
+            "right": "30"
+          },
+          {
+            "left": "siebzehn",
+            "right": "17"
+          },
+          {
+            "left": "siebzig",
+            "right": "70"
+          },
+          {
+            "left": "fünfundzwanzig",
+            "right": "25"
+          },
+          {
+            "left": "zweiundfünfzig",
+            "right": "52"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-07-07",
+      "ordinal": 7,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.08"
+      ],
+      "item_ids": [
+        "de:vocab:sein-possessiv",
+        "de:vocab:ihr-possessiv",
+        "de:vocab:dein",
+        "de:grammar:possessivartikel-nominativ"
+      ],
+      "instruction_en": "Fill in sein, seine, ihr, ihre, dein or deine.",
+      "payload": {
+        "text": "Das ist Herr Weber. ___ Frau heißt Eva. Das ist Frau Kaya. ___ Sohn ist elf Jahre alt. Und du? Wie heißt ___ Vater?",
+        "blanks": [
+          {
+            "answer": "Seine",
+            "accept": [
+              "seine"
+            ],
+            "hint": "Herr Weber, die Frau"
+          },
+          {
+            "answer": "Ihr",
+            "accept": [
+              "ihr"
+            ],
+            "hint": "Frau Kaya, der Sohn"
+          },
+          {
+            "answer": "dein",
+            "hint": "du, der Vater"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-07-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.05"
+      ],
+      "item_ids": [
+        "de:vocab:bruder",
+        "de:vocab:schwester",
+        "de:vocab:tochter"
+      ],
+      "instruction_en": "Fill in the plural of the noun in the hint.",
+      "payload": {
+        "text": "Ich habe zwei ___ und drei ___. Meine ___ sind sechs und acht Jahre alt.",
+        "blanks": [
+          {
+            "answer": "Brüder",
+            "accept": [
+              "Brueder"
+            ],
+            "hint": "der Bruder"
+          },
+          {
+            "answer": "Schwestern",
+            "hint": "die Schwester"
+          },
+          {
+            "answer": "Töchter",
+            "accept": [
+              "Toechter"
+            ],
+            "hint": "die Tochter"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-07-09",
+      "ordinal": 9,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": [
+        "de:cando:A1.REA.01",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:verheiratet",
+        "de:vocab:ledig",
+        "de:vocab:kind",
+        "de:vocab:maedchen",
+        "de:vocab:baby",
+        "de:vocab:freundin",
+        "de:vocab:sein-possessiv",
+        "de:vocab:leben"
+      ],
+      "instruction_en": "Read the text and answer the questions.",
+      "payload": {
+        "title": "Amir und seine Familie",
+        "text": "Hallo, ich bin Amir. Ich bin einunddreißig Jahre alt und verheiratet. Meine Frau heißt Leyla. Wir haben drei Kinder. Die zwei Mädchen heißen Sara und Mina. Das Baby heißt Ali. Mein Bruder Navid ist ledig. Seine Freundin heißt Julia. Meine Eltern leben in Österreich.",
+        "questions": [
+          {
+            "question": "Wie alt ist Amir?",
+            "options": [
+              "13",
+              "30",
+              "31"
+            ],
+            "answer_index": 2
+          },
+          {
+            "question": "Wie viele Kinder hat Amir?",
+            "options": [
+              "zwei",
+              "drei",
+              "vier"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Navid ist ...",
+            "options": [
+              "ledig",
+              "verheiratet"
+            ],
+            "answer_index": 0
+          },
+          {
+            "question": "Wer ist Julia?",
+            "options": [
+              "die Frau von Amir",
+              "die Tochter von Amir",
+              "die Freundin von Navid"
+            ],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-07-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.03",
+        "de:cando:A1.SPI.03"
+      ],
+      "item_ids": [
+        "de:vocab:dein",
+        "de:vocab:alt",
+        "de:vocab:bruder"
+      ],
+      "instruction_en": "Put the words in the right order to ask a question.",
+      "payload": {
+        "words": [
+          "dein",
+          "Wie",
+          "Bruder?",
+          "ist",
+          "alt"
+        ],
+        "answer": "Wie alt ist dein Bruder?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-07-11",
+      "ordinal": 11,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.03",
+        "de:cando:A1.VOC.02"
+      ],
+      "item_ids": [
+        "de:vocab:schwester",
+        "de:vocab:mein",
+        "de:vocab:zwanzig",
+        "de:chunk:ich-bin-jahre-alt"
+      ],
+      "instruction_en": "Listen and type what you hear. Write the number as a word.",
+      "payload": {
+        "text": "Meine Schwester ist dreiundzwanzig Jahre alt.",
+        "accept": [
+          "Meine Schwester ist 23 Jahre alt."
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-07-12",
+      "ordinal": 12,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": [
+        "de:cando:A1.SPI.03",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:phrase:ich-habe-keine-geschwister",
+        "de:vocab:geschwister"
+      ],
+      "instruction_en": "Choose the natural reply.",
+      "payload": {
+        "question": "A colleague asks you: Hast du Geschwister? You have no brothers and no sisters. What do you answer?",
+        "options": [
+          "Nein, ich bin ledig.",
+          "Nein, ich habe keine Geschwister.",
+          "Ja, ich habe zwei Kinder."
+        ],
+        "answer_index": 1,
+        "explanation_en": "Geschwister means brothers and sisters. ledig is about marriage and Kinder are your own children."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-07-13",
+      "ordinal": 13,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.01",
+        "de:cando:A1.GRA.08"
+      ],
+      "item_ids": [
+        "de:chunk:das-ist-meine",
+        "de:vocab:ihr-possessiv",
+        "de:vocab:eltern",
+        "de:vocab:leben"
+      ],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "This is my wife. Her parents live in Germany.",
+        "direction": "to_target",
+        "reference": [
+          "Das ist meine Frau. Ihre Eltern leben in Deutschland.",
+          "Das ist meine Frau. Ihre Eltern wohnen in Deutschland."
+        ],
+        "notes_en": "meine Frau means my wife. Eltern is more than one person, so ihre."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-07-14",
+      "ordinal": 14,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.01",
+        "de:cando:A1.VOC.03",
+        "de:cando:A1.GRA.08"
+      ],
+      "item_ids": [
+        "de:vocab:mein",
+        "de:vocab:sein-possessiv",
+        "de:vocab:ihr-possessiv",
+        "de:chunk:ich-bin-jahre-alt",
+        "de:vocab:verheiratet",
+        "de:vocab:ledig"
+      ],
+      "instruction_en": "Write in German.",
+      "payload": {
+        "prompt_en": "Write four or five sentences about one person in your family. Say who the person is, the name, the age, whether he or she is married or single, and where he or she lives. Use sein or ihr at least once.",
+        "min_words": 20,
+        "max_words": 60,
+        "sample_answer": "Das ist mein Bruder. Er heißt Arun und er ist einundzwanzig Jahre alt. Er ist ledig. Seine Freundin heißt Meera. Er wohnt in Berlin.",
+        "rubric_focus": [
+          "family word with mein or meine",
+          "age with ist ... Jahre alt",
+          "verheiratet or ledig",
+          "sein or ihr matches owner and noun",
+          "verb in second position"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

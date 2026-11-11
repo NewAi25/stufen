@@ -1,0 +1,312 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-01-05",
+  "unit_key": "de:unit:a1-01-hallo",
+  "ordinal": 5,
+  "slug": "du-oder-sie",
+  "title": "Du oder Sie?",
+  "title_en": "Du or Sie?",
+  "description": "Formal and informal address, asking how someone is with Wie geht es Ihnen? and Wie geht's?, sein and haben in the present, short dialogues on a first day at work and with a neighbour.",
+  "kind": "core",
+  "estimated_minutes": 16,
+  "cando_ids": [
+    "de:cando:A1.GRA.01",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.SPI.01",
+    "de:cando:A1.SPI.02",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.REA.01",
+    "de:cando:A1.VOC.01",
+    "de:cando:A1.WRI.01"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:haben",
+    "de:vocab:wir",
+    "de:vocab:ihr",
+    "de:vocab:sie-plural",
+    "de:vocab:kollege",
+    "de:vocab:kollegin",
+    "de:vocab:nachbar",
+    "de:vocab:neu",
+    "de:vocab:hier",
+    "de:vocab:zeit",
+    "de:vocab:frage",
+    "de:vocab:oder",
+    "de:phrase:wie-heisst-du",
+    "de:phrase:wo-wohnen-sie",
+    "de:phrase:ich-habe-eine-frage"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-01-05-01",
+      "ordinal": 1,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.01"],
+      "item_ids": ["de:vocab:vorname", "de:vocab:familienname", "de:vocab:adresse"],
+      "instruction_en": "Warm up. Choose what belongs on this line of the form.",
+      "payload": {
+        "question": "On a form you read: Vorname. What does Priya Sharma write there?",
+        "options": ["Sharma", "Bergstraße 7", "Priya"],
+        "answer_index": 2,
+        "explanation_en": "der Vorname is the first name. Sharma is the Familienname and Bergstraße 7 is part of the Adresse."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-05-02",
+      "ordinal": 2,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.01", "de:cando:A1.WRI.01"],
+      "item_ids": ["de:vocab:guten-morgen", "de:phrase:wie-heissen-sie", "de:vocab:sie-formal"],
+      "instruction_en": "Warm up. Listen and type what you hear.",
+      "payload": {
+        "text": "Guten Morgen! Wie heißen Sie?",
+        "accept": ["Guten Morgen! Wie heissen Sie?", "Guten Morgen, wie heißen Sie?", "Guten Morgen. Wie heißen Sie?"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-05-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02"],
+      "item_ids": ["de:vocab:kollege", "de:vocab:kollegin", "de:vocab:neu", "de:vocab:hier", "de:phrase:freut-mich", "de:phrase:danke-gut"],
+      "instruction_en": "It is Emre's first day at work. Listen to the conversation with his boss, Frau Weber. Then answer the questions.",
+      "payload": {
+        "transcript": "Guten Morgen! Ich bin Frau Weber. Sind Sie der neue Kollege? Ja, ich bin Emre Kaya. Ich bin neu hier. Freut mich, Herr Kaya. Wie geht es Ihnen? Danke, gut. Und Ihnen? Auch gut, danke. Das ist Ihre Kollegin, Frau Lang.",
+        "questions": [
+          {
+            "question": "Wer ist neu?",
+            "options": ["Frau Weber", "Herr Kaya", "Frau Lang"],
+            "answer_index": 1
+          },
+          {
+            "question": "Sagen Frau Weber und Herr Kaya du oder Sie?",
+            "options": ["du", "Sie"],
+            "answer_index": 1,
+            "explanation_en": "At work you start with Sie and with Herr or Frau and the surname. Wie geht es Ihnen? is the formal way to ask how someone is."
+          },
+          {
+            "question": "Wer ist Frau Lang?",
+            "options": ["eine Kollegin", "eine Nachbarin"],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-05-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.01"],
+      "item_ids": ["de:vocab:nachbar", "de:vocab:neu", "de:vocab:hier", "de:vocab:haben", "de:vocab:zeit", "de:phrase:wie-gehts", "de:vocab:oder"],
+      "instruction_en": "Priya meets a neighbour of her own age on the stairs. Read the conversation and answer the questions.",
+      "payload": {
+        "title": "Der Nachbar",
+        "text": "Lukas: Hallo! Ich bin Lukas, der Nachbar aus Nummer drei. Bist du neu hier?\nPriya: Hallo, Lukas! Ja, ich bin neu. Ich heiße Priya.\nLukas: Freut mich, Priya! Wie geht's?\nPriya: Danke, gut. Und dir?\nLukas: Auch gut. Hast du Zeit? Ich habe Kaffee.\nPriya: Ja, ich habe Zeit. Danke!",
+        "questions": [
+          {
+            "question": "Wer ist neu?",
+            "options": ["Lukas", "Priya"],
+            "answer_index": 1
+          },
+          {
+            "question": "Wo wohnt Lukas?",
+            "options": ["in Nummer drei", "in Nummer zehn", "in Nummer sieben"],
+            "answer_index": 0
+          },
+          {
+            "question": "Sagen Lukas und Priya du oder Sie?",
+            "options": ["du", "Sie"],
+            "answer_index": 0,
+            "explanation_en": "Young neighbours often say du from the start. Wie geht's? and Und dir? are the informal forms."
+          },
+          {
+            "question": "Hat Priya Zeit?",
+            "options": ["Ja.", "Nein."],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-05-05",
+      "ordinal": 5,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.02", "de:cando:A1.SPI.01"],
+      "item_ids": ["de:phrase:wie-heissen-sie", "de:phrase:wie-heisst-du", "de:vocab:sie-formal", "de:vocab:du"],
+      "instruction_en": "Choose du or Sie.",
+      "payload": {
+        "question": "You meet an older neighbour for the first time and want to know her name. What do you ask?",
+        "options": ["Wie heißt du?", "Wie heißen Sie?", "Wie heißt sie?"],
+        "answer_index": 1,
+        "explanation_en": "Say Sie to adults you do not know, in offices and at work. Say du to friends, family and children. Wait until the other person offers du. Wie heißt sie? asks about another woman."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-05-06",
+      "ordinal": 6,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.SPI.02", "de:cando:A1.SPI.01"],
+      "item_ids": ["de:phrase:wie-heisst-du", "de:phrase:wie-heissen-sie", "de:phrase:woher-kommen-sie", "de:phrase:wo-wohnen-sie", "de:phrase:wie-gehts"],
+      "instruction_en": "Match the informal question with the formal one.",
+      "payload": {
+        "pairs": [
+          { "left": "Wie heißt du?", "right": "Wie heißen Sie?" },
+          { "left": "Woher kommst du?", "right": "Woher kommen Sie?" },
+          { "left": "Wo wohnst du?", "right": "Wo wohnen Sie?" },
+          { "left": "Wie geht's?", "right": "Wie geht es Ihnen?" },
+          { "left": "Und dir?", "right": "Und Ihnen?" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-05-07",
+      "ordinal": 7,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.01", "de:cando:A1.SPI.02"],
+      "item_ids": ["de:phrase:danke-gut", "de:phrase:wie-gehts", "de:vocab:guten-morgen"],
+      "instruction_en": "Choose the polite reply.",
+      "payload": {
+        "question": "Your boss says: Guten Morgen, Herr Kaya. Wie geht es Ihnen? What do you answer?",
+        "options": ["Danke, gut. Und dir?", "Danke, gut. Und Ihnen?", "Ich bin Emre Kaya."],
+        "answer_index": 1,
+        "explanation_en": "Your boss says Sie, so you answer with Und Ihnen? Und dir? is for people you say du to."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-05-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.01"],
+      "item_ids": ["de:vocab:sein", "de:vocab:wir", "de:vocab:ihr", "de:vocab:sie-plural", "de:vocab:kollege", "de:grammar:sein-praesens"],
+      "instruction_en": "Fill in the correct form of sein.",
+      "payload": {
+        "text": "Wir ___ neu hier. ___ ihr auch neu? Das sind Anna und Tom. Sie ___ Kollegen. ___ Sie Frau Weber?",
+        "blanks": [
+          { "answer": "sind", "hint": "sein, wir" },
+          { "answer": "Seid", "accept": ["seid"], "hint": "sein, ihr" },
+          { "answer": "sind", "hint": "sein, sie (Anna und Tom)" },
+          { "answer": "Sind", "accept": ["sind"], "hint": "sein, Sie" }
+        ],
+        "explanation_en": "ich bin, du bist, er ist, wir sind, ihr seid, sie sind, Sie sind. ihr is you for two or more people you say du to."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-05-09",
+      "ordinal": 9,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.01"],
+      "item_ids": ["de:vocab:haben", "de:vocab:frage", "de:vocab:zeit", "de:vocab:wir", "de:phrase:ich-habe-eine-frage"],
+      "instruction_en": "Fill in the correct form of haben.",
+      "payload": {
+        "text": "Ich ___ eine Frage. ___ du Zeit? Priya ___ eine neue Adresse. Wir ___ auch eine Frage.",
+        "blanks": [
+          { "answer": "habe", "hint": "haben, ich" },
+          { "answer": "Hast", "accept": ["hast"], "hint": "haben, du" },
+          { "answer": "hat", "hint": "haben, sie (Priya)" },
+          { "answer": "haben", "hint": "haben, wir" }
+        ],
+        "explanation_en": "ich habe, du hast, er hat, sie hat, wir haben, ihr habt, sie haben, Sie haben. The b drops out in du hast and er hat."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-05-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03", "de:cando:A1.GRA.01"],
+      "item_ids": ["de:vocab:haben", "de:vocab:zeit", "de:vocab:sie-formal"],
+      "instruction_en": "Put the words in order to ask a colleague politely if he or she has time.",
+      "payload": {
+        "words": ["Zeit?", "Sie", "Haben"],
+        "answer": "Haben Sie Zeit?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-05-11",
+      "ordinal": 11,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.01", "de:cando:A1.SPI.02"],
+      "item_ids": ["de:vocab:sein", "de:vocab:haben", "de:vocab:neu", "de:vocab:hier", "de:phrase:ich-habe-eine-frage"],
+      "instruction_en": "It is your first day at work. Fill in sein or haben in the correct form.",
+      "payload": {
+        "text": "Guten Tag, ich ___ Emre Kaya. Ich ___ neu hier. ___ Sie Frau Weber? Ich ___ eine Frage.",
+        "blanks": [
+          { "answer": "bin", "hint": "sein" },
+          { "answer": "bin", "hint": "sein" },
+          { "answer": "Sind", "accept": ["sind"], "hint": "sein" },
+          { "answer": "habe", "hint": "haben" }
+        ],
+        "explanation_en": "Use sein to say who or what you are: Ich bin neu hier. Use haben for what you have: Ich habe eine Frage."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-05-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.SPI.02"],
+      "item_ids": ["de:phrase:wie-gehts", "de:vocab:sie-formal"],
+      "instruction_en": "Translate into German. You are talking to your boss, so use the formal form.",
+      "payload": {
+        "source_text": "How are you?",
+        "direction": "to_target",
+        "reference": ["Wie geht es Ihnen?"],
+        "notes_en": "Formal: Wie geht es Ihnen? Informal: Wie geht's? or Wie geht es dir? Ihnen is written with a capital I."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-05-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.02", "de:cando:A1.SPI.01"],
+      "item_ids": ["de:phrase:danke-gut", "de:phrase:wie-gehts", "de:vocab:neu", "de:vocab:hier", "de:vocab:sein"],
+      "instruction_en": "Record yourself. Two short answers, one formal and one informal.",
+      "payload": {
+        "prompt_en": "First: it is your first day at work. Your boss, Frau Weber, says: Guten Morgen! Wie geht es Ihnen? Greet her, answer, ask how she is and say that you are new here. Second: your neighbour Lukas says: Hallo! Wie geht's? Greet him, answer and ask how he is.",
+        "mode": "free",
+        "sample_answer": "Guten Morgen, Frau Weber! Danke, gut. Und Ihnen? Ich bin neu hier. Hallo, Lukas! Danke, gut. Und dir?",
+        "rubric_focus": ["Sie and Ihnen with the boss", "du and dir with the neighbour", "ich bin neu hier", "a fitting greeting for each person"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

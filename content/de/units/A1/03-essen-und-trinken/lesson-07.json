@@ -1,0 +1,339 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-03-07",
+  "unit_key": "de:unit:a1-03-essen-und-trinken",
+  "ordinal": 7,
+  "slug": "wiederholung-essen-und-trinken",
+  "title": "Wiederholung: Essen und Trinken",
+  "title_en": "Review: food and drink",
+  "description": "Mixed review of the unit: food and drink words, the accusative, nicht and kein, ordering and paying, es gibt and quantities. No new words.",
+  "kind": "review",
+  "estimated_minutes": 18,
+  "cando_ids": [
+    "de:cando:A1.VOC.04",
+    "de:cando:A1.GRA.06",
+    "de:cando:A1.GRA.07",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.SPI.04",
+    "de:cando:A1.REA.04",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.LIS.03",
+    "de:cando:A1.WRI.01"
+  ],
+  "introduces_item_ids": [],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-03-07-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.04"],
+      "item_ids": [
+        "de:vocab:kartoffel",
+        "de:vocab:reis",
+        "de:vocab:wurst",
+        "de:vocab:zucker",
+        "de:vocab:haehnchen",
+        "de:vocab:tomate",
+        "de:vocab:kuchen",
+        "de:vocab:nudel"
+      ],
+      "instruction_en": "Match the food words with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "die Kartoffel", "right": "potato" },
+          { "left": "der Reis", "right": "rice" },
+          { "left": "die Wurst", "right": "sausage" },
+          { "left": "der Zucker", "right": "sugar" },
+          { "left": "das Hähnchen", "right": "chicken" },
+          { "left": "die Tomate", "right": "tomato" },
+          { "left": "der Kuchen", "right": "cake" },
+          { "left": "die Nudeln", "right": "pasta" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-07-02",
+      "ordinal": 2,
+      "type": "flashcard",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.04"],
+      "item_ids": ["de:vocab:rechnung"],
+      "instruction_en": "Say the meaning to yourself, then turn the card and rate how well you knew it.",
+      "payload": { "front": "die Rechnung", "back": "the bill", "hint": "Die Rechnung, bitte." },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-07-03",
+      "ordinal": 3,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.04"],
+      "item_ids": ["de:vocab:fruehstueck", "de:vocab:mittagessen", "de:vocab:abendessen"],
+      "instruction_en": "Choose the right word.",
+      "payload": {
+        "question": "Which meal do you eat in the morning?",
+        "options": ["das Abendessen", "das Mittagessen", "das Frühstück"],
+        "answer_index": 2
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-07-04",
+      "ordinal": 4,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.06"],
+      "item_ids": ["de:grammar:akkusativ-artikel", "de:vocab:kuchen", "de:vocab:tee", "de:vocab:suppe", "de:vocab:wasser"],
+      "instruction_en": "Fill in the article in the accusative. The hint tells you whether to use the or a.",
+      "payload": {
+        "text": "Ich nehme ___ Kuchen und ___ Tee. Meine Schwester möchte ___ Suppe und ___ Wasser.",
+        "blanks": [
+          { "answer": "den", "hint": "the, der Kuchen" },
+          { "answer": "einen", "hint": "a, der Tee" },
+          { "answer": "eine", "hint": "a, die Suppe" },
+          { "answer": "ein", "hint": "a, das Wasser" }
+        ],
+        "explanation_en": "Only der words change in the accusative: den, einen."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-07-05",
+      "ordinal": 5,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.07"],
+      "item_ids": [
+        "de:grammar:negation-kein",
+        "de:grammar:negation-nicht",
+        "de:vocab:kein",
+        "de:vocab:nicht",
+        "de:vocab:durst",
+        "de:vocab:baeckerei",
+        "de:vocab:zucker"
+      ],
+      "instruction_en": "Fill in nicht or the right form of kein.",
+      "payload": {
+        "text": "Ich habe ___ Durst. Er isst ___ gern Tomaten. Es gibt hier ___ Bäckerei. Wir möchten ___ Zucker.",
+        "blanks": [
+          { "answer": "keinen", "hint": "der Durst" },
+          { "answer": "nicht", "hint": "before gern" },
+          { "answer": "keine", "hint": "die Bäckerei" },
+          { "answer": "keinen", "hint": "der Zucker" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-07-06",
+      "ordinal": 6,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03", "de:cando:A1.GRA.06"],
+      "item_ids": ["de:chunk:gibt-es-hier", "de:grammar:es-gibt", "de:vocab:markt"],
+      "instruction_en": "Put the words in the right order to ask whether there is a market here.",
+      "payload": {
+        "words": ["hier", "Markt?", "Gibt", "einen", "es"],
+        "answer": "Gibt es hier einen Markt?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-07-07",
+      "ordinal": 7,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02", "de:cando:A1.GRA.07"],
+      "item_ids": [
+        "de:chunk:ich-nehme",
+        "de:vocab:haehnchen",
+        "de:vocab:reis",
+        "de:vocab:salat",
+        "de:vocab:kein",
+        "de:vocab:wasser"
+      ],
+      "instruction_en": "Listen to a guest ordering in a restaurant. Then answer the questions.",
+      "payload": {
+        "transcript": "Guten Abend! Was möchten Sie? Ich nehme das Hähnchen mit Reis. Möchten Sie auch einen Salat? Nein, danke, keinen Salat. Und was möchten Sie trinken? Ein Wasser, bitte.",
+        "questions": [
+          {
+            "question": "Was isst der Gast?",
+            "options": ["Fisch mit Kartoffeln", "Hähnchen mit Reis", "einen Salat"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was möchte der Gast nicht?",
+            "options": ["einen Salat", "ein Wasser", "Reis"],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-07-08",
+      "ordinal": 8,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.03", "de:cando:A1.LIS.02"],
+      "item_ids": [
+        "de:vocab:baeckerei",
+        "de:chunk:ich-haette-gern",
+        "de:vocab:brot",
+        "de:vocab:broetchen",
+        "de:vocab:stueck",
+        "de:phrase:sonst-noch-etwas",
+        "de:chunk:das-macht-euro"
+      ],
+      "instruction_en": "Listen to Herr Demir in the bakery. Then answer the questions.",
+      "payload": {
+        "transcript": "Guten Morgen, Herr Demir! Was möchten Sie? Ich hätte gern ein Brot und vier Brötchen. Gern. Sonst noch etwas? Ja, zwei Stück Kuchen, bitte. Das macht acht Euro neunzig.",
+        "questions": [
+          {
+            "question": "Wie viele Brötchen kauft Herr Demir?",
+            "options": ["zwei", "vier", "acht"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was kostet alles zusammen?",
+            "options": ["9,80 Euro", "8,19 Euro", "8,90 Euro"],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-07-09",
+      "ordinal": 9,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.04", "de:cando:A1.VOC.04"],
+      "item_ids": [
+        "de:vocab:restaurant",
+        "de:vocab:mittagessen",
+        "de:vocab:getraenk",
+        "de:vocab:kosten",
+        "de:vocab:euro",
+        "de:vocab:nudel",
+        "de:vocab:fisch"
+      ],
+      "instruction_en": "Read the lunch menu. Then answer the questions.",
+      "payload": {
+        "title": "Restaurant am Park: Mittagessen",
+        "text": "Essen\nSuppe mit Brot 4,90 Euro\nNudeln mit Gemüse 7,50 Euro\nHähnchen mit Kartoffeln 9,90 Euro\nFisch mit Reis und Salat 12,50 Euro\n\nGetränke\nWasser 2,00 Euro\nSaft 2,80 Euro\nKaffee 2,60 Euro",
+        "questions": [
+          {
+            "question": "Was kostet der Saft?",
+            "options": ["2,00 Euro", "2,60 Euro", "2,80 Euro"],
+            "answer_index": 2
+          },
+          {
+            "question": "Sie essen kein Fleisch und keinen Fisch. Was nehmen Sie?",
+            "options": ["Nudeln mit Gemüse", "Hähnchen mit Kartoffeln", "Fisch mit Reis und Salat"],
+            "answer_index": 0
+          },
+          {
+            "question": "Was kosten Nudeln mit Gemüse und ein Wasser zusammen?",
+            "options": ["9,90 Euro", "9,50 Euro", "10,30 Euro"],
+            "answer_index": 1
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-07-10",
+      "ordinal": 10,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.04"],
+      "item_ids": ["de:phrase:stimmt-so", "de:phrase:das-ist-alles", "de:phrase:sonst-noch-etwas", "de:chunk:das-macht-euro"],
+      "instruction_en": "Choose the right phrase.",
+      "payload": {
+        "question": "Der Kellner sagt: Das macht 18,50 Euro. You hand over 20 euros and want the waiter to keep the rest. What do you say?",
+        "options": ["Das ist alles.", "Stimmt so.", "Sonst noch etwas?"],
+        "answer_index": 1,
+        "explanation_en": "Stimmt so. tells the waiter to keep the change."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-07-11",
+      "ordinal": 11,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.01", "de:cando:A1.GRA.07"],
+      "item_ids": ["de:vocab:kein", "de:vocab:fleisch", "de:vocab:gern", "de:vocab:fisch"],
+      "instruction_en": "Listen and type what you hear.",
+      "payload": {
+        "text": "Ich esse kein Fleisch, aber ich esse gern Fisch.",
+        "accept": ["Ich esse kein Fleisch, aber ich esse gerne Fisch."]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-07-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.GRA.06", "de:cando:A1.GRA.07"],
+      "item_ids": ["de:vocab:kein", "de:vocab:milch", "de:vocab:kaufen", "de:vocab:flasche", "de:vocab:kilo", "de:vocab:kartoffel"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "We have no milk. I am buying a bottle of milk and a kilo of potatoes.",
+        "direction": "to_target",
+        "reference": ["Wir haben keine Milch. Ich kaufe eine Flasche Milch und ein Kilo Kartoffeln."],
+        "notes_en": "There is no word for of after a quantity: eine Flasche Milch."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-07-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.04", "de:cando:A1.GRA.06"],
+      "item_ids": [
+        "de:vocab:markt",
+        "de:chunk:ich-haette-gern",
+        "de:chunk:ich-brauche",
+        "de:chunk:ein-kilo-bitte",
+        "de:chunk:was-kostet",
+        "de:vocab:kilo"
+      ],
+      "instruction_en": "Record yourself. You are the customer at a market stall.",
+      "payload": {
+        "prompt_en": "You are at the market. The seller says: Guten Tag! Was möchten Sie? Greet the seller, ask for three things with quantities, and ask what it costs.",
+        "prompt_native": "Guten Tag! Was möchten Sie?",
+        "mode": "free",
+        "sample_answer": "Guten Tag! Ich hätte gern ein Kilo Tomaten und zwei Kilo Kartoffeln. Ich brauche auch sechs Eier. Was kostet das?",
+        "rubric_focus": [
+          "quantity plus food with no word for of",
+          "polite request with ich hätte gern, ich möchte or bitte",
+          "asks for the price",
+          "numbers"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

@@ -1,0 +1,511 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-02-02",
+  "unit_key": "de:unit:a1-02-familie",
+  "ordinal": 2,
+  "slug": "der-die-das",
+  "title": "Der, die, das",
+  "title_en": "Nouns have a gender",
+  "description": "Every German noun is a der word, a die word or a das word. The articles der, die, das and ein, eine in the nominative, with the family words and the nouns from unit 1.",
+  "kind": "core",
+  "estimated_minutes": 20,
+  "cando_ids": [
+    "de:cando:A1.GRA.04",
+    "de:cando:A1.VOC.03",
+    "de:cando:A1.GRA.08",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.REA.01",
+    "de:cando:A1.WRI.01"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:junge",
+    "de:vocab:maedchen",
+    "de:vocab:baby",
+    "de:vocab:freund",
+    "de:vocab:freundin",
+    "de:vocab:foto"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-02-02-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:sohn",
+        "de:vocab:tochter",
+        "de:vocab:eltern",
+        "de:vocab:geschwister",
+        "de:vocab:grossmutter"
+      ],
+      "instruction_en": "Warm up. Match the German word with its English meaning.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "der Sohn",
+            "right": "son"
+          },
+          {
+            "left": "die Tochter",
+            "right": "daughter"
+          },
+          {
+            "left": "die Eltern",
+            "right": "parents"
+          },
+          {
+            "left": "die Geschwister",
+            "right": "brothers and sisters"
+          },
+          {
+            "left": "die Großmutter",
+            "right": "grandmother"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-02-02",
+      "ordinal": 2,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.08"
+      ],
+      "item_ids": [
+        "de:vocab:mein",
+        "de:chunk:das-ist-mein",
+        "de:chunk:das-ist-meine",
+        "de:vocab:bruder",
+        "de:vocab:schwester"
+      ],
+      "instruction_en": "Warm up. Fill in mein or meine.",
+      "payload": {
+        "text": "Das ist ___ Bruder und das ist ___ Schwester.",
+        "blanks": [
+          {
+            "answer": "mein",
+            "hint": "der Bruder"
+          },
+          {
+            "answer": "meine",
+            "hint": "die Schwester"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-02-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.02",
+        "de:cando:A1.GRA.04"
+      ],
+      "item_ids": [
+        "de:vocab:foto",
+        "de:vocab:mann",
+        "de:vocab:frau",
+        "de:vocab:kind"
+      ],
+      "instruction_en": "Priya describes a photo. Listen, then answer the questions.",
+      "payload": {
+        "transcript": "Das ist ein Foto. Das Foto ist aus Indien. Das ist ein Mann. Der Mann ist mein Vater. Das ist eine Frau. Die Frau ist meine Mutter. Und das ist ein Kind. Das Kind ist mein Bruder.",
+        "questions": [
+          {
+            "question": "Woher ist das Foto?",
+            "options": [
+              "aus Deutschland",
+              "aus Indien",
+              "aus Polen"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Der Mann ist ...",
+            "options": [
+              "der Bruder",
+              "der Großvater",
+              "der Vater"
+            ],
+            "answer_index": 2
+          },
+          {
+            "question": "Wer ist das Kind?",
+            "options": [
+              "der Bruder",
+              "die Schwester",
+              "der Sohn"
+            ],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-02-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": [
+        "de:cando:A1.REA.01",
+        "de:cando:A1.GRA.04"
+      ],
+      "item_ids": [
+        "de:vocab:familie",
+        "de:vocab:vater",
+        "de:vocab:mutter",
+        "de:vocab:junge",
+        "de:vocab:maedchen",
+        "de:vocab:baby"
+      ],
+      "instruction_en": "Read the text and answer the questions. Look at the small word in front of each noun.",
+      "payload": {
+        "title": "Eine Familie in Köln",
+        "text": "Das ist eine Familie. Die Familie wohnt in Köln. Der Vater heißt Jan und die Mutter heißt Eva. Sie haben drei Kinder. Der Junge heißt Paul. Das Mädchen heißt Mia. Und das Baby heißt Leo.",
+        "questions": [
+          {
+            "question": "Wo wohnt die Familie?",
+            "options": [
+              "in Köln",
+              "in Berlin",
+              "in Hamburg"
+            ],
+            "answer_index": 0
+          },
+          {
+            "question": "Wie heißt das Mädchen?",
+            "options": [
+              "Eva",
+              "Mia",
+              "Leo"
+            ],
+            "answer_index": 1
+          },
+          {
+            "question": "Leo ist ...",
+            "options": [
+              "der Vater",
+              "der Junge",
+              "das Baby"
+            ],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-02-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": [
+        "de:cando:A1.VOC.03",
+        "de:cando:A1.GRA.04"
+      ],
+      "item_ids": [
+        "de:vocab:junge",
+        "de:vocab:maedchen",
+        "de:vocab:baby",
+        "de:vocab:freund",
+        "de:vocab:freundin",
+        "de:vocab:foto"
+      ],
+      "instruction_en": "New words. Match each noun with its meaning. Learn the article together with the noun.",
+      "payload": {
+        "pairs": [
+          {
+            "left": "der Junge",
+            "right": "boy"
+          },
+          {
+            "left": "das Mädchen",
+            "right": "girl"
+          },
+          {
+            "left": "das Baby",
+            "right": "baby"
+          },
+          {
+            "left": "der Freund",
+            "right": "friend (a man), boyfriend"
+          },
+          {
+            "left": "die Freundin",
+            "right": "friend (a woman), girlfriend"
+          },
+          {
+            "left": "das Foto",
+            "right": "photo"
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-02-06",
+      "ordinal": 6,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.04"
+      ],
+      "item_ids": [
+        "de:vocab:maedchen"
+      ],
+      "instruction_en": "Choose the right article.",
+      "payload": {
+        "question": "___ Mädchen heißt Mia.",
+        "options": [
+          "Der",
+          "Die",
+          "Das"
+        ],
+        "answer_index": 2,
+        "explanation_en": "Words for men are usually der words and words for women are usually die words, but the gender belongs to the word, not to the person. Mädchen is a das word. Always learn a noun with its article."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-02-07",
+      "ordinal": 7,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.04",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:vater",
+        "de:vocab:schwester",
+        "de:vocab:kind"
+      ],
+      "instruction_en": "Fill in der, die or das.",
+      "payload": {
+        "text": "___ Vater heißt Jan. ___ Schwester wohnt in Berlin. ___ Kind heißt Leo.",
+        "blanks": [
+          {
+            "answer": "Der",
+            "accept": [
+              "der"
+            ]
+          },
+          {
+            "answer": "Die",
+            "accept": [
+              "die"
+            ]
+          },
+          {
+            "answer": "Das",
+            "accept": [
+              "das"
+            ]
+          }
+        ],
+        "explanation_en": "der Vater, die Schwester, das Kind."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-02-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.04"
+      ],
+      "item_ids": [
+        "de:vocab:freund",
+        "de:vocab:freundin",
+        "de:vocab:foto"
+      ],
+      "instruction_en": "Fill in ein or eine. The article in the hint tells you which one.",
+      "payload": {
+        "text": "Das ist ___ Freund. Das ist ___ Freundin. Das ist ___ Foto.",
+        "blanks": [
+          {
+            "answer": "ein",
+            "hint": "der Freund"
+          },
+          {
+            "answer": "eine",
+            "hint": "die Freundin"
+          },
+          {
+            "answer": "ein",
+            "hint": "das Foto"
+          }
+        ],
+        "explanation_en": "ein goes with der words and das words. eine goes with die words."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-02-09",
+      "ordinal": 9,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.04"
+      ],
+      "item_ids": [
+        "de:vocab:junge",
+        "de:vocab:stadt",
+        "de:vocab:land"
+      ],
+      "instruction_en": "First ein or eine, then der, die or das. Fill in the definite article.",
+      "payload": {
+        "text": "Das ist ein Junge. ___ Junge heißt Tom. Das ist eine Stadt. ___ Stadt heißt Köln. Das ist ein Land. ___ Land heißt Polen.",
+        "blanks": [
+          {
+            "answer": "Der",
+            "accept": [
+              "der"
+            ]
+          },
+          {
+            "answer": "Die",
+            "accept": [
+              "die"
+            ]
+          },
+          {
+            "answer": "Das",
+            "accept": [
+              "das"
+            ]
+          }
+        ],
+        "explanation_en": "Use ein or eine when you name something for the first time. Use der, die or das when you talk about it again. ein Junge, der Junge. eine Stadt, die Stadt. ein Land, das Land."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-02-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": [
+        "de:cando:A1.GRA.03",
+        "de:cando:A1.GRA.04"
+      ],
+      "item_ids": [
+        "de:vocab:maedchen",
+        "de:vocab:heissen"
+      ],
+      "instruction_en": "Put the words in the right order.",
+      "payload": {
+        "words": [
+          "Mädchen",
+          "Lena.",
+          "Das",
+          "heißt"
+        ],
+        "answer": "Das Mädchen heißt Lena."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-02-11",
+      "ordinal": 11,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": [
+        "de:cando:A1.LIS.01",
+        "de:cando:A1.GRA.04"
+      ],
+      "item_ids": [
+        "de:vocab:junge",
+        "de:vocab:bruder",
+        "de:vocab:mein"
+      ],
+      "instruction_en": "Listen and type what you hear.",
+      "payload": {
+        "text": "Der Junge ist mein Bruder."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-02-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.01",
+        "de:cando:A1.GRA.04"
+      ],
+      "item_ids": [
+        "de:vocab:kind",
+        "de:vocab:heissen"
+      ],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "This is a child. The child is called Leo.",
+        "direction": "to_target",
+        "reference": [
+          "Das ist ein Kind. Das Kind heißt Leo."
+        ],
+        "notes_en": "Kind is a das word: ein Kind, das Kind."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-02-02-13",
+      "ordinal": 13,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": [
+        "de:cando:A1.WRI.01",
+        "de:cando:A1.GRA.04",
+        "de:cando:A1.VOC.03"
+      ],
+      "item_ids": [
+        "de:vocab:foto",
+        "de:vocab:mann",
+        "de:vocab:frau",
+        "de:vocab:maedchen",
+        "de:vocab:mein"
+      ],
+      "instruction_en": "Write in German.",
+      "payload": {
+        "prompt_en": "Describe a photo with three people in it. For each person write one sentence with ein or eine and one sentence with der, die or das that says who the person is.",
+        "min_words": 15,
+        "max_words": 50,
+        "sample_answer": "Das ist ein Foto. Das ist eine Frau. Die Frau ist meine Mutter. Das ist ein Mann. Der Mann ist mein Vater. Das ist ein Mädchen. Das Mädchen ist meine Schwester.",
+        "rubric_focus": [
+          "der, die or das matches the noun",
+          "ein or eine matches the noun",
+          "capital letters on nouns",
+          "verb in second position"
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

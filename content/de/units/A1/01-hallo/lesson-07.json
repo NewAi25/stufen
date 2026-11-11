@@ -1,0 +1,312 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-01-07",
+  "unit_key": "de:unit:a1-01-hallo",
+  "ordinal": 7,
+  "slug": "wiederholung",
+  "title": "Wiederholung: Hallo, ich bin ...",
+  "title_en": "Review: Hello, I am ...",
+  "description": "Review lesson. Mixed exercises over lessons 1 to 6: greetings, numbers, countries and languages, the form, du and Sie, sein and haben, questions. No new items.",
+  "kind": "review",
+  "estimated_minutes": 15,
+  "cando_ids": [
+    "de:cando:A1.VOC.01",
+    "de:cando:A1.VOC.02",
+    "de:cando:A1.LIS.01",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.LIS.03",
+    "de:cando:A1.REA.01",
+    "de:cando:A1.REA.03",
+    "de:cando:A1.GRA.01",
+    "de:cando:A1.GRA.02",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.GRA.04",
+    "de:cando:A1.SPI.01",
+    "de:cando:A1.SPI.02",
+    "de:cando:A1.SPI.03",
+    "de:cando:A1.SPP.02",
+    "de:cando:A1.WRI.01"
+  ],
+  "introduces_item_ids": [],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-01-07-01",
+      "ordinal": 1,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.01"],
+      "item_ids": ["de:vocab:tschuess", "de:vocab:nachbar", "de:vocab:sprache", "de:vocab:vorname", "de:vocab:kollegin", "de:vocab:frage"],
+      "instruction_en": "Match the German word with its English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "Tschüss", "right": "bye" },
+          { "left": "der Nachbar", "right": "neighbour" },
+          { "left": "die Sprache", "right": "language" },
+          { "left": "der Vorname", "right": "first name" },
+          { "left": "die Kollegin", "right": "colleague (woman)" },
+          { "left": "die Frage", "right": "question" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-07-02",
+      "ordinal": 2,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.03", "de:cando:A1.LIS.02", "de:cando:A1.VOC.02"],
+      "item_ids": ["de:vocab:adresse", "de:chunk:meine-telefonnummer-ist", "de:vocab:acht", "de:vocab:null", "de:vocab:vier", "de:vocab:sechs", "de:vocab:drei", "de:vocab:fuenf", "de:vocab:eins"],
+      "instruction_en": "Listen to Anna give her details. Then answer the questions.",
+      "payload": {
+        "transcript": "Ich heiße Anna Braun. Meine Adresse ist Parkstraße acht in Hamburg. Meine Telefonnummer ist null, vier, null, sechs, drei, fünf, eins.",
+        "questions": [
+          {
+            "question": "Wo wohnt Anna?",
+            "options": ["in Hamburg", "in Berlin", "in Köln"],
+            "answer_index": 0
+          },
+          {
+            "question": "Wie ist die Hausnummer?",
+            "options": ["6", "8", "10"],
+            "answer_index": 1
+          },
+          {
+            "question": "Wie ist die Telefonnummer?",
+            "options": ["0406531", "0406351", "0403651"],
+            "answer_index": 1
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-07-03",
+      "ordinal": 3,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.01"],
+      "item_ids": ["de:vocab:sein", "de:vocab:haben", "de:grammar:sein-praesens", "de:vocab:er", "de:vocab:zeit"],
+      "instruction_en": "Fill in sein or haben in the correct form.",
+      "payload": {
+        "text": "Das ___ Herr Kaya. Er ___ neu hier und er ___ eine Frage. ___ Sie Zeit, Frau Weber?",
+        "blanks": [
+          { "answer": "ist", "hint": "sein" },
+          { "answer": "ist", "hint": "sein" },
+          { "answer": "hat", "hint": "haben" },
+          { "answer": "Haben", "accept": ["haben"], "hint": "haben" }
+        ],
+        "explanation_en": "er ist, er hat, Sie haben."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-07-04",
+      "ordinal": 4,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.02"],
+      "item_ids": ["de:vocab:kommen", "de:vocab:wohnen", "de:vocab:sprechen", "de:vocab:heissen", "de:grammar:praesens-regelmaessig"],
+      "instruction_en": "Fill in the verb in the correct form.",
+      "payload": {
+        "text": "Woher ___ du? Ich ___ in Berlin. Maria ___ Polnisch und Deutsch. Wie ___ Sie?",
+        "blanks": [
+          { "answer": "kommst", "hint": "kommen" },
+          { "answer": "wohne", "hint": "wohnen" },
+          { "answer": "spricht", "hint": "sprechen" },
+          { "answer": "heißen", "accept": ["heissen"], "hint": "heißen" }
+        ],
+        "explanation_en": "du kommst, ich wohne, sie spricht, Sie heißen."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-07-05",
+      "ordinal": 5,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.04"],
+      "item_ids": ["de:vocab:formular", "de:vocab:sprache", "de:vocab:nachbar"],
+      "instruction_en": "Fill in der, die or das.",
+      "payload": {
+        "text": "___ Formular ist neu. ___ Sprache heißt Deutsch. ___ Nachbar heißt Lukas.",
+        "blanks": [
+          { "answer": "Das", "accept": ["das"], "hint": "Formular is neuter" },
+          { "answer": "Die", "accept": ["die"], "hint": "Sprache is feminine" },
+          { "answer": "Der", "accept": ["der"], "hint": "Nachbar is masculine" }
+        ],
+        "explanation_en": "das Formular, die Sprache, der Nachbar."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-07-06",
+      "ordinal": 6,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03", "de:cando:A1.SPI.03"],
+      "item_ids": ["de:phrase:welche-sprachen-sprichst-du", "de:vocab:sprechen", "de:vocab:sprache"],
+      "instruction_en": "Put the words in order to make a W question.",
+      "payload": {
+        "words": ["Sprachen", "du?", "Welche", "sprichst"],
+        "answer": "Welche Sprachen sprichst du?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-07-07",
+      "ordinal": 7,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03"],
+      "item_ids": ["de:vocab:kommen", "de:vocab:aus", "de:vocab:polen", "de:vocab:sie-formal"],
+      "instruction_en": "Put the words in order to make a yes or no question.",
+      "payload": {
+        "words": ["Sie", "Polen?", "Kommen", "aus"],
+        "answer": "Kommen Sie aus Polen?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-07-08",
+      "ordinal": 8,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.01", "de:cando:A1.REA.03"],
+      "item_ids": ["de:vocab:kollege", "de:vocab:tuerkei", "de:chunk:ich-komme-aus-der", "de:vocab:adresse", "de:vocab:postleitzahl", "de:vocab:telefonnummer", "de:vocab:sprechen"],
+      "instruction_en": "Read the notice about a new colleague and answer the questions.",
+      "payload": {
+        "title": "Neu hier: Emre Kaya",
+        "text": "Herr Kaya ist der neue Kollege. Er kommt aus der Türkei und wohnt in Köln. Er spricht Türkisch, Englisch und Deutsch.\nAdresse: Parkstraße 4, 50667 Köln\nTelefonnummer: 0221 987654",
+        "questions": [
+          {
+            "question": "Woher kommt Herr Kaya?",
+            "options": ["aus Köln", "aus der Türkei", "aus der Schweiz"],
+            "answer_index": 1
+          },
+          {
+            "question": "Wie ist die Postleitzahl?",
+            "options": ["50667", "0221", "987654"],
+            "answer_index": 0
+          },
+          {
+            "question": "Spricht Herr Kaya Englisch?",
+            "options": ["Ja.", "Nein."],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-07-09",
+      "ordinal": 9,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.02", "de:cando:A1.SPI.01"],
+      "item_ids": ["de:phrase:wie-gehts", "de:phrase:danke-gut", "de:vocab:du"],
+      "instruction_en": "Choose the reply that fits.",
+      "payload": {
+        "question": "Your neighbour Lukas says: Hallo! Wie geht's? What do you answer?",
+        "options": ["Danke, gut. Und Ihnen?", "Ich bin in Kolkata geboren.", "Danke, gut. Und dir?"],
+        "answer_index": 2,
+        "explanation_en": "Lukas says du, so you ask back with Und dir? Und Ihnen? is for people you say Sie to."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-07-10",
+      "ordinal": 10,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.01", "de:cando:A1.REA.03"],
+      "item_ids": ["de:vocab:familienname", "de:vocab:vorname", "de:vocab:telefonnummer", "de:vocab:geburtsort"],
+      "instruction_en": "The words on this form are missing. Fill in the word that fits each line.",
+      "payload": {
+        "text": "___: Kaya\n___: Emre\n___: Ankara\n___: 0221 987654",
+        "blanks": [
+          { "answer": "Familienname", "accept": ["Nachname", "familienname", "nachname"], "hint": "surname" },
+          { "answer": "Vorname", "accept": ["vorname"], "hint": "first name" },
+          { "answer": "Geburtsort", "accept": ["geburtsort"], "hint": "place of birth" },
+          { "answer": "Telefonnummer", "accept": ["telefonnummer"], "hint": "telephone number" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-07-11",
+      "ordinal": 11,
+      "type": "flashcard",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.01"],
+      "item_ids": ["de:vocab:buchstabieren"],
+      "instruction_en": "Read the card, say the word, then turn it over.",
+      "payload": {
+        "front": "buchstabieren",
+        "back": "to spell",
+        "hint": "Wie schreibt man das? Ich buchstabiere: M, E, I, E, R."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-07-12",
+      "ordinal": 12,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.01", "de:cando:A1.WRI.01"],
+      "item_ids": ["de:chunk:ich-komme-aus", "de:vocab:polen", "de:vocab:wohnen", "de:vocab:und"],
+      "instruction_en": "Listen and type what you hear.",
+      "payload": {
+        "text": "Ich komme aus Polen und wohne in Berlin."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-07-13",
+      "ordinal": 13,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.GRA.01"],
+      "item_ids": ["de:vocab:sein", "de:vocab:haben", "de:vocab:neu", "de:vocab:hier", "de:phrase:ich-habe-eine-frage"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "I am new here and I have a question.",
+        "direction": "to_target",
+        "reference": ["Ich bin neu hier und ich habe eine Frage.", "Ich bin neu hier und habe eine Frage."],
+        "notes_en": "ich bin from sein, ich habe from haben. Frage is feminine: eine Frage."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-01-07-14",
+      "ordinal": 14,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": ["de:cando:A1.SPP.02", "de:cando:A1.SPI.02", "de:cando:A1.VOC.02"],
+      "item_ids": ["de:chunk:ich-heisse", "de:chunk:ich-komme-aus", "de:chunk:ich-wohne-in", "de:chunk:ich-spreche", "de:chunk:meine-telefonnummer-ist", "de:vocab:buchstabieren"],
+      "instruction_en": "Record yourself. Put the whole unit together.",
+      "payload": {
+        "prompt_en": "Introduce yourself in German as you would at the Bürgeramt. Greet the clerk, say your name and spell your surname. Say which country you come from, the city you live in and the languages you speak. End with a telephone number, digit by digit. An invented number is fine.",
+        "mode": "free",
+        "sample_answer": "Guten Tag! Ich heiße Priya Sharma. Ich buchstabiere: S, H, A, R, M, A. Ich komme aus Indien und ich wohne in Köln. Ich spreche Hindi, Englisch und ein bisschen Deutsch. Meine Telefonnummer ist null, zwei, zwei, eins, drei, vier, fünf.",
+        "rubric_focus": ["a polite greeting", "name, country, city and languages are all given", "the surname is spelled with German letter names", "the telephone number is said digit by digit", "verb in second position with the ending for ich"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

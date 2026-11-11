@@ -1,0 +1,330 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-04-02",
+  "unit_key": "de:unit:a1-04-einkaufen",
+  "ordinal": 2,
+  "slug": "kleidung-und-farben",
+  "title": "Kleidung und Farben",
+  "title_en": "Clothes and colours",
+  "description": "Clothes, colours and sizes: saying what you are looking for, what colour it is, and whether it is big, small, expensive or cheap. The accusative from unit 3 comes back with Ich suche.",
+  "kind": "core",
+  "estimated_minutes": 20,
+  "cando_ids": [
+    "de:cando:A1.VOC.07",
+    "de:cando:A1.GRA.04",
+    "de:cando:A1.GRA.06",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.REA.04",
+    "de:cando:A1.SPI.04",
+    "de:cando:A1.SPP.04"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:kleidung",
+    "de:vocab:jacke",
+    "de:vocab:hose",
+    "de:vocab:pullover",
+    "de:vocab:hemd",
+    "de:vocab:kleid",
+    "de:vocab:schuh",
+    "de:vocab:groesse",
+    "de:vocab:farbe",
+    "de:vocab:rot",
+    "de:vocab:blau",
+    "de:vocab:gruen",
+    "de:vocab:gelb",
+    "de:vocab:schwarz",
+    "de:vocab:weiss",
+    "de:vocab:braun",
+    "de:vocab:grau",
+    "de:vocab:gross",
+    "de:vocab:klein",
+    "de:vocab:teuer",
+    "de:vocab:billig",
+    "de:vocab:guenstig",
+    "de:vocab:suchen",
+    "de:chunk:ich-suche",
+    "de:chunk:haben-sie-das-in-groesse",
+    "de:phrase:das-ist-zu-teuer"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-04-02-01",
+      "ordinal": 1,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.06"],
+      "item_ids": ["de:grammar:akkusativ-artikel", "de:chunk:ich-nehme"],
+      "instruction_en": "Warm up with the accusative from unit 3. Fill in einen, eine or ein.",
+      "payload": {
+        "text": "Ich nehme ___ Kaffee, ___ Suppe und ___ Brötchen.",
+        "blanks": [
+          { "answer": "einen", "hint": "der Kaffee" },
+          { "answer": "eine", "hint": "die Suppe" },
+          { "answer": "ein", "hint": "das Brötchen" }
+        ],
+        "explanation_en": "Only the masculine article changes in the accusative: ein becomes einen."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-02-02",
+      "ordinal": 2,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07"],
+      "item_ids": ["de:vocab:euro", "de:grammar:zahlen-bilden"],
+      "instruction_en": "Warm up with a price from the last lesson.",
+      "payload": {
+        "question": "The price tag says 49,90 Euro. How do you say it?",
+        "options": ["vierundneunzig Euro neunzig", "neunundvierzig Euro neunzig", "neunundvierzig Cent"],
+        "answer_index": 1,
+        "explanation_en": "49 is neunundvierzig. Then Euro, then the cents: neunzig."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-02-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02"],
+      "item_ids": ["de:chunk:ich-suche", "de:vocab:jacke", "de:vocab:groesse", "de:vocab:farbe", "de:vocab:blau", "de:vocab:schwarz"],
+      "instruction_en": "Listen to a customer in a clothes shop. Die Jacke is the jacket, die Größe is the size and die Farbe is the colour. Then answer the questions.",
+      "payload": {
+        "transcript": "Guten Tag! Ich suche eine Jacke. Welche Größe haben Sie? Größe vierzig. Und welche Farbe? Blau oder schwarz. Hier ist eine Jacke in Größe vierzig. Die Jacke ist blau. Was kostet die Jacke? Neunundfünfzig Euro.",
+        "questions": [
+          {
+            "question": "Die Kundin sucht ...",
+            "options": ["eine Hose", "eine Jacke", "ein Kleid"],
+            "answer_index": 1
+          },
+          {
+            "question": "Welche Größe hat sie?",
+            "options": ["Größe 14", "Größe 40", "Größe 44"],
+            "answer_index": 1
+          },
+          {
+            "question": "Die Jacke ist ...",
+            "options": ["blau", "schwarz", "braun"],
+            "answer_index": 0
+          },
+          {
+            "question": "Was kostet die Jacke?",
+            "options": ["49 Euro", "95 Euro", "59 Euro"],
+            "answer_index": 2
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-02-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.04"],
+      "item_ids": ["de:vocab:kleidung", "de:vocab:hose", "de:vocab:pullover", "de:vocab:hemd", "de:vocab:schuh", "de:vocab:guenstig"],
+      "instruction_en": "Read the advert from a clothes shop. Günstig means good value. Then answer the questions.",
+      "payload": {
+        "title": "Mode Becker: Kleidung und Schuhe",
+        "text": "Jacke, blau oder schwarz: 59 Euro.\nHose, grau: 35 Euro.\nPullover, rot oder grün: 29 Euro.\nHemd, weiß: 25 Euro.\nSchuhe, braun: 45 Euro. Günstig!",
+        "questions": [
+          {
+            "question": "Was kostet die Hose?",
+            "options": ["25 Euro", "29 Euro", "35 Euro"],
+            "answer_index": 2
+          },
+          {
+            "question": "Welche Farbe hat das Hemd?",
+            "options": ["weiß", "grau", "blau"],
+            "answer_index": 0
+          },
+          {
+            "question": "Was ist rot oder grün?",
+            "options": ["die Jacke", "der Pullover", "die Schuhe"],
+            "answer_index": 1
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-02-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07"],
+      "item_ids": ["de:vocab:jacke", "de:vocab:hose", "de:vocab:pullover", "de:vocab:hemd", "de:vocab:kleid", "de:vocab:schuh"],
+      "instruction_en": "Match the clothes with their English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "die Jacke", "right": "jacket" },
+          { "left": "die Hose", "right": "trousers" },
+          { "left": "der Pullover", "right": "jumper, sweater" },
+          { "left": "das Hemd", "right": "shirt" },
+          { "left": "das Kleid", "right": "dress" },
+          { "left": "die Schuhe", "right": "shoes" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-02-06",
+      "ordinal": 6,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07"],
+      "item_ids": ["de:vocab:rot", "de:vocab:blau", "de:vocab:gruen", "de:vocab:gelb", "de:vocab:schwarz", "de:vocab:weiss", "de:vocab:braun", "de:vocab:grau"],
+      "instruction_en": "Match the colours.",
+      "payload": {
+        "pairs": [
+          { "left": "rot", "right": "red" },
+          { "left": "blau", "right": "blue" },
+          { "left": "grün", "right": "green" },
+          { "left": "gelb", "right": "yellow" },
+          { "left": "schwarz", "right": "black" },
+          { "left": "weiß", "right": "white" },
+          { "left": "braun", "right": "brown" },
+          { "left": "grau", "right": "grey" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-02-07",
+      "ordinal": 7,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.04", "de:cando:A1.VOC.07"],
+      "item_ids": ["de:vocab:jacke", "de:vocab:pullover", "de:vocab:hemd", "de:vocab:schuh", "de:vocab:blau", "de:vocab:rot", "de:vocab:weiss", "de:vocab:schwarz"],
+      "instruction_en": "Fill in der, die or das. Start each sentence with a capital letter.",
+      "payload": {
+        "text": "___ Jacke ist blau. ___ Pullover ist rot. ___ Hemd ist weiß. ___ Schuhe sind schwarz.",
+        "blanks": [
+          { "answer": "Die", "hint": "feminine" },
+          { "answer": "Der", "hint": "masculine" },
+          { "answer": "Das", "hint": "neuter" },
+          { "answer": "Die", "hint": "plural" }
+        ],
+        "explanation_en": "The colour comes after ist or sind and has no ending: Die Jacke ist blau."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-02-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07"],
+      "item_ids": ["de:vocab:teuer", "de:vocab:billig", "de:vocab:gross", "de:vocab:klein", "de:vocab:groesse"],
+      "instruction_en": "Fill in the German word. The English word is under each gap.",
+      "payload": {
+        "text": "Die Jacke kostet 300 Euro. Das ist ___. Das Hemd kostet 5 Euro. Das ist ___. Ich habe Größe 38. Größe 46 ist zu ___ und Größe 34 ist zu ___.",
+        "blanks": [
+          { "answer": "teuer", "hint": "expensive" },
+          { "answer": "billig", "accept": ["günstig", "guenstig"], "hint": "cheap" },
+          { "answer": "groß", "accept": ["gross"], "hint": "big" },
+          { "answer": "klein", "hint": "small" }
+        ],
+        "explanation_en": "Zu before an adjective means too: zu groß is too big. Günstig is the friendlier word for a low price. Billig can also sound like poor quality."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-02-09",
+      "ordinal": 9,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.06"],
+      "item_ids": ["de:chunk:ich-suche", "de:vocab:suchen", "de:grammar:akkusativ-artikel", "de:vocab:hose", "de:vocab:pullover", "de:vocab:kleid"],
+      "instruction_en": "What are you looking for? Fill in einen, eine or ein.",
+      "payload": {
+        "text": "Ich suche ___ Hose. Ich suche ___ Pullover. Ich suche ___ Kleid.",
+        "blanks": [
+          { "answer": "eine", "hint": "die Hose" },
+          { "answer": "einen", "hint": "der Pullover" },
+          { "answer": "ein", "hint": "das Kleid" }
+        ],
+        "explanation_en": "After Ich suche the thing is in the accusative, as after Ich nehme and Ich habe."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-02-10",
+      "ordinal": 10,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.SPI.04"],
+      "item_ids": ["de:chunk:haben-sie-das-in-groesse", "de:vocab:groesse"],
+      "instruction_en": "The jumper is too small. Put the words in the right order to ask for another size.",
+      "payload": {
+        "words": ["in", "Sie", "42?", "das", "Haben", "Größe", "auch"],
+        "answer": "Haben Sie das auch in Größe 42?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-02-11",
+      "ordinal": 11,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.GRA.06", "de:cando:A1.VOC.07"],
+      "item_ids": ["de:chunk:ich-suche", "de:vocab:jacke", "de:vocab:schwarz"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "I am looking for a jacket. The jacket is black.",
+        "direction": "to_target",
+        "reference": ["Ich suche eine Jacke. Die Jacke ist schwarz."],
+        "notes_en": "German has one present tense. I am looking for is simply Ich suche."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-02-12",
+      "ordinal": 12,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.04"],
+      "item_ids": ["de:phrase:das-ist-zu-teuer", "de:vocab:teuer", "de:vocab:billig", "de:vocab:klein"],
+      "instruction_en": "Choose what you say in the shop.",
+      "payload": {
+        "question": "You like the trousers, but they cost 180 Euro. That is too much for you. What do you say?",
+        "options": ["Das ist zu klein.", "Das ist billig.", "Das ist zu teuer."],
+        "answer_index": 2,
+        "explanation_en": "Teuer means expensive. Zu teuer means too expensive."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-02-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_production",
+      "cando_ids": ["de:cando:A1.SPP.04"],
+      "item_ids": ["de:vocab:jacke", "de:vocab:pullover", "de:vocab:schuh", "de:vocab:farbe", "de:vocab:gross", "de:vocab:klein"],
+      "instruction_en": "Record yourself.",
+      "payload": {
+        "prompt_en": "Look at what you are wearing, or take three pieces of clothing. Show each one, name it and say its colour. For one of them, say that it is too big or too small.",
+        "mode": "free",
+        "sample_answer": "Das ist eine Jacke. Die Jacke ist blau. Das ist ein Pullover. Der Pullover ist grau. Das sind Schuhe. Die Schuhe sind schwarz. Die Schuhe sind zu klein.",
+        "rubric_focus": ["names of the clothes with the right article", "colour after ist or sind", "zu groß or zu klein"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

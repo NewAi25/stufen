@@ -1,0 +1,341 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-03-03",
+  "unit_key": "de:unit:a1-03-essen-und-trinken",
+  "ordinal": 3,
+  "slug": "nicht-und-kein",
+  "title": "Ich esse kein Fleisch",
+  "title_en": "I do not eat meat",
+  "description": "Saying what you do not eat, drink, like or want: kein before a noun, nicht with gern, with a verb and with an adjective.",
+  "kind": "core",
+  "estimated_minutes": 20,
+  "cando_ids": [
+    "de:cando:A1.GRA.07",
+    "de:cando:A1.GRA.06",
+    "de:cando:A1.GRA.03",
+    "de:cando:A1.VOC.04",
+    "de:cando:A1.LIS.02",
+    "de:cando:A1.REA.02",
+    "de:cando:A1.SPI.01",
+    "de:cando:A1.WRI.01"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:nicht",
+    "de:vocab:kein",
+    "de:grammar:negation-nicht",
+    "de:grammar:negation-kein",
+    "de:vocab:moegen",
+    "de:vocab:schmecken",
+    "de:phrase:das-schmeckt-gut",
+    "de:vocab:lecker",
+    "de:vocab:suess",
+    "de:vocab:reis",
+    "de:vocab:nudel",
+    "de:vocab:wurst",
+    "de:vocab:zucker",
+    "de:vocab:kochen",
+    "de:vocab:aber"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-03-03-01",
+      "ordinal": 1,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.06"],
+      "item_ids": ["de:grammar:akkusativ-artikel", "de:chunk:ich-moechte", "de:vocab:salat", "de:vocab:suppe", "de:vocab:wasser"],
+      "instruction_en": "Warm up. Fill in einen, eine or ein.",
+      "payload": {
+        "text": "Ich möchte ___ Salat, ___ Suppe und ___ Wasser.",
+        "blanks": [
+          { "answer": "einen", "hint": "der Salat" },
+          { "answer": "eine", "hint": "die Suppe" },
+          { "answer": "ein", "hint": "das Wasser" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-03-02",
+      "ordinal": 2,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.04"],
+      "item_ids": ["de:vocab:saft", "de:vocab:kaese", "de:vocab:ei", "de:vocab:fisch"],
+      "instruction_en": "Warm up. Choose the right word.",
+      "payload": {
+        "question": "Which of these can you drink?",
+        "options": ["der Käse", "das Ei", "der Saft", "der Fisch"],
+        "answer_index": 2
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-03-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.02", "de:cando:A1.GRA.07"],
+      "item_ids": [
+        "de:vocab:moegen",
+        "de:vocab:kein",
+        "de:vocab:reis",
+        "de:vocab:gemuese",
+        "de:vocab:fleisch",
+        "de:vocab:tee",
+        "de:vocab:kaffee",
+        "de:vocab:gern",
+        "de:vocab:aber"
+      ],
+      "instruction_en": "Listen to Aylin. What does she like, and what does she not eat or drink?",
+      "payload": {
+        "transcript": "Ich heiße Aylin. Ich mag Gemüse und Reis. Ich esse kein Fleisch. Ich trinke gern Tee, aber ich trinke keinen Kaffee.",
+        "questions": [
+          {
+            "question": "Was isst Aylin nicht?",
+            "options": ["Gemüse", "Fleisch", "Reis"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was trinkt Aylin gern?",
+            "options": ["Tee", "Kaffee", "Milch"],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-03-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.02", "de:cando:A1.GRA.07"],
+      "item_ids": [
+        "de:vocab:kochen",
+        "de:vocab:nudel",
+        "de:vocab:lecker",
+        "de:vocab:kein",
+        "de:vocab:fleisch",
+        "de:vocab:fisch",
+        "de:vocab:abendessen",
+        "de:vocab:aber"
+      ],
+      "instruction_en": "Read the text message from Mia. aber means but. Then answer the questions.",
+      "payload": {
+        "title": "Hallo Ben",
+        "text": "Hallo Ben, kommst du zum Abendessen? Ich koche Nudeln mit Gemüse. Das ist lecker! Ich esse kein Fleisch und keinen Fisch. Ich habe keinen Kaffee, aber ich habe Tee und Saft. Mia",
+        "questions": [
+          {
+            "question": "Was kocht Mia?",
+            "options": ["Fisch", "Fleisch mit Reis", "Nudeln mit Gemüse"],
+            "answer_index": 2
+          },
+          {
+            "question": "Was isst Mia nicht?",
+            "options": ["Fleisch und Fisch", "Nudeln", "Gemüse"],
+            "answer_index": 0
+          },
+          {
+            "question": "Was hat Mia nicht?",
+            "options": ["Tee", "Kaffee", "Saft"],
+            "answer_index": 1
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-03-05",
+      "ordinal": 5,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.07"],
+      "item_ids": ["de:grammar:negation-kein", "de:vocab:kein", "de:vocab:fleisch"],
+      "instruction_en": "Choose the right word. Fleisch is a das word.",
+      "payload": {
+        "question": "Ich esse ___ Fleisch.",
+        "options": ["nicht", "kein", "keinen"],
+        "answer_index": 1,
+        "explanation_en": "A noun with ein or with no article is made negative with kein. kein takes the same endings as ein: keinen for der words, keine for die words, kein for das words."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-03-06",
+      "ordinal": 6,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.07", "de:cando:A1.GRA.06"],
+      "item_ids": [
+        "de:grammar:negation-kein",
+        "de:vocab:kein",
+        "de:vocab:kaffee",
+        "de:vocab:wurst",
+        "de:vocab:fleisch",
+        "de:vocab:zucker"
+      ],
+      "instruction_en": "Fill in keinen, keine or kein.",
+      "payload": {
+        "text": "Ich trinke ___ Kaffee. Ich esse ___ Wurst. Wir essen ___ Fleisch. Er nimmt ___ Zucker.",
+        "blanks": [
+          { "answer": "keinen", "hint": "der Kaffee" },
+          { "answer": "keine", "hint": "die Wurst" },
+          { "answer": "kein", "hint": "das Fleisch" },
+          { "answer": "keinen", "hint": "der Zucker" }
+        ],
+        "explanation_en": "kein works like ein in the accusative: einen becomes keinen, eine becomes keine, ein becomes kein."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-03-07",
+      "ordinal": 7,
+      "type": "multiple_choice",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.07"],
+      "item_ids": ["de:grammar:negation-nicht", "de:vocab:nicht", "de:vocab:gern", "de:vocab:milch"],
+      "instruction_en": "Choose the right word.",
+      "payload": {
+        "question": "Ich trinke ___ gern Milch.",
+        "options": ["kein", "keine", "nicht"],
+        "answer_index": 2,
+        "explanation_en": "gern is not a noun, so it is made negative with nicht. nicht stands before gern: Ich trinke nicht gern Milch."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-03-08",
+      "ordinal": 8,
+      "type": "cloze",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.07"],
+      "item_ids": [
+        "de:grammar:negation-nicht",
+        "de:grammar:negation-kein",
+        "de:vocab:nicht",
+        "de:vocab:kein",
+        "de:vocab:schmecken",
+        "de:phrase:das-schmeckt-gut",
+        "de:vocab:suess"
+      ],
+      "instruction_en": "Fill in nicht or the right form of kein.",
+      "payload": {
+        "text": "Ich esse ___ gern Fisch. Ich habe ___ Hunger. Das schmeckt ___ gut. Wir haben ___ Brot. Der Kuchen ist ___ süß.",
+        "blanks": [
+          { "answer": "nicht", "hint": "before gern" },
+          { "answer": "keinen", "hint": "der Hunger" },
+          { "answer": "nicht", "hint": "before gut" },
+          { "answer": "kein", "hint": "das Brot" },
+          { "answer": "nicht", "hint": "before süß" }
+        ],
+        "explanation_en": "kein before a noun. nicht before gern and before an adjective such as gut or süß."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-03-09",
+      "ordinal": 9,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.07", "de:cando:A1.GRA.03"],
+      "item_ids": ["de:grammar:negation-nicht", "de:vocab:nicht", "de:vocab:gern", "de:vocab:kaffee"],
+      "instruction_en": "Put the words in the right order to say that you do not like drinking coffee.",
+      "payload": {
+        "words": ["nicht", "Ich", "Kaffee.", "gern", "trinke"],
+        "answer": "Ich trinke nicht gern Kaffee."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-03-10",
+      "ordinal": 10,
+      "type": "match_pairs",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.07"],
+      "item_ids": [
+        "de:vocab:nicht",
+        "de:vocab:kein",
+        "de:phrase:das-schmeckt-gut",
+        "de:vocab:lecker",
+        "de:vocab:reis",
+        "de:vocab:nudel"
+      ],
+      "instruction_en": "Match each sentence with its negative.",
+      "payload": {
+        "pairs": [
+          { "left": "Ich habe Hunger.", "right": "Ich habe keinen Hunger." },
+          { "left": "Das schmeckt gut.", "right": "Das schmeckt nicht gut." },
+          { "left": "Ich esse gern Reis.", "right": "Ich esse nicht gern Reis." },
+          { "left": "Wir kochen Nudeln.", "right": "Wir kochen keine Nudeln." },
+          { "left": "Die Suppe ist lecker.", "right": "Die Suppe ist nicht lecker." }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-03-11",
+      "ordinal": 11,
+      "type": "multiple_choice",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.01", "de:cando:A1.GRA.07"],
+      "item_ids": ["de:vocab:moegen", "de:vocab:kein", "de:vocab:fisch"],
+      "instruction_en": "Choose the correct answer to the question.",
+      "payload": {
+        "question": "A friend asks: Magst du Fisch? You do not like fish. What do you say?",
+        "options": ["Nein, ich mag nicht Fisch.", "Nein, ich mag keinen Fisch.", "Nein, ich mag kein Fisch."],
+        "answer_index": 1,
+        "explanation_en": "Fisch is a der word and it is the direct object, so you need keinen. mögen is irregular: ich mag, du magst, er mag."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-03-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.GRA.07"],
+      "item_ids": ["de:vocab:kein", "de:vocab:fleisch", "de:vocab:nicht", "de:vocab:gern", "de:vocab:milch"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "I do not eat meat and I do not like drinking milk.",
+        "direction": "to_target",
+        "reference": ["Ich esse kein Fleisch und ich trinke nicht gern Milch.", "Ich esse kein Fleisch und trinke nicht gern Milch."],
+        "notes_en": "Use kein before the noun Fleisch and nicht before gern."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-03-03-13",
+      "ordinal": 13,
+      "type": "write_free",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.WRI.01", "de:cando:A1.GRA.07", "de:cando:A1.VOC.04"],
+      "item_ids": ["de:vocab:gern", "de:vocab:nicht", "de:vocab:kein", "de:vocab:essen", "de:vocab:trinken"],
+      "instruction_en": "Write in German.",
+      "payload": {
+        "prompt_en": "Write four short sentences about yourself. Say two things you like to eat or drink and two things you do not eat, do not drink or do not like. Use kein at least once and nicht gern at least once.",
+        "min_words": 12,
+        "max_words": 40,
+        "sample_answer": "Ich esse gern Reis und Gemüse. Ich trinke gern Tee. Ich esse kein Fleisch. Ich trinke nicht gern Milch.",
+        "rubric_focus": ["kein with the right ending before a noun", "nicht before gern", "food and drink words with capital letters"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}

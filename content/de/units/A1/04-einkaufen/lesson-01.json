@@ -1,0 +1,310 @@
+{
+  "$schema": "https://stufen.app/schema/lesson.json",
+  "key": "de:lesson:a1-04-01",
+  "unit_key": "de:unit:a1-04-einkaufen",
+  "ordinal": 1,
+  "slug": "was-kostet-das",
+  "title": "Was kostet das?",
+  "title_en": "What does that cost?",
+  "description": "Prices and money: the numbers above one hundred, Euro and Cent, asking what something costs and understanding a price said aloud.",
+  "kind": "core",
+  "estimated_minutes": 18,
+  "cando_ids": [
+    "de:cando:A1.VOC.07",
+    "de:cando:A1.LIS.03",
+    "de:cando:A1.REA.04",
+    "de:cando:A1.SPI.04",
+    "de:cando:A1.GRA.03"
+  ],
+  "introduces_item_ids": [
+    "de:vocab:tausend",
+    "de:vocab:cent",
+    "de:vocab:geld",
+    "de:vocab:preis",
+    "de:vocab:wie-viel",
+    "de:phrase:wie-viel-kostet-das"
+  ],
+  "source": "goethe-a1-wortliste",
+  "reviewed": false,
+  "exercises": [
+    {
+      "key": "de:exercise:a1-04-01-01",
+      "ordinal": 1,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07"],
+      "item_ids": ["de:vocab:sechzig", "de:vocab:achtzig", "de:grammar:zahlen-bilden"],
+      "instruction_en": "Warm up with a number you already know. Choose the right word.",
+      "payload": {
+        "question": "Which word is the number 68?",
+        "options": ["sechsundachtzig", "achtundsechzig", "achtundsechzehn"],
+        "answer_index": 1,
+        "explanation_en": "The unit comes first: acht und sechzig. Sechsundachtzig is 86."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-01-02",
+      "ordinal": 2,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07"],
+      "item_ids": ["de:vocab:vierzig", "de:vocab:sechzig", "de:vocab:hundert"],
+      "instruction_en": "Count in tens. Fill in the missing numbers as words.",
+      "payload": {
+        "text": "zwanzig, dreißig, ___, fünfzig, ___, siebzig, achtzig, neunzig, ___",
+        "blanks": [
+          { "answer": "vierzig" },
+          { "answer": "sechzig" },
+          { "answer": "hundert", "accept": ["einhundert"] }
+        ],
+        "explanation_en": "Sechzig has no s in the middle. After neunzig comes hundert."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-01-03",
+      "ordinal": 3,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.03"],
+      "item_ids": ["de:chunk:was-kostet", "de:vocab:kosten", "de:vocab:euro", "de:vocab:cent", "de:chunk:das-macht-euro"],
+      "instruction_en": "Listen to a customer in a bakery. Then answer the questions about the prices.",
+      "payload": {
+        "transcript": "Guten Morgen! Was kostet das Brot? Das Brot kostet drei Euro zwanzig. Und was kostet ein Brötchen? Ein Brötchen kostet vierzig Cent. Gut, ich nehme ein Brot und zwei Brötchen. Das macht vier Euro.",
+        "questions": [
+          {
+            "question": "Was kostet das Brot?",
+            "options": ["2,30 Euro", "3,20 Euro", "3,12 Euro"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was kostet ein Brötchen?",
+            "options": ["40 Cent", "14 Cent", "4 Euro"],
+            "answer_index": 0
+          },
+          {
+            "question": "Das macht ...",
+            "options": ["3 Euro", "4 Euro", "5 Euro"],
+            "answer_index": 1,
+            "explanation_en": "Das macht ... Euro is what you hear at the till. It gives the total."
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-01-04",
+      "ordinal": 4,
+      "type": "read_answer",
+      "skill": "reading",
+      "cando_ids": ["de:cando:A1.REA.04"],
+      "item_ids": ["de:vocab:preis", "de:vocab:euro", "de:vocab:kosten"],
+      "instruction_en": "Read the price list in a café. Then answer the questions.",
+      "payload": {
+        "title": "Café am Markt: Preise",
+        "text": "Kaffee: 2,40 Euro.\nTee: 1,90 Euro.\nSaft: 2,80 Euro.\nBrötchen mit Käse: 3,50 Euro.\nKuchen, ein Stück: 2,90 Euro.",
+        "questions": [
+          {
+            "question": "Was kostet der Kaffee?",
+            "options": ["1,90 Euro", "2,40 Euro", "2,80 Euro"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was kostet 2,90 Euro?",
+            "options": ["ein Saft", "ein Brötchen mit Käse", "ein Stück Kuchen"],
+            "answer_index": 2
+          },
+          {
+            "question": "Der Tee kostet ...",
+            "options": ["1,90 Euro", "2,90 Euro", "3,50 Euro"],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-01-05",
+      "ordinal": 5,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07"],
+      "item_ids": ["de:vocab:geld", "de:vocab:preis", "de:vocab:kosten", "de:vocab:kaufen", "de:vocab:wie-viel"],
+      "instruction_en": "Match the German word with its English meaning.",
+      "payload": {
+        "pairs": [
+          { "left": "das Geld", "right": "money" },
+          { "left": "der Preis", "right": "price" },
+          { "left": "kosten", "right": "to cost" },
+          { "left": "kaufen", "right": "to buy" },
+          { "left": "wie viel", "right": "how much" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-01-06",
+      "ordinal": 6,
+      "type": "multiple_choice",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07", "de:cando:A1.SPI.04"],
+      "item_ids": ["de:vocab:euro", "de:vocab:cent"],
+      "instruction_en": "Choose how the price is said aloud.",
+      "payload": {
+        "question": "The price tag says 2,50 Euro. How do you say it?",
+        "options": ["zwei Euro fünfzig", "zwei fünfzig Cent", "zweihundertfünfzig"],
+        "answer_index": 0,
+        "explanation_en": "Say the euros, then the word Euro, then the cents: zwei Euro fünfzig. The word Cent is normally left out. German writes prices with a comma, not a point."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-01-07",
+      "ordinal": 7,
+      "type": "cloze",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07"],
+      "item_ids": ["de:vocab:kosten", "de:chunk:was-kostet"],
+      "instruction_en": "Fill in kostet or kosten.",
+      "payload": {
+        "text": "Was ___ das Brot? Das Brot ___ drei Euro. Was ___ die Tomaten? Die Tomaten ___ zwei Euro fünfzig.",
+        "blanks": [
+          { "answer": "kostet", "hint": "one thing" },
+          { "answer": "kostet", "hint": "one thing" },
+          { "answer": "kosten", "hint": "more than one thing" },
+          { "answer": "kosten", "hint": "more than one thing" }
+        ],
+        "explanation_en": "One thing: kostet. More than one thing: kosten."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-01-08",
+      "ordinal": 8,
+      "type": "match_pairs",
+      "skill": "vocabulary",
+      "cando_ids": ["de:cando:A1.VOC.07"],
+      "item_ids": ["de:vocab:hundert", "de:vocab:tausend", "de:grammar:zahlen-bilden"],
+      "instruction_en": "Now the numbers above one hundred. Match the word with the number.",
+      "payload": {
+        "pairs": [
+          { "left": "hunderteins", "right": "101" },
+          { "left": "zweihundert", "right": "200" },
+          { "left": "dreihundertfünfzig", "right": "350" },
+          { "left": "fünfhundert", "right": "500" },
+          { "left": "tausend", "right": "1000" },
+          { "left": "zweitausend", "right": "2000" }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-01-09",
+      "ordinal": 9,
+      "type": "listen_answer",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.03"],
+      "item_ids": ["de:vocab:hundert", "de:vocab:tausend", "de:vocab:kosten", "de:vocab:kaufen", "de:vocab:geld"],
+      "instruction_en": "Listen for the big numbers. Then answer the questions.",
+      "payload": {
+        "transcript": "Der Computer kostet vierhundertneunzig Euro. Das Auto kostet achttausend Euro. Ich kaufe den Computer. Das Auto kaufe ich nicht. Ich habe kein Geld.",
+        "questions": [
+          {
+            "question": "Was kostet der Computer?",
+            "options": ["409 Euro", "490 Euro", "940 Euro"],
+            "answer_index": 1
+          },
+          {
+            "question": "Was kostet das Auto?",
+            "options": ["800 Euro", "8000 Euro", "18 000 Euro"],
+            "answer_index": 1
+          },
+          {
+            "question": "Die Person kauft ...",
+            "options": ["den Computer", "das Auto", "den Computer und das Auto"],
+            "answer_index": 0
+          }
+        ]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-01-10",
+      "ordinal": 10,
+      "type": "dictation",
+      "skill": "listening",
+      "cando_ids": ["de:cando:A1.LIS.03"],
+      "item_ids": ["de:vocab:kosten", "de:vocab:euro", "de:vocab:zwoelf", "de:vocab:fuenfzig"],
+      "instruction_en": "Listen and type what you hear. You may write the price in words or in figures.",
+      "payload": {
+        "text": "Das kostet zwölf Euro fünfzig.",
+        "accept": ["Das kostet 12 Euro 50.", "Das kostet 12,50 Euro.", "Das kostet zwoelf Euro fuenfzig."]
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-01-11",
+      "ordinal": 11,
+      "type": "order_words",
+      "skill": "grammar",
+      "cando_ids": ["de:cando:A1.GRA.03", "de:cando:A1.SPI.04"],
+      "item_ids": ["de:phrase:wie-viel-kostet-das", "de:vocab:wie-viel", "de:vocab:kosten"],
+      "instruction_en": "Put the words in the right order to ask for a price.",
+      "payload": {
+        "words": ["kostet", "viel", "das?", "Wie"],
+        "answer": "Wie viel kostet das?"
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-01-12",
+      "ordinal": 12,
+      "type": "translate",
+      "skill": "writing",
+      "cando_ids": ["de:cando:A1.VOC.07"],
+      "item_ids": ["de:vocab:kosten", "de:vocab:euro", "de:vocab:kuchen"],
+      "instruction_en": "Translate into German.",
+      "payload": {
+        "source_text": "The cake costs two euros ninety.",
+        "direction": "to_target",
+        "reference": [
+          "Der Kuchen kostet zwei Euro neunzig.",
+          "Der Kuchen kostet 2,90 Euro.",
+          "Der Kuchen kostet 2 Euro 90."
+        ],
+        "notes_en": "Euro stays Euro after a number. There is no plural s."
+      },
+      "source": "unverified",
+      "reviewed": false
+    },
+    {
+      "key": "de:exercise:a1-04-01-13",
+      "ordinal": 13,
+      "type": "speak_prompt",
+      "skill": "spoken_interaction",
+      "cando_ids": ["de:cando:A1.SPI.04"],
+      "item_ids": ["de:chunk:was-kostet", "de:vocab:kosten", "de:vocab:kaufen", "de:vocab:euro"],
+      "instruction_en": "Record yourself.",
+      "payload": {
+        "prompt_en": "You are in a bakery. Greet the assistant. Ask what the bread costs and what a coffee costs. Then say that you are buying the bread.",
+        "mode": "free",
+        "sample_answer": "Guten Tag! Was kostet das Brot? Und was kostet ein Kaffee? Gut, ich kaufe das Brot.",
+        "rubric_focus": ["Was kostet ...? with the right article", "verb in second position", "greeting"]
+      },
+      "source": "unverified",
+      "reviewed": false
+    }
+  ]
+}
