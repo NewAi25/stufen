@@ -1,7 +1,7 @@
 // Storage port for core-identity and its in memory adapter.
 // The port lists the only reads and writes this box needs on `profiles` and
 // `learner_languages` (docs/03-data-schema.md). The Postgres adapter built on
-// `db` is a later row (P1-32) and will implement the same interface.
+// `db` is in postgres-store.ts (P1-32) and implements the same interface.
 import type { CefrLevel, LanguageCode, LearnerLanguage, Profile } from '@stufen/contracts';
 
 /** Columns of `profiles` that may change after the row is created. */

@@ -33,6 +33,7 @@ interface ProfileStore {                                              // the sto
 }
 
 createInMemoryProfileStore(): ProfileStore                            // unit tests and local wiring
+createPostgresProfileStore(db: Database): ProfileStore                // PostgreSQL through db, see below
 class ProfileNotFoundError extends Error { userId: string }
 ```
 
@@ -59,7 +60,32 @@ Rules the functions keep:
 | `setActiveLanguage` | Language must be in `LANGUAGE_CODES` and level in `CEFR_LEVELS`, otherwise `RangeError`. Unknown user throws `ProfileNotFoundError`. Writes the `learner_languages` row, sets `profiles.active_language`, then emits `user.language_set`. A repeat for the same language keeps `startedAt` and the level estimate and updates the target level. |
 | `listLearnerLanguages` | Every language of that learner, oldest `startedAt` first. Empty list if none. |
 
-Only the in memory adapter exists in 0.1.0. The Postgres adapter for `ProfileStore`, built on `db`, is a later row (P1-32) and will not change the factory.
+### The Postgres adapter
+
+`createPostgresProfileStore(db)` implements the same `ProfileStore` port on PostgreSQL. `db` is the handle from `createDb` in `@stufen/db`. The factory and the port did not change, so swapping the store is the only wiring difference:
+
+```ts
+import { createEventBus } from '@stufen/contracts';
+import { createDb } from '@stufen/db';
+import { createIdentity, createPostgresProfileStore } from '@stufen/core-identity';
+
+const db = createDb(process.env.DATABASE_URL);
+const identity = createIdentity({ store: createPostgresProfileStore(db), bus: createEventBus() });
+```
+
+Access model. Every method runs inside `withUser(db, userId, fn)` for the user id it is given, so it works as the restricted role `stufen_app` under row level security and can only see and change that user's rows. The `profiles` row itself is created by the database function `ensure_profile(uuid)`, which needs the row in `users` that `core-auth` creates at sign up; the owner connection is never used for learner data.
+
+What differs from the in memory store:
+
+| Topic | In memory | Postgres |
+|-------|-----------|----------|
+| `createdAt`, `updatedAt` | The caller's values | The database clock. The `profiles_updated` trigger sets `updated_at = now()` on every update, so the `updatedAt` in a patch is replaced |
+| `insertProfile` with a null `displayName` | Stores null | Keeps what `ensure_profile` wrote: `users.name`, or an empty string when the user has no name |
+| `insertProfile` for an id with no row in `users` | Stores the profile | Throws an error that says the `users` row is missing. Nothing is stored |
+| User ids | Any string | Must be a uuid. `withUser` throws `TypeError` otherwise |
+| A language code or level in the database that `contracts` does not list | Cannot happen | Throws when the row is read |
+
+`insertProfile` sets only the fields that differ from the row `ensure_profile` created. Two inserts racing for the same user are queued with a transaction level advisory lock, so the second finds the row and leaves it untouched.
 
 Source of truth: `docs/04-module-contracts.md`. If a signature is not there, it is not public.
 
@@ -91,6 +117,39 @@ Columns and policies are in `docs/03-data-schema.md` and `packages/db/migrations
 ```
 pnpm --filter @stufen/core-identity test
 ```
+
+That runs the unit tests. They need no database, and the integration test is reported as skipped.
+
+| File | What it checks |
+|------|----------------|
+| `tests/identity.test.ts` | The `createIdentity` functions on the in memory store |
+| `tests/store-contract.ts` | Not a test file. `runProfileStoreContract(name, makeStore)` holds the behaviour every `ProfileStore` adapter must show: insert is idempotent, get on an unknown user returns null, update persists, a learner language upsert keeps `startedAt` and changes the target level, list order |
+| `tests/store-contract.memory.test.ts` | Runs the contract for the in memory store |
+| `tests/postgres-store.integration.test.ts` | Runs the contract for Postgres and adds the Postgres only checks. Skipped unless `DATABASE_URL` is set |
+
+### The integration test
+
+It needs a PostgreSQL 16 or later with the migrations applied, and a `DATABASE_URL` for the user that ran them. `packages/db/README.md` says how to start one with or without Docker. Then:
+
+```
+DATABASE_URL=postgres://stufen:stufen@localhost:5432/stufen pnpm --filter @stufen/core-identity test
+```
+
+In PowerShell set the variable first with `$env:DATABASE_URL = '...'`.
+
+The test creates its own rows in `users` through the owner connection, with random uuids and unique emails, and deletes exactly those rows at the end. The delete cascades to their profiles, learner languages and entitlements. It is safe on a database other tests are using. It needs the languages `de`, `nl` and `fr` in the `languages` table, which migration 0001 seeds.
+
+| Check | Expected |
+|-------|----------|
+| The contract | Same result as the in memory store |
+| User A reads user B's profile | Nothing comes back |
+| User A updates user B's profile | Nothing changes |
+| User A lists or writes user B's learner languages | Empty list; the write is refused with error 42501 |
+| A patch that carries another user's id | That user's profile is unchanged |
+| `insertProfile` with a null display name | Keeps the name from `users` |
+| `insertProfile` for an id with no row in `users` | Error, nothing stored |
+| Two inserts racing for one user | One row, both calls return it |
+| `createIdentity` on the Postgres store | `ensureProfile`, `updateProfile`, `setActiveLanguage` and `listLearnerLanguages` work, and `user.language_set` is emitted |
 
 ## Status
 

@@ -1,7 +1,7 @@
 {
   "name": "@stufen/core-identity",
   "kind": "core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [
@@ -12,6 +12,7 @@
     "createIdentity (ensureProfile, getProfile, updateProfile, setActiveLanguage, listLearnerLanguages)",
     "ProfileStore interface",
     "createInMemoryProfileStore",
+    "createPostgresProfileStore (ProfileStore on PostgreSQL through db, row level security via withUser)",
     "ProfileNotFoundError"
   ]
 }

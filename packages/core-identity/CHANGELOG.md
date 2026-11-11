@@ -2,6 +2,21 @@
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-06
+
+### Added
+- `src/postgres-store.ts`: `createPostgresProfileStore(db)`, the Postgres adapter for the `ProfileStore` port (P1-32). Every method runs inside `withUser(db, userId, fn)` for the user id it is given, so it acts as the role `stufen_app` under row level security. The owner connection is never used for learner data.
+- `insertProfile` on Postgres creates the row by calling the database function `ensure_profile(uuid)`, then sets the fields that differ from what the database gave the new row. An existing row is returned untouched. Two inserts racing for one user are serialised with a transaction level advisory lock, so the second one finds the row and leaves it alone. A user id with no row in `users` is rejected with a message that says so.
+- One mapping between the snake_case columns and the contracts `Profile` and `LearnerLanguage` shapes. Timestamps come out as ISO strings. A language code or level in the database that is not in `LANGUAGE_CODES` or `CEFR_LEVELS` throws.
+- `tests/store-contract.ts`: `runProfileStoreContract(name, makeStore)`, the behaviour every adapter must show, written against the port only. `tests/store-contract.memory.test.ts` runs it for the in memory store, `tests/postgres-store.integration.test.ts` for Postgres.
+- `tests/postgres-store.integration.test.ts`: skipped without `DATABASE_URL`. Runs the contract on a real Postgres and adds the Postgres only checks: user A cannot read or change user B's profile or learner languages, a patch that carries another id changes nothing for that user, and `createIdentity` works on the Postgres store including `setActiveLanguage` emitting `user.language_set`. It creates its own rows in `users` and deletes exactly those at the end.
+- `src/index.ts` exports `createPostgresProfileStore`.
+
+### Notes
+- On Postgres `createdAt` and `updatedAt` come from the database clock. The `profiles_updated` trigger sets `updated_at = now()` on every update, so the `updatedAt` a caller puts in a `ProfileStorePatch` is replaced there. The in memory store still keeps the caller's value.
+- On Postgres `insertProfile` with a null `displayName` keeps what `ensure_profile` wrote: `users.name`, or an empty string when the user has no name. The in memory store stores null.
+- No change to `createIdentity` or to the port.
+
 ## [0.1.0] - 2026-11-05
 
 ### Added

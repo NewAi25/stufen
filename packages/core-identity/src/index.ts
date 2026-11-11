@@ -8,4 +8,5 @@
 export { createIdentity, ProfileNotFoundError } from './identity';
 export type { Identity, IdentityOptions } from './identity';
 export { createInMemoryProfileStore } from './store';
+export { createPostgresProfileStore } from './postgres-store';
 export type { ProfileStore, ProfileStorePatch, LearnerLanguageUpsert } from './store';
