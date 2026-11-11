@@ -1,16 +1,14 @@
 import { redirect } from 'next/navigation';
 import { Card } from '../components/kit';
-import { SignInSoonCard } from '../components/SignInSoonCard';
 import { LANGUAGE_NAMES } from '../lib/learning-options';
 import { getContainer } from '../server/container';
-import { getSession } from '../server/session';
+import { requireSession } from '../server/session';
 
 // Reads the session on every request. Never prerendered at build time.
 export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
-  const session = await getSession();
-  if (!session) return <SignInSoonCard title="Welcome to Stufen" />;
+  const session = await requireSession('/');
 
   const { identity } = getContainer();
   const profile = await identity.ensureProfile(session.userId);

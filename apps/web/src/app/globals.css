@@ -262,3 +262,16 @@ body {
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
+
+/* Sign in */
+.app-sign-in-status {
+  font-weight: var(--st-weight-medium);
+}
+
+.app-dev-only {
+  border: 1px dashed var(--st-color-border);
+  border-radius: var(--st-radius-md);
+  padding: var(--st-space-3);
+  font-size: var(--st-text-sm);
+  overflow-wrap: anywhere;
+}

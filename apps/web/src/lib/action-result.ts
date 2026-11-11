@@ -5,5 +5,5 @@ export type ActionResult = { ok: true } | { ok: false; field?: string; message: 
 
 export const NOT_SIGNED_IN: ActionResult = {
   ok: false,
-  message: 'You are not signed in. Sign in arrives in the next phase.',
+  message: 'You are not signed in. Sign in and try again.',
 };

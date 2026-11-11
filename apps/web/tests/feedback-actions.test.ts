@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { listMyFeedback, submitFeedbackFor } from '../src/server/actions/feedback-actions';
-import { readConfig } from '../src/server/config';
 import { createContainer } from '../src/server/container';
+import { memoryConfig } from './helpers/config';
 
 async function setup() {
-  const container = createContainer(readConfig({ NODE_ENV: 'test' }));
+  const container = createContainer(memoryConfig());
   const session = await container.auth.createDevSession('tester@stufen.local');
   return { container, session };
 }

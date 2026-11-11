@@ -20,15 +20,22 @@
     "check:boundaries": "node scripts/check-boundaries.mjs",
     "check:content": "node scripts/validate-content.mjs",
     "check": "pnpm check:boundaries && pnpm check:content",
-    "test:db": "vitest run --no-file-parallelism integration"
+    "test:db": "vitest run --no-file-parallelism integration",
+    "pack:install": "tsx scripts/install-pack.ts"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
+    "@stufen/contracts": "workspace:*",
+    "@stufen/core-content": "workspace:*",
+    "@stufen/core-curriculum": "workspace:*",
+    "@stufen/db": "workspace:*",
+    "@stufen/lang-de": "workspace:*",
     "@types/node": "^24.11.0",
     "@vitest/coverage-v8": "^3.2.7",
     "eslint": "^9.39.5",
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.9.6",
+    "tsx": "^4.23.15",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.70.0",
     "vitest": "^3.2.7"

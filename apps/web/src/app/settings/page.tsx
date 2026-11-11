@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 import { LIMIT_KEYS } from '@stufen/contracts';
-import { Card } from '../../components/kit';
-import { SignInSoonCard } from '../../components/SignInSoonCard';
+import { Button, Card } from '../../components/kit';
 import { LIMIT_LABELS, PLAN_LABELS } from '../../lib/plan-labels';
 import { getContainer } from '../../server/container';
-import { getSession } from '../../server/session';
+import { requireSession } from '../../server/session';
 import { SettingsForm } from './SettingsForm';
 
 // Reads the session on every request. Never prerendered at build time.
@@ -13,8 +12,7 @@ export const dynamic = 'force-dynamic';
 export const metadata: Metadata = { title: 'Settings | Stufen' };
 
 export default async function SettingsPage() {
-  const session = await getSession();
-  if (!session) return <SignInSoonCard title="Settings" />;
+  const session = await requireSession('/settings');
 
   const { identity, entitlements } = getContainer();
   const profile = await identity.ensureProfile(session.userId);
@@ -48,6 +46,15 @@ export default async function SettingsPage() {
           ))}
         </dl>
         <p className="app-muted">The plan cannot be changed during the beta.</p>
+      </Card>
+      <Card title="Account" headingLevel={2}>
+        <p>Signed in as {session.email}.</p>
+        {/* A plain form post, so signing out works before any script has loaded. */}
+        <form method="post" action="/auth/sign-out">
+          <Button type="submit" variant="secondary">
+            Sign out
+          </Button>
+        </form>
       </Card>
     </div>
   );

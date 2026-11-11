@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { readConfig } from '../src/server/config';
 import { createContainer, getContainer } from '../src/server/container';
+import { memoryConfig } from './helpers/config';
 
 // A fresh container per test, so tests do not share stores.
 function freshContainer() {
-  return createContainer(readConfig({ NODE_ENV: 'test' }));
+  return createContainer(memoryConfig());
 }
 
 describe('getContainer', () => {

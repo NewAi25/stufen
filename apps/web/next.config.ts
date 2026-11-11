@@ -33,6 +33,16 @@ const nextConfig: NextConfig = {
   // The monorepo root, so the standalone trace includes the workspace boxes.
   outputFileTracingRoot: path.join(appDir, '..', '..'),
   transpilePackages: workspacePackages,
+  // The language packs are read from disk at run time (lang-de), so the
+  // standalone output has to carry them. They land in standalone/content.
+  // The dev server prints every request with its query string. The sign in
+  // callback carries the one time token there, so it is left out of that log.
+  logging: {
+    incomingRequests: { ignore: [/^\/auth\/callback/] },
+  },
+  outputFileTracingIncludes: {
+    '/**': ['../../content/de/**/*'],
+  },
 };
 
 export default nextConfig;

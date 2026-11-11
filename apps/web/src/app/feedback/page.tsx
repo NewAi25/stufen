@@ -3,7 +3,7 @@ import type { FeedbackItem, FeedbackKind, FeedbackStatus } from '@stufen/contrac
 import { Card } from '../../components/kit';
 import { listMyFeedback } from '../../server/actions/feedback-actions';
 import { getContainer } from '../../server/container';
-import { getSession } from '../../server/session';
+import { requireSession } from '../../server/session';
 
 export const metadata: Metadata = { title: 'Feedback | Stufen' };
 
@@ -43,8 +43,10 @@ function FeedbackRow({ item }: { item: FeedbackItem }) {
 }
 
 export default async function FeedbackPage() {
-  const session = await getSession();
-  const items = session ? await listMyFeedback(getContainer(), session.userId) : null;
+  // The list is personal, so this page needs a session. The feedback button
+  // on every page keeps working signed out.
+  const session = await requireSession('/feedback');
+  const items = await listMyFeedback(getContainer(), session.userId);
 
   return (
     <div className="flex flex-col gap-6">
@@ -55,19 +57,17 @@ export default async function FeedbackPage() {
         </p>
       </Card>
 
-      {items === null ? null : (
-        <Card title="What you have sent" headingLevel={2}>
-          {items.length === 0 ? (
-            <p>You have not sent feedback yet.</p>
-          ) : (
-            <ul className="app-feedback-list">
-              {items.map((item) => (
-                <FeedbackRow key={item.id} item={item} />
-              ))}
-            </ul>
-          )}
-        </Card>
-      )}
+      <Card title="What you have sent" headingLevel={2}>
+        {items.length === 0 ? (
+          <p>You have not sent feedback yet.</p>
+        ) : (
+          <ul className="app-feedback-list">
+            {items.map((item) => (
+              <FeedbackRow key={item.id} item={item} />
+            ))}
+          </ul>
+        )}
+      </Card>
     </div>
   );
 }

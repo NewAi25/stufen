@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
-import { SignInSoonCard } from '../../components/SignInSoonCard';
 import { getContainer } from '../../server/container';
-import { getSession } from '../../server/session';
+import { requireSession } from '../../server/session';
 import { OnboardingForm } from './OnboardingForm';
 
 // Reads the session on every request. Never prerendered at build time.
@@ -13,8 +12,7 @@ const DEFAULT_LANGUAGE = 'de';
 const DEFAULT_TARGET_LEVEL = 'B1';
 
 export default async function OnboardingPage() {
-  const session = await getSession();
-  if (!session) return <SignInSoonCard title="Get started" />;
+  const session = await requireSession('/onboarding');
 
   const { identity } = getContainer();
   const profile = await identity.ensureProfile(session.userId);

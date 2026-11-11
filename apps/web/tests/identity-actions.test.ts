@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { completeOnboarding, saveSettings } from '../src/server/actions/identity-actions';
-import { readConfig } from '../src/server/config';
 import { createContainer } from '../src/server/container';
+import { memoryConfig } from './helpers/config';
 
 // The real container with its in memory stores, and one signed up user.
 async function setup() {
-  const container = createContainer(readConfig({ NODE_ENV: 'test' }));
+  const container = createContainer(memoryConfig());
   const session = await container.auth.createDevSession('learner@stufen.local');
   return { container, userId: session.userId };
 }
@@ -35,7 +35,7 @@ describe('completeOnboarding', () => {
   });
 
   it('creates the profile when the user has none yet', async () => {
-    const container = createContainer(readConfig({ NODE_ENV: 'test' }));
+    const container = createContainer(memoryConfig());
     const result = await completeOnboarding(container, 'no-profile-yet', {
       language: 'de',
       targetLevel: 'A1',
@@ -117,7 +117,7 @@ describe('saveSettings', () => {
   });
 
   it('returns a message, not a throw, for a user without a profile', async () => {
-    const container = createContainer(readConfig({ NODE_ENV: 'test' }));
+    const container = createContainer(memoryConfig());
     const result = await saveSettings(container, 'nobody', VALID_SETTINGS);
     expect(result.ok).toBe(false);
   });
