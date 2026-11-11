@@ -51,3 +51,11 @@ pnpm test                      run every box's tests
 node scripts/check-boundaries.mjs      verify no box imports another box's internals
 node scripts/validate-content.mjs      validate content packs against schema
 ```
+
+## Run the whole app in Docker
+
+```
+docker compose --profile app up --build
+```
+
+This starts Postgres, applies the migrations, installs the German pack, starts a local mail catcher and the web app. Open http://localhost:3000 and sign in with any email address. The sign in link arrives in the mail catcher at http://localhost:8025. The secrets in `docker-compose.yml` are local placeholders; a real deployment sets its own `APP_URL` (https), `SMTP_URL`, `MAIL_FROM`, `DATABASE_URL` and `STORAGE_SIGNING_SECRET`.

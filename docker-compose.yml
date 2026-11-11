@@ -1,5 +1,14 @@
-# Local development database. Start with `pnpm db:up`, apply migrations with
-# `pnpm db:migrate` (DATABASE_URL=postgres://stufen:stufen@localhost:5432/stufen).
+# Local stack. Two ways to use it.
+#
+# 1. Database only, for development with `pnpm dev`:
+#      pnpm db:up
+#      DATABASE_URL=postgres://stufen:stufen@localhost:5432/stufen pnpm db:migrate
+#
+# 2. The whole app as it would run on a server (profile "app"):
+#      docker compose --profile app up --build
+#    Then open http://localhost:3000. Sign in links arrive in the local mail
+#    catcher at http://localhost:8025. Every secret below is a local
+#    placeholder; a real deployment sets its own.
 services:
   db:
     image: postgres:16
@@ -16,6 +25,48 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+
+  # Catches every mail the app sends and shows it in a web page. Local only.
+  mail:
+    image: axllent/mailpit:latest
+    profiles: ['app']
+    ports:
+      - '8025:8025'
+
+  # Applies migrations and installs the German pack, then exits.
+  setup:
+    profiles: ['app']
+    build:
+      context: .
+      target: tools
+    environment:
+      DATABASE_URL: postgres://stufen:stufen@db:5432/stufen
+    command: ['sh', '-c', 'pnpm db:migrate && pnpm pack:install de']
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    profiles: ['app']
+    build:
+      context: .
+      target: run
+    environment:
+      DATABASE_URL: postgres://stufen:stufen@db:5432/stufen
+      APP_URL: http://localhost:3000
+      MAIL_DRIVER: smtp
+      SMTP_URL: smtp://mail:1025
+      MAIL_FROM: Stufen <no-reply@stufen.localhost>
+      STORAGE_DRIVER: fs
+      STORAGE_FS_ROOT: /tmp/stufen-storage
+      STORAGE_SIGNING_SECRET: local-placeholder-not-a-secret
+    ports:
+      - '3000:3000'
+    depends_on:
+      setup:
+        condition: service_completed_successfully
+      mail:
+        condition: service_started
 
 volumes:
   stufen_pgdata:
