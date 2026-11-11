@@ -87,7 +87,7 @@ describe('TABLE_NAMES against the migrations', () => {
   });
 
   it('finds the tables in the migrations', () => {
-    expect(sqlTables.size).toBe(30);
+    expect(sqlTables.size).toBe(31);
     // from 0001
     expect(sqlTables.has('users')).toBe(true);
     expect(sqlTables.has('feature_flags')).toBe(true);
@@ -158,7 +158,9 @@ describe('DB at compile time', () => {
     // 0002_auth.sql
     | 'sessions'
     | 'accounts'
-    | 'verifications';
+    | 'verifications'
+    // 0005_phase1_fixes.sql
+    | 'cando_outcomes';
 
   it('has one key per table in the migrations and nothing else', () => {
     expectTypeOf<keyof DB>().toEqualTypeOf<TablesInMigrations>();
@@ -227,6 +229,6 @@ describe('DB at compile time', () => {
 
   it('runs', () => {
     // Keeps this block visible in the report; the checks above are types only.
-    expect(TABLE_NAMES.length).toBe(30);
+    expect(TABLE_NAMES.length).toBe(31);
   });
 });

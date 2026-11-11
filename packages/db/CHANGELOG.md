@@ -2,6 +2,15 @@
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-11-11
+
+### Added
+- Migration `0005_phase1_fixes.sql`: `review_cards.scheduled_days` and `learning_steps` for the FSRS scheduler, the table `cando_outcomes` with own row policies for the mastery rule.
+
+### Changed
+- `entitlements.limits` now defaults to an empty object and holds only per user overrides; rows that carried the old default are cleared.
+- `ensure_profile` refuses a learner who passes another user's id. Owner work is not restricted.
+
 ## [0.6.0] - 2026-11-06
 
 ### Added

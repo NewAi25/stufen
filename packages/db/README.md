@@ -200,6 +200,7 @@ See the `db` row in [docs/07-build-sequence.md](../../docs/07-build-sequence.md)
 | `0002_auth.sql` | core-auth | `sessions`, `accounts`, `verifications`, owner only |
 | `0003_policy_fixes.sql` | db | Access fixes for 0001: `users`, `schema_migrations`, `events`, `feature_flags` |
 | `0004_daily_usage.sql` | core-entitlements | `speech_recordings.duration_ms`, view `daily_usage` for daily limits |
+| `0005_phase1_fixes.sql` | db | Scheduler columns on `review_cards`, table `cando_outcomes`, limits as overrides only, `ensure_profile` for the own id only |
 
 Auth tables are owner only. Learner facing code never reads them; `core-auth` uses the connection directly.
 

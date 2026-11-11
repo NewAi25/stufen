@@ -98,6 +98,8 @@ These tables are shaped for better-auth and live in our Postgres like every othe
 
 **cando_mastery** `user_id`, `cando_id`, `evidence_count`, `correct_count`, `exercise_types_seen` text array, `best_production_score` numeric, `recent_accuracy` numeric, `mastered_at` nullable, `updated_at`. Primary key `(user_id, cando_id)`.
 
+**cando_outcomes** (migration 0005) One row per attempt and descriptor: `id`, `user_id`, `cando_id`, `correct`, `exercise_type`, `created_at`. The mastery rule reads the last ten per descriptor. A learner may read and insert own rows.
+
 **level_estimates** `id`, `user_id`, `language_code`, `level`, `confidence` 0 to 1, `method` (`placement`, `checkpoint`, `mastery_ratio`, `manual`), `created_at`. Append only. The latest row is the current estimate.
 
 **streaks** `user_id`, `language_code`, `current_days`, `longest_days`, `last_active_date`.
@@ -128,7 +130,7 @@ These tables are shaped for better-auth and live in our Postgres like every othe
 
 ## core-entitlements
 
-**entitlements** `user_id` primary key, `plan` (`free_beta`, `free`, `plus`, `pro`), `features` jsonb (overrides), `limits` jsonb (`{tutor_messages_per_day, writing_grades_per_day, speech_minutes_per_day}`), `source` (`default`, `manual`, `stripe`), `expires_at` nullable, `updated_at`.
+**entitlements** `user_id` primary key, `plan` (`free_beta`, `free`, `plus`, `pro`), `features` jsonb (overrides), `limits` jsonb (per user overrides only, empty means the plan's numbers apply; keys `tutor_messages_per_day`, `writing_grades_per_day`, `speech_minutes_per_day`), `source` (`default`, `manual`, `stripe`), `expires_at` nullable, `updated_at`.
 
 **feature_flags** `key`, `enabled` boolean, `rules` jsonb (percent rollout, allow list, level gate), `updated_at`.
 
@@ -189,4 +191,5 @@ Every later migration grants `stufen_app` exactly what its new tables need. Noth
 | `0002_auth.sql` | core-auth | `sessions`, `accounts`, `verifications`, owner only |
 | `0003_policy_fixes.sql` | db | `users` readable as own row only and not writable by the app role, `schema_migrations` closed, anonymous `events` inserts, `feature_flags` trigger, explicit grants from now on |
 | `0004_daily_usage.sql` | core-entitlements | `speech_recordings.duration_ms` and the view `daily_usage` |
+| `0005_phase1_fixes.sql` | db | `review_cards.scheduled_days` and `learning_steps`, the table `cando_outcomes`, `entitlements.limits` as overrides only, `ensure_profile` restricted to the own id for learners |
 

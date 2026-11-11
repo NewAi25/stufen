@@ -248,7 +248,7 @@ describe.skipIf(!url)('withUser on a real Postgres', () => {
     const entitlement = await withUser(db, userA, (trx) =>
       trx.selectFrom('entitlements').select('limits').executeTakeFirstOrThrow(),
     );
-    expect(entitlement.limits).toMatchObject({ tutor_messages_per_day: 200 });
+    expect(entitlement.limits).toEqual({});
 
     // Types with no row to read yet: ask Postgres for one value of each.
     const sample = await sql<Record<string, unknown>>`
@@ -480,5 +480,90 @@ describe.skipIf(!url)('withUser on a real Postgres', () => {
       await db.deleteFrom('speech_recordings').where('user_id', '=', userB).execute();
       await db.updateTable('profiles').set({ timezone: 'UTC' }).where('id', '=', userB).execute();
     }
+  });
+
+  // ---------------------------------------------------------------
+  // 0005_phase1_fixes.sql
+  // ---------------------------------------------------------------
+
+  it('ensure_profile: a learner may ensure only the own profile, the owner any', async () => {
+    const own = await outcome(userA, async (trx) => {
+      await sql`select ensure_profile(${userA}::uuid)`.execute(trx);
+      return 1;
+    });
+    const other = await outcome(userA, async (trx) => {
+      await sql`select ensure_profile(${userB}::uuid)`.execute(trx);
+      return 1;
+    });
+    const signedOut = await outcome(null, async (trx) => {
+      await sql`select ensure_profile(${userB}::uuid)`.execute(trx);
+      return 1;
+    });
+    expect([own, other, signedOut]).toEqual([1, 'denied', 'denied']);
+    // Owner work is not restricted.
+    await sql`select ensure_profile(${userB}::uuid)`.execute(db);
+  });
+
+  it('entitlements: a new row holds no limits of its own', async () => {
+    const row = await db
+      .selectFrom('entitlements')
+      .select(['plan', 'limits'])
+      .where('user_id', '=', userA)
+      .executeTakeFirstOrThrow();
+    expect(row).toEqual({ plan: 'free_beta', limits: {} });
+  });
+
+  it('cando_outcomes: a learner writes and reads only own rows', async () => {
+    const candoId = randomUUID();
+    try {
+      await db
+        .insertInto('cando_descriptors')
+        .values({
+          id: candoId,
+          language_code: 'de',
+          level: 'A1',
+          skill: 'reading',
+          code: `P145.${candoId.slice(0, 8)}`,
+          text_en: 'Test descriptor',
+        })
+        .execute();
+
+      const insertFor = (actor: string, owner: string) =>
+        outcome(actor, async (trx) => {
+          const result = await trx
+            .insertInto('cando_outcomes')
+            .values({ user_id: owner, cando_id: candoId, correct: true, exercise_type: 'cloze' })
+            .executeTakeFirst();
+          return Number(result.numInsertedOrUpdatedRows ?? 0);
+        });
+      expect(await insertFor(userA, userA)).toBe(1);
+      expect(await insertFor(userA, userB)).toBe('denied');
+
+      const seenBy = (userId: string | null) =>
+        withUser(db, userId, (trx) =>
+          trx
+            .selectFrom('cando_outcomes')
+            .select('user_id')
+            .where('cando_id', '=', candoId)
+            .execute(),
+        );
+      expect(await seenBy(userA)).toEqual([{ user_id: userA }]);
+      expect(await seenBy(userB)).toEqual([]);
+      expect(await seenBy(null)).toEqual([]);
+    } finally {
+      await db.deleteFrom('cando_descriptors').where('id', '=', candoId).execute();
+    }
+  });
+
+  it('review_cards: the scheduler columns exist with defaults', async () => {
+    const columns = await sql<{ column_name: string }>`
+      select column_name from information_schema.columns
+      where table_name = 'review_cards' and column_name in ('scheduled_days', 'learning_steps')
+      order by column_name
+    `.execute(db);
+    expect(columns.rows.map((row) => row.column_name)).toEqual([
+      'learning_steps',
+      'scheduled_days',
+    ]);
   });
 });

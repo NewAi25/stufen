@@ -286,6 +286,10 @@ export interface ReviewCardsTable {
   lapses: Generated<number>;
   state: Generated<'new' | 'learning' | 'review' | 'relearning'>;
   updated_at: GeneratedTimestamp;
+  /** From 0005. Interval the card carried into its next review. */
+  scheduled_days: Generated<number>;
+  /** From 0005. Position in the FSRS learning steps. */
+  learning_steps: Generated<number>;
 }
 
 export interface ReviewLogsTable {
@@ -457,6 +461,16 @@ export interface FeatureFlagsTable {
 
 // ---------- the table map ----------
 
+/** From 0005. One row per attempt and descriptor; the mastery rule reads the last ten. */
+export interface CandoOutcomesTable {
+  id: Generated<string>;
+  user_id: string;
+  cando_id: string;
+  correct: boolean;
+  exercise_type: string;
+  created_at: GeneratedTimestamp;
+}
+
 /**
  * Views. They are not keys of DB, because DB lists tables only. They are type
  * aliases, not interfaces, because Kysely's withTables needs an index signature. Reach a view
@@ -505,6 +519,7 @@ export interface DB {
   cando_mastery: CandoMasteryTable;
   level_estimates: LevelEstimatesTable;
   streaks: StreaksTable;
+  cando_outcomes: CandoOutcomesTable;
   // core-assessment
   assessments: AssessmentsTable;
   // core-ai-tutor
@@ -567,6 +582,8 @@ const tableNames = [
   'sessions',
   'accounts',
   'verifications',
+  // 0005_phase1_fixes.sql
+  'cando_outcomes',
 ] as const satisfies readonly TableName[];
 
 /** Every key of DB, in migration order. Checked at compile time against DB. */
