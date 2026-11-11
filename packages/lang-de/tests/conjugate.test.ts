@@ -260,3 +260,23 @@ describe('persons, tenses and separable detection', () => {
     expect(conjugate(verb, person, tense)).toBeUndefined();
   });
 });
+
+describe('listed separable verbs and two word verbs', () => {
+  it('splits verbs with um that are listed as separable', () => {
+    expect(conjugate('umziehen', '1sg', 'present')).toBe('ziehe um');
+    expect(conjugate('umsteigen', '3sg', 'present')).toBe('steigt um');
+    expect(conjugate('umziehen', '1sg', 'perfect')).toBe('bin umgezogen');
+    expect(conjugate('umsteigen', '1pl', 'perfect')).toBe('sind umgestiegen');
+  });
+
+  it('does not split an um verb that is not listed', () => {
+    expect(conjugate('umarmen', '1sg', 'present')).toBe('umarme');
+  });
+
+  it('conjugates a two word verb and keeps the first word as written', () => {
+    expect(conjugate('Rad fahren', '1sg', 'present')).toBe('fahre Rad');
+    expect(conjugate('Rad fahren', '2sg', 'present')).toBe('fährst Rad');
+    expect(conjugate('Rad fahren', '1sg', 'perfect')).toBe('bin Rad gefahren');
+    expect(participle('Rad fahren')).toEqual({ participle: 'Rad gefahren', auxiliary: 'sein' });
+  });
+});

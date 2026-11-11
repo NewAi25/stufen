@@ -1,7 +1,7 @@
 {
   "name": "@stufen/lang-de",
   "kind": "lang",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [

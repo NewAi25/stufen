@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-11
+
+### Fixed
+- Separable verbs with `um` that are listed (umziehen, umsteigen, umtauschen, umdrehen) now split, with `sein` as auxiliary where it applies.
+- A noun plus verb written as two words (Rad fahren) is conjugated with the noun kept as written.
+- Participles for ziehen and steigen.
+
 ## [0.1.0] - 2026-11-06
 
 ### Added

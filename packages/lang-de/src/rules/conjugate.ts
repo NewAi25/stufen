@@ -8,6 +8,7 @@
 
 import {
   INSEPARABLE_PREFIXES,
+  LISTED_SEPARABLE,
   IRREGULAR_PRESENT,
   NOT_SEPARABLE,
   PARTICIPLES,
@@ -148,6 +149,10 @@ export function splitSeparable(verb: string): SeparableVerb | undefined {
   if (isListed(word) || Object.hasOwn(PARTICIPLES, word) || NOT_SEPARABLE.has(word)) {
     return undefined;
   }
+  const listedPrefix = lookup(LISTED_SEPARABLE, word);
+  if (listedPrefix !== undefined) {
+    return { prefix: listedPrefix, base: word.slice(listedPrefix.length) };
+  }
   for (const prefix of SEPARABLE_PREFIXES) {
     if (!word.startsWith(prefix)) continue;
     const base = word.slice(prefix.length);
@@ -156,8 +161,28 @@ export function splitSeparable(verb: string): SeparableVerb | undefined {
   return undefined;
 }
 
+/**
+ * A verb written as a noun and a verb, such as "Rad fahren": the verb is
+ * conjugated and the noun follows it as written. Only a single capitalised
+ * word counts as the noun, so "nicht gehen" is not taken for a verb.
+ */
+function splitPhrase(verb: string): { complement: string; verb: string } | undefined {
+  const words = verb.trim().split(/\s+/);
+  if (words.length !== 2) return undefined;
+  const [complement, base] = words as [string, string];
+  const first = complement.charAt(0);
+  if (first === first.toLocaleLowerCase('de-DE')) return undefined;
+  return { complement, verb: base };
+}
+
 /** Partizip II and Perfekt auxiliary where the verb or its base verb is listed. */
 export function participle(verb: string): ParticipleEntry | undefined {
+  const phrase = splitPhrase(verb);
+  if (phrase !== undefined) {
+    const inner = participle(phrase.verb);
+    if (inner === undefined) return undefined;
+    return { participle: `${phrase.complement} ${inner.participle}`, auxiliary: inner.auxiliary };
+  }
   const word = verb.trim().toLocaleLowerCase('de-DE');
   const listed = lookup(PARTICIPLES, word);
   if (listed !== undefined) return listed;
@@ -187,10 +212,15 @@ export function conjugate(verb: string, person: string, tense: string): string |
   const parsedPerson = parsePerson(person);
   const parsedTense = parseTense(tense);
   if (parsedPerson === undefined || parsedTense === undefined) return undefined;
-  const word = verb.trim().toLocaleLowerCase('de-DE');
   const index = PERSONS.indexOf(parsedPerson);
+  const phrase = splitPhrase(verb);
+  if (phrase !== undefined && parsedTense === 'present') {
+    const finite = conjugate(phrase.verb, person, tense);
+    return finite === undefined ? undefined : `${finite} ${phrase.complement}`;
+  }
+  const word = verb.trim().toLocaleLowerCase('de-DE');
   if (parsedTense === 'present') return present(word, index);
-  const entry = participle(word);
+  const entry = participle(verb);
   if (entry === undefined) return undefined;
   const auxiliary = lookup(IRREGULAR_PRESENT, entry.auxiliary)?.[index];
   return auxiliary === undefined ? undefined : `${auxiliary} ${entry.participle}`;

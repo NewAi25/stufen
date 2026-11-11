@@ -69,6 +69,17 @@ export const SEPARABLE_PREFIXES: readonly string[] = [
   'zu',
 ];
 
+/**
+ * Separable verbs whose prefix is separable only for some verbs (um, über,
+ * unter, durch, wieder). They cannot be detected by prefix, so they are listed.
+ */
+export const LISTED_SEPARABLE: Readonly<Record<string, string>> = {
+  umziehen: 'um',
+  umsteigen: 'um',
+  umtauschen: 'um',
+  umdrehen: 'um',
+};
+
 /** Verbs that begin with the letters of a separable prefix but do not separate. */
 export const NOT_SEPARABLE: ReadonlySet<string> = new Set([
   'antworten',
@@ -114,6 +125,8 @@ const withSein = (participle: string): ParticipleEntry => ({ participle, auxilia
  * purpose: it has no participle of its own.
  */
 export const PARTICIPLES: Readonly<Record<string, ParticipleEntry>> = {
+  ziehen: { participle: 'gezogen', auxiliary: 'haben' },
+  steigen: { participle: 'gestiegen', auxiliary: 'sein' },
   sein: withSein('gewesen'),
   haben: withHaben('gehabt'),
   werden: withSein('geworden'),
@@ -177,6 +190,8 @@ export const PARTICIPLES: Readonly<Record<string, ParticipleEntry>> = {
  * schlafen takes haben but einschlafen takes sein.
  */
 export const SEPARABLE_AUXILIARY: Readonly<Record<string, Auxiliary>> = {
+  umziehen: 'sein',
+  umsteigen: 'sein',
   einschlafen: 'sein',
   eintreffen: 'sein',
   auftreffen: 'sein',
