@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-11-11
+
+### Added
+- Optional content fields the pack carries and the learner sees: `Exercise.instructionEn` and `instructionNative`, `LessonSummary.titleEn`, `description` and `introducesItemIds`, `Unit.titleEn`.
+
 ## [0.5.0] - 2026-11-11
 
 ### Added

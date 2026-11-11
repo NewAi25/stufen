@@ -183,6 +183,8 @@ export interface Unit {
   title: string;
   description: string | null;
   packVersion: string;
+  /** English title, shown while the interface is in English. */
+  titleEn?: string | null;
 }
 
 export type LessonKind = 'core' | 'review' | 'production' | 'checkpoint';
@@ -197,6 +199,10 @@ export interface LessonSummary {
   estimatedMinutes: number;
   candoIds: string[];
   packVersion: string;
+  titleEn?: string | null;
+  description?: string | null;
+  /** Items this lesson introduces. They enter the review queue when the lesson is done. */
+  introducesItemIds?: string[];
 }
 
 export interface Exercise {
@@ -210,6 +216,9 @@ export interface Exercise {
   candoIds: string[];
   itemIds: string[];
   packVersion: string;
+  /** The task line shown above the exercise, in English and in the target language. */
+  instructionEn?: string | null;
+  instructionNative?: string | null;
 }
 
 /** A lesson with its exercises in ordinal order. */
