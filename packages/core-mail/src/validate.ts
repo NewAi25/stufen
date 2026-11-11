@@ -18,6 +18,17 @@ const SINGLE_ADDRESS = /^[^\s@,;<>]+@[^\s@,;<>.]+(\.[^\s@,;<>.]+)+$/;
 
 const LINE_BREAK = /[\r\n]/;
 
+/**
+ * True when the value is one plausible email address, by the same rule
+ * `validateMessage` applies to `to`. Internal to the box: adapters use it to
+ * check their own sender address.
+ */
+export function isSingleAddress(value: unknown): value is string {
+  return (
+    typeof value === 'string' && value.length <= MAX_ADDRESS_LENGTH && SINGLE_ADDRESS.test(value)
+  );
+}
+
 export class MailValidationError extends Error {
   readonly field: MailField;
 
@@ -35,7 +46,7 @@ export class MailValidationError extends Error {
 export function validateMessage(message: MailMessage): void {
   const { to, subject, text } = message;
 
-  if (typeof to !== 'string' || to.length > MAX_ADDRESS_LENGTH || !SINGLE_ADDRESS.test(to)) {
+  if (!isSingleAddress(to)) {
     throw new MailValidationError('to', 'must be one plausible email address');
   }
 

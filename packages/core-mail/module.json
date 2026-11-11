@@ -1,7 +1,7 @@
 {
   "name": "@stufen/core-mail",
   "kind": "core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [
@@ -9,10 +9,14 @@
   ],
   "provides": [
     "createConsoleMail",
+    "createSmtpMail",
+    "createMailFromEnv",
     "validateMessage",
     "MailValidationError",
+    "MailDeliveryError",
+    "MailConfigError",
     "MAX_SUBJECT_LENGTH",
-    "types (SentMail, ConsoleMail, ConsoleMailOptions, MailField)",
+    "types (SentMail, ConsoleMail, ConsoleMailOptions, SmtpMail, SmtpMailOptions, SmtpTransport, CreateMailOptions, MailDeliveryErrorOptions, MailField)",
     "re exported types (MailPort, MailMessage)"
   ]
 }
