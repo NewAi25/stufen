@@ -215,6 +215,56 @@ describe('installPack', () => {
     expect(installed).not.toHaveBeenCalled();
   });
 
+  it('refuses a pack whose lesson introduces an item that does not exist', async () => {
+    const { content, written, store } = setup();
+    content.registerPack(
+      makePack((data) => {
+        const lesson = data.units[0]?.lessons[0];
+        if (lesson) lesson.introduces_item_ids = ['nl:vocab:hallo', 'nl:vocab:spook'];
+      }),
+    );
+
+    const error = await content.installPack('nl').catch((caught: unknown) => caught);
+
+    if (!(error instanceof PackInvalidError)) throw new Error('expected PackInvalidError');
+    expect(error.report.errors).toEqual([
+      expect.objectContaining({
+        severity: 'error',
+        path: 'units[nl:unit:a1-01-hallo].lessons[nl:lesson:a1-01-02].introduces_item_ids[1]',
+        message: 'item nl:vocab:spook does not exist in the pack',
+      }),
+    ]);
+    expect(written).toEqual([]);
+    expect(await store.listVersions('nl')).toEqual([]);
+  });
+
+  it('hands the writer the instructions, English titles and introduced items', async () => {
+    const { content, written } = setup();
+    content.registerPack(
+      makePack((data) => {
+        const lesson = data.units[1]?.lessons[0];
+        const exercise = lesson?.exercises[0];
+        if (!lesson || !exercise) throw new Error('fixture');
+        lesson.introduces_item_ids = ['nl:vocab:ja'];
+        exercise.instruction_en = 'Turn the card.';
+      }),
+    );
+
+    await content.installPack('nl');
+
+    const unit = written[0]?.units[1];
+    expect(unit?.titleEn).toBe('Family');
+    expect(unit?.lessons[0]).toMatchObject({
+      titleEn: 'Lesson 1',
+      description: null,
+      introducesItemIds: [written[0]?.items[2]?.id],
+    });
+    expect(unit?.lessons[0]?.exercises[0]).toMatchObject({
+      instructionEn: 'Turn the card.',
+      instructionNative: null,
+    });
+  });
+
   it('records the version as failed and rethrows when the writer throws', async () => {
     const { content, written, store, installed, failWith } = setup();
     const boom = new Error('curriculum tables are locked');

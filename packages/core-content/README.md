@@ -83,7 +83,18 @@ Payload shapes are not checked here. `scripts/validate-content.mjs` checks them 
 
 ### buildSnapshot
 
-`buildSnapshot(pack)` maps the pack's input shapes to a contracts `CurriculumSnapshot`: ids from `stableId`, `cando_ids` and `item_ids` resolved to ids, `packVersion` set on items, units, lessons and exercises. Units come out in level order and then ordinal order, lessons and exercises in ordinal order, descriptors and items in pack order. It is pure: building twice gives deep equal results. It throws an `Error` naming the key for a reference that is not in the pack; `installPack` validates first, so that only happens when it is called directly on an invalid pack.
+`buildSnapshot(pack)` maps the pack's input shapes to a contracts `CurriculumSnapshot`: ids from `stableId`, `cando_ids`, `item_ids` and `introduces_item_ids` resolved to ids, `packVersion` set on items, units, lessons and exercises. Units come out in level order and then ordinal order, lessons and exercises in ordinal order, descriptors and items in pack order. It is pure: building twice gives deep equal results. It throws an `Error` naming the key for a reference that is not in the pack; `installPack` validates first, so that only happens when it is called directly on an invalid pack.
+
+Text the learner sees travels with the snapshot (since 0.2.0, contracts 0.6.0):
+
+| Pack field | Snapshot field | When the pack has none |
+|------------|----------------|------------------------|
+| exercise `instruction_en`, `instruction_native` | `Exercise.instructionEn`, `instructionNative` | null |
+| lesson `title_en`, `description` | `LessonSummary.titleEn`, `description` | null |
+| lesson `introduces_item_ids` (item keys) | `LessonSummary.introducesItemIds` (item ids, pack order) | empty list |
+| unit `title_en` | `Unit.titleEn` | null |
+
+Still not carried, because the domain types have no field for them: a unit's `theme`, an item's `tags`, and the `source`, `source_note`, `sequence_ref`, `note` and `reviewed` bookkeeping.
 
 ### installPack
 
@@ -118,7 +129,7 @@ There is one row per language and version; recording the same pair again replace
 
 `createInMemoryContentStore()` keeps rows in an array and hands out copies. It is what the unit tests use.
 
-`createPostgresContentStore(db)` works on the table `content_pack_versions`, where `db` is what `createDb` from `@stufen/db` returns. `recordVersion` is owner work and runs in one transaction on `db`, so the supersede step and the new row land together. `activeVersion` and `listVersions` run inside `withUser(db, null, ...)` as the restricted role `stufen_app`; the table is reference data that everyone may read. Rows with the same `installedAt` come back in descending version order. A language code that is not in the `languages` table is rejected by the foreign key.
+`createPostgresContentStore(db)` works on the table `content_pack_versions`, where `db` is what `createDb` from `@stufen/db` returns. `recordVersion` is owner work and runs in one transaction on `db`, so the supersede step and the new row land together. The transaction first locks the language's row in `languages`, so two installs of one language run one after the other, and it marks the old row `superseded` before the new one becomes `active`. That keeps it inside the index from migration 0006 that allows one active row per language. If a writer outside this adapter still gets in between, the unique violation is caught and the transaction runs once more. `activeVersion` and `listVersions` run inside `withUser(db, null, ...)` as the restricted role `stufen_app`; the table is reference data that everyone may read and, since migration 0006, that the restricted role cannot write. Rows with the same `installedAt` come back in descending version order. A language code that is not in the `languages` table is rejected by the foreign key.
 
 Source of truth: `docs/04-module-contracts.md`. If a signature is not there, it is not public.
 

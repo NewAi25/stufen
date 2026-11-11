@@ -2,6 +2,20 @@
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-11
+
+### Added
+- `buildSnapshot` maps the fields contracts 0.6.0 gave a home: an exercise's `instruction_en` and `instruction_native` become `instructionEn` and `instructionNative`, a lesson's `title_en`, `description` and `introduces_item_ids` become `titleEn`, `description` and `introducesItemIds`, and a unit's `title_en` becomes `titleEn`. The text fields are always set, to null when the pack has none. `introducesItemIds` holds item ids from `stableId`, in pack order, and is an empty list when the lesson introduces nothing.
+- An unknown key in `introduces_item_ids` stays a validation error like any other dangling reference, so `installPack` refuses the pack. `buildSnapshot` called directly throws and names the lesson and the key.
+- Tests on the fixture pack for every new field, and on the real German pack: every exercise that has `instruction_en` keeps it in the snapshot, and the items lesson 1 introduces all resolve to items in the snapshot.
+- A shared `ContentStore` contract check: two versions recorded as `active` at the same time end with exactly one active row and no error. Two Postgres checks: six concurrent installs through two stores, and a retry when a writer outside the adapter made another version active meanwhile.
+
+### Changed
+- `createPostgresContentStore`: `recordVersion` now locks the language's row in `languages` (`for no key update`) at the start of its transaction, so writers of one language run one after the other. The previous active row is marked `superseded` before the new row becomes `active`, which the index `content_pack_versions_one_active_key` from migration 0006 requires. If the insert still meets that index (Postgres error 23505), the transaction is run once more.
+
+### Fixed
+- The integration test expected an update by the restricted role to match no row. Since migration 0006 the role has no write grant on `content_pack_versions`, so insert, update and delete are all refused with 42501, and the test says so.
+
 ## [0.1.0] - 2026-11-11
 
 ### Added

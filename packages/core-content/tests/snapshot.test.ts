@@ -115,6 +115,8 @@ describe('buildSnapshot: units, lessons and exercises', () => {
       candoIds: [stableId('nl:cando:A1.VOC.01')],
       itemIds: [stableId('nl:vocab:hallo')],
       packVersion: '0.1.0',
+      instructionEn: null,
+      instructionNative: null,
     });
   });
 
@@ -198,5 +200,84 @@ describe('buildSnapshot: units, lessons and exercises', () => {
     });
 
     expect(() => buildSnapshot(pack)).toThrow(/nl:vocab:spook/);
+  });
+});
+
+describe('buildSnapshot: fields added with contracts 0.6.0', () => {
+  it('carries the instruction of an exercise in both languages', () => {
+    const snapshot = buildSnapshot(
+      makePack((data) => {
+        const [flashcard, choice] = [
+          data.units[0]?.lessons[1]?.exercises[1],
+          data.units[0]?.lessons[1]?.exercises[0],
+        ];
+        if (!flashcard || !choice) throw new Error('fixture');
+        flashcard.instruction_en = 'Turn the card.';
+        flashcard.instruction_native = 'Draai de kaart om.';
+        choice.instruction_en = 'Choose the greeting.';
+      }),
+    );
+    const exercises = snapshot.units[0]?.lessons[0]?.exercises ?? [];
+
+    expect(
+      exercises.map((exercise) => [exercise.instructionEn, exercise.instructionNative]),
+    ).toEqual([
+      ['Turn the card.', 'Draai de kaart om.'],
+      ['Choose the greeting.', null],
+    ]);
+    // An exercise without an instruction gets null, never a missing field.
+    expect(snapshot.units[1]?.lessons[0]?.exercises[0]).toMatchObject({
+      instructionEn: null,
+      instructionNative: null,
+    });
+  });
+
+  it('carries the English titles and the lesson description', () => {
+    const snapshot = buildSnapshot(
+      makePack((data) => {
+        const lesson = data.units[0]?.lessons[1];
+        if (lesson) lesson.description = 'Greetings for the time of day.';
+      }),
+    );
+    const [unit] = snapshot.units;
+
+    expect(unit?.titleEn).toBe('Hello');
+    expect(snapshot.units[1]?.titleEn).toBe('Family');
+    expect(unit?.lessons[0]).toMatchObject({
+      titleEn: 'Lesson 1',
+      description: 'Greetings for the time of day.',
+    });
+    expect(unit?.lessons[1]).toMatchObject({ titleEn: 'Lesson 2', description: null });
+  });
+
+  it('resolves introduces_item_ids to item ids, in the order of the pack', () => {
+    const snapshot = buildSnapshot(
+      makePack((data) => {
+        const lesson = data.units[0]?.lessons[1];
+        if (lesson) lesson.introduces_item_ids = ['nl:vocab:dag', 'nl:vocab:hallo'];
+      }),
+    );
+    const lessons = snapshot.units.flatMap((unit) => unit.lessons);
+    const itemIds = new Set(snapshot.items.map((item) => item.id));
+
+    expect(lessons[0]?.introducesItemIds).toEqual([
+      stableId('nl:vocab:dag'),
+      stableId('nl:vocab:hallo'),
+    ]);
+    for (const id of lessons[0]?.introducesItemIds ?? []) expect(itemIds.has(id)).toBe(true);
+    // A lesson that introduces nothing gets an empty list.
+    expect(lessons[1]?.introducesItemIds).toEqual([]);
+    expect(lessons[2]?.introducesItemIds).toEqual([]);
+  });
+
+  it('throws for an introduced item that is not in the pack, naming the key', () => {
+    const pack = makePack((data) => {
+      const lesson = data.units[0]?.lessons[0];
+      if (lesson) lesson.introduces_item_ids = ['nl:vocab:spook'];
+    });
+
+    expect(() => buildSnapshot(pack)).toThrow(
+      /lesson nl:lesson:a1-01-02 refers to item nl:vocab:spook/,
+    );
   });
 });

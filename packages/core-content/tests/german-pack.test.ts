@@ -106,4 +106,65 @@ describe.skipIf(!fs.existsSync(GERMAN_CONTENT_DIR))('the German pack in content/
       }
     }
   });
+  it('keeps the instruction of every exercise that has one', () => {
+    const pack = loadGermanPackFromDisk();
+    const snapshot = buildSnapshot(pack);
+    const built = new Map(
+      snapshot.units
+        .flatMap((unit) => unit.lessons)
+        .flatMap((lesson) => lesson.exercises)
+        .map((exercise) => [exercise.id, exercise]),
+    );
+    let withInstruction = 0;
+
+    for (const unit of pack.loadUnits()) {
+      for (const lesson of unit.lessons) {
+        for (const exercise of lesson.exercises) {
+          const found = built.get(stableId(`${lesson.key}#${exercise.key}`));
+          expect(found?.instructionEn).toBe(exercise.instruction_en ?? null);
+          expect(found?.instructionNative).toBe(exercise.instruction_native ?? null);
+          if (exercise.instruction_en !== undefined) withInstruction += 1;
+        }
+      }
+    }
+    // The pack does carry instructions, so the loop above compared real text.
+    expect(withInstruction).toBeGreaterThan(0);
+  });
+
+  it('resolves the items lesson 1 introduces to items in the snapshot', () => {
+    const pack = loadGermanPackFromDisk();
+    const snapshot = buildSnapshot(pack);
+    const itemsById = new Map(snapshot.items.map((item) => [item.id, item]));
+    const source = pack
+      .loadUnits()
+      .flatMap((unit) => unit.lessons)
+      .find((lesson) => lesson.key === 'de:lesson:a1-01-01');
+    const lesson = snapshot.units
+      .flatMap((unit) => unit.lessons)
+      .find((candidate) => candidate.id === stableId('de:lesson:a1-01-01'));
+    if (!source || !lesson) throw new Error('content/de has no lesson de:lesson:a1-01-01');
+    const introduced = lesson.introducesItemIds ?? [];
+
+    expect(introduced.length).toBeGreaterThan(0);
+    // Same keys, same order, and every id is an item of this snapshot.
+    expect(introduced.map((id) => itemsById.get(id)?.key)).toEqual(source.introduces_item_ids);
+  });
+
+  it('carries English titles and descriptions for every unit and lesson', () => {
+    const pack = loadGermanPackFromDisk();
+    const snapshot = buildSnapshot(pack);
+    const itemIds = new Set(snapshot.items.map((item) => item.id));
+
+    for (const unit of pack.loadUnits()) {
+      const builtUnit = snapshot.units.find((candidate) => candidate.id === stableId(unit.key));
+      expect(builtUnit?.titleEn).toBe(unit.title_en);
+      for (const lesson of unit.lessons) {
+        const built = builtUnit?.lessons.find((candidate) => candidate.id === stableId(lesson.key));
+        expect(built?.titleEn).toBe(lesson.title_en);
+        expect(built?.description).toBe(lesson.description ?? null);
+        expect(built?.introducesItemIds).toHaveLength(lesson.introduces_item_ids?.length ?? 0);
+        for (const id of built?.introducesItemIds ?? []) expect(itemIds.has(id)).toBe(true);
+      }
+    }
+  });
 });

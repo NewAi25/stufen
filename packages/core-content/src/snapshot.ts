@@ -111,6 +111,8 @@ function toExercise(
     candoIds: resolve(exercise.cando_ids, lookup.candoIds, 'descriptor', `exercise ${key}`),
     itemIds: resolve(exercise.item_ids, lookup.itemIds, 'item', `exercise ${key}`),
     packVersion: version,
+    instructionEn: exercise.instruction_en ?? null,
+    instructionNative: exercise.instruction_native ?? null,
   };
 }
 
@@ -134,6 +136,14 @@ function toLesson(
     estimatedMinutes: lesson.estimated_minutes,
     candoIds: resolve(lesson.cando_ids, lookup.candoIds, 'descriptor', `lesson ${key}`),
     packVersion: version,
+    titleEn: lesson.title_en ?? null,
+    description: lesson.description ?? null,
+    introducesItemIds: resolve(
+      lesson.introduces_item_ids ?? [],
+      lookup.itemIds,
+      'item',
+      `lesson ${key}`,
+    ),
     exercises: [...lesson.exercises]
       .sort(byOrdinal)
       .map((exercise) => toExercise(lookup, version, key, id, exercise)),
@@ -156,6 +166,7 @@ function toUnit(
     title: unit.title,
     description: unit.description ?? null,
     packVersion: version,
+    titleEn: unit.title_en ?? null,
     lessons: [...unit.lessons]
       .sort(byOrdinal)
       .map((lesson) => toLesson(language, lookup, version, unit, id, lesson)),
@@ -165,7 +176,11 @@ function toUnit(
 /**
  * Builds what installPack hands to the SnapshotWriter. Ids are stableId of the
  * pack's keys (see ids.ts). References in `cando_ids` and `item_ids` become the
- * ids of those records. Units come out in level order, then ordinal order;
+ * ids of those records, and so do the items a lesson lists in
+ * `introduces_item_ids`. The optional text fields (`instruction_en`,
+ * `instruction_native`, `title_en`, a lesson's `description`) are always set
+ * in the snapshot, to null when the pack has none, so the same pack gives the
+ * same shape. Units come out in level order, then ordinal order;
  * lessons and exercises in ordinal order; descriptors and items in pack order.
  *
  * Throws an Error for a reference that is not in the pack. validatePackData

@@ -115,6 +115,24 @@ export function runContentStoreContract(
       expect(await store.activeVersion(first)).toBeNull();
     });
 
+    it('two versions recorded as active at the same time end with exactly one active row', async () => {
+      const store = await makeStore();
+      // Several rounds, since the outcome of a race is not the same every time.
+      for (let round = 0; round < 5; round += 1) {
+        const a = input(round * 2);
+        const b = input(round * 2 + 1);
+
+        const stored = await Promise.all([store.recordVersion(a), store.recordVersion(b)]);
+
+        expect(stored.map((row) => row.version)).toEqual([a.version, b.version]);
+        const listed = await store.listVersions(first);
+        expect(listed.filter((row) => row.status === 'active')).toHaveLength(1);
+        expect(listed).toHaveLength((round + 1) * 2);
+        const active = await store.activeVersion(first);
+        expect([a.version, b.version]).toContain(active?.version);
+      }
+    });
+
     it('recording the same language and version again replaces that row', async () => {
       const store = await makeStore();
       const version = uniqueVersion();

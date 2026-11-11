@@ -122,6 +122,76 @@ describe.skipIf(!url)('createPostgresContentStore on a real Postgres', () => {
       expect(await rawRow('xx', version)).toBeUndefined();
     });
 
+    it('two stores on separate connections never leave two active rows', async () => {
+      const one = makeStore();
+      const two = makeStore();
+      const versions = Array.from({ length: 6 }, () => uniqueVersion());
+
+      // Six installs of one language at once, three per store.
+      const results = await Promise.allSettled(
+        versions.map((version, index) =>
+          (index % 2 === 0 ? one : two).recordVersion({
+            language: 'fr',
+            version,
+            checksum: 'c',
+            status: 'active',
+          }),
+        ),
+      );
+
+      expect(results.map((result) => result.status)).toEqual(versions.map(() => 'fulfilled'));
+      const rows = await db
+        .selectFrom('content_pack_versions')
+        .select(['version', 'status'])
+        .where('language_code', '=', 'fr')
+        .execute();
+      expect(rows).toHaveLength(versions.length);
+      expect(rows.filter((row) => row.status === 'active')).toHaveLength(1);
+      expect(rows.filter((row) => row.status === 'superseded')).toHaveLength(versions.length - 1);
+    });
+
+    it('retries once when a writer outside the adapter made another version active meanwhile', async () => {
+      const store = makeStore();
+      const outside = uniqueVersion('0.1.0');
+      const mine = uniqueVersion('0.2.0');
+      written.push({ language: 'nl', version: outside });
+      let release: () => void = () => {};
+      const gate = new Promise<void>((resolve) => {
+        release = resolve;
+      });
+      let inserted: () => void = () => {};
+      const outsideInserted = new Promise<void>((resolve) => {
+        inserted = resolve;
+      });
+
+      // A plain insert that does not take the language lock and stays open.
+      const outsideWrite = db.transaction().execute(async (trx) => {
+        await trx
+          .insertInto('content_pack_versions')
+          .values({ language_code: 'nl', version: outside, checksum: 'c', status: 'active' })
+          .execute();
+        inserted();
+        await gate;
+      });
+      await outsideInserted;
+
+      // Blocks on the one active index until the other transaction commits,
+      // then fails with 23505 and tries again.
+      const recording = store.recordVersion({
+        language: 'nl',
+        version: mine,
+        checksum: 'c',
+        status: 'active',
+      });
+      await new Promise((resolve) => setTimeout(resolve, 150));
+      release();
+      await outsideWrite;
+
+      await expect(recording).resolves.toMatchObject({ version: mine, status: 'active' });
+      expect(await rawRow('nl', outside)).toMatchObject({ status: 'superseded' });
+      expect(await rawRow('nl', mine)).toMatchObject({ status: 'active' });
+    });
+
     it('the restricted role reads every row but cannot write', async () => {
       const store = makeStore();
       const version = uniqueVersion();
@@ -145,17 +215,23 @@ describe.skipIf(!url)('createPostgresContentStore on a real Postgres', () => {
           .values({ language_code: 'nl', version: forged, checksum: 'c', status: 'active' })
           .execute(),
       );
-      // 42501 insufficient_privilege: stufen_app has no insert policy on this table.
+      // 42501 insufficient_privilege: stufen_app may only read this table.
       await expect(insert).rejects.toMatchObject({ code: '42501' });
 
-      const update = await withUser(db, null, (trx) =>
+      // Since migration 0006 the role has no write grant at all on this table,
+      // so an update or a delete is refused outright instead of matching no row.
+      const update = withUser(db, null, (trx) =>
         trx
           .updateTable('content_pack_versions')
           .set({ status: 'failed' })
           .where('version', '=', version)
-          .executeTakeFirst(),
+          .execute(),
       );
-      expect(update.numUpdatedRows).toBe(0n);
+      await expect(update).rejects.toMatchObject({ code: '42501' });
+      const remove = withUser(db, null, (trx) =>
+        trx.deleteFrom('content_pack_versions').where('version', '=', version).execute(),
+      );
+      await expect(remove).rejects.toMatchObject({ code: '42501' });
       expect(await rawRow('nl', version)).toMatchObject({ status: 'active' });
       expect(await rawRow('nl', forged)).toBeUndefined();
     });
