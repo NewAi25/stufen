@@ -5,7 +5,7 @@
 Mastery per can do descriptor, level estimate and streaks.
 Applies the evidence rule from ADR-004. Never grades anything itself.
 
-Kind: `core`. May import: `contracts`.
+Kind: `core`. May import: `contracts`, `db`.
 
 ## Public API
 
@@ -23,13 +23,15 @@ recordEstimate(userId, language, level, confidence, method): Promise<void>  // e
 streak(userId, language): Promise<Streak>
 levelMap(userId, language): Promise<ProgressLevelMap>     // per level: descriptors, mastered count, status, checkpoint status
 
-// Storage port and its in memory adapter
+// Storage port and its two adapters
 MasteryStore
 createInMemoryMasteryStore(): MasteryStore
+createPostgresMasteryStore(db: Database): MasteryStore    // db is the handle from createDb in @stufen/db
 
 // Pure rules
 isMastered(row, cando, recent?): boolean
 effectiveRule(cando): Required<MasteryRule>
+defaultProductionScore(level): number                     // 3 for A1 to B2, 4 for C1 and C2
 recentAccuracy(outcomes): number | null
 levelStatus(candosOfLevel, masteryRows, checkpointPassed): 'reached' | 'working_towards' | 'not_started'
 levelConditions(candosOfLevel, masteryRows, checkpointPassed): LevelConditions
@@ -41,7 +43,7 @@ Source of truth: `docs/04-module-contracts.md`. If a signature is not there, it 
 
 | Option | What it is |
 |--------|------------|
-| `store` | A `MasteryStore`. Tests use `createInMemoryMasteryStore()`. The Postgres adapter comes with P1-31. |
+| `store` | A `MasteryStore`. Tests use `createInMemoryMasteryStore()`. The app passes `createPostgresMasteryStore(db)`. |
 | `bus` | The event bus from `contracts`. Events are emitted on it. |
 | `listCandos(language, level?)` | An async function that returns the descriptors. The composition root passes the one from `core-curriculum`. This box never imports that box. |
 | `now` | Optional clock. Default: the system clock. |
@@ -54,9 +56,9 @@ A descriptor is mastered when all of these hold:
 1. It has at least 6 attempts.
 2. The learner was correct in at least 2 different exercise types.
 3. At least 80 percent of the last 10 attempts were correct.
-4. Only for `writing`, `spoken_production` and `spoken_interaction`: the best graded sample scored at least 3 of 5.
+4. Only for `writing`, `spoken_production` and `spoken_interaction`: the best graded sample scored at least 3 of 5 for a descriptor at A1 to B2, and at least 4 of 5 for a descriptor at C1 or C2. The level is the descriptor's own `level`.
 
-A descriptor can carry its own `masteryRule`. Each number it sets replaces the default number, and the numbers it leaves out stay at the default. A C2 writing descriptor can ask for 4 of 5 this way. A production descriptor always needs a graded sample, whatever number it sets.
+A descriptor can carry its own `masteryRule`. Each number it sets replaces the default number, and the numbers it leaves out stay at the default. A C1 descriptor that sets `bestProductionScore` to 3 is mastered with 3 of 5, and a B2 descriptor can ask for 4 of 5 the same way. A production descriptor always needs a graded sample, whatever number it sets.
 
 `exerciseTypesSeen` on the mastery row lists an exercise type from the first correct attempt of that type. A type the learner only got wrong is not listed.
 
@@ -104,6 +106,26 @@ Every `attempt.recorded` counts for the streak of its language. A day is a UTC c
 
 `recordProductionScore` and `recordEstimate` throw `ProgressValidationError` with a `field` name for bad input, and store nothing. The bus handler never throws into the bus. It reports through `onError` and carries on with the next descriptor.
 
+### The Postgres adapter
+
+`createPostgresMasteryStore(db)` implements `MasteryStore` on the four tables below. `db` is the handle from `createDb` in `@stufen/db`. This box imports nothing else for database work.
+
+Every method opens its own `withUser(db, userId, fn)` transaction for the user it acts for. Inside it the role is `stufen_app` and row level security is on, so a statement sees and changes only that user's rows. The owner connection is never used for learner data. A user id that is not a uuid is rejected with a `TypeError` before any query runs.
+
+Both adapters pass the same contract, `tests/store-contract.ts`. The tables decide a few things the in memory adapter leaves to the caller:
+
+| Point | What Postgres does |
+|-------|--------------------|
+| `updatedAt` of a mastery row | The first write keeps the caller's value. On every later write the trigger `cando_mastery_updated` sets the database clock |
+| Order of `listMastery` | By descriptor id. The table has no column for the order rows were first written. The service does not depend on the order |
+| Numbers | `bestProductionScore` keeps 2 decimals and `recentAccuracy` and `confidence` keep 3, as the `numeric` columns do. They come back as numbers. The rule itself reads accuracy from the attempt history, not from the rounded column |
+| Attempt history | `cando_outcomes` is append only for the app role: no update, no delete. Every attempt stays in the table. `recentOutcomes` reads the newest ones, at most 50, and returns them oldest first |
+| Append order | `created_at` is the only order column of `cando_outcomes` and `level_estimates`. An append therefore never stores a time at or before the newest row of the same history: it is moved one microsecond past it. Attempts with the same millisecond keep their order and read back with that millisecond. An attempt that arrives with an older time than the newest one reads back with the newest one's time |
+| Streak day | `last_active_date` is written and read as a plain `YYYY-MM-DD` string and never passes through a JavaScript `Date`, so it cannot shift by a day in any time zone. Any other string is rejected |
+| Unknown descriptor | `cando_mastery` and `cando_outcomes` point at `cando_descriptors`. An attempt for a descriptor id that is not in that table stores no evidence; the failure goes to `onError` and the other descriptors of the event are still handled |
+
+Each store method is one transaction. A whole attempt (append the outcome, read the row, write the row) is several transactions, kept in order by the queue inside one `createProgress` instance. Two server processes that handle attempts of the same learner and descriptor at the same moment are not serialised against each other yet.
+
 ## Owns tables
 
 | Table |
@@ -111,10 +133,9 @@ Every `attempt.recorded` counts for the streak of its language. A day is a UTC c
 | `cando_mastery` |
 | `level_estimates` |
 | `streaks` |
+| `cando_outcomes` |
 
-Columns and policies are in `docs/03-data-schema.md` and `packages/db/migrations/`.
-
-The store also keeps the recent attempt outcomes per user and descriptor (`appendAttemptOutcome`, `recentOutcomes`), because the rule needs the last 10 attempts. No table in `docs/03-data-schema.md` holds them yet. The Postgres adapter (P1-31) has to settle where they live.
+Columns and policies are in `docs/03-data-schema.md` and `packages/db/migrations/`. `cando_outcomes` (migration 0005) holds one row per attempt and descriptor, because the rule needs the last 10 attempts. The store reads and writes it through `appendAttemptOutcome` and `recentOutcomes`.
 
 ## Emits and listens
 
@@ -135,6 +156,16 @@ The store also keeps the recent attempt outcomes per user and descriptor (`appen
 ```
 pnpm --filter @stufen/core-progress test
 ```
+
+This runs the rule tests, the service tests and the store contract on the in memory adapter. No database is needed. The Postgres tests in `tests/postgres-store.integration.test.ts` are skipped.
+
+To run the Postgres tests as well, point `DATABASE_URL` at a PostgreSQL 16 or later that has every migration in `packages/db/migrations/` applied (`pnpm db:migrate`), with a login user that owns the tables:
+
+```
+DATABASE_URL=postgres://stufen:stufen@localhost:5432/stufen pnpm --filter @stufen/core-progress test
+```
+
+The integration test runs the same store contract on Postgres, then the whole `createProgress` service on the Postgres store with the real bus, then the row security checks between two users. It creates its own users (a row in `users`, then `ensure_profile`) and its own descriptors (random ids, unique codes, language `nl`) through the owner connection, and deletes exactly those rows at the end. It can run against a database that holds other data.
 
 ## Status
 

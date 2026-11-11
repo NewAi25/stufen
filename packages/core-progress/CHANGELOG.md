@@ -2,6 +2,29 @@
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-11
+
+### Added
+- `src/postgres-store.ts`: `createPostgresMasteryStore(db)`, the Postgres adapter of the `MasteryStore` port (P1-31), exported from `src/index.ts`. It reads and writes `cando_mastery`, `cando_outcomes`, `level_estimates` and `streaks` through `@stufen/db` only. Every method runs inside `withUser(db, userId, fn)` for the user it acts for, so row level security applies to every statement.
+- `upsertMastery` and `upsertStreak` are one `insert ... on conflict ... do update` each. Numeric columns come back as numbers, text arrays as string arrays, timestamps as ISO strings.
+- `appendAttemptOutcome` inserts into `cando_outcomes`, which is append only for the app role. `recentOutcomes` reads the newest rows and returns them oldest first, as the in memory adapter does.
+- Appends to `cando_outcomes` and `level_estimates` keep their order even when two rows carry the same time or a later row carries an earlier one: the stored `created_at` is never at or before the newest row of the same history. Appends to one history queue behind an advisory lock.
+- The streak day is written and read as a plain `YYYY-MM-DD` string, so it cannot shift by a day through a time zone.
+- `defaultProductionScore(level)`, `ADVANCED_PRODUCTION_SCORE` and `ADVANCED_LEVELS` in `src/rule.ts`.
+- `tests/store-contract.ts`: `runMasteryStoreContract(name, makeHarness)`, the behaviour both adapters share. `tests/store-contract.memory.test.ts` runs it on the in memory adapter. `tests/postgres-store.integration.test.ts` runs it on Postgres, then the whole `createProgress` service on the Postgres store with the real bus, then the row security checks between two users. The integration test is skipped without `DATABASE_URL` and removes every row it created.
+
+### Changed
+- The mastery rule: the default best production score now depends on the descriptor's level. It is 3 of 5 for A1 to B2 and 4 of 5 for C1 and C2, as `docs/04-module-contracts.md` says. A descriptor's own `masteryRule.bestProductionScore` still replaces it. Before, the default was 3 at every level.
+- `effectiveRule(cando)` and `isMastered(row, cando, recent?)` now read `cando.level`. Callers that pass a full `Cando` need no change.
+- The `MasteryStore` port comments say what an adapter may decide: `updatedAt` after a replace, the order of `listMastery`, and that `recentOutcomes` never returns more than `OUTCOME_HISTORY_LIMIT` attempts. The in memory adapter behaves as before.
+
+### Notes
+- On Postgres the trigger `cando_mastery_updated` sets `updated_at` to the database clock on every update, so `updatedAt` after a replace is not the caller's value.
+- `cando_mastery` has no column for the order rows were first written. The Postgres adapter orders `listMastery` by descriptor id.
+- `recent_accuracy` is `numeric(4,3)` and `best_production_score` is `numeric(3,2)`, so stored values are rounded to 3 and 2 decimals. The rule computes accuracy from the attempt history and is not affected.
+- An attempt for a descriptor id that is not in `cando_descriptors` cannot be stored on Postgres (foreign key). The in memory adapter keeps such evidence.
+- Each store method is its own transaction. Attempts of one learner and descriptor handled by two server processes at the same moment are not serialised against each other.
+
 ## [0.1.0] - 2026-11-06
 
 ### Added

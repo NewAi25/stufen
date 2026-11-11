@@ -1,8 +1,10 @@
 // Storage port for core-progress and its in memory adapter. The port lists
 // the reads and writes this box needs from the `cando_mastery`,
 // `level_estimates` and `streaks` tables in docs/03-data-schema.md, plus the
-// short attempt history the mastery rule needs for recent accuracy. The
-// Postgres adapter (P1-31) implements the same interface.
+// short attempt history the mastery rule needs for recent accuracy, which
+// lives in `cando_outcomes`. The Postgres adapter in postgres-store.ts
+// implements the same interface, and tests/store-contract.ts holds the
+// behaviour both adapters share.
 import type {
   CandoMastery,
   ExerciseTypeId,
@@ -22,13 +24,25 @@ export interface AttemptOutcome {
 export interface MasteryStore {
   /** The row for one user and one descriptor, or null when there is no evidence yet. */
   getMastery(userId: string, candoId: string): Promise<CandoMastery | null>;
-  /** Inserts the row, or replaces the row with the same `userId` and `candoId`. */
+  /**
+   * Inserts the row, or replaces the row with the same `userId` and `candoId`.
+   * On a replace an adapter may set `updatedAt` from its own clock (Postgres
+   * does, through a trigger); every other field is stored as given.
+   */
   upsertMastery(row: CandoMastery): Promise<void>;
-  /** Every mastery row of the user, in the order the rows were first written. */
+  /**
+   * Every mastery row of the user. The order is stable but belongs to the
+   * adapter: in memory it is the order the rows were first written, Postgres
+   * orders by descriptor id. Callers that need an order sort the rows.
+   */
   listMastery(userId: string): Promise<CandoMastery[]>;
   /** Appends one attempt to the history of a user and descriptor. */
   appendAttemptOutcome(userId: string, candoId: string, outcome: AttemptOutcome): Promise<void>;
-  /** The last `limit` attempts of a user and descriptor, oldest first. */
+  /**
+   * The last `limit` attempts of a user and descriptor in the order they were
+   * appended, oldest first. Never more than OUTCOME_HISTORY_LIMIT. Empty when
+   * `limit` is not a positive integer.
+   */
   recentOutcomes(userId: string, candoId: string, limit: number): Promise<AttemptOutcome[]>;
   /** Appends one estimate. Estimates are never changed or removed. */
   insertEstimate(estimate: LevelEstimate): Promise<void>;
@@ -42,7 +56,10 @@ export interface MasteryStore {
   upsertStreak(streak: Streak): Promise<void>;
 }
 
-/** The in memory adapter never keeps more attempts per descriptor than this. */
+/**
+ * No adapter returns more attempts per descriptor than this. The in memory
+ * adapter also keeps no more; Postgres keeps every row and reads the newest.
+ */
 export const OUTCOME_HISTORY_LIMIT = 50;
 
 /**

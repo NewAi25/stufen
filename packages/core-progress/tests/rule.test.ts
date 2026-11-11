@@ -2,9 +2,10 @@
 // override, and the four conditions of "Level L is reached" from
 // docs/04-module-contracts.md. No store, no bus, no clock.
 import { describe, expect, it } from 'vitest';
-import type { Cando, CandoMastery, MasteryRule, Skill } from '@stufen/contracts';
+import type { Cando, CandoMastery, CefrLevel, MasteryRule, Skill } from '@stufen/contracts';
 import {
   DEFAULT_MASTERY_RULE,
+  defaultProductionScore,
   effectiveRule,
   isMastered,
   levelConditions,
@@ -12,13 +13,18 @@ import {
   recentAccuracy,
 } from '../src/index';
 
-function cando(id: string, skill: Skill, masteryRule: MasteryRule | null = null): Cando {
+function cando(
+  id: string,
+  skill: Skill,
+  masteryRule: MasteryRule | null = null,
+  level: CefrLevel = 'A1',
+): Cando {
   return {
     id,
     languageCode: 'de',
-    level: 'A1',
+    level,
     skill,
-    code: `A1.${id}`,
+    code: `${level}.${id}`,
     textEn: `Can do ${id}`,
     textNative: null,
     source: 'cefr-cv-2020',
@@ -53,7 +59,7 @@ function outcomes(correct: number, wrong: number): { correct: boolean }[] {
 const reading = cando('rea', 'reading');
 
 describe('isMastered: the default rule', () => {
-  it('has the numbers from docs/04', () => {
+  it('has the numbers from docs/04 for A1 to B2', () => {
     expect(DEFAULT_MASTERY_RULE).toEqual({
       evidenceCount: 6,
       distinctExerciseTypes: 2,
@@ -117,6 +123,65 @@ describe('isMastered: the default rule', () => {
       expect(isMastered(row('x', { bestProductionScore: null }), cando('x', skill))).toBe(true);
     },
   );
+});
+
+describe('isMastered: the production score threshold defaults by level', () => {
+  it('defaultProductionScore is 3 for A1 to B2 and 4 for C1 and C2', () => {
+    expect((['A1', 'A2', 'B1', 'B2'] as const).map(defaultProductionScore)).toEqual([3, 3, 3, 3]);
+    expect((['C1', 'C2'] as const).map(defaultProductionScore)).toEqual([4, 4]);
+  });
+
+  it('effectiveRule takes the default from the level of the descriptor', () => {
+    expect(effectiveRule(cando('x', 'writing', null, 'B2')).bestProductionScore).toBe(3);
+    expect(effectiveRule(cando('x', 'writing', null, 'C1')).bestProductionScore).toBe(4);
+    expect(effectiveRule(cando('x', 'writing', null, 'C2')).bestProductionScore).toBe(4);
+  });
+
+  it('B2: a best production score of 3 passes', () => {
+    const b2 = cando('wri', 'writing', null, 'B2');
+    expect(isMastered(row('wri', { bestProductionScore: 2 }), b2)).toBe(false);
+    expect(isMastered(row('wri', { bestProductionScore: 3 }), b2)).toBe(true);
+  });
+
+  it.each(['C1', 'C2'] as const)('%s: 3 fails and 4 passes', (level) => {
+    const c = cando('wri', 'writing', null, level);
+    expect(isMastered(row('wri', { bestProductionScore: null }), c)).toBe(false);
+    expect(isMastered(row('wri', { bestProductionScore: 3 }), c)).toBe(false);
+    expect(isMastered(row('wri', { bestProductionScore: 3.9 }), c)).toBe(false);
+    expect(isMastered(row('wri', { bestProductionScore: 4 }), c)).toBe(true);
+  });
+
+  it.each(['spoken_production', 'spoken_interaction'] as const)(
+    'C1: %s follows the same threshold',
+    (skill) => {
+      const c = cando('spk', skill, null, 'C1');
+      expect(isMastered(row('spk', { bestProductionScore: 3 }), c)).toBe(false);
+      expect(isMastered(row('spk', { bestProductionScore: 4 }), c)).toBe(true);
+    },
+  );
+
+  it("a C1 descriptor's own masteryRule overrides the level default, down or up", () => {
+    const lenient = cando('wri', 'writing', { bestProductionScore: 3 }, 'C1');
+    expect(isMastered(row('wri', { bestProductionScore: 3 }), lenient)).toBe(true);
+    const strict = cando('wri', 'writing', { bestProductionScore: 5 }, 'C1');
+    expect(isMastered(row('wri', { bestProductionScore: 4 }), strict)).toBe(false);
+    expect(isMastered(row('wri', { bestProductionScore: 5 }), strict)).toBe(true);
+  });
+
+  it('an override of another field on a C1 descriptor keeps the level default of 4', () => {
+    const c = cando('wri', 'writing', { evidenceCount: 3 }, 'C1');
+    expect(effectiveRule(c)).toEqual({
+      ...DEFAULT_MASTERY_RULE,
+      evidenceCount: 3,
+      bestProductionScore: 4,
+    });
+    expect(isMastered(row('wri', { bestProductionScore: 3 }), c)).toBe(false);
+  });
+
+  it('a receptive C1 descriptor still needs no production score', () => {
+    const c = cando('rea', 'reading', null, 'C1');
+    expect(isMastered(row('rea', { bestProductionScore: null }), c)).toBe(true);
+  });
 });
 
 describe('recentAccuracy', () => {

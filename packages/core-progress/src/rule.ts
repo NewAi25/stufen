@@ -2,16 +2,33 @@
 // level is reached. No storage, no clock, no bus. Sources:
 // docs/04-module-contracts.md (core-progress) and docs/05-curriculum-spine.md
 // (Evidence rule).
-import type { Cando, CandoMastery, MasteryRule, Skill } from '@stufen/contracts';
+import type { Cando, CandoMastery, CefrLevel, MasteryRule, Skill } from '@stufen/contracts';
 import type { AttemptOutcome } from './store';
 
-/** The default mastery rule from docs/04. A descriptor may override any field. */
+/**
+ * The default mastery rule from docs/04 for A1 to B2. A descriptor may
+ * override any field. At C1 and C2 the default production score is higher,
+ * see defaultProductionScore.
+ */
 export const DEFAULT_MASTERY_RULE: Readonly<Required<MasteryRule>> = {
   evidenceCount: 6,
   distinctExerciseTypes: 2,
   recentAccuracy: 0.8,
   bestProductionScore: 3,
 };
+
+/** The default best production score at C1 and C2: 4 of 5. */
+export const ADVANCED_PRODUCTION_SCORE = 4;
+
+/** Levels whose production descriptors ask for ADVANCED_PRODUCTION_SCORE by default. */
+export const ADVANCED_LEVELS: readonly CefrLevel[] = ['C1', 'C2'];
+
+/** The default best production score of a level: 3 for A1 to B2, 4 for C1 and C2. */
+export function defaultProductionScore(level: CefrLevel): number {
+  return ADVANCED_LEVELS.includes(level)
+    ? ADVANCED_PRODUCTION_SCORE
+    : DEFAULT_MASTERY_RULE.bestProductionScore;
+}
 
 /** Recent accuracy looks at this many of the latest attempts. */
 export const RECENT_WINDOW = 10;
@@ -32,14 +49,17 @@ export function isProductionSkill(skill: Skill): boolean {
   return PRODUCTION_SKILLS.includes(skill);
 }
 
-/** The default rule with the descriptor's own numbers laid over it, field by field. */
-export function effectiveRule(cando: Pick<Cando, 'masteryRule'>): Required<MasteryRule> {
+/**
+ * The default rule with the descriptor's own numbers laid over it, field by
+ * field. The default production score comes from the descriptor's level.
+ */
+export function effectiveRule(cando: Pick<Cando, 'level' | 'masteryRule'>): Required<MasteryRule> {
   const own = cando.masteryRule;
   return {
     evidenceCount: own?.evidenceCount ?? DEFAULT_MASTERY_RULE.evidenceCount,
     distinctExerciseTypes: own?.distinctExerciseTypes ?? DEFAULT_MASTERY_RULE.distinctExerciseTypes,
     recentAccuracy: own?.recentAccuracy ?? DEFAULT_MASTERY_RULE.recentAccuracy,
-    bestProductionScore: own?.bestProductionScore ?? DEFAULT_MASTERY_RULE.bestProductionScore,
+    bestProductionScore: own?.bestProductionScore ?? defaultProductionScore(cando.level),
   };
 }
 
@@ -64,7 +84,7 @@ export function recentAccuracy(
  */
 export function isMastered(
   row: CandoMastery,
-  cando: Pick<Cando, 'skill' | 'masteryRule'>,
+  cando: Pick<Cando, 'level' | 'skill' | 'masteryRule'>,
   recent?: readonly Pick<AttemptOutcome, 'correct'>[],
 ): boolean {
   const rule = effectiveRule(cando);

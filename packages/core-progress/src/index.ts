@@ -6,11 +6,15 @@
 
 export { OUTCOME_HISTORY_LIMIT, createInMemoryMasteryStore } from './store';
 export type { AttemptOutcome, MasteryStore } from './store';
+export { createPostgresMasteryStore } from './postgres-store';
 export {
+  ADVANCED_LEVELS,
+  ADVANCED_PRODUCTION_SCORE,
   DEFAULT_MASTERY_RULE,
   LEVEL_MASTERY_PERCENT,
   PRODUCTION_SKILLS,
   RECENT_WINDOW,
+  defaultProductionScore,
   effectiveRule,
   isMastered,
   isProductionSkill,
