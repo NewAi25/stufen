@@ -1,18 +1,29 @@
 {
   "name": "@stufen/core-progress",
   "kind": "core",
-  "version": "0.0.0",
-  "status": "planned",
+  "version": "0.1.0",
+  "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [
     "contracts",
     "db"
   ],
   "provides": [
+    "createProgress",
+    "attach",
+    "recordProductionScore",
     "masteryFor",
     "levelEstimate",
     "recordEstimate",
     "streak",
-    "levelMap"
+    "levelMap",
+    "MasteryStore",
+    "createInMemoryMasteryStore",
+    "isMastered",
+    "effectiveRule",
+    "recentAccuracy",
+    "levelStatus",
+    "levelConditions",
+    "ProgressValidationError"
   ]
 }
