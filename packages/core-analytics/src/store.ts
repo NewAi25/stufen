@@ -1,6 +1,6 @@
 // Storage port for the events table (docs/03-data-schema.md, core-analytics)
-// and the in memory adapter used by unit tests. The Postgres adapter comes
-// later and implements the same interface on top of `db`.
+// and the in memory adapter used by unit tests. The Postgres adapter in
+// postgres-store.ts implements the same interface on top of `db`.
 
 /** One row of the events table. `createdAt` is an ISO 8601 timestamp. */
 export interface AnalyticsEvent {
@@ -53,7 +53,12 @@ export function createInMemoryEventStore(): EventStore {
     },
 
     async list(filter: EventFilter = {}): Promise<AnalyticsEvent[]> {
-      return rows.filter((row) => matches(row, filter)).map(copy);
+      // Oldest first by createdAt. The sort is stable, so rows with the same
+      // time stay in insert order.
+      return rows
+        .filter((row) => matches(row, filter))
+        .sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt))
+        .map(copy);
     },
 
     async count(name?: string): Promise<number> {

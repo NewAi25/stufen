@@ -7,3 +7,4 @@ export { createAnalytics } from './analytics';
 export type { Analytics, AnalyticsErrorHandler, AnalyticsOptions } from './analytics';
 export { createInMemoryEventStore } from './store';
 export type { AnalyticsEvent, EventFilter, EventStore } from './store';
+export { createPostgresEventStore } from './postgres-store';

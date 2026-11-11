@@ -1,7 +1,7 @@
 {
   "name": "@stufen/core-analytics",
   "kind": "core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [
@@ -12,6 +12,7 @@
     "createAnalytics (attach, track)",
     "EventStore port",
     "createInMemoryEventStore",
+    "createPostgresEventStore",
     "types (Analytics, AnalyticsOptions, AnalyticsErrorHandler, AnalyticsEvent, EventFilter)"
   ]
 }
