@@ -131,7 +131,7 @@ The adapter follows the two kinds of access in `docs/03-data-schema.md`.
 | `usedToday(userId, limit, dayKey)` | the learner, inside `withUser(db, userId)` | The view is `security_invoker`, so it shows the own usage only |
 | `getFlag(key)` | signed out, inside `withUser(db, null)` | Flags are content. Anyone may read them |
 | `upsertEntitlement(entitlement)` | the owner, on `db` directly | Learners may not write entitlements |
-| `setFlag(flag)` | the owner, on `db` directly | Learners may not write flags |
+| `setFlag(flag)` | the owner, on `db` directly | Learners may not write flags. The app role has no write grant on `feature_flags` (migration 0006) |
 | `recordUse(...)` | nothing runs | Usage comes from the real rows |
 
 Three things follow from this.
@@ -207,7 +207,7 @@ The test creates its own users through the owner connection (an insert into `use
 | Check | Expected |
 |-------|----------|
 | The shared store contract | passes on Postgres as it does in memory |
-| The row `ensure_profile` made | read as `free_beta`, source `default`, limits 200, 20 and 30 |
+| The row `ensure_profile` made | read as `free_beta`, source `default`, no limits of its own (since migration 0005). `remaining` is 200, 20 and 30, from `PLANS` |
 | `setPlan` through the service | the row is changed, overrides are kept, `entitlement.changed` is emitted once |
 | User A asks for B's entitlement as role `stufen_app` | no rows. Signed out: no rows |
 | `usedToday` for a new user | 0 for all three limits |
@@ -218,7 +218,7 @@ The test creates its own users through the owner connection (an insert into `use
 | `postgresDayKeyFor` for users in UTC+14 and UTC-12 | two different days, and each user's usage is found under the own day only |
 | `postgresDayKeyFor` for an unknown zone, and for a user without a profile | the UTC day |
 | A 50 percent flag, 40 users | the same users get it as with the in memory store |
-| A learner tries to write a flag | the update changes no row, the insert is refused |
+| A learner, or nobody signed in, tries to update, insert or delete a flag | every write is refused with `permission denied` (42501, since migration 0006), and the flag is unchanged |
 
 ## Status
 

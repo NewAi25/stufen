@@ -419,19 +419,25 @@ describe.skipIf(!url)('Postgres store: feature flags', () => {
 
     expect(await read(null)).toEqual([{ enabled: true }]);
     expect(await read(learner)).toEqual([{ enabled: true }]);
-    // No write policy for the learner role: an update matches no row, an insert is refused.
-    const updated = await withUser(db, learner, (trx) =>
-      trx
-        .updateTable('feature_flags')
-        .set({ enabled: false })
-        .where('key', '=', key)
-        .executeTakeFirst(),
+    // Since migration 0006 the learner role has no write grant on content
+    // tables, so every write is refused with "permission denied" (42501).
+    const updated = withUser(db, learner, (trx) =>
+      trx.updateTable('feature_flags').set({ enabled: false }).where('key', '=', key).execute(),
     );
-    expect(updated.numUpdatedRows).toBe(0n);
+    await expect(updated).rejects.toMatchObject({ code: '42501' });
     const inserted = withUser(db, learner, (trx) =>
       trx.insertInto('feature_flags').values({ key: fixture.newFlagKey() }).execute(),
     );
     await expect(inserted).rejects.toMatchObject({ code: '42501' });
+    const deleted = withUser(db, learner, (trx) =>
+      trx.deleteFrom('feature_flags').where('key', '=', key).execute(),
+    );
+    await expect(deleted).rejects.toMatchObject({ code: '42501' });
+    // Signed out is no different, and the flag is untouched.
+    const signedOut = withUser(db, null, (trx) =>
+      trx.updateTable('feature_flags').set({ enabled: false }).where('key', '=', key).execute(),
+    );
+    await expect(signedOut).rejects.toMatchObject({ code: '42501' });
     expect(await read(null)).toEqual([{ enabled: true }]);
   });
 });

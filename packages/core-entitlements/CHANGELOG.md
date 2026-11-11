@@ -2,6 +2,15 @@
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-11-11
+
+### Changed
+- Follows migration 0006: the app role lost its insert, update and delete grants on content tables, `feature_flags` included. A learner's update on a flag is now refused with `permission denied` (42501), where it used to match no row.
+- `tests/postgres-store.integration.test.ts`: the flag write check expects 42501 for an update, an insert and a delete by a learner, and for an update when nobody is signed in. The flag stays as it was.
+- README: the access model table and the integration test table say the same.
+- README: the integration test table still said the row from `ensure_profile` carries limits 200, 20 and 30. Since migration 0005 it carries none, and the numbers come from `PLANS`. Corrected.
+- No change to `src/`. `setFlag` was already owner work on `db`.
+
 ## [0.2.1] - 2026-11-11
 
 ### Changed
