@@ -156,7 +156,7 @@ Learner tables have three policies each, for select, insert and update. There is
 
 | Table group | What `stufen_app` may do |
 |-------------|--------------------------|
-| Content (`languages`, `cefr_levels`, `cando_descriptors`, `units`, `lessons`, `exercises`, `items`, `content_pack_versions`, `feature_flags`) | Read everything, signed in or not. No writes; pack installation is owner work |
+| Content (`languages`, `cefr_levels`, `cando_descriptors`, `units`, `lessons`, `exercises`, `items`, `content_pack_versions`, `feature_flags`) | Read everything, signed in or not. No write grant at all since migration 0006; pack installation is owner work |
 | `users` | Read the own row only. No writes; `core-auth` writes as owner (migration 0003) |
 | `sessions`, `accounts`, `verifications` | Nothing. No grant and no policy (migration 0002) |
 | Learner data (everything keyed by `user_id`) | Read, insert and update rows where `user_id` equals `app.user_id`. No delete |
@@ -192,4 +192,5 @@ Every later migration grants `stufen_app` exactly what its new tables need. Noth
 | `0003_policy_fixes.sql` | db | `users` readable as own row only and not writable by the app role, `schema_migrations` closed, anonymous `events` inserts, `feature_flags` trigger, explicit grants from now on |
 | `0004_daily_usage.sql` | core-entitlements | `speech_recordings.duration_ms` and the view `daily_usage` |
 | `0005_phase1_fixes.sql` | db | `review_cards.scheduled_days` and `learning_steps`, the table `cando_outcomes`, `entitlements.limits` as overrides only, `ensure_profile` restricted to the own id for learners |
+| `0006_lesson_fields_and_guards.sql` | db | `exercises.instruction_en` and `instruction_native`, `lessons.title_en`, `description`, `introduces_item_ids`, `units.title_en`; unique indexes for one answer per exercise in a session, one open session per lesson and one active pack version per language; attempts may only point at an own session; no content write grants for the app role; double precision scheduler numbers |
 

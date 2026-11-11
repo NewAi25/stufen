@@ -169,6 +169,8 @@ export interface UnitsTable {
   description: string | null;
   pack_version: string;
   created_at: GeneratedTimestamp;
+  /** From 0006. */
+  title_en: string | null;
 }
 
 export interface LessonsTable {
@@ -182,6 +184,10 @@ export interface LessonsTable {
   cando_ids: Generated<string[]>;
   pack_version: string;
   created_at: GeneratedTimestamp;
+  /** From 0006. */
+  title_en: string | null;
+  description: string | null;
+  introduces_item_ids: Generated<string[]>;
 }
 
 // ---------- core-content ----------
@@ -220,6 +226,9 @@ export interface ExercisesTable {
   item_ids: Generated<string[]>;
   pack_version: string;
   created_at: GeneratedTimestamp;
+  /** From 0006. Shown to the learner above the exercise. */
+  instruction_en: string | null;
+  instruction_native: string | null;
 }
 
 // ---------- core-identity ----------

@@ -2,6 +2,16 @@
 
 ## [Unreleased]
 
+## [0.8.0] - 2026-11-11
+
+### Added
+- Migration `0006_lesson_fields_and_guards.sql`. Content fields: `exercises.instruction_en` and `instruction_native`, `lessons.title_en`, `description` and `introduces_item_ids`, `units.title_en`.
+- Guards in the database: one answer per exercise in a session, one open session per learner and lesson, an attempt may only point at an own session, one active pack version per language.
+
+### Changed
+- The app role has no write grants on content tables any more.
+- Scheduler numbers on `review_cards` and `review_logs` are double precision, so they round trip exactly.
+
 ## [0.7.0] - 2026-11-11
 
 ### Added

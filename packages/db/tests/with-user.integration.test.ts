@@ -566,4 +566,177 @@ describe.skipIf(!url)('withUser on a real Postgres', () => {
       'scheduled_days',
     ]);
   });
+
+  // ---------------------------------------------------------------
+  // 0006_lesson_fields_and_guards.sql
+  // ---------------------------------------------------------------
+
+  describe('0006 guards', () => {
+    const unitId = randomUUID();
+    const lessonId = randomUUID();
+    const exerciseId = randomUUID();
+    const tag = unitId.slice(0, 8);
+
+    beforeAll(async () => {
+      await db
+        .insertInto('units')
+        .values({
+          id: unitId,
+          language_code: 'nl',
+          level: 'A1',
+          ordinal: 1,
+          slug: `p148-${tag}`,
+          title: 'Test',
+          title_en: 'Test unit',
+          pack_version: '0.0.0',
+        })
+        .execute();
+      await db
+        .insertInto('lessons')
+        .values({
+          id: lessonId,
+          unit_id: unitId,
+          ordinal: 1,
+          slug: `p148-${tag}`,
+          title: 'Les',
+          title_en: 'Lesson',
+          description: 'A test lesson',
+          pack_version: '0.0.0',
+        })
+        .execute();
+      await db
+        .insertInto('exercises')
+        .values({
+          id: exerciseId,
+          lesson_id: lessonId,
+          ordinal: 1,
+          type: 'cloze',
+          skill: 'grammar',
+          payload: JSON.stringify({}),
+          instruction_en: 'Fill in the blank.',
+          pack_version: '0.0.0',
+        })
+        .execute();
+    });
+
+    afterAll(async () => {
+      await db.deleteFrom('lesson_sessions').where('lesson_id', '=', lessonId).execute();
+      await db.deleteFrom('units').where('id', '=', unitId).execute();
+    });
+
+    const openSession = (userId: string) =>
+      outcome(userId, async (trx) => {
+        const result = await trx
+          .insertInto('lesson_sessions')
+          .values({ user_id: userId, lesson_id: lessonId })
+          .executeTakeFirst();
+        return Number(result.numInsertedOrUpdatedRows ?? 0);
+      });
+
+    it('content fields round trip and the app role can read them', async () => {
+      const rows = await withUser(db, userA, (trx) =>
+        trx
+          .selectFrom('exercises')
+          .innerJoin('lessons', 'lessons.id', 'exercises.lesson_id')
+          .select(['exercises.instruction_en', 'lessons.title_en', 'lessons.introduces_item_ids'])
+          .where('exercises.id', '=', exerciseId)
+          .execute(),
+      );
+      expect(rows).toEqual([
+        { instruction_en: 'Fill in the blank.', title_en: 'Lesson', introduces_item_ids: [] },
+      ]);
+    });
+
+    it('the app role cannot write content', async () => {
+      const insert = await outcome(userA, async (trx) => {
+        await trx
+          .insertInto('lessons')
+          .values({
+            unit_id: unitId,
+            ordinal: 2,
+            slug: `p148x-${tag}`,
+            title: 'X',
+            pack_version: '0',
+          })
+          .execute();
+        return 1;
+      });
+      const update = await outcome(userA, async (trx) => {
+        await trx
+          .updateTable('lessons')
+          .set({ title: 'Changed' })
+          .where('id', '=', lessonId)
+          .execute();
+        return 1;
+      });
+      expect([insert, update]).toEqual(['denied', 'denied']);
+    });
+
+    it('one open session per learner and lesson, one answer per exercise', async () => {
+      expect(await openSession(userA)).toBe(1);
+      await expect(openSession(userA)).rejects.toMatchObject({ code: '23505' });
+      // Another learner may open the same lesson.
+      expect(await openSession(userB)).toBe(1);
+
+      const sessionOf = async (userId: string) =>
+        (
+          await db
+            .selectFrom('lesson_sessions')
+            .select('id')
+            .where('user_id', '=', userId)
+            .where('lesson_id', '=', lessonId)
+            .executeTakeFirstOrThrow()
+        ).id;
+      const sessionA = await sessionOf(userA);
+      const sessionB = await sessionOf(userB);
+
+      const answer = (userId: string, sessionId: string) =>
+        outcome(userId, async (trx) => {
+          const result = await trx
+            .insertInto('attempts')
+            .values({
+              user_id: userId,
+              session_id: sessionId,
+              exercise_id: exerciseId,
+              exercise_type: 'cloze',
+              correct: true,
+              score: 1,
+            })
+            .executeTakeFirst();
+          return Number(result.numInsertedOrUpdatedRows ?? 0);
+        });
+
+      expect(await answer(userA, sessionA)).toBe(1);
+      await expect(answer(userA, sessionA)).rejects.toMatchObject({ code: '23505' });
+      // An attempt may not point at another learner's session.
+      expect(await answer(userA, sessionB)).toBe('denied');
+      expect(await answer(userB, sessionB)).toBe(1);
+    });
+
+    it('one active pack version per language', async () => {
+      const version = `p148-${tag}`;
+      try {
+        await db
+          .insertInto('content_pack_versions')
+          .values({ language_code: 'fr', version: `${version}-a`, checksum: 'x', status: 'active' })
+          .execute();
+        await expect(
+          db
+            .insertInto('content_pack_versions')
+            .values({
+              language_code: 'fr',
+              version: `${version}-b`,
+              checksum: 'x',
+              status: 'active',
+            })
+            .execute(),
+        ).rejects.toMatchObject({ code: '23505' });
+      } finally {
+        await db
+          .deleteFrom('content_pack_versions')
+          .where('version', 'like', `${version}%`)
+          .execute();
+      }
+    });
+  });
 });
