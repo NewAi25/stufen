@@ -117,11 +117,8 @@ describe.skipIf(!url)('Postgres store on a real Postgres', () => {
         userId: userA,
         plan: 'free_beta',
         features: {},
-        limits: {
-          tutor_messages_per_day: 200,
-          writing_grades_per_day: 20,
-          speech_minutes_per_day: 30,
-        },
+        // Since migration 0005 the row holds only per user overrides.
+        limits: {},
         source: 'default',
         expiresAt: null,
       });

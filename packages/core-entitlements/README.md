@@ -72,7 +72,7 @@ Defined in `src/plans.ts`. Only `free_beta` is active. The others are the propos
 | `plus` | no | none | 100 | 10 | 30 |
 | `pro` | no | none | 400 | 40 | 120 |
 
-Limits are per day. The `free_beta` numbers match the column default in migration 0001.
+Limits are per day. The numbers live in `PLANS` in this box. The `entitlements` row holds only per user overrides (migration 0005), so a change to a plan reaches every user on it.
 
 ### Feature flags
 
@@ -137,7 +137,7 @@ The adapter follows the two kinds of access in `docs/03-data-schema.md`.
 Three things follow from this.
 
 - The port has no "who is asking" argument. The store reads as the user whose row is asked for. The route that calls the service must pass the signed in user's id and nothing else. Row level security then guarantees the read cannot return another learner's row.
-- The row usually exists before the box is first asked. The database function `ensure_profile` creates it at sign up with plan `free_beta` and the limits from the column default. `upsertEntitlement` is therefore an insert that becomes an update on conflict. The `entitlements` row references `profiles`, so an upsert for a user id without a profile fails.
+- The row usually exists before the box is first asked. The database function `ensure_profile` creates it at sign up with plan `free_beta` and no limits of its own. `upsertEntitlement` is therefore an insert that becomes an update on conflict. The `entitlements` row references `profiles`, so an upsert for a user id without a profile fails.
 - On a row that already existed, `updatedAt` is the database time of the write. A trigger sets it, and the value passed in is ignored.
 
 A user id that is not a uuid makes `withUser` throw a `TypeError` before any query runs.

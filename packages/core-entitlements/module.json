@@ -1,7 +1,7 @@
 {
   "name": "@stufen/core-entitlements",
   "kind": "core",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [

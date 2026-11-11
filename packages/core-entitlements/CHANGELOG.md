@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-11-11
+
+### Changed
+- Follows migration 0005: the default row has no limits of its own, so plan numbers come from `PLANS` for every user.
+
 ## [0.2.0] - 2026-11-06
 
 ### Added
