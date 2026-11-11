@@ -212,7 +212,9 @@ function loadExamFormatsFrom(contentDir: string): ExamFormat[] {
 
 /** Builds the German LanguagePack over a content directory. Server only. */
 export function createGermanPack(options: GermanPackOptions = {}): LanguagePack {
-  const contentDir = path.resolve(options.contentDir ?? defaultContentDir());
+  const contentDir = path.resolve(
+    /* turbopackIgnore: true */ options.contentDir ?? defaultContentDir(),
+  );
   const manifest = loadManifestFrom(contentDir);
   return {
     code: 'de',
