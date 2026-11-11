@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-11-11
+
+### Changed
+- Follows migration 0006, which makes `review_cards.stability`, `difficulty` and `scheduled_days` and `review_logs.elapsed_days` and `scheduled_days` `double precision`. Numbers now come back from Postgres exactly as written. The adapter code is unchanged; only its comment on precision is.
+- `tests/store-contract.ts`: the round trips use numbers that do not fit a 4 byte float (15.69105055, 1 / 3, 0.1 + 0.2) and compare exactly, for both adapters.
+- `tests/postgres-store.integration.test.ts`: every card and log comparison is exact equality. The helper that allowed for rounding is gone. The test that pinned the rounding to about 7 significant digits is replaced by one that runs six reviews on Postgres and in memory and expects identical cards and logs.
+- README: the note on number precision describes the `double precision` columns.
+
 ## [0.2.0] - 2026-11-11
 
 ### Added

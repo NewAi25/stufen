@@ -9,8 +9,9 @@
 // `language` of the card is therefore not stored; the item decides.
 //
 // Precision: stability, difficulty, scheduled_days and the two day counts of a
-// log are `real` (4 byte floats), so a value comes back with about 7
-// significant digits. Timestamps are `timestamptz` and keep the millisecond.
+// log are `double precision` since migration 0006, the same 8 byte float a
+// JavaScript number is, so every number comes back exactly as it was written.
+// Timestamps are `timestamptz` and keep the millisecond.
 import { LANGUAGE_CODES } from '@stufen/contracts';
 import type { LanguageCode, ReviewState } from '@stufen/contracts';
 import { withUser } from '@stufen/db';

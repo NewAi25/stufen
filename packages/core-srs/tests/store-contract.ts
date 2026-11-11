@@ -2,12 +2,13 @@
 // only. Not a test file itself: store-contract.memory.test.ts runs it for the
 // in memory store and postgres-store.integration.test.ts for Postgres.
 //
-// Two things are shaped by Postgres on purpose:
-//   * Ids come from the harness. Postgres needs a real user with a profile
-//     and a real item in the right language; the in memory store takes any id.
-//   * Numbers that land in `real` columns are chosen so that a 4 byte float
-//     holds them exactly (3.25, 5.5, 0.5). Other values come back rounded to
-//     about 7 significant digits from Postgres.
+// One thing is shaped by Postgres on purpose: ids come from the harness.
+// Postgres needs a real user with a profile and a real item in the right
+// language; the in memory store takes any id.
+//
+// Every comparison is exact. The numbers are picked to be awkward (many
+// digits, no short binary form), because both adapters must hand back
+// exactly the number that was written.
 import { beforeAll, describe, expect, it } from 'vitest';
 import type { LanguageCode } from '@stufen/contracts';
 import { MATURE_STABILITY_DAYS } from '../src/store';
@@ -92,14 +93,14 @@ export function runCardStoreContract(
 
       it('every field of a reviewed card round trips', async () => {
         const card = cardFor(await newUserId(), await newItemId('fr'), 'fr', {
-          stability: 3.25,
-          difficulty: 5.5,
+          stability: 15.69105055,
+          difficulty: 6.48830527,
           due: at(72),
           lastReview: at(-6),
           reps: 7,
           lapses: 2,
           state: 'relearning',
-          scheduledDays: 3,
+          scheduledDays: 0.1 + 0.2,
           learningSteps: 1,
         });
 
@@ -113,8 +114,8 @@ export function runCardStoreContract(
         const first = await seed(userId, 'nl', { lastReview: at(-2), learningSteps: 1 });
         const second: StoredReviewCard = {
           ...first,
-          stability: 21.5,
-          difficulty: 4.75,
+          stability: 21.00000001,
+          difficulty: 1 / 3,
           due: at(240),
           lastReview: null,
           reps: 3,
@@ -259,15 +260,15 @@ export function runCardStoreContract(
           ...base,
           rating: 3,
           reviewedAt: at(-18),
-          elapsedDays: 0.5,
-          scheduledDays: 0.25,
+          elapsedDays: 10 / (24 * 60),
+          scheduledDays: 1 / 3,
           stateBefore: 'learning',
         };
         const third: ReviewLogEntry = {
           ...base,
           rating: 4,
           reviewedAt: at(-1),
-          elapsedDays: 17.5,
+          elapsedDays: 17.123456789,
           scheduledDays: 16,
           stateBefore: 'review',
         };

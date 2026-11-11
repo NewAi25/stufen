@@ -11,10 +11,10 @@
 import { randomUUID } from 'node:crypto';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { createEventBus } from '@stufen/contracts';
-import type { EventMap, LanguageCode } from '@stufen/contracts';
+import type { EventMap, LanguageCode, ReviewRating } from '@stufen/contracts';
 import { createDb, sql, withUser } from '@stufen/db';
 import type { Database } from '@stufen/db';
-import { createPostgresCardStore, createSrs } from '../src/index';
+import { createInMemoryCardStore, createPostgresCardStore, createSrs } from '../src/index';
 import type { CardStore, StoredReviewCard } from '../src/index';
 import {
   insertLogRow,
@@ -125,18 +125,6 @@ describe.skipIf(!url)('Postgres CardStore on a real Postgres', () => {
     }
   }
 
-  /**
-   * Same card, allowing for the `real` columns: stability and difficulty come
-   * back from Postgres with about 7 significant digits.
-   */
-  function expectSameCard(actual: StoredReviewCard | null, expected: StoredReviewCard): void {
-    if (!actual) throw new Error(`expected a card for item ${expected.itemId}`);
-    const { stability, difficulty, ...exact } = expected;
-    expect(actual).toMatchObject(exact);
-    expect(actual.stability).toBeCloseTo(stability, 4);
-    expect(actual.difficulty).toBeCloseTo(difficulty, 4);
-  }
-
   describe('createSrs on the Postgres store', () => {
     it('introduceItems creates one new card, due at once, in the language of the item', async () => {
       const userId = await newUser();
@@ -182,7 +170,7 @@ describe.skipIf(!url)('Postgres CardStore on a real Postgres', () => {
         expect(afterFirst).toMatchObject({ state: 'learning', reps: 1, scheduledDays: 0 });
         expect(afterFirst.learningSteps).toBeGreaterThan(0);
         expect(Date.parse(afterFirst.due)).toBeGreaterThan(START);
-        expectSameCard(await freshStore.getCard(userId, itemId), afterFirst);
+        expect(await freshStore.getCard(userId, itemId)).toEqual(afterFirst);
 
         // The second review runs on the fresh store, so everything ts-fsrs
         // gets back for it was read from the database.
@@ -194,7 +182,7 @@ describe.skipIf(!url)('Postgres CardStore on a real Postgres', () => {
         expect(afterSecond.scheduledDays).toBeGreaterThan(0);
         expect(Date.parse(afterSecond.due)).toBeGreaterThan(Date.parse(afterFirst.due));
         expect(afterSecond.lastReview).toBe(afterFirst.due);
-        expectSameCard(await store.getCard(userId, itemId), afterSecond);
+        expect(await store.getCard(userId, itemId)).toEqual(afterSecond);
         expect(await second.srs.dueQueue(userId, 'nl')).toEqual([]);
 
         const logs = await store.listLogs(userId, itemId);
@@ -207,7 +195,7 @@ describe.skipIf(!url)('Postgres CardStore on a real Postgres', () => {
           afterFirst.due,
         ]);
         const stepDays = (Date.parse(afterFirst.due) - START) / (24 * 60 * MINUTE);
-        expect(logs[1]?.elapsedDays).toBeCloseTo(stepDays, 6);
+        expect(logs[1]?.elapsedDays).toBe(stepDays);
         expect([...first.reviewed, ...second.reviewed]).toEqual([
           { userId, itemId, rating: 3 },
           { userId, itemId, rating: 3 },
@@ -286,33 +274,42 @@ describe.skipIf(!url)('Postgres CardStore on a real Postgres', () => {
       expect(await srs.dueQueue(userId, 'fr')).toHaveLength(1);
     });
 
-    it('keeps about 7 significant digits of stability and difficulty', async () => {
+    it('gives exactly the same cards and logs as the in memory store for the same reviews', async () => {
       const userId = await newUser();
       const itemId = await newItem('nl');
-      const card: StoredReviewCard = {
-        userId,
-        itemId,
-        language: 'nl',
-        stability: 15.69105055,
-        difficulty: 6.48830527,
-        due: new Date(START).toISOString(),
-        lastReview: null,
-        reps: 2,
-        lapses: 0,
-        state: 'review',
-        scheduledDays: 16,
-        learningSteps: 0,
-      };
+      const ratings: ReviewRating[] = [3, 3, 1, 3, 4, 2];
 
-      await store.upsertCard(card);
+      /** Introduces the item, then gives each rating at the moment the card comes due. */
+      async function run(cardStore: CardStore) {
+        const { srs, goTo } = setup(cardStore);
+        await srs.introduceItems(userId, 'nl', [itemId]);
+        const cards: StoredReviewCard[] = [];
+        for (const rating of ratings) {
+          const card = await srs.review(userId, itemId, rating);
+          cards.push(card);
+          goTo(card);
+        }
+        return {
+          cards,
+          stored: await cardStore.getCard(userId, itemId),
+          logs: await cardStore.listLogs(userId, itemId),
+        };
+      }
 
-      // What comes back is the shortest decimal that names the same 4 byte
-      // float: not the number that was written, but the same float.
-      const stored = await store.getCard(userId, itemId);
-      expect(stored?.stability).not.toBe(card.stability);
-      expect(Math.fround(stored?.stability ?? 0)).toBe(Math.fround(card.stability));
-      expect(Math.fround(stored?.difficulty ?? 0)).toBe(Math.fround(card.difficulty));
-      expectSameCard(stored, card);
+      const inMemory = await run(createInMemoryCardStore());
+      const inPostgres = await run(store);
+
+      // toEqual compares numbers exactly. Every review reads the card back
+      // from the database first, so one rounded digit anywhere would show up
+      // in the cards that follow.
+      expect(inPostgres).toEqual(inMemory);
+      expect(inPostgres.stored).toEqual(inPostgres.cards.at(-1));
+      expect(inPostgres.logs).toHaveLength(ratings.length);
+      // The run is a real test of precision: these numbers do not fit a 4
+      // byte float, which is what the columns were before migration 0006.
+      const fitsFloat4 = (value: number): boolean => Math.fround(value) === value;
+      expect(inPostgres.cards.every((card) => fitsFloat4(card.stability))).toBe(false);
+      expect(inPostgres.logs.every((log) => fitsFloat4(log.elapsedDays))).toBe(false);
     });
 
     it('rejects a user id that is not a uuid before any query runs', async () => {
@@ -401,7 +398,7 @@ describe.skipIf(!url)('Postgres CardStore on a real Postgres', () => {
         log: '42501',
       });
       expect(updated).toEqual([]);
-      expectSameCard(await store.getCard(a, itemId), card);
+      expect(await store.getCard(a, itemId)).toEqual(card);
       expect(await store.getCard(a, otherItem)).toBeNull();
       expect(await store.listLogs(a, itemId)).toHaveLength(1);
     });
