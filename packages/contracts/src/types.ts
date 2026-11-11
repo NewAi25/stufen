@@ -749,3 +749,12 @@ export interface CurriculumSnapshot {
   items: Item[];
   units: UnitWithLessons[];
 }
+
+/**
+ * Where an installed pack is written. core-content calls it; the curriculum
+ * store implements it. Replaces everything stored for snapshot.language in
+ * one step, so readers never see half a pack.
+ */
+export interface SnapshotWriter {
+  replaceLanguage(snapshot: CurriculumSnapshot): Promise<void>;
+}

@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-11-11
+
+### Added
+- `SnapshotWriter`: the port core-content writes an installed pack through. The curriculum store implements it.
+
 ## [0.4.0] - 2026-11-06
 
 ### Added
