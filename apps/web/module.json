@@ -1,7 +1,7 @@
 {
   "name": "@stufen/web",
   "kind": "surface",
-  "version": "0.4.0",
+  "version": "0.5.1",
   "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [
@@ -31,6 +31,9 @@
     "/onboarding",
     "/settings",
     "/feedback",
+    "/lesson/[id]",
+    "/review",
+    "/progress",
     "/kit",
     "/coming-soon",
     "/api/health"

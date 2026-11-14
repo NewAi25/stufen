@@ -26,6 +26,15 @@ function NavLinks({ items, pathname }: { items: readonly NavItem[]; pathname: st
 /** Left rail on wide screens, bottom bar on narrow ones. CSS picks which shows. */
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  // A lesson hides the navigation and shows only its own exit control, so the
+  // learner is not pulled away mid task (docs/06-ui-ux.md section 2).
+  if (pathname.startsWith('/lesson/')) {
+    return (
+      <main id="main" className="app-main app-main--focused" tabIndex={-1}>
+        {children}
+      </main>
+    );
+  }
   return (
     <div className="app-shell">
       <nav className="app-rail" aria-label="Main">

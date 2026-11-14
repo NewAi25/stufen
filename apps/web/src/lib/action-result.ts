@@ -3,7 +3,6 @@
 
 export type ActionResult = { ok: true } | { ok: false; field?: string; message: string };
 
-export const NOT_SIGNED_IN: ActionResult = {
-  ok: false,
-  message: 'You are not signed in. Sign in and try again.',
-};
+export const NOT_SIGNED_IN_MESSAGE = 'You are not signed in. Sign in and try again.';
+
+export const NOT_SIGNED_IN: ActionResult = { ok: false, message: NOT_SIGNED_IN_MESSAGE };

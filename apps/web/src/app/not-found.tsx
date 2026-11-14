@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Card } from '../components/kit';
+import { Card } from '@stufen/ui-kit';
 
 export default function NotFound() {
   return (

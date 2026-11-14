@@ -10,6 +10,7 @@ import type {
   Exercise,
   InProcessEventBus,
   InstallReport,
+  Item,
   LanguageCode,
   LanguagePack,
   MailPort,
@@ -127,8 +128,18 @@ export interface Container {
   exerciseTypes: ExerciseTypeRegistry;
   /** Looks up the exercise type and grades with the pack rules and the lesson level. */
   grade: GradeFunction;
-  /** A lesson with the language of its unit, or null for an unknown id. */
+  /**
+   * A lesson with the language of its unit, or null for an unknown id.
+   * Exercises of a type without a grader carry no candoIds and no itemIds
+   * here, so their provisional attempts are never evidence.
+   */
   getLesson: (lessonId: string) => Promise<LessonWithLanguage | null>;
+  /**
+   * Items of the installed pack by id, in the order asked, unknown ids
+   * skipped. The curriculum service has no item read yet, so this is the
+   * read port of its store, handed out here and nowhere else.
+   */
+  getItems: (itemIds: readonly string[]) => Promise<Item[]>;
   lessonEngine: LessonEngine;
   srs: SrsService;
   progress: ProgressService;
@@ -242,11 +253,31 @@ export function createContainer(config: AppConfig = readConfig()): Container {
       (await stores.curriculum.findLessonUnit(exercise.lessonId))?.level ?? FALLBACK_LEVEL,
   });
 
+  // The evidence rule: a level rests on checked work. An exercise whose type
+  // has no registered grader gets a provisional result, so it must not count.
+  // It reaches the lesson engine with no descriptors and no items, which makes
+  // its attempt.recorded event carry none: no mastery evidence in
+  // core-progress and no review rating in core-srs. The attempt itself is
+  // still stored with the response, for the tutor to grade later.
+  //
+  // A flashcard is checked by nobody either: the learner rates it. It keeps
+  // its items, so the words still enter review, but it names no descriptor,
+  // so a self rating is never mastery evidence.
+  function withoutUncheckedEvidence(exercise: Exercise): Exercise {
+    if (!exerciseTypes.hasType(exercise.type)) return { ...exercise, candoIds: [], itemIds: [] };
+    if (exercise.type === 'flashcard') return { ...exercise, candoIds: [] };
+    return exercise;
+  }
+
   async function getLesson(lessonId: string): Promise<LessonWithLanguage | null> {
     const unit = await stores.curriculum.findLessonUnit(lessonId);
     if (unit === null) return null;
     try {
-      return { lesson: await curriculum.getLesson(lessonId), language: unit.languageCode };
+      const lesson = await curriculum.getLesson(lessonId);
+      return {
+        lesson: { ...lesson, exercises: lesson.exercises.map(withoutUncheckedEvidence) },
+        language: unit.languageCode,
+      };
     } catch (error) {
       if (error instanceof CurriculumNotFoundError) return null;
       throw error;
@@ -303,6 +334,7 @@ export function createContainer(config: AppConfig = readConfig()): Container {
     exerciseTypes,
     grade,
     getLesson,
+    getItems: (itemIds) => stores.curriculum.getItems([...itemIds]),
     lessonEngine,
     srs,
     progress,

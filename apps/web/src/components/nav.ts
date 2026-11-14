@@ -16,10 +16,10 @@ function soon(label: string, route: string): NavItem {
 }
 
 const home: NavItem = { label: 'Home', href: '/', route: '/' };
-const review = soon('Review', '/review');
+const review: NavItem = { label: 'Review', href: '/review', route: '/review' };
 const tutor = soon('Tutor', '/tutor');
 const write = soon('Write', '/write');
-const progress = soon('Progress', '/progress');
+const progress: NavItem = { label: 'Progress', href: '/progress', route: '/progress' };
 const settings: NavItem = { label: 'Settings', href: '/settings', route: '/settings' };
 const feedback: NavItem = { label: 'Feedback', href: '/feedback', route: '/feedback' };
 

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Card } from '../../components/kit';
+import { Card } from '@stufen/ui-kit';
 
 export const metadata: Metadata = { title: 'Coming soon | Stufen' };
 

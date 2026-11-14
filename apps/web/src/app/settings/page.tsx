@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { LIMIT_KEYS } from '@stufen/contracts';
-import { Button, Card } from '../../components/kit';
+import { Button, Card } from '@stufen/ui-kit';
 import { LIMIT_LABELS, PLAN_LABELS } from '../../lib/plan-labels';
 import { getContainer } from '../../server/container';
 import { requireSession } from '../../server/session';

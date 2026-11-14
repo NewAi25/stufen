@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import type { FeedbackItem, FeedbackKind, FeedbackStatus } from '@stufen/contracts';
-import { Card } from '../../components/kit';
+import { Card } from '@stufen/ui-kit';
 import { listMyFeedback } from '../../server/actions/feedback-actions';
 import { getContainer } from '../../server/container';
 import { requireSession } from '../../server/session';

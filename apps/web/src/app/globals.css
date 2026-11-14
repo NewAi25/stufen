@@ -275,3 +275,199 @@ body {
   font-size: var(--st-text-sm);
   overflow-wrap: anywhere;
 }
+
+/* Links that look like a kit Button, and a row of actions. */
+
+.app-link-button {
+  text-decoration: none;
+}
+
+.app-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--st-space-3);
+  margin-top: var(--st-space-4);
+}
+
+/* The lesson screen: no navigation, one column, the action at the bottom. */
+
+/* The bottom padding of .app-main stays: it keeps the action clear of the feedback button. */
+.app-main--focused {
+  max-width: var(--st-width-read);
+}
+
+.app-lesson {
+  display: flex;
+  flex-direction: column;
+  gap: var(--st-space-5);
+}
+
+.app-lesson__bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--st-space-4);
+}
+
+.app-lesson__exit {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--st-target-min);
+  color: var(--st-color-text-muted);
+  font-size: var(--st-text-sm);
+}
+
+.app-lesson__count {
+  color: var(--st-color-text-muted);
+  font-size: var(--st-text-sm);
+  white-space: nowrap;
+}
+
+.app-lesson__exercise:focus {
+  outline: none;
+}
+
+.app-lesson__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.app-lesson-summary__title {
+  margin-top: 0;
+  font-weight: var(--st-weight-semibold);
+}
+
+/* The self check tasks: translate, write_free and speak_prompt. */
+
+.app-self-check__prompt {
+  margin: 0;
+  font-size: var(--st-text-md);
+  font-weight: var(--st-weight-medium);
+}
+
+.app-self-check__sample {
+  padding: var(--st-space-3) var(--st-space-4);
+  border: 1px solid var(--st-color-border);
+  border-radius: var(--st-radius-md);
+  background: var(--st-color-surface-2);
+}
+
+.app-self-check__sample p {
+  margin: 0;
+}
+
+.app-self-check__sample-lead {
+  font-size: var(--st-text-sm);
+  font-weight: var(--st-weight-semibold);
+}
+
+.app-self-check__note {
+  margin: 0;
+  color: var(--st-color-text-muted);
+  font-size: var(--st-text-sm);
+}
+
+/* The review screen: a way home, the title and the cards left. */
+
+.app-review__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--st-space-2) var(--st-space-4);
+}
+
+/* Home: the daily loop. */
+
+.app-home__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--st-space-1);
+}
+
+.app-home__level {
+  margin: 0;
+  color: var(--st-color-text-muted);
+}
+
+.app-home__cards {
+  display: grid;
+  gap: var(--st-space-4);
+}
+
+@media (min-width: 900px) {
+  .app-home__cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.app-home__lesson-title {
+  margin: var(--st-space-1) 0;
+  font-weight: var(--st-weight-semibold);
+}
+
+.app-home__streak {
+  margin: 0;
+  color: var(--st-color-text-muted);
+  font-size: var(--st-text-sm);
+}
+
+.app-unit__title {
+  margin: 0 0 var(--st-space-2);
+  font-size: var(--st-text-base);
+  font-weight: var(--st-weight-semibold);
+}
+
+.app-unit__lessons {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--st-color-border);
+}
+
+.app-unit__lesson {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr auto;
+  align-items: center;
+  gap: var(--st-space-3);
+  min-height: var(--st-target-min);
+  border-bottom: 1px solid var(--st-color-border);
+}
+
+.app-unit__mark {
+  color: var(--st-color-text-muted);
+  font-size: var(--st-text-sm);
+}
+
+.app-unit__lesson[data-done='true'] .app-unit__mark {
+  color: var(--st-color-success);
+  font-weight: var(--st-weight-medium);
+}
+
+.app-unit__link {
+  padding: var(--st-space-2) 0;
+  color: var(--st-color-text);
+  text-decoration: none;
+}
+
+.app-unit__link:hover {
+  text-decoration: underline;
+}
+
+.app-unit__link:focus-visible {
+  outline: 2px solid var(--st-color-focus);
+  outline-offset: 2px;
+}
+
+/* On exercise screens the feedback button steps back until it is hovered or focused. */
+
+.st-feedback-fab.app-feedback-fab--quiet {
+  opacity: 0.6;
+}
+
+.st-feedback-fab.app-feedback-fab--quiet:hover,
+.st-feedback-fab.app-feedback-fab--quiet:focus-visible {
+  opacity: 1;
+}

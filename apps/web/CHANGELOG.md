@@ -2,6 +2,46 @@
 
 ## [Unreleased]
 
+## [0.5.1] - 2026-11-14
+
+### Changed
+- A flashcard inside a lesson is rated by the learner, so it no longer names any descriptor when it reaches the lesson engine. Its words still enter review. A self rating is never mastery evidence.
+
+## [0.5.0] - 2026-11-12
+
+### Fixed
+
+- The evidence rule. `translate`, `write_free` and `speak_prompt` have no grader yet and get a provisional result. Those attempts counted as evidence for mastery and rated review cards, which inflated progress. `container.getLesson` now hands an exercise whose type has no registered grader to the lesson engine with no `candoIds` and no `itemIds`. Its `attempt.recorded` event carries none, so `core-progress` records no evidence and `core-srs` rates no card. The attempt is still stored with the response and `provisional: true` in its feedback, for the tutor to grade later.
+
+### Added
+
+- `/lesson/[id]`, the lesson player (row P1-19). It starts or resumes the learner's session and shows one exercise at a time with a progress bar, the instruction line, the ui-kit `ExerciseRenderer` for the eight checked types, and one primary button: Check, then Continue, and Finish on the last exercise. Enter presses it. A new exercise gets the focus on its first control, so its keys work at once. Exit goes home and keeps the session. The navigation is hidden on this screen.
+- `SelfCheckExercise` for `translate`, `write_free` and `speak_prompt`: the task, a text area (optional for a spoken task), a button that shows the sample answer and locks the text, and one sentence saying that the tutor grades these in a later version and that they do not count towards the level yet. The response is stored.
+- The lesson summary: the score of the checked exercises as a sentence, the number of self checks, how many new words went into review, a primary link to the next lesson and a link home.
+- `/review` (row P1-20): one due card at a time in the ui-kit `FlashcardExercise`. Space shows the answer, keys 1 to 4 rate it through `srs.review`. A counter of cards left, an empty state, and a done state that sums up the ratings and says when a rated card comes back.
+- `/` is the daily loop (row P1-22): reviews due, the next lesson with unit, title and minutes, a quiet streak number and the line "Working towards A1". One filled button: Start reviews when cards are due, otherwise Open lesson. Below it the units and lessons of the current level with a done mark. The Tutor card says it arrives in the next version.
+- `/progress` (row P1-23): the ui-kit `LevelMap` with status, mastered count and the evidence per descriptor. Each level card shows the CEFR global scale paragraph from `docs/14-levels-in-real-life.md` (kept in `src/lib/level-descriptions.ts`) and a line that the estimate is not a certificate. The checkpoint button is shown as not open yet. A level without descriptors says its content is not written yet.
+- The `f` shortcut for feedback (row P1-42). `FeedbackWidget` owns the open state of `FeedbackFab`. The key is ignored in a text field, a select and editable text, and it is off on `/lesson` and `/review`, where exercises use letter keys.
+- Pure functions behind the pages: `openLesson`, `submitLessonAnswer`, `completeLesson`, `loadReviewQueue`, `rateReviewCard`, `loadHome`, `loadProgress`. `requireLearner` and `getLearner` in `src/server/learner.ts`. `container.getItems`.
+- Tests: `tests/lesson-flow.test.ts`, `tests/review-flow.test.ts`, `tests/home.test.ts`, `tests/progress.test.ts`, `tests/feedback-shortcut.test.ts`, and two more flows in `tests/container.postgres.integration.test.ts`.
+
+### Changed
+
+- Home, Review, Progress and Settings in the navigation link to real pages. Tutor and Write stay on the coming soon page.
+- Server components import ui-kit components from `@stufen/ui-kit` directly, because the kit's interactive components now carry the client directive.
+- The feedback button defaults to the kind "Confusing" on lesson and review screens and steps back to 60 percent opacity there.
+
+### Removed
+
+- `src/components/kit.tsx`, the client boundary wrapper for the ui-kit. Nothing needs it any more.
+
+### Not in this version
+
+- Grading of `translate`, `write_free` and `speak_prompt`. Until the tutor is wired no production descriptor can be mastered and no level can be reached.
+- Skip, the hint sheet, the exit confirmation and the shortcut overlay of the lesson screen.
+- Checkpoints, the "Moved recently" strip on home and the per descriptor detail sheet on progress.
+- The time of the next review on a fresh visit to `/review`. `core-srs` has no read for it yet.
+
 ## [0.4.0] - 2026-11-12
 
 ### Added

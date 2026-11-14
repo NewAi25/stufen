@@ -7,6 +7,7 @@ import { memoryConfig } from './helpers/config';
 import { correctResponseFor } from './helpers/correct-response';
 
 const PROVISIONAL_TYPES = ['translate', 'write_free', 'speak_prompt'] as const;
+const PRODUCTION_SKILLS = new Set<string>(['writing', 'spoken_production', 'spoken_interaction']);
 
 async function setup() {
   const container = createContainer(memoryConfig());
@@ -132,6 +133,16 @@ describe('a full lesson session through the wired engine', () => {
       true,
     );
 
+    // The evidence rule: an attempt nobody checked names no descriptor and no item.
+    const raw = await container.curriculum.getLesson(first.lesson.id);
+    const unchecked = raw.exercises.filter((entry) => !container.exerciseTypes.hasType(entry.type));
+    for (const entry of unchecked) {
+      const event = recorded[raw.exercises.indexOf(entry)];
+      expect(event?.exerciseType).toBe(entry.type);
+      expect(event?.candoIds, `${entry.type} candoIds`).toEqual([]);
+      expect(event?.itemIds, `${entry.type} itemIds`).toEqual([]);
+    }
+
     // The stored attempts carry the provisional mark exactly where no grader ran.
     const attempts = await container.stores.sessions.listAttemptsBySession(userId, session.id);
     expect(attempts).toHaveLength(exercises.length);
@@ -169,6 +180,31 @@ describe('a full lesson session through the wired engine', () => {
       exercises.reduce((sum, exercise) => sum + exercise.candoIds.length, 0),
     );
     expect((await container.progress.streak(userId, 'de')).currentDays).toBe(1);
+
+    // Evidence per descriptor comes from the checked exercises alone.
+    const checked = raw.exercises.filter((entry) => container.exerciseTypes.hasType(entry.type));
+    const uncheckedTypes = new Set<string>(unchecked.map((entry) => entry.type));
+    for (const row of mastery) {
+      const expected = checked.filter((entry) => entry.candoIds.includes(row.candoId)).length;
+      expect(row.evidenceCount, `evidence for ${row.candoId}`).toBe(expected);
+      expect(row.exerciseTypesSeen.some((type) => uncheckedTypes.has(type))).toBe(false);
+      expect(row.bestProductionScore).toBeNull();
+    }
+    for (const candoId of unchecked.flatMap((entry) => entry.candoIds)) {
+      const fromChecked = checked.some((entry) => entry.candoIds.includes(candoId));
+      expect(mastery.some((row) => row.candoId === candoId)).toBe(fromChecked);
+    }
+
+    // No production descriptor is mastered and the level is not reached.
+    const map = await container.progress.levelMap(userId, 'de');
+    for (const level of map.levels) {
+      expect(level.status, `status of ${level.level}`).not.toBe('reached');
+      for (const { cando, mastery: row } of level.descriptors) {
+        if (!PRODUCTION_SKILLS.has(cando.skill)) continue;
+        expect(row?.masteredAt ?? null, `${cando.code} mastered`).toBeNull();
+      }
+    }
+    expect(await container.progress.levelEstimate(userId, 'de')).toBeNull();
 
     // Finishing twice is safe and the next lesson moves on.
     await expect(finishLesson(container, userId, session.id)).resolves.toMatchObject({
@@ -264,9 +300,9 @@ describe('tasks without a grader, inside a session', () => {
   it('stores each attempt as provisional and still fires attempt.recorded', async () => {
     const { container, userId } = await setup();
     await container.stores.curriculum.replaceLanguage(snapshot);
-    let recorded = 0;
-    container.bus.on('attempt.recorded', async () => {
-      recorded += 1;
+    const events: EventMap['attempt.recorded'][] = [];
+    container.bus.on('attempt.recorded', async (event) => {
+      events.push(event);
     });
 
     const session = await startLesson(container, userId, ids.lesson);
@@ -277,7 +313,11 @@ describe('tasks without a grader, inside a session', () => {
       expect(grade).toMatchObject({ correct: true, score: 1 });
       expect(grade.feedback.message).toBe(PROVISIONAL_MESSAGE);
     }
-    expect(recorded).toBe(PROVISIONAL_TYPES.length);
+    expect(events).toHaveLength(PROVISIONAL_TYPES.length);
+    // The stored exercises name a descriptor and an item. The events name none.
+    expect(events.map((event) => [event.candoIds, event.itemIds])).toEqual(
+      PROVISIONAL_TYPES.map(() => [[], []]),
+    );
 
     const attempts = await container.stores.sessions.listAttemptsBySession(userId, session.id);
     expect(attempts).toHaveLength(PROVISIONAL_TYPES.length);
@@ -286,6 +326,39 @@ describe('tasks without a grader, inside a session', () => {
     }
 
     await finishLesson(container, userId, session.id);
-    expect(await container.stores.cards.getCard(userId, ids.item)).not.toBeNull();
+
+    // The lesson introduces the item, so it has a card, but nobody rated it.
+    const card = await container.stores.cards.getCard(userId, ids.item);
+    expect(card).toMatchObject({ state: 'new', reps: 0, lastReview: null });
+    expect(await container.stores.events.count('item.reviewed')).toBe(0);
+
+    // Three provisional attempts are no evidence: no mastery row, nothing
+    // mastered, the level not reached, although every attempt reads correct.
+    expect(await container.progress.masteryFor(userId, 'de')).toEqual([]);
+    expect(await container.stores.events.count('cando.mastered')).toBe(0);
+    const level = (await container.progress.levelMap(userId, 'de')).levels.find(
+      (row) => row.level === 'A2',
+    );
+    expect(level?.masteredCount).toBe(0);
+    expect(level?.status).not.toBe('reached');
+  });
+});
+
+describe('the evidence rule for self rated flashcards', () => {
+  it('hands a lesson flashcard to the engine with its items and no descriptors', async () => {
+    const container = createContainer(memoryConfig());
+    await container.ready;
+    const path = await container.curriculum.lessonPath('de');
+    let checked = 0;
+    for (const entry of path) {
+      const loaded = await container.getLesson(entry.lesson.id);
+      for (const exercise of loaded?.lesson.exercises ?? []) {
+        if (exercise.type !== 'flashcard') continue;
+        expect(exercise.candoIds).toEqual([]);
+        checked += 1;
+      }
+    }
+    // The real pack has flashcards, so the loop above must have run.
+    expect(checked).toBeGreaterThan(0);
   });
 });

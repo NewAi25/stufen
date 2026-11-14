@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { AppShell } from '../components/AppShell';
 import { FeedbackWidget } from '../components/FeedbackWidget';
-import { ToastProvider } from '../components/kit';
+import { ToastProvider } from '@stufen/ui-kit';
 import { ThemeProvider } from '../components/ThemeProvider';
 import { themeInitScript } from '../components/theme-script';
 import './globals.css';

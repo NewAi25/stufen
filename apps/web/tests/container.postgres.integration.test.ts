@@ -5,7 +5,17 @@ import { installPackInto } from '../../../scripts/install-pack';
 import type { InstallPackOutcome } from '../../../scripts/install-pack';
 import { submitFeedbackFor } from '../src/server/actions/feedback-actions';
 import { completeOnboarding, saveSettings } from '../src/server/actions/identity-actions';
-import { answerExercise, finishLesson, startLesson } from '../src/server/actions/lesson-actions';
+import { loadHome } from '../src/server/actions/home-actions';
+import {
+  answerExercise,
+  completeLesson,
+  finishLesson,
+  openLesson,
+  startLesson,
+  submitLessonAnswer,
+} from '../src/server/actions/lesson-actions';
+import { loadProgress } from '../src/server/actions/progress-actions';
+import { loadReviewQueue, rateReviewCard } from '../src/server/actions/review-actions';
 import { readConfig } from '../src/server/config';
 import { createContainer } from '../src/server/container';
 import type { Container } from '../src/server/container';
@@ -46,11 +56,23 @@ describe.skipIf(!DATABASE_URL)('the container on Postgres', () => {
     });
   }
 
+  // True when the database already held a German pack. Then the install below
+  // only refreshes it and nothing is removed afterwards. On an empty database
+  // the pack is removed again, so other integration tests find it as it was.
+  let hadContentBefore = false;
+
   beforeAll(async () => {
     vi.spyOn(console, 'log').mockImplementation(() => {});
     container = createContainer(
       readConfig({ NODE_ENV: 'test', DATABASE_URL, STUFEN_CONTENT_DIR: CONTENT_ROOT }),
     );
+    const before = await db()
+      .selectFrom('units')
+      .select('id')
+      .where('language_code', '=', 'de')
+      .limit(1)
+      .execute();
+    hadContentBefore = before.length > 0;
     firstInstall = await install();
   }, 120_000);
 
@@ -73,6 +95,20 @@ describe.skipIf(!DATABASE_URL)('the container on Postgres', () => {
       await db().deleteFrom('users').where('id', 'in', createdUserIds).execute();
     }
     await db().deleteFrom('users').where('email', '=', email).execute();
+    if (!hadContentBefore) {
+      // Owner work, in an order the foreign keys allow. Learner rows went with
+      // the users above.
+      await db().deleteFrom('lesson_sessions').execute();
+      await db().deleteFrom('units').where('language_code', '=', 'de').execute();
+      await db().deleteFrom('items').where('language_code', '=', 'de').execute();
+      await db().deleteFrom('cando_descriptors').where('language_code', '=', 'de').execute();
+      await db().deleteFrom('content_pack_versions').where('language_code', '=', 'de').execute();
+      await db()
+        .updateTable('languages')
+        .set({ pack_version: null })
+        .where('code', '=', 'de')
+        .execute();
+    }
     await container.close();
   });
 
@@ -252,5 +288,156 @@ describe.skipIf(!DATABASE_URL)('the container on Postgres', () => {
       .where('user_id', '=', userId)
       .execute();
     expect(left).toHaveLength(0);
+  }, 120_000);
+
+  it('shows home, reviews and progress from the rows the lesson left', async () => {
+    const userId = createdUserIds[0];
+    if (!userId) throw new Error('the sign in test did not create a user');
+    const done = await container.lessonEngine.completedLessonIds(userId);
+    expect(done).toHaveLength(1);
+
+    // The evidence rule holds in the stored events: an attempt nobody checked
+    // names no descriptor and no item.
+    const gradedTypes = new Set<string>(container.exerciseTypes.listTypes().map((type) => type.id));
+    const recorded = await db()
+      .selectFrom('events')
+      .select('props')
+      .where('user_id', '=', userId)
+      .where('name', '=', 'attempt.recorded')
+      .execute();
+    let unchecked = 0;
+    for (const { props } of recorded) {
+      const event = props as { exerciseType: string; candoIds: string[]; itemIds: string[] };
+      if (gradedTypes.has(event.exerciseType)) continue;
+      unchecked += 1;
+      expect(event.candoIds).toEqual([]);
+      expect(event.itemIds).toEqual([]);
+    }
+    expect(unchecked).toBeGreaterThan(0);
+
+    // Home: the done mark, the next lesson and the due count of the review box.
+    const home = await loadHome(container, userId, 'de');
+    const marked = home.units.flatMap((unit) => unit.lessons).filter((entry) => entry.completed);
+    expect(marked.map((entry) => entry.id)).toEqual(done);
+    expect(home.nextLesson).not.toBeNull();
+    expect(home.nextLesson?.id).not.toBe(done[0]);
+    expect(home.reviewsDue).toBe((await container.srs.stats(userId, 'de')).due);
+    expect(home.reviewsDue).toBeGreaterThan(0);
+    expect(home.primary).toBe('review');
+    expect(home.streakDays).toBe(1);
+
+    // Review: the queue is the due rows, and a rating moves one card out.
+    const queue = await loadReviewQueue(container, userId, 'de', 10_000);
+    expect(queue.cards).toHaveLength(home.reviewsDue);
+    const card = queue.cards[0];
+    if (!card) throw new Error('nothing is due after the lesson');
+    const logs = () =>
+      db().selectFrom('review_logs').select('rating').where('user_id', '=', userId).execute();
+    const logsBefore = (await logs()).length;
+    const rated = await rateReviewCard(container, userId, 'de', card.itemId, 3);
+    expect(rated).toMatchObject({ ok: true, due: queue.due - 1 });
+    expect(await logs()).toHaveLength(logsBefore + 1);
+    const after = await loadReviewQueue(container, userId, 'de', 10_000);
+    expect(after.cards.map((entry) => entry.itemId)).not.toContain(card.itemId);
+    expect(after.due).toBe(queue.due - 1);
+
+    // Progress: the evidence per descriptor is what cando_mastery holds.
+    const view = await loadProgress(container, userId, 'de');
+    const mastery = await db()
+      .selectFrom('cando_mastery')
+      .select(['cando_id', 'evidence_count', 'mastered_at'])
+      .where('user_id', '=', userId)
+      .execute();
+    const descriptors = view.levels.flatMap((row) => row.descriptors);
+    expect(descriptors.filter((entry) => entry.evidenceCount > 0)).toHaveLength(mastery.length);
+    for (const row of mastery) {
+      const shown = descriptors.find((entry) => entry.id === row.cando_id);
+      expect(shown?.evidenceCount).toBe(row.evidence_count);
+      expect(shown?.bestProductionScore).toBeNull();
+      expect(row.mastered_at).toBeNull();
+    }
+    expect(view.hasEvidence).toBe(true);
+    expect(view.estimate).toBeNull();
+    expect(view.levels.every((row) => row.status !== 'reached')).toBe(true);
+    expect(view.levels.every((row) => row.checkpoint === 'locked')).toBe(true);
+  }, 120_000);
+
+  it('runs the next lesson the way the lesson page does: open, leave, resume, finish', async () => {
+    const userId = createdUserIds[0];
+    if (!userId) throw new Error('the sign in test did not create a user');
+    const next = await container.curriculum.nextLessonFor(userId, 'de');
+    if (!next) throw new Error('no second lesson is installed');
+    const found = await container.getLesson(next.id);
+    if (!found) throw new Error('the lesson is not stored');
+    const [first, ...rest] = found.lesson.exercises;
+    if (!first) throw new Error('the lesson has no exercise');
+
+    const opened = await openLesson(container, userId, next.id);
+    if (opened?.status !== 'in_progress') throw new Error('the lesson did not open');
+    expect(opened.position).toBe(1);
+    expect(opened.total).toBe(found.lesson.exercises.length);
+    expect(opened.exercise.id).toBe(first.id);
+    expect(await openLesson(container, userId, randomUUID())).toBeNull();
+    expect(await openLesson(container, userId, 'not-a-uuid')).toBeNull();
+
+    // A user id that owns nothing cannot answer in, or finish, this session.
+    const stranger = randomUUID();
+    const answer = correctResponseFor(first);
+    expect(
+      (await submitLessonAnswer(container, stranger, opened.sessionId, first.id, answer)).ok,
+    ).toBe(false);
+    expect((await completeLesson(container, stranger, opened.sessionId)).ok).toBe(false);
+
+    // One answer, then the learner leaves and comes back to the same session.
+    const outcome = await submitLessonAnswer(container, userId, opened.sessionId, first.id, answer);
+    expect(outcome.ok && outcome.result.correct).toBe(true);
+    const resumed = await openLesson(container, userId, next.id);
+    if (resumed?.status !== 'in_progress') throw new Error('the lesson did not resume');
+    expect(resumed.sessionId).toBe(opened.sessionId);
+    expect(resumed.position).toBe(2);
+    expect((await completeLesson(container, userId, opened.sessionId)).ok).toBe(false);
+
+    for (const exercise of rest) {
+      const result = await submitLessonAnswer(
+        container,
+        userId,
+        opened.sessionId,
+        exercise.id,
+        correctResponseFor(exercise),
+      );
+      expect(result.ok, `${exercise.type} #${exercise.ordinal}`).toBe(true);
+    }
+    const finished = await completeLesson(container, userId, opened.sessionId);
+    if (!finished.ok) throw new Error(finished.message);
+    const checked = found.lesson.exercises.filter((entry) =>
+      container.exerciseTypes.hasType(entry.type),
+    );
+    expect(finished.summary).toMatchObject({
+      lessonId: next.id,
+      checked: checked.length,
+      correct: checked.length,
+      selfChecked: found.lesson.exercises.length - checked.length,
+      newReviewItems: (found.lesson.introducesItemIds ?? []).length,
+    });
+    expect(finished.summary.next?.id).not.toBe(next.id);
+
+    const sessions = await db()
+      .selectFrom('lesson_sessions')
+      .select(['lesson_id', 'completed_at'])
+      .where('user_id', '=', userId)
+      .execute();
+    expect(sessions).toHaveLength(2);
+    expect(sessions.every((row) => row.completed_at !== null)).toBe(true);
+    for (const itemId of found.lesson.introducesItemIds ?? []) {
+      const row = await db()
+        .selectFrom('review_cards')
+        .select('item_id')
+        .where('user_id', '=', userId)
+        .where('item_id', '=', itemId)
+        .executeTakeFirst();
+      expect(row, `card for ${itemId}`).toBeDefined();
+    }
+    const home = await loadHome(container, userId, 'de');
+    expect(home.nextLesson?.id ?? null).toBe(finished.summary.next?.id ?? null);
   }, 120_000);
 });
