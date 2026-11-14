@@ -1,7 +1,7 @@
 {
   "name": "@stufen/core-storage",
   "kind": "core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "in_progress",
   "owner": "Manisha Sarkar",
   "depends_on": [
@@ -10,6 +10,7 @@
   "provides": [
     "StoragePort (type, re exported from contracts)",
     "createFsStorage",
+    "FALLBACK_CONTENT_TYPE",
     "scoped",
     "verifySignedUrl",
     "normaliseKey",

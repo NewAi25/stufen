@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-14
+
+### Added
+- `head(key)` in the filesystem adapter and in `scoped`, for `StoragePort.head` from contracts 0.7.0. It returns the content type from the sidecar and the size in bytes, or null for a missing key, a missing root or a folder. A missing or damaged sidecar gives `FALLBACK_CONTENT_TYPE` (`application/octet-stream`) instead of an error, so a file is never unreadable because its sidecar is.
+- `FALLBACK_CONTENT_TYPE` exported from the box.
+- Tests for all of the above, including the build sequence check for P1-43.
+
 ## [0.1.0] - 2026-11-05
 
 ### Added

@@ -7,6 +7,7 @@ import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
   createFsStorage,
+  FALLBACK_CONTENT_TYPE,
   normaliseKey,
   scoped,
   StorageKeyError,
@@ -63,6 +64,7 @@ describe('acceptance (P0-27)', () => {
       StorageKeyError,
     );
     await expect(user.get('../u2/x.txt')).rejects.toBeInstanceOf(StorageKeyError);
+    await expect(user.head('../u2/x.txt')).rejects.toBeInstanceOf(StorageKeyError);
     await expect(user.delete('../u2/x.txt')).rejects.toBeInstanceOf(StorageKeyError);
     await expect(user.signedUrl('../u2/x.txt')).rejects.toBeInstanceOf(StorageKeyError);
     await expect(fs.stat(root)).rejects.toMatchObject({ code: 'ENOENT' });
@@ -89,6 +91,46 @@ describe('createFsStorage', () => {
     expect(await storage.get('u1/other.txt')).toBeNull();
     expect(await storage.get('u1/a')).toBeNull();
     expect(await storage.get('u1/a/b.txt/c')).toBeNull();
+  });
+
+  it('head returns the stored content type and the size (P1-43)', async () => {
+    await storage.put('u1/rec.webm', new Uint8Array([0, 1, 2, 250, 255]), 'audio/webm');
+
+    expect(await storage.head('u1/rec.webm')).toEqual({ contentType: 'audio/webm', size: 5 });
+
+    await storage.put('u1/rec.webm', bytes('longer text'), 'text/plain');
+    expect(await storage.head('u1/rec.webm')).toEqual({ contentType: 'text/plain', size: 11 });
+  });
+
+  it('head returns null for a missing key, a missing root, a folder and a deleted file', async () => {
+    expect(await storage.head('u1/missing.txt')).toBeNull();
+    await expect(fs.stat(root)).rejects.toMatchObject({ code: 'ENOENT' });
+
+    await storage.put('u1/a/b.txt', bytes('b'), 'text/plain');
+    expect(await storage.head('u1/other.txt')).toBeNull();
+    expect(await storage.head('u1/a')).toBeNull();
+    expect(await storage.head('u1/a/b.txt/c')).toBeNull();
+
+    await storage.delete('u1/a/b.txt');
+    expect(await storage.head('u1/a/b.txt')).toBeNull();
+  });
+
+  it('head falls back to a safe content type when the sidecar is missing or damaged', async () => {
+    await storage.put('u1/a.txt', bytes('a'), 'text/plain');
+    const sidecar = path.join(root, 'u1', 'a.txt.meta.json');
+
+    await fs.writeFile(sidecar, 'not json');
+    expect(await storage.head('u1/a.txt')).toEqual({ contentType: FALLBACK_CONTENT_TYPE, size: 1 });
+    await fs.writeFile(sidecar, JSON.stringify({ contentType: 42 }));
+    expect(await storage.head('u1/a.txt')).toEqual({ contentType: FALLBACK_CONTENT_TYPE, size: 1 });
+    await fs.rm(sidecar);
+    expect(await storage.head('u1/a.txt')).toEqual({ contentType: FALLBACK_CONTENT_TYPE, size: 1 });
+    expect(FALLBACK_CONTENT_TYPE).toBe('application/octet-stream');
+  });
+
+  it('head rejects the same keys as get, and a sidecar is not a file of its own', async () => {
+    expect(await reasonOf(() => storage.head('../x.txt'))).not.toBe('none');
+    expect(await reasonOf(() => storage.head('u1/a.txt.meta.json'))).toBe('reserved_suffix');
   });
 
   it('delete removes the file and its sidecar, and is safe to call twice', async () => {
@@ -273,6 +315,8 @@ describe('scoped', () => {
 
     expect(text(await alice.get('notes/a.txt'))).toBe('from alice');
     expect(text(await bob.get('notes/a.txt'))).toBe('from bob');
+    expect(await alice.head('notes/a.txt')).toEqual({ contentType: 'text/plain', size: 10 });
+    expect(await bob.head('notes/a.txt')).toEqual({ contentType: 'text/plain', size: 8 });
     expect(text(await storage.get('alice/notes/a.txt'))).toBe('from alice');
     expect(text(await storage.get('bob/notes/a.txt'))).toBe('from bob');
 
@@ -295,6 +339,7 @@ describe('scoped', () => {
       '%2e%2e/bob/private.txt',
     ]) {
       await expect(alice.get(key)).rejects.toBeInstanceOf(StorageKeyError);
+      await expect(alice.head(key)).rejects.toBeInstanceOf(StorageKeyError);
       await expect(alice.put(key, bytes('overwritten'), 'text/plain')).rejects.toBeInstanceOf(
         StorageKeyError,
       );

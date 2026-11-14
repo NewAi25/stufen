@@ -16,6 +16,7 @@ Everything is exported from `src/index.ts`. The `StoragePort` interface lives in
 interface StoragePort {
   put(key: string, data: Uint8Array, contentType: string): Promise<void>;
   get(key: string): Promise<Uint8Array | null>;
+  head(key: string): Promise<{ contentType: string; size: number } | null>;
   delete(key: string): Promise<void>;
   signedUrl(key: string, ttlSeconds?: number): Promise<string>;
 }
@@ -41,13 +42,16 @@ normaliseKey(key: string): string    // returns the key, or throws StorageKeyErr
 class StorageKeyError extends Error { reason: StorageKeyErrorReason }
 ```
 
-Types exported alongside: `FsStorageOptions`, `VerifySignedUrlInput`, `StorageKeyErrorReason`.
+Types exported alongside: `FsStorageOptions`, `VerifySignedUrlInput`, `StorageKeyErrorReason`, `StorageObjectInfo`. The constant `FALLBACK_CONTENT_TYPE` is `application/octet-stream`.
+
+`head` answers what a file route needs before it sends a file: the content type given to `put` and the size in bytes. It returns null when the key holds no file. When the sidecar of a file is missing or damaged, `head` returns `FALLBACK_CONTENT_TYPE`, which browsers download and never run.
 
 ```ts
 const storage = createFsStorage({ root: './.data/files', secret: signingSecret });
 const mine = scoped(storage, userId);
 await mine.put('speech/2f6c.webm', bytes, 'audio/webm');
 const back = await mine.get('speech/2f6c.webm');
+const info = await mine.head('speech/2f6c.webm'); // { contentType: 'audio/webm', size: 48213 }
 const url = await mine.signedUrl('speech/2f6c.webm', 300);
 ```
 

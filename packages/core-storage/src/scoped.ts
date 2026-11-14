@@ -20,6 +20,9 @@ export function scoped(storage: StoragePort, prefix: string): StoragePort {
     async get(key) {
       return storage.get(full(key));
     },
+    async head(key) {
+      return storage.head(full(key));
+    },
     async delete(key) {
       await storage.delete(full(key));
     },

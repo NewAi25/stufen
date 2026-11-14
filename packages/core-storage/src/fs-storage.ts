@@ -129,6 +129,30 @@ async function removeFile(target: string): Promise<void> {
   }
 }
 
+/** The type a file is served as when its sidecar is missing or unreadable. */
+export const FALLBACK_CONTENT_TYPE = 'application/octet-stream';
+
+/** Reads the content type from a sidecar. Never trusts its shape. */
+async function readContentType(meta: string): Promise<string> {
+  let raw: string;
+  try {
+    raw = await fs.readFile(meta, 'utf8');
+  } catch (error) {
+    if (isMissing(error) || errorCode(error) === 'EISDIR') return FALLBACK_CONTENT_TYPE;
+    throw error;
+  }
+  try {
+    const parsed: unknown = JSON.parse(raw);
+    if (typeof parsed === 'object' && parsed !== null && 'contentType' in parsed) {
+      const value = parsed.contentType;
+      if (typeof value === 'string' && value.length > 0) return value;
+    }
+  } catch {
+    // A damaged sidecar must not make the file unreadable.
+  }
+  return FALLBACK_CONTENT_TYPE;
+}
+
 export function createFsStorage(options: FsStorageOptions): StoragePort {
   if (typeof options.root !== 'string' || options.root.length === 0) {
     throw new TypeError('createFsStorage: root must be a folder path.');
@@ -200,6 +224,21 @@ export function createFsStorage(options: FsStorageOptions): StoragePort {
         if (isMissing(error) || errorCode(error) === 'EISDIR') return null;
         throw error;
       }
+    },
+
+    async head(key) {
+      const at = await locate(key, false);
+      if (at === null) return null;
+      let size: number;
+      try {
+        const stat = await fs.stat(at.file);
+        if (!stat.isFile()) return null;
+        size = stat.size;
+      } catch (error) {
+        if (isMissing(error)) return null;
+        throw error;
+      }
+      return { contentType: await readContentType(at.meta), size };
     },
 
     async delete(key) {
