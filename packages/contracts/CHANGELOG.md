@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-11-14
+
+### Added
+- `StoragePort.head(key)` and the `StorageObjectInfo` type (`contentType`, `size`). A file route can now serve a stored file with the content type it was saved with, without reading the bytes first. A key that holds no file returns null. Every `StoragePort` adapter must implement it.
+
 ## [0.6.0] - 2026-11-11
 
 ### Added

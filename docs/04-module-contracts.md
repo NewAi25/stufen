@@ -88,13 +88,14 @@ Emits `user.signed_up` exactly once per new user and, on Postgres, calls `ensure
 
 ```ts
 // StoragePort lives in contracts (src/ports.ts).
+// put(key, data, contentType), get(key), head(key): { contentType, size } | null, delete(key), signedUrl(key, ttlSeconds?)
 createFsStorage(options: { root: string; baseUrl?: string; secret?: string; now? }): StoragePort   // dev and tests
 scoped(storage: StoragePort, prefix: string): StoragePort    // every key is forced under prefix, for per user storage
 verifySignedUrl({ key, expires, sig, secret, now? }): boolean
 normaliseKey(key): string                                     // throws StorageKeyError with a reason code
 ```
 
-Keys are relative ASCII paths such as `<userId>/recordings/<id>.webm`. Absolute paths, drive letters, backslashes, dot segments and anything that resolves outside the root throw. `signedUrl` is HMAC signed when a secret is set and plain otherwise, which is for local development only. Known gap for Phase 3: the port cannot return a file's content type, which the file serving route will need. The S3 compatible adapter is a Phase 3 row.
+Keys are relative ASCII paths such as `<userId>/recordings/<id>.webm`. Absolute paths, drive letters, backslashes, dot segments and anything that resolves outside the root throw. `signedUrl` is HMAC signed when a secret is set and plain otherwise, which is for local development only. `head(key)` returns `{ contentType, size }` or null, so the file serving route can send the stored content type without reading the bytes; a file whose sidecar is missing or damaged is reported as `application/octet-stream`. The S3 compatible adapter is a Phase 3 row.
 
 ## core-mail
 

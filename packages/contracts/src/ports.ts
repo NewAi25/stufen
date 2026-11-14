@@ -23,9 +23,19 @@ export interface AuthPort {
   signOut(sessionToken: string): Promise<void>;
 }
 
+/** What `head` tells about a stored file without reading its bytes. */
+export interface StorageObjectInfo {
+  /** The content type given to `put`. */
+  contentType: string;
+  /** Size in bytes. */
+  size: number;
+}
+
 export interface StoragePort {
   put(key: string, data: Uint8Array, contentType: string): Promise<void>;
   get(key: string): Promise<Uint8Array | null>;
+  /** Content type and size of a stored file, or null when the key holds none. */
+  head(key: string): Promise<StorageObjectInfo | null>;
   delete(key: string): Promise<void>;
   /** A URL the browser can fetch for a limited time. */
   signedUrl(key: string, ttlSeconds?: number): Promise<string>;

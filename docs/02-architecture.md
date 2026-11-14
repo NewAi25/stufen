@@ -99,7 +99,7 @@ One exception to "core never knows a language": `core-content` loads language pa
 | `contracts` | Types, event names, interfaces. No logic | none | none |
 | `db` | Kysely instance on the pg driver, table types, migration runner. The only package that talks to Postgres | none | none |
 | `core-auth` | Sign in with magic link and Google on better-auth. Sessions. Behind `AuthPort` (getSession, signInMagicLink, signInOAuth, signOut) | `users`, `sessions`, `accounts`, `verifications` | `user.signed_up` |
-| `core-storage` | Files behind `StoragePort` (put, get, delete, signedUrl). Adapters: local filesystem, S3 compatible | none | none |
+| `core-storage` | Files behind `StoragePort` (put, get, head, delete, signedUrl). Adapters: local filesystem, S3 compatible | none | none |
 | `core-mail` | Email behind `MailPort` (send). Adapters: console, SMTP | none | none |
 | `core-identity` | Profile, settings, target language | `profiles`, `learner_languages` | `user.language_set` |
 | `core-curriculum` | The CEFR spine. Levels, can do descriptors, units, lessons with exercises, items. Reads them and writes them through `SnapshotWriter` | `cefr_levels`, `cando_descriptors`, `units`, `lessons`, `exercises`, `items` | none |
