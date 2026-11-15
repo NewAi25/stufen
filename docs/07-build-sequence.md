@@ -349,3 +349,4 @@ Every merged commit gets one row. Newest at the bottom. See `docs/08-versioning-
 | 2026-11-15 | ecb8a91 | de-a1 | `content(de-a1): verify items against A2, DTZ and B1 word lists` |
 | 2026-11-15 | c28588c | web | `test(web): add end to end learner path` |
 | 2026-11-15 | ce49f02 | ci | `test(ci): add A1 lesson flow` |
+| 2026-11-15 | 6d4befa | repo | `release(repo): v0.2.0` |
