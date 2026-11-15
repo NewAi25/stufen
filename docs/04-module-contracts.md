@@ -377,17 +377,25 @@ Components built: `Button`, `Card`, `Progress`, `TextInput`, `TextArea`, `Choice
 
 ## apps/web routes
 
-| Route | Boxes used |
-|-------|------------|
-| `/` | identity, progress, srs, curriculum |
-| `/sign-in` | auth, mail |
-| `/onboarding` | identity, assessment, entitlements |
-| `/lesson/[id]` | lesson-engine, exercise-types, speech, ai-tutor (via graders) |
-| `/review` | srs, exercise-types |
-| `/tutor` | ai-tutor, speech, entitlements |
-| `/write` | ai-tutor, entitlements |
-| `/progress` | progress, curriculum |
-| `/assess/[kind]` | assessment |
-| `/settings` | identity |
-| `/feedback` | feedback |
-| `/api/*` | server actions, never called by boxes |
+Built means the route exists in `apps/web` 0.5. Planned routes are navigation entries that lead to `/coming-soon` until their phase. `apps/web/README.md` describes each built route in full.
+
+| Route | State | Boxes used |
+|-------|-------|------------|
+| `/` | built | identity, curriculum, lesson-engine, srs, progress |
+| `/sign-in` | built | auth, mail |
+| `/auth/callback`, `/auth/sign-out` | built | auth |
+| `/onboarding` | built | identity. assessment joins with the placement test in Phase 3 |
+| `/lesson/[id]` | built | curriculum, lesson-engine, exercise-types, srs, progress. speech and ai-tutor join through graders in Phases 2 and 3 |
+| `/review` | built | srs, curriculum, exercise-types |
+| `/progress` | built | progress, curriculum |
+| `/settings` | built | identity, entitlements |
+| `/feedback` | built | feedback |
+| `/kit`, `/coming-soon`, `/api/health` | built | ui-kit only |
+| `/tutor` | planned, Phase 2 | ai-tutor, speech, entitlements |
+| `/write` | planned, Phase 2 | ai-tutor, entitlements |
+| `/assess/[kind]` | planned, Phase 3 | assessment |
+| `/files/[...key]` | planned, Phase 3 | storage (`verifySignedUrl`, `head`, `get`) |
+
+Server actions and route handlers live in `apps/web` and are never called by boxes.
+
+Evidence rule in the composition root: an exercise whose type has no grader (`translate`, `write_free`, `speak_prompt` until Phase 2 and 3) reaches the lesson engine with no descriptors and no items, so it counts toward nothing. A self rated flashcard keeps its items for review and carries no descriptors. This keeps unchecked production from raising a level.
