@@ -118,7 +118,7 @@ Box versions start at 0.0.1 (skeleton) and go to 0.1.0 with the first real featu
 | P1-23 | 1 | apps/web | `/progress` level map with evidence per descriptor | P1-17, P1-18, P1-31 | 0.8.0 | done | Click a descriptor and see attempt count, types seen, best production score | `feat(web): add progress route` |
 | P1-24 | 1 | scripts | `scripts/install-pack.ts` run with tsx as `pnpm pack:install de`: validate, refuse on errors, install against `DATABASE_URL`, read back, `--dry-run` | P1-03, P1-04, P1-28 | n/a | done | `pnpm pack:install de` twice on a real Postgres prints the same id digest and exits 0; an invalid pack exits 1 and writes nothing | `feat(scripts): add install-pack` |
 | P1-25 | 1 | CI | Playwright against the Docker stack in CI, with the sign in link read from the mail catcher: sign in, onboarding, finish A1 lesson 1, review five cards, level map shows evidence | P1-22, P1-39 | n/a | done | Workflow step green on main | `test(ci): add A1 lesson flow` |
-| P1-26 | 1 | release | Tag v0.2.0 | P1-10, P1-23, P1-24, P1-25, P1-32, P1-33, P1-34, P1-35 | repo 0.2.0 | planned | Tag exists; phase 1 exit criteria all pass | `release(repo): v0.2.0` |
+| P1-26 | 1 | release | Tag v0.2.0 | P1-10, P1-23, P1-24, P1-25, P1-32, P1-33, P1-34, P1-35 | repo 0.2.0 | done | Tag exists; phase 1 exit criteria all pass | `release(repo): v0.2.0` |
 | P2-01 | 2 | core-ai-tutor | `TutorStore` port plus in memory adapter; Claude client, model config, streaming wrapper, token logging | P0-10 | 0.1.0 | planned | Test with a recorded response: chunks stream and `input_tokens` is saved | `feat(core-ai-tutor): add claude client and streaming` |
 | P2-18 | 2 | core-ai-tutor | 0.2.0 Postgres adapter via `db`, integration test against Docker Postgres | P2-01, P0-24 | 0.2.0 | planned | Integration test: one recorded turn writes one `tutor_messages` row with token counts on Docker Postgres | `feat(core-ai-tutor): add postgres adapter` |
 | P2-02 | 2 | core-ai-tutor | `startConversation`, `sendTurn` with corrections in the final chunk; emits `tutor.turn` | P2-01 | 0.3.0 | planned | Test: a turn with `ich habe ein Hund` yields one correction of type `case` | `feat(core-ai-tutor): add conversation and corrections` |
@@ -291,3 +291,61 @@ Every merged commit gets one row. Newest at the bottom. See `docs/08-versioning-
 | 2026-11-06 | bf64d95 | web | `feat(web): add settings and onboarding` |
 | 2026-11-06 | bf3346b | web | `feat(web): wire feedback` |
 | 2026-11-06 | aba42c6 | repo | `release(repo): v0.1.0` |
+| 2026-11-06 | 544d3bc | build-seq | `docs(build-seq): log release commit aba42c6` |
+| 2026-11-06 | af0ad88 | db | `feat(db): add 0004 daily usage view` |
+| 2026-11-06 | b9afa7a | contracts | `feat(contracts): add CurriculumSnapshot` |
+| 2026-11-06 | 480f8d7 | repo | `chore(repo): add phase 1 dependencies and db access for core boxes` |
+| 2026-11-06 | 83f4784 | db | `feat(db): re export the sql tag` |
+| 2026-11-06 | c8fe48e | repo | `chore(repo): add MAIL_FROM to the env example` |
+| 2026-11-11 | c1bcfd9 | core-curriculum | `feat(core-curriculum): add curriculum api and in memory store` |
+| 2026-11-11 | c7c54c1 | lang-de | `feat(lang-de): add German pack loader and rules` |
+| 2026-11-11 | ef72f51 | de-a1 | `content(de-a1): complete the 45 A1 descriptors` |
+| 2026-11-11 | 1b5e97f | core-exercise-types | `feat(core-exercise-types): add registry and deterministic graders` |
+| 2026-11-11 | db11f5d | core-srs | `feat(core-srs): add FSRS scheduler and attempt subscription` |
+| 2026-11-11 | 5f45657 | core-progress | `feat(core-progress): add mastery rule, level rule and progress api` |
+| 2026-11-11 | 6887cc0 | core-identity | `feat(core-identity): add Postgres adapter` |
+| 2026-11-11 | cdeaff7 | core-entitlements | `feat(core-entitlements): add Postgres adapter` |
+| 2026-11-11 | 694f2ec | core-analytics | `feat(core-analytics): add Postgres adapter` |
+| 2026-11-11 | b19ce5c | core-feedback | `feat(core-feedback): add Postgres adapter` |
+| 2026-11-11 | 7899ce4 | core-mail | `feat(core-mail): add smtp adapter` |
+| 2026-11-11 | 8f9d0a2 | ui-kit | `feat(ui-kit): add open control and client directives` |
+| 2026-11-11 | 9e87eb0 | scripts | `feat(scripts): allow item files split by theme` |
+| 2026-11-11 | 652f310 | db | `feat(db): add 0005 phase 1 fixes` |
+| 2026-11-11 | 5fa7b0b | core-entitlements | `fix(core-entitlements): follow limits as overrides only` |
+| 2026-11-11 | 6b2b4bd | contracts | `feat(contracts): add SnapshotWriter` |
+| 2026-11-11 | 2f85c70 | adr | `docs(adr): add ADR-009 own magic link auth` |
+| 2026-11-11 | bb4799f | contracts | `docs(contracts): sync box APIs after phase 1 wave 1` |
+| 2026-11-11 | 2e6db86 | core-progress | `feat(core-progress): add Postgres adapter and level based production threshold` |
+| 2026-11-11 | 5c6c532 | core-auth | `feat(core-auth): add Postgres auth store and createAuth` |
+| 2026-11-11 | de18cec | content-schema | `feat(content-schema): add plural only nouns` |
+| 2026-11-11 | 203d8ec | lang-de | `fix(lang-de): split listed um verbs and conjugate noun plus verb` |
+| 2026-11-11 | b8b9b11 | de-a1 | `content(de-a1): add A1 vocabulary, 813 items` |
+| 2026-11-11 | 0fa5a07 | core-curriculum | `feat(core-curriculum): add Postgres store and nextLessonFor` |
+| 2026-11-11 | bc550e3 | core-content | `feat(core-content): add pack validation, snapshot and install` |
+| 2026-11-11 | 2ae6f44 | core-lesson-engine | `feat(core-lesson-engine): add lesson sessions and attempts` |
+| 2026-11-11 | f48f765 | core-srs | `feat(core-srs): add Postgres adapter` |
+| 2026-11-11 | 082a457 | contracts | `feat(contracts): add instruction, English titles and introduced items` |
+| 2026-11-11 | 73ffc69 | db | `feat(db): add 0006 lesson fields and guards` |
+| 2026-11-12 | aa84643 | ui-kit | `feat(ui-kit): add exercise renderers, level map and audio` |
+| 2026-11-12 | c721f5f | core-curriculum | `feat(core-curriculum): carry instructions, English titles and introduced items` |
+| 2026-11-12 | 54b8560 | core-content | `feat(core-content): map instructions and introduced items, one active version` |
+| 2026-11-12 | dec88ff | core-lesson-engine | `feat(core-lesson-engine): race safe sessions and introduced items` |
+| 2026-11-12 | b64e52f | core-srs | `fix(core-srs): exact round trips on double precision` |
+| 2026-11-12 | c956dc7 | core-entitlements | `fix(core-entitlements): follow revoked content write grants` |
+| 2026-11-12 | 0b64de3 | ci | `chore(ci): run database tests serially in their own step` |
+| 2026-11-12 | 46131b3 | contracts | `docs(contracts): sync lesson engine and curriculum after phase 1 wave 2` |
+| 2026-11-12 | 30cb682 | core-exercise-types | `feat(core-exercise-types): check every lesson, widen match_pairs skills` |
+| 2026-11-12 | a8a81d9 | de-a1 | `content(de-a1): add units 1 to 4, 28 lessons` |
+| 2026-11-12 | aefdd4d | web | `feat(web): add sign in, Postgres container and pack install` |
+| 2026-11-12 | c6ad98f | repo | `chore(repo): env example for the web app, bundler hint in lang-de loader` |
+| 2026-11-12 | e3c427f | repo | `chore(repo): complete the Dockerfile and add an app stack` |
+| 2026-11-12 | 067b29a | build-seq | `docs(build-seq): mark P1-39 done, Docker stack green in CI` |
+| 2026-11-12 | 7c18d15 | scripts | `feat(scripts): enforce item introduction order` |
+| 2026-11-12 | c84cf84 | de-a1 | `content(de-a1): add units 5 to 8, A1 complete` |
+| 2026-11-14 | 57695a7 | web | `feat(web): add lesson player, review, daily home and level map` |
+| 2026-11-14 | c87958f | contracts | `feat(contracts): add head to StoragePort` |
+| 2026-11-14 | 3aa43a3 | core-storage | `feat(core-storage): implement head in the fs adapter` |
+| 2026-11-15 | 14f9e75 | contracts | `docs(contracts): sync web routes after phase 1 wave 4` |
+| 2026-11-15 | ecb8a91 | de-a1 | `content(de-a1): verify items against A2, DTZ and B1 word lists` |
+| 2026-11-15 | c28588c | web | `test(web): add end to end learner path` |
+| 2026-11-15 | ce49f02 | ci | `test(ci): add A1 lesson flow` |

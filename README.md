@@ -6,7 +6,9 @@ Stufen is built as a set of small boxes. Each box does one job, has one public i
 
 ## Status
 
-Version 0.1.0, Phase 0 complete (6 November 2026). The foundation boxes, the database layer and the web shell are built and tested. On a local build a learner can pick German, set a target level, change settings and leave feedback. Lessons arrive in Phase 1. See the progress table in [docs/07-build-sequence.md](docs/07-build-sequence.md).
+Version 0.2.0, Phase 1 complete (15 November 2026). The German A1 course is in: 8 units, 56 lessons, 706 exercises and 813 vocabulary items. A learner who starts from zero can sign in with a link sent by mail, work through the lessons, review what they introduced and see the evidence for each A1 descriptor on the level map. Everything is stored in Postgres and the whole app runs in Docker. A level is never granted on exercise accuracy alone; see [docs/14-levels-in-real-life.md](docs/14-levels-in-real-life.md).
+
+Not built yet: the AI tutor and writing grading (Phase 2), speech and A2 (Phase 3), and a hosted preview. See the progress table in [docs/07-build-sequence.md](docs/07-build-sequence.md).
 
 ## Read in this order
 
@@ -31,23 +33,26 @@ stufen/
   apps/web/                 the Next.js app that wires boxes together
   content/                  language content packs (data only)
   content/schema/           JSON schemas every pack validates against
-  scripts/                  repo checks (boundaries, content validation)
-  docker-compose.yml        Postgres for local development and tests
+  scripts/                  repo checks (boundaries, content validation) and pack install
+  docker-compose.yml        Postgres for development, or the whole app with profile app
   Dockerfile                builds the web app for any container host
 ```
 
 ## Stack
 
-Next.js and TypeScript on the front. PostgreSQL through Kysely on the back, with sign in by better-auth in our own tables, files behind a storage port (local filesystem or any S3 endpoint) and mail behind a mail port (console or SMTP). Claude API for the tutor and grading, FSRS for spaced repetition, browser speech APIs first for listening and speaking. Local development runs Postgres in Docker. Hosting is a Dockerfile, so Vercel, a VPS or any container host works. No provider specific code anywhere; see `docs/adr/ADR-008-provider-independence.md`.
+Next.js and TypeScript on the front. PostgreSQL through Kysely on the back, with our own magic link sign in in our own tables (ADR-009), files behind a storage port (local filesystem or any S3 endpoint) and mail behind a mail port (console or SMTP). Claude API for the tutor and grading, FSRS for spaced repetition, browser speech APIs first for listening and speaking. Local development runs Postgres in Docker. Hosting is a Dockerfile, so Vercel, a VPS or any container host works. No provider specific code anywhere; see `docs/adr/ADR-008-provider-independence.md`.
 
-## Commands (once Phase 0 lands)
+## Commands
 
 ```
 pnpm install
 docker compose up -d db        start Postgres for local development and tests
 pnpm db:migrate                apply migrations in packages/db/migrations/
+pnpm pack:install de           install the German content pack into the database
 pnpm dev                       run the web app
 pnpm test                      run every box's tests
+pnpm test:db                   run the database tests, one box after another
+pnpm --filter @stufen/web e2e  run the end to end browser test against a running app
 node scripts/check-boundaries.mjs      verify no box imports another box's internals
 node scripts/validate-content.mjs      validate content packs against schema
 ```

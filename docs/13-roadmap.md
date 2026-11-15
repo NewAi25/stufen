@@ -7,7 +7,7 @@ Planning assumptions: one owner working part time, about 10 hours a week, with A
 | Phase | Scope | Start | End | Weeks | Tag | Main risk to the date |
 |-------|-------|-------|-----|-------|-----|------------------------|
 | 0 | Foundation: tooling, contracts, auth, feedback, entitlements, analytics | 2026-09-09 | 2026-11-06 (done) | 2 of work, paused 10 Sep to 5 Nov | `v0.1.0` | Closed |
-| 1 | German A1 vertical slice: curriculum, content install, lesson engine, SRS, progress, A1 pack | 2026-11-09 | 2026-12-13 | 5 | `v0.2.0` | A1 content authoring, about 60 lessons |
+| 1 | German A1 vertical slice: curriculum, content install, lesson engine, SRS, progress, A1 pack | 2026-11-06 | 2026-11-15 (done) | 1.5, four weeks early | `v0.2.0` | Closed. The hosted preview moved out and waits for a host |
 | 2 | AI tutor, writing studio, AI graded exercises, review sheet | 2026-12-14 | 2027-01-17 | 5, includes a two week holiday gap | `v0.3.0` | Correction accuracy below 90 percent on the hand check |
 | 3 | Speech, A2 pack, placement, immersion ramp | 2027-01-18 | 2027-02-14 | 4 | `v0.4.0` | Web Speech API quality in non Chrome browsers |
 | 4 | B1 and B2 packs, checkpoints, level reached rule, beta measures | 2027-02-15 | 2027-03-28 | 6 | `v0.5.0` | About 190 lessons of content plus B level rules |
@@ -18,6 +18,8 @@ Planning assumptions: one owner working part time, about 10 hours a week, with A
 | 8 | Entitlements and payments on | 2027-08-30 | 2027-09-19 | 3 | `v1.3.0` | Stripe account and tax setup outside code |
 
 Re dated on 2026-11-06. Phase 0 closed that day, about six and a half weeks later than first planned, because the project paused from 10 September to 5 November for other work. Every later phase keeps its length and moves by the same amount; the holiday gap now falls in Phase 2.
+
+Phase 1 closed on 2026-11-15, four weeks ahead of its target, because the A1 content was generated and machine checked in days instead of weeks. The later dates are left as they are: they are targets, and the content review load from Phase 4 on is still the real limit.
 
 Notes on realism:
 
