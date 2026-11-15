@@ -316,7 +316,45 @@ DATABASE_URL=postgres://stufen@localhost:5497/stufen_web pnpm --filter @stufen/w
 
 Under Vitest the `server-only` package is replaced by `tests/stubs/server-only.ts` through an alias in the root `vitest.config.ts`.
 
-Flow tests with Playwright are described in `docs/11-testing-and-quality.md`.
+## End to end test
+
+One Playwright spec, `e2e/learner-path.spec.ts`, drives the learner path in Chromium (row P1-25). It does not start the app. It runs against a server that is already up in Postgres mode with the German pack installed.
+
+Run it locally from the repo root. The first command is needed once per machine.
+
+```
+pnpm --filter @stufen/web exec playwright install chromium
+DATABASE_URL=postgres://stufen:stufen@localhost:5432/stufen pnpm pack:install de
+DATABASE_URL=postgres://stufen:stufen@localhost:5432/stufen PORT=3600 pnpm --filter @stufen/web dev
+E2E_BASE_URL=http://localhost:3600 pnpm --filter @stufen/web e2e
+```
+
+The dev server runs in one terminal and the test in another. A run takes about 20 seconds once the dev server has compiled the routes.
+
+| Variable | Default | What it does |
+|----------|---------|--------------|
+| `E2E_BASE_URL` | `http://localhost:3000` | The app under test |
+| `E2E_MAILPIT_URL` | not set | Set it for the Docker stack, for example `http://localhost:8025`. The sign in link is then read from the newest mail to the test address through the Mailpit API. Without it the test reads the "Development only" link on the sign in page, which needs the dev server with the console mail adapter |
+| `STUFEN_CONTENT_DIR` | `content/` in the repo | Where the test reads the lesson file from |
+
+| Test | What it proves |
+|------|----------------|
+| A new learner | Opening `/` signed out lands on `/sign-in`. A link is requested for a new address and followed to `/onboarding`. German and a target level are chosen and "Start from zero" leads home, where the first A1 lesson is the next lesson. Every exercise of that lesson is answered with the keyboard, checked and continued. The summary shows the score sentence and the number of new words that went into review. Home then offers the reviews, five cards are rated and the counter goes down by five. `/progress` shows A1 open with at least one descriptor that has attempts |
+| A signed out visitor | `/settings` redirects to `/sign-in?next=%2Fsettings`. The link signs in and lands on `/settings`. After Sign out the same link leads to `/sign-in?error=link` with the calm note, and `/settings` is closed again |
+
+How it is built:
+
+- `e2e/helpers/lesson-content.ts` reads `content/de/units/A1/01-hallo/lesson-01.json` at test time. The test learns the type and payload of each exercise from that file, so it follows the lesson when the lesson changes.
+- `e2e/helpers/answers.ts` answers one exercise per type through roles and visible text, with the keys the ui-kit README documents, and uses the answer key of the payload. It reads the grade from the feedback box, and the test compares the score sentence of the summary with those grades.
+- `e2e/helpers/magic-link.ts` gets the sign in link in one of the two ways above and moves it to the origin of `E2E_BASE_URL` when the mail was built for another one.
+- `playwright.config.ts`: Chromium only, one worker, one retry in CI with a trace on the first retry, an HTML report in `playwright-report`. That folder and `test-results` are not committed.
+
+Things to know:
+
+- Each run creates two users whose address starts with `e2e-` and ends in `@example.test`. Remove them from a local database with `delete from users where email like 'e2e-%@example.test'`.
+- The app allows 5 sign in requests in 15 minutes per client address and a run uses 2. A third run within 15 minutes gets no link for its last test. Restart the dev server to clear the counter, which lives in memory.
+- Vitest does not run these files. Its pattern is `tests/**/*.test.ts` and the spec lives in `e2e/` and ends in `.spec.ts`.
+- In CI the `docker` job of `.github/workflows/ci.yml` runs the test against the Docker stack with `E2E_MAILPIT_URL` set and uploads the report when it fails.
 
 ## Status
 

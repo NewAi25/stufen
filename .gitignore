@@ -14,3 +14,6 @@ next-env.d.ts
 .data/
 # Written by next dev on every run
 apps/web/AGENTS.md
+# Written by the Playwright end to end test
+apps/web/playwright-report/
+apps/web/test-results/

@@ -1,13 +1,14 @@
 {
   "name": "@stufen/web",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "cross-env NEXT_TELEMETRY_DISABLED=1 next dev",
     "build": "cross-env NEXT_TELEMETRY_DISABLED=1 next build",
     "start": "cross-env NEXT_TELEMETRY_DISABLED=1 next start",
-    "test": "vitest run"
+    "test": "vitest run",
+    "e2e": "playwright test"
   },
   "dependencies": {
     "@stufen/contracts": "workspace:*",
@@ -33,6 +34,7 @@
     "server-only": "^0.0.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.65.1",
     "@tailwindcss/postcss": "^4.3.5",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",

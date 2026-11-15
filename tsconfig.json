@@ -9,6 +9,8 @@
     "apps/*/src/**/*.tsx",
     "apps/*/tests/**/*.ts",
     "apps/*/tests/**/*.tsx",
+    "apps/*/e2e/**/*.ts",
+    "apps/*/playwright.config.ts",
     "scripts/**/*.ts",
     "vitest.config.ts"
   ]

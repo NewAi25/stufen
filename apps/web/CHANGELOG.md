@@ -2,6 +2,15 @@
 
 ## [Unreleased]
 
+## [0.5.2] - 2026-11-15
+
+### Added
+
+- An end to end test of the learner path with Playwright (row P1-25). `e2e/learner-path.spec.ts` runs in Chromium against a running app in Postgres mode: sign in with a magic link, onboarding, every exercise of the first A1 lesson, the lesson summary, five reviews with the counter going down by five, and the level map with evidence for A1. A second test checks that a signed out visitor to `/settings` lands on `/sign-in` and that a sign in link works only once.
+- `e2e/helpers`: `magic-link.ts` reads the sign in link from the Mailpit API when `E2E_MAILPIT_URL` is set and from the "Development only" link of the sign in page otherwise. `lesson-content.ts` reads the lesson from `content/de` at test time. `answers.ts` answers each exercise type through roles, visible text and the documented keys.
+- `playwright.config.ts`, the script `pnpm --filter @stufen/web e2e` and the dev dependency `@playwright/test`. The root `tsconfig.json` covers `apps/*/e2e` and the Playwright config, and `.gitignore` leaves out `playwright-report` and `test-results`.
+- The `docker` job in CI installs Chromium, runs the test against the Docker stack with the mail catcher and uploads the Playwright report when it fails.
+
 ## [0.5.1] - 2026-11-14
 
 ### Changed

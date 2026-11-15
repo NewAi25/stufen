@@ -16,3 +16,5 @@ docs
 Thumbs.db
 docker-compose.yml
 Dockerfile
+**/playwright-report
+**/test-results
