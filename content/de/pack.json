@@ -1,10 +1,10 @@
 {
   "$schema": "https://stufen.app/schema/pack.json",
   "code": "de",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "German",
   "name_native": "Deutsch",
-  "description": "German content pack. Skeleton: A1 descriptors, the first unit with two lessons, Goethe A1 exam format.",
+  "description": "German content pack. The full A1 course: 45 descriptors, 813 items, 8 units with 56 lessons, and the verified exam formats.",
   "locale": "de-DE",
   "levels": [
     "A1"
@@ -30,6 +30,33 @@
       "publisher": "Goethe-Institut, Munich",
       "url": "https://www.goethe.de/pro/relaunch/prf/de/A1_SD1_Wortliste_02.pdf",
       "note": "Alphabetical and thematic A1 word list. Edition year to be confirmed on review."
+    },
+    {
+      "id": "goethe-a2-wortliste",
+      "title": "Goethe-Zertifikat A2: Deutschprüfung für Jugendliche und Erwachsene, Wortliste",
+      "author": "Goethe-Institut",
+      "publisher": "Goethe-Institut, Munich",
+      "year": 2016,
+      "url": "https://www.goethe.de/pro/relaunch/prf/de/Goethe-Zertifikat_A2_Wortliste.pdf",
+      "note": "First edition 2016, taken from Goethe-Zertifikat A2: Prüfungsziele, Testbeschreibung (Hueber). Word groups and alphabetical word list, about 1300 entries. Accessed 2026-11-14. Cited for items taught at A1 in this pack that are not headwords in the A1 list."
+    },
+    {
+      "id": "dtz-wortliste",
+      "title": "Deutsch-Test für Zuwanderer A2 bis B1: Prüfungsziele, Testbeschreibung, Kapitel 9.2 Alphabetische Wortliste",
+      "author": "Goethe-Institut and telc GmbH",
+      "publisher": "Goethe-Institut, Munich, and telc GmbH, Frankfurt am Main",
+      "year": 2009,
+      "url": "https://www.goethe.de/resources/files/pdf209/dtz_wortliste.pdf",
+      "note": "First edition 2009. Alphabetical word list of the DTZ handbook, about 2100 main entries, covering A2 to B1 without a level mark per entry. Accessed 2026-11-14. Cited for items taught at A1 in this pack that are not headwords in the Goethe A1 or A2 lists."
+    },
+    {
+      "id": "goethe-b1-wortliste",
+      "title": "Goethe-Zertifikat B1: Deutschprüfung für Jugendliche und Erwachsene, Wortliste",
+      "author": "Goethe-Institut and ÖSD",
+      "publisher": "Goethe-Institut, Munich, and ÖSD, Vienna",
+      "year": 2016,
+      "url": "https://www.goethe.de/pro/relaunch/prf/de/Goethe-Zertifikat_B1_Wortliste.pdf",
+      "note": "First edition 2016, taken from Zertifikat B1: Prüfungsziele, Testbeschreibung (Hueber). Word groups and alphabetical word list. Accessed 2026-11-14. Cited only when a word is in neither the Goethe A2 list nor the DTZ list."
     },
     {
       "id": "profile-deutsch",
@@ -118,8 +145,8 @@
       "note": "Chapter 1 Kurzbeschreibung der Prüfung: Prüfungsteile und Dauer table and Ergebnisse rule. Speaking length also from https://www.bamf.de/DE/Themen/Integration/ZugewanderteTeilnehmende/Integrationskurse/Abschlusspruefung/abschlusspruefung-node.html"
     }
   ],
-  "checksum": "sha256:1d5ab1947027e8e7b47e28ed65715a516d02b9c3acfe73c3c177341a19c392a6",
+  "checksum": "sha256:860bb74e879ecdcce73582596969a737fbcc16df55bb0d83d36a548f04552939",
   "strictUnitEnding": true,
   "reviewed": false,
-  "updated": "2026-09-09"
+  "updated": "2026-11-15"
 }
