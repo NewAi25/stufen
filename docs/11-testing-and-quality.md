@@ -15,7 +15,7 @@ From cheapest and most frequent at the bottom to most expensive and rarest at th
 | Boundary check | no import crosses a line in the dependency rules of `docs/02` | `scripts/check-boundaries.mjs` | `node scripts/check-boundaries.mjs` | every commit |
 | Content validation | every content pack file validates against `content/schema/`, every referenced id exists, every descriptor has a source | `scripts/validate-content.mjs` | `node scripts/validate-content.mjs de` | every commit touching `content/` or `lang-*`, every push |
 | Integration tests | migrations apply cleanly, Postgres adapters behave like the in memory ones, row level security holds, a user cannot read another user's rows | Vitest against Docker Postgres | `pnpm test:db` | every push |
-| End to end | five learner flows in a real browser against a local app and database | Playwright | `pnpm test:e2e` | every push, before release |
+| End to end | the learner path in a real browser against a running app and database | Playwright | `pnpm --filter @stufen/web e2e` | every push, before release |
 | AI evals | correction accuracy and writing grade agreement, hand checked | `packages/core-ai-tutor/evals/run.ts` | `pnpm --filter core-ai-tutor eval:corrections`, `eval:writing` | before any prompt or model change, before release |
 
 ### Box unit tests
@@ -68,15 +68,29 @@ The RLS isolation test is the one the owner should care about most. It is the pr
 
 ### End to end
 
-Playwright runs against `pnpm dev` with the Docker Postgres and the console mail adapter, which writes each magic link to a local file the test reads. Five flows, each a single spec file under `apps/web/e2e/`:
+Playwright drives Chromium against an app that is already running in Postgres mode. The test does not start the app. Two ways to run it:
 
-| Flow | Spec | Passes when |
-|------|------|-------------|
-| Sign up and onboarding | `01-onboarding.spec.ts` | a new email signs in with the magic link (read from the console mail adapter's output file), picks German, completes the placement, lands on the home screen with a level shown |
-| Complete a lesson | `02-lesson.spec.ts` | the seeded learner opens the next lesson, answers every exercise, sees a score, and the level map shows evidence counts went up |
-| Do reviews | `03-review.spec.ts` | the seeded learner with due cards opens `/review`, rates each card, and the due count reaches zero |
-| Tutor turn with correction | `04-tutor.spec.ts` | the learner sends a message with a known error, sees streamed text, then sees one inline correction with the right category. The Claude API is replaced by the recorded fixture server |
-| Submit feedback | `05-feedback.spec.ts` | the feedback button opens the sheet, a message is sent, a `feedback` row exists with the right page |
+| Where | The app | How the test gets the sign in link |
+|-------|---------|-------------------------------------|
+| Locally | `pnpm dev` with `DATABASE_URL` set and the console mail adapter | from the link the sign in page shows in development |
+| CI, job `docker` | the compose stack with profile `app`: database, setup, mail catcher, web | from the mail catcher's HTTP API (`E2E_MAILPIT_URL`), so the mail really went out by SMTP |
+
+Built, in `apps/web/e2e/learner-path.spec.ts` (row P1-25):
+
+| Flow | Passes when |
+|------|-------------|
+| Learner path | a new address signs in with the magic link, picks German and a target level, opens the first A1 lesson from home, answers all twelve exercises, sees the score and the count of new review items, rates five review cards and sees the counter go down by five, and the level map shows A1 with at least one descriptor that has attempts |
+| Sign in guard | a signed out visitor to `/settings` is sent to sign in, the link signs them in, and the same link a second time is refused with a calm note |
+
+Each run creates users whose address starts with `e2e-` and ends in `@example.test`. The app allows five sign in requests per client in fifteen minutes and a run uses two, so a third local run in a row needs a server restart.
+
+Planned, each with its phase:
+
+| Flow | Phase | Passes when |
+|------|-------|-------------|
+| Placement in onboarding | 3 | a new learner completes the placement and lands on home with a level shown |
+| Tutor turn with correction | 2 | the learner sends a message with a known error, sees streamed text, then one inline correction with the right category. The Claude API is replaced by the recorded fixture server |
+| Submit feedback | 2 | the feedback button opens the sheet, a message is sent, a `feedback` row exists with the right page |
 
 End to end tests never call the live Claude API. `apps/web` reads `STUFEN_AI_FIXTURES=1` and `core-ai-tutor` then serves responses from `packages/core-ai-tutor/tests/fixtures/`.
 
@@ -93,6 +107,8 @@ Described in `docs/10-ai-tutor.md`. They cost money, run against the live API, a
 | Release | before a version tag on `main` | everything above, plus AI evals with the result file committed, plus the manual QA script below run by one person who is not the author | yes; the tag is not created otherwise |
 
 ### GitHub Actions outline
+
+The workflow that really runs is `.github/workflows/ci.yml`. It has two jobs today. `check` installs, migrates a Postgres 16 service, typechecks, lints, checks formatting, box boundaries and content, runs the unit tests with no database, runs the database tests one box after another, and builds the web app. `docker` builds and starts the compose stack with profile `app`, checks that it answers, and runs the end to end test against it with the mail catcher. The outline below is the first sketch of the shape and is kept for the planned split into more jobs; where the two differ, the workflow file is right.
 
 ```yaml
 name: ci

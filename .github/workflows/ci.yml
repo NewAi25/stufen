@@ -95,6 +95,40 @@ jobs:
           test "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:3000/)" = "307"
           docker compose --profile app ps -a
 
+      # The learner path in a real browser against the stack: sign in with the
+      # link from the mail catcher, onboarding, one lesson, five reviews.
+      - name: Setup Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      # The packageManager field in package.json pins pnpm 9.15.9 for corepack.
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Chromium for Playwright
+        run: pnpm --filter @stufen/web exec playwright install --with-deps chromium
+
+      - name: Run the end to end test
+        run: pnpm --filter @stufen/web e2e
+        env:
+          E2E_BASE_URL: http://localhost:3000
+          E2E_MAILPIT_URL: http://localhost:8025
+
+      - name: Upload the Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            apps/web/playwright-report
+            apps/web/test-results
+          if-no-files-found: ignore
+          retention-days: 7
+
       - name: Logs on failure
         if: failure()
         run: docker compose --profile app logs --no-color | tail -n 300
